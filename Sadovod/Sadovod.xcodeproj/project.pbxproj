@@ -1,0 +1,521 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		77BFECF71C4AC5E80091A336 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 77BFECF61C4AC5E80091A336 /* main.m */; };
+		77BFECFA1C4AC5E80091A336 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 77BFECF91C4AC5E80091A336 /* AppDelegate.m */; };
+		77BFECFD1C4AC5E80091A336 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77BFECFC1C4AC5E80091A336 /* ViewController.m */; };
+		77BFED001C4AC5E80091A336 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77BFECFE1C4AC5E80091A336 /* Main.storyboard */; };
+		77BFED021C4AC5E80091A336 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77BFED011C4AC5E80091A336 /* Assets.xcassets */; };
+		77BFED051C4AC5E80091A336 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77BFED031C4AC5E80091A336 /* LaunchScreen.storyboard */; };
+		77BFED101C4AC5E90091A336 /* SadovodTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 77BFED0F1C4AC5E90091A336 /* SadovodTests.m */; };
+		77BFED1B1C4AC5E90091A336 /* SadovodUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 77BFED1A1C4AC5E90091A336 /* SadovodUITests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		77BFED0C1C4AC5E90091A336 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 77BFECEA1C4AC5E80091A336 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 77BFECF11C4AC5E80091A336;
+			remoteInfo = Sadovod;
+		};
+		77BFED171C4AC5E90091A336 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 77BFECEA1C4AC5E80091A336 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 77BFECF11C4AC5E80091A336;
+			remoteInfo = Sadovod;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		77BFECF21C4AC5E80091A336 /* Sadovod.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sadovod.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		77BFECF61C4AC5E80091A336 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		77BFECF81C4AC5E80091A336 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		77BFECF91C4AC5E80091A336 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		77BFECFB1C4AC5E80091A336 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		77BFECFC1C4AC5E80091A336 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		77BFECFF1C4AC5E80091A336 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		77BFED011C4AC5E80091A336 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		77BFED041C4AC5E80091A336 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		77BFED061C4AC5E80091A336 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		77BFED0B1C4AC5E90091A336 /* SadovodTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SadovodTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		77BFED0F1C4AC5E90091A336 /* SadovodTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SadovodTests.m; sourceTree = "<group>"; };
+		77BFED111C4AC5E90091A336 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		77BFED161C4AC5E90091A336 /* SadovodUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SadovodUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		77BFED1A1C4AC5E90091A336 /* SadovodUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SadovodUITests.m; sourceTree = "<group>"; };
+		77BFED1C1C4AC5E90091A336 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		77BFECEF1C4AC5E80091A336 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		77BFED081C4AC5E90091A336 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		77BFED131C4AC5E90091A336 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		77BFECE91C4AC5E80091A336 = {
+			isa = PBXGroup;
+			children = (
+				77BFECF41C4AC5E80091A336 /* Sadovod */,
+				77BFED0E1C4AC5E90091A336 /* SadovodTests */,
+				77BFED191C4AC5E90091A336 /* SadovodUITests */,
+				77BFECF31C4AC5E80091A336 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		77BFECF31C4AC5E80091A336 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				77BFECF21C4AC5E80091A336 /* Sadovod.app */,
+				77BFED0B1C4AC5E90091A336 /* SadovodTests.xctest */,
+				77BFED161C4AC5E90091A336 /* SadovodUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		77BFECF41C4AC5E80091A336 /* Sadovod */ = {
+			isa = PBXGroup;
+			children = (
+				77BFECF81C4AC5E80091A336 /* AppDelegate.h */,
+				77BFECF91C4AC5E80091A336 /* AppDelegate.m */,
+				77BFECFB1C4AC5E80091A336 /* ViewController.h */,
+				77BFECFC1C4AC5E80091A336 /* ViewController.m */,
+				77BFECFE1C4AC5E80091A336 /* Main.storyboard */,
+				77BFED011C4AC5E80091A336 /* Assets.xcassets */,
+				77BFED031C4AC5E80091A336 /* LaunchScreen.storyboard */,
+				77BFED061C4AC5E80091A336 /* Info.plist */,
+				77BFECF51C4AC5E80091A336 /* Supporting Files */,
+			);
+			path = Sadovod;
+			sourceTree = "<group>";
+		};
+		77BFECF51C4AC5E80091A336 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				77BFECF61C4AC5E80091A336 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		77BFED0E1C4AC5E90091A336 /* SadovodTests */ = {
+			isa = PBXGroup;
+			children = (
+				77BFED0F1C4AC5E90091A336 /* SadovodTests.m */,
+				77BFED111C4AC5E90091A336 /* Info.plist */,
+			);
+			path = SadovodTests;
+			sourceTree = "<group>";
+		};
+		77BFED191C4AC5E90091A336 /* SadovodUITests */ = {
+			isa = PBXGroup;
+			children = (
+				77BFED1A1C4AC5E90091A336 /* SadovodUITests.m */,
+				77BFED1C1C4AC5E90091A336 /* Info.plist */,
+			);
+			path = SadovodUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		77BFECF11C4AC5E80091A336 /* Sadovod */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 77BFED1F1C4AC5E90091A336 /* Build configuration list for PBXNativeTarget "Sadovod" */;
+			buildPhases = (
+				77BFECEE1C4AC5E80091A336 /* Sources */,
+				77BFECEF1C4AC5E80091A336 /* Frameworks */,
+				77BFECF01C4AC5E80091A336 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Sadovod;
+			productName = Sadovod;
+			productReference = 77BFECF21C4AC5E80091A336 /* Sadovod.app */;
+			productType = "com.apple.product-type.application";
+		};
+		77BFED0A1C4AC5E90091A336 /* SadovodTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 77BFED221C4AC5E90091A336 /* Build configuration list for PBXNativeTarget "SadovodTests" */;
+			buildPhases = (
+				77BFED071C4AC5E90091A336 /* Sources */,
+				77BFED081C4AC5E90091A336 /* Frameworks */,
+				77BFED091C4AC5E90091A336 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				77BFED0D1C4AC5E90091A336 /* PBXTargetDependency */,
+			);
+			name = SadovodTests;
+			productName = SadovodTests;
+			productReference = 77BFED0B1C4AC5E90091A336 /* SadovodTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		77BFED151C4AC5E90091A336 /* SadovodUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 77BFED251C4AC5E90091A336 /* Build configuration list for PBXNativeTarget "SadovodUITests" */;
+			buildPhases = (
+				77BFED121C4AC5E90091A336 /* Sources */,
+				77BFED131C4AC5E90091A336 /* Frameworks */,
+				77BFED141C4AC5E90091A336 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				77BFED181C4AC5E90091A336 /* PBXTargetDependency */,
+			);
+			name = SadovodUITests;
+			productName = SadovodUITests;
+			productReference = 77BFED161C4AC5E90091A336 /* SadovodUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		77BFECEA1C4AC5E80091A336 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = Viktor;
+				TargetAttributes = {
+					77BFECF11C4AC5E80091A336 = {
+						CreatedOnToolsVersion = 7.2;
+					};
+					77BFED0A1C4AC5E90091A336 = {
+						CreatedOnToolsVersion = 7.2;
+						TestTargetID = 77BFECF11C4AC5E80091A336;
+					};
+					77BFED151C4AC5E90091A336 = {
+						CreatedOnToolsVersion = 7.2;
+						TestTargetID = 77BFECF11C4AC5E80091A336;
+					};
+				};
+			};
+			buildConfigurationList = 77BFECED1C4AC5E80091A336 /* Build configuration list for PBXProject "Sadovod" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 77BFECE91C4AC5E80091A336;
+			productRefGroup = 77BFECF31C4AC5E80091A336 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				77BFECF11C4AC5E80091A336 /* Sadovod */,
+				77BFED0A1C4AC5E90091A336 /* SadovodTests */,
+				77BFED151C4AC5E90091A336 /* SadovodUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		77BFECF01C4AC5E80091A336 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				77BFED051C4AC5E80091A336 /* LaunchScreen.storyboard in Resources */,
+				77BFED021C4AC5E80091A336 /* Assets.xcassets in Resources */,
+				77BFED001C4AC5E80091A336 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		77BFED091C4AC5E90091A336 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		77BFED141C4AC5E90091A336 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		77BFECEE1C4AC5E80091A336 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				77BFECFD1C4AC5E80091A336 /* ViewController.m in Sources */,
+				77BFECFA1C4AC5E80091A336 /* AppDelegate.m in Sources */,
+				77BFECF71C4AC5E80091A336 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		77BFED071C4AC5E90091A336 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				77BFED101C4AC5E90091A336 /* SadovodTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		77BFED121C4AC5E90091A336 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				77BFED1B1C4AC5E90091A336 /* SadovodUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		77BFED0D1C4AC5E90091A336 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 77BFECF11C4AC5E80091A336 /* Sadovod */;
+			targetProxy = 77BFED0C1C4AC5E90091A336 /* PBXContainerItemProxy */;
+		};
+		77BFED181C4AC5E90091A336 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 77BFECF11C4AC5E80091A336 /* Sadovod */;
+			targetProxy = 77BFED171C4AC5E90091A336 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		77BFECFE1C4AC5E80091A336 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				77BFECFF1C4AC5E80091A336 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		77BFED031C4AC5E80091A336 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				77BFED041C4AC5E80091A336 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		77BFED1D1C4AC5E90091A336 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		77BFED1E1C4AC5E90091A336 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		77BFED201C4AC5E90091A336 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Sadovod/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Ugi-Ugi.Sadovod";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		77BFED211C4AC5E90091A336 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Sadovod/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Ugi-Ugi.Sadovod";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		77BFED231C4AC5E90091A336 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = SadovodTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Ugi-Ugi.SadovodTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Sadovod.app/Sadovod";
+			};
+			name = Debug;
+		};
+		77BFED241C4AC5E90091A336 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = SadovodTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Ugi-Ugi.SadovodTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Sadovod.app/Sadovod";
+			};
+			name = Release;
+		};
+		77BFED261C4AC5E90091A336 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = SadovodUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Ugi-Ugi.SadovodUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Sadovod;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		77BFED271C4AC5E90091A336 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = SadovodUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Ugi-Ugi.SadovodUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Sadovod;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		77BFECED1C4AC5E80091A336 /* Build configuration list for PBXProject "Sadovod" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				77BFED1D1C4AC5E90091A336 /* Debug */,
+				77BFED1E1C4AC5E90091A336 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		77BFED1F1C4AC5E90091A336 /* Build configuration list for PBXNativeTarget "Sadovod" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				77BFED201C4AC5E90091A336 /* Debug */,
+				77BFED211C4AC5E90091A336 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		77BFED221C4AC5E90091A336 /* Build configuration list for PBXNativeTarget "SadovodTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				77BFED231C4AC5E90091A336 /* Debug */,
+				77BFED241C4AC5E90091A336 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		77BFED251C4AC5E90091A336 /* Build configuration list for PBXNativeTarget "SadovodUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				77BFED261C4AC5E90091A336 /* Debug */,
+				77BFED271C4AC5E90091A336 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 77BFECEA1C4AC5E80091A336 /* Project object */;
+}
