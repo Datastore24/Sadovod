@@ -8,25 +8,62 @@
 
 #import "ViewController.h"
 #import "SWRevealViewController.h"
+#import "ModelMyShowcase.h"
+#import "LabelViewMyShowcase.h"
 
-@interface ViewController ()
+@interface ViewController () <UITableViewDataSource, UITableViewDelegate>
+@property (weak, nonatomic) IBOutlet UITableView *tableViewMyShowcase; // Таблица "Моя Витрина"
 
 @end
 
 @implementation ViewController
+{
+    NSDictionary * tableDict;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    tableDict = [ModelMyShowcase dictTableData];
+    
+    self.navigationController.navigationBar.backgroundColor = [UIColor blueColor];
+    
+    //Реализация кнопки бокового меню---------------------------
     _barButton.target = self.revealViewController;
     _barButton.action = @selector(revealToggle:);
-    
-    
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+    
+    //Параметры моей таблицы------------------------------------
+    self.tableViewMyShowcase.frame = CGRectMake(0.f, 0.f, self.view.frame.size.width, self.view.frame.size.height);
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    
+}
+
+#pragma mark - UITableViewDataSource
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [tableDict[@"title"] count];
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    if (!cell)
+    {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1
+                                      reuseIdentifier:@"cell"];
+    }
+    cell.textLabel.text = tableDict[@"title"][indexPath.row];
+    
+    LabelViewMyShowcase * viewLabel = [[LabelViewMyShowcase alloc] initWichValue:[NSString stringWithFormat:@"%ld", [tableDict[@"value"][indexPath.row] integerValue]]];
+    [cell addSubview:viewLabel];
+    
+    return cell;
 }
 
 @end
