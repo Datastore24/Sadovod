@@ -15,6 +15,8 @@
 		77BFED051C4AC5E80091A336 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77BFED031C4AC5E80091A336 /* LaunchScreen.storyboard */; };
 		77BFED101C4AC5E90091A336 /* SadovodTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 77BFED0F1C4AC5E90091A336 /* SadovodTests.m */; };
 		77BFED1B1C4AC5E90091A336 /* SadovodUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 77BFED1A1C4AC5E90091A336 /* SadovodUITests.m */; };
+		77BFED2B1C4AC9F10091A336 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77BFED2A1C4AC9F10091A336 /* SWRevealViewController.m */; };
+		77BFED2E1C4ACF900091A336 /* UserMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77BFED2D1C4ACF900091A336 /* UserMenuViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,10 @@
 		77BFED161C4AC5E90091A336 /* SadovodUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SadovodUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		77BFED1A1C4AC5E90091A336 /* SadovodUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SadovodUITests.m; sourceTree = "<group>"; };
 		77BFED1C1C4AC5E90091A336 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		77BFED291C4AC9F10091A336 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
+		77BFED2A1C4AC9F10091A336 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
+		77BFED2C1C4ACF900091A336 /* UserMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserMenuViewController.h; sourceTree = "<group>"; };
+		77BFED2D1C4ACF900091A336 /* UserMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserMenuViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +107,7 @@
 		77BFECF41C4AC5E80091A336 /* Sadovod */ = {
 			isa = PBXGroup;
 			children = (
+				77BFED281C4AC9CE0091A336 /* RevealMenu */,
 				77BFECF81C4AC5E80091A336 /* AppDelegate.h */,
 				77BFECF91C4AC5E80091A336 /* AppDelegate.m */,
 				77BFECFB1C4AC5E80091A336 /* ViewController.h */,
@@ -138,6 +145,17 @@
 				77BFED1C1C4AC5E90091A336 /* Info.plist */,
 			);
 			path = SadovodUITests;
+			sourceTree = "<group>";
+		};
+		77BFED281C4AC9CE0091A336 /* RevealMenu */ = {
+			isa = PBXGroup;
+			children = (
+				77BFED2C1C4ACF900091A336 /* UserMenuViewController.h */,
+				77BFED2D1C4ACF900091A336 /* UserMenuViewController.m */,
+				77BFED291C4AC9F10091A336 /* SWRevealViewController.h */,
+				77BFED2A1C4AC9F10091A336 /* SWRevealViewController.m */,
+			);
+			name = RevealMenu;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -271,8 +289,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				77BFECFD1C4AC5E80091A336 /* ViewController.m in Sources */,
+				77BFED2E1C4ACF900091A336 /* UserMenuViewController.m in Sources */,
 				77BFECFA1C4AC5E80091A336 /* AppDelegate.m in Sources */,
 				77BFECF71C4AC5E80091A336 /* main.m in Sources */,
+				77BFED2B1C4AC9F10091A336 /* SWRevealViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -498,6 +518,7 @@
 				77BFED211C4AC5E90091A336 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		77BFED221C4AC5E90091A336 /* Build configuration list for PBXNativeTarget "SadovodTests" */ = {
 			isa = XCConfigurationList;
@@ -506,6 +527,7 @@
 				77BFED241C4AC5E90091A336 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		77BFED251C4AC5E90091A336 /* Build configuration list for PBXNativeTarget "SadovodUITests" */ = {
 			isa = XCConfigurationList;
@@ -514,6 +536,7 @@
 				77BFED271C4AC5E90091A336 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
