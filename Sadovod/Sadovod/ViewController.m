@@ -18,7 +18,7 @@
 
 @implementation ViewController
 {
-    NSDictionary * tableDict;
+    NSDictionary * tableDict; //Директория хранения данных
 }
 
 - (void)viewDidLoad {
@@ -26,6 +26,7 @@
     
     tableDict = [ModelMyShowcase dictTableData];
     
+    //Задаем цвет бара----------------------------------------
     self.navigationController.navigationBar.backgroundColor = [UIColor blueColor];
     
     //Реализация кнопки бокового меню---------------------------
@@ -60,7 +61,9 @@
     }
     cell.textLabel.text = tableDict[@"title"][indexPath.row];
     
-    LabelViewMyShowcase * viewLabel = [[LabelViewMyShowcase alloc] initWichValue:[NSString stringWithFormat:@"%ld", [tableDict[@"value"][indexPath.row] integerValue]]];
+    //Добаляет кастомный лейбл в ясейку-----------------------------
+    LabelViewMyShowcase * viewLabel = [[LabelViewMyShowcase alloc]
+                          initWichValue:[NSString stringWithFormat:@"%ld", [tableDict[@"value"][indexPath.row] integerValue]]];
     [cell addSubview:viewLabel];
     
     return cell;

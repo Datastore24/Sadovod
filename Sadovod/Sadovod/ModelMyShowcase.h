@@ -6,10 +6,12 @@
 //  Copyright © 2016 Viktor. All rights reserved.
 //
 
+//Данные моей Витрины-------------------------
+
 #import <Foundation/Foundation.h>
 
 @interface ModelMyShowcase : NSObject
 
-+ (NSDictionary *) dictTableData;
++ (NSDictionary *) dictTableData; //Метод
 
 @end
