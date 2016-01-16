@@ -18,6 +18,8 @@
 		77BFED1B1C4AC5E90091A336 /* SadovodUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 77BFED1A1C4AC5E90091A336 /* SadovodUITests.m */; };
 		77BFED2B1C4AC9F10091A336 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77BFED2A1C4AC9F10091A336 /* SWRevealViewController.m */; };
 		77BFED2E1C4ACF900091A336 /* UserMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77BFED2D1C4ACF900091A336 /* UserMenuViewController.m */; };
+		77CE81941C4AF296003C7FFE /* ModelMyShowcase.m in Sources */ = {isa = PBXBuildFile; fileRef = 77CE81931C4AF296003C7FFE /* ModelMyShowcase.m */; };
+		77CE819A1C4AFC44003C7FFE /* LabelViewMyShowcase.m in Sources */ = {isa = PBXBuildFile; fileRef = 77CE81991C4AFC44003C7FFE /* LabelViewMyShowcase.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +60,10 @@
 		77BFED2A1C4AC9F10091A336 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		77BFED2C1C4ACF900091A336 /* UserMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserMenuViewController.h; sourceTree = "<group>"; };
 		77BFED2D1C4ACF900091A336 /* UserMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserMenuViewController.m; sourceTree = "<group>"; };
+		77CE81921C4AF296003C7FFE /* ModelMyShowcase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelMyShowcase.h; sourceTree = "<group>"; };
+		77CE81931C4AF296003C7FFE /* ModelMyShowcase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelMyShowcase.m; sourceTree = "<group>"; };
+		77CE81981C4AFC44003C7FFE /* LabelViewMyShowcase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LabelViewMyShowcase.h; sourceTree = "<group>"; };
+		77CE81991C4AFC44003C7FFE /* LabelViewMyShowcase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LabelViewMyShowcase.m; sourceTree = "<group>"; };
 		87269916B8AC7706E07A131E /* Pods-Sadovod.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sadovod.release.xcconfig"; path = "Pods/Target Support Files/Pods-Sadovod/Pods-Sadovod.release.xcconfig"; sourceTree = "<group>"; };
 		C29A1CA412141FC74A35B3D2 /* Pods-Sadovod.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sadovod.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Sadovod/Pods-Sadovod.debug.xcconfig"; sourceTree = "<group>"; };
 		DB0C66A742FF03CE239AEFEF /* libPods-Sadovod.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Sadovod.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -174,11 +180,23 @@
 		77BFED2F1C4ADF7A0091A336 /* Owner */ = {
 			isa = PBXGroup;
 			children = (
+				77CE81911C4AEAF8003C7FFE /* MyShowcase */,
 				77BFED281C4AC9CE0091A336 /* RevealMenu */,
-				77BFECFB1C4AC5E80091A336 /* ViewController.h */,
-				77BFECFC1C4AC5E80091A336 /* ViewController.m */,
 			);
 			name = Owner;
+			sourceTree = "<group>";
+		};
+		77CE81911C4AEAF8003C7FFE /* MyShowcase */ = {
+			isa = PBXGroup;
+			children = (
+				77BFECFB1C4AC5E80091A336 /* ViewController.h */,
+				77BFECFC1C4AC5E80091A336 /* ViewController.m */,
+				77CE81921C4AF296003C7FFE /* ModelMyShowcase.h */,
+				77CE81931C4AF296003C7FFE /* ModelMyShowcase.m */,
+				77CE81981C4AFC44003C7FFE /* LabelViewMyShowcase.h */,
+				77CE81991C4AFC44003C7FFE /* LabelViewMyShowcase.m */,
+			);
+			name = MyShowcase;
 			sourceTree = "<group>";
 		};
 		D7172946F471A31E3679FAD2 /* Pods */ = {
@@ -375,7 +393,9 @@
 				77BFED2E1C4ACF900091A336 /* UserMenuViewController.m in Sources */,
 				77BFECFA1C4AC5E80091A336 /* AppDelegate.m in Sources */,
 				77BFECF71C4AC5E80091A336 /* main.m in Sources */,
+				77CE81941C4AF296003C7FFE /* ModelMyShowcase.m in Sources */,
 				77BFED2B1C4AC9F10091A336 /* SWRevealViewController.m in Sources */,
+				77CE819A1C4AFC44003C7FFE /* LabelViewMyShowcase.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
