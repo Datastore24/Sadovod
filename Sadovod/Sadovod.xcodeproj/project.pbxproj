@@ -107,11 +107,9 @@
 		77BFECF41C4AC5E80091A336 /* Sadovod */ = {
 			isa = PBXGroup;
 			children = (
-				77BFED281C4AC9CE0091A336 /* RevealMenu */,
+				77BFED2F1C4ADF7A0091A336 /* Owner */,
 				77BFECF81C4AC5E80091A336 /* AppDelegate.h */,
 				77BFECF91C4AC5E80091A336 /* AppDelegate.m */,
-				77BFECFB1C4AC5E80091A336 /* ViewController.h */,
-				77BFECFC1C4AC5E80091A336 /* ViewController.m */,
 				77BFECFE1C4AC5E80091A336 /* Main.storyboard */,
 				77BFED011C4AC5E80091A336 /* Assets.xcassets */,
 				77BFED031C4AC5E80091A336 /* LaunchScreen.storyboard */,
@@ -156,6 +154,16 @@
 				77BFED2A1C4AC9F10091A336 /* SWRevealViewController.m */,
 			);
 			name = RevealMenu;
+			sourceTree = "<group>";
+		};
+		77BFED2F1C4ADF7A0091A336 /* Owner */ = {
+			isa = PBXGroup;
+			children = (
+				77BFED281C4AC9CE0091A336 /* RevealMenu */,
+				77BFECFB1C4AC5E80091A336 /* ViewController.h */,
+				77BFECFC1C4AC5E80091A336 /* ViewController.m */,
+			);
+			name = Owner;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
