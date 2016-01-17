@@ -10,6 +10,7 @@
 #import "SWRevealViewController.h"
 #import "ModelMyShowcase.h"
 #import "LabelViewMyShowcase.h"
+#import "SectionTableViewController.h"
 
 @interface ViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableViewMyShowcase; // Таблица "Моя Витрина"
@@ -18,7 +19,12 @@
 
 @implementation ViewController
 {
-    NSDictionary * tableDict;
+    NSDictionary * tableDict; //Директория хранения данных
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    self.title = @"Моя Витрина";
 }
 
 - (void)viewDidLoad {
@@ -26,6 +32,8 @@
     
     tableDict = [ModelMyShowcase dictTableData];
     
+    
+    //Задаем цвет бара----------------------------------------
     self.navigationController.navigationBar.backgroundColor = [UIColor blueColor];
     
     //Реализация кнопки бокового меню---------------------------
@@ -60,10 +68,23 @@
     }
     cell.textLabel.text = tableDict[@"title"][indexPath.row];
     
-    LabelViewMyShowcase * viewLabel = [[LabelViewMyShowcase alloc] initWichValue:[NSString stringWithFormat:@"%ld", [tableDict[@"value"][indexPath.row] integerValue]]];
+    //Добаляет кастомный лейбл в ячейку-----------------------------
+    LabelViewMyShowcase * viewLabel = [[LabelViewMyShowcase alloc]
+                          initWichValue:[NSString stringWithFormat:@"%ld", [tableDict[@"value"][indexPath.row] integerValue]]];
     [cell addSubview:viewLabel];
     
     return cell;
+}
+
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
+{
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    SectionTableViewController * detail = [self.storyboard
+                                           instantiateViewControllerWithIdentifier:@"SectionTableViewController"];
+    [self.navigationController pushViewController:detail animated:YES];
 }
 
 @end

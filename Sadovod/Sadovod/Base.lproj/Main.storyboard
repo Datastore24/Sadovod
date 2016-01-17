@@ -238,6 +238,34 @@
             </objects>
             <point key="canvasLocation" x="976" y="-652"/>
         </scene>
+        <!--Section Table View Controller-->
+        <scene sceneID="4t5-Xy-N74">
+            <objects>
+                <viewController storyboardIdentifier="SectionTableViewController" id="Rhr-ZP-rg9" customClass="SectionTableViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="iyf-4H-oPY">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3XA-Up-SO8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1379" y="637"/>
+        </scene>
+        <!--View Controller Product Details-->
+        <scene sceneID="MLH-qb-KUL">
+            <objects>
+                <viewController storyboardIdentifier="ViewControllerProductDetails" id="6E5-XT-MSF" customClass="ViewControllerProductDetails" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="20F-ps-pPl">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Vug-Qy-ehr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1779" y="637"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="vRT-fd-hCD"/>

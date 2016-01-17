@@ -10,7 +10,7 @@
 
 @interface ViewController : UIViewController
 
-@property (weak, nonatomic) IBOutlet UIBarButtonItem * barButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem * barButton; //Кнопка бара
 
 
 @end

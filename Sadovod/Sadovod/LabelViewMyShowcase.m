@@ -22,6 +22,7 @@
         self.font = [UIFont fontWithName:@"HelveticaNeue" size:16];
         self.textAlignment = NSTextAlignmentCenter;
         self.layer.cornerRadius = 10.f;
+        self.clipsToBounds = YES;
         
     }
     return self;
