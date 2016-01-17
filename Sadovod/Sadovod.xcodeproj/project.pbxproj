@@ -22,6 +22,7 @@
 		776BF2381C4B993C0006C502 /* 9image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 776BF22D1C4B993C0006C502 /* 9image.jpg */; };
 		776BF2391C4B993C0006C502 /* 10image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 776BF22E1C4B993C0006C502 /* 10image.jpg */; };
 		776BF23A1C4B993C0006C502 /* 8image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 776BF22F1C4B993C0006C502 /* 8image.jpg */; };
+		776BF23E1C4BB2510006C502 /* ViewControllerProductDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 776BF23D1C4BB2510006C502 /* ViewControllerProductDetails.m */; };
 		77BFECF71C4AC5E80091A336 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 77BFECF61C4AC5E80091A336 /* main.m */; };
 		77BFECFA1C4AC5E80091A336 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 77BFECF91C4AC5E80091A336 /* AppDelegate.m */; };
 		77BFECFD1C4AC5E80091A336 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77BFECFC1C4AC5E80091A336 /* ViewController.m */; };
@@ -71,6 +72,8 @@
 		776BF22D1C4B993C0006C502 /* 9image.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 9image.jpg; sourceTree = "<group>"; };
 		776BF22E1C4B993C0006C502 /* 10image.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 10image.jpg; sourceTree = "<group>"; };
 		776BF22F1C4B993C0006C502 /* 8image.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 8image.jpg; sourceTree = "<group>"; };
+		776BF23C1C4BB2510006C502 /* ViewControllerProductDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerProductDetails.h; sourceTree = "<group>"; };
+		776BF23D1C4BB2510006C502 /* ViewControllerProductDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerProductDetails.m; sourceTree = "<group>"; };
 		77BFECF21C4AC5E80091A336 /* Sadovod.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sadovod.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77BFECF61C4AC5E80091A336 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		77BFECF81C4AC5E80091A336 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -165,6 +168,15 @@
 			name = testImage;
 			sourceTree = "<group>";
 		};
+		776BF23B1C4BB1FF0006C502 /* ProductDetails */ = {
+			isa = PBXGroup;
+			children = (
+				776BF23C1C4BB2510006C502 /* ViewControllerProductDetails.h */,
+				776BF23D1C4BB2510006C502 /* ViewControllerProductDetails.m */,
+			);
+			name = ProductDetails;
+			sourceTree = "<group>";
+		};
 		77BFECE91C4AC5E80091A336 = {
 			isa = PBXGroup;
 			children = (
@@ -243,6 +255,7 @@
 		77BFED2F1C4ADF7A0091A336 /* Owner */ = {
 			isa = PBXGroup;
 			children = (
+				776BF23B1C4BB1FF0006C502 /* ProductDetails */,
 				776BF21A1C4B898A0006C502 /* SectionTableMyShowcase */,
 				77CE81911C4AEAF8003C7FFE /* MyShowcase */,
 				77BFED281C4AC9CE0091A336 /* RevealMenu */,
@@ -467,6 +480,7 @@
 				77BFECFD1C4AC5E80091A336 /* ViewController.m in Sources */,
 				77BFED2E1C4ACF900091A336 /* UserMenuViewController.m in Sources */,
 				77BFECFA1C4AC5E80091A336 /* AppDelegate.m in Sources */,
+				776BF23E1C4BB2510006C502 /* ViewControllerProductDetails.m in Sources */,
 				776BF21D1C4B8A4C0006C502 /* SectionTableViewController.m in Sources */,
 				77BFECF71C4AC5E80091A336 /* main.m in Sources */,
 				77CE81941C4AF296003C7FFE /* ModelMyShowcase.m in Sources */,

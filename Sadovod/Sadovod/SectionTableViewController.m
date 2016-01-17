@@ -9,6 +9,7 @@
 #import "SectionTableViewController.h"
 #import "ModelSectionTableOwner.h"
 #import "ViewSectionTable.h"
+#import "ViewControllerProductDetails.h"
 
 @interface SectionTableViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -75,6 +76,17 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 155;
+}
+
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
+{
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    ViewControllerProductDetails * detail = [self.storyboard
+                                           instantiateViewControllerWithIdentifier:@"ViewControllerProductDetails"];
+    [self.navigationController pushViewController:detail animated:YES];
 }
 
 @end
