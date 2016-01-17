@@ -13,6 +13,6 @@
 
 @interface ModelSectionTableOwner : NSObject
 
-+ (NSDictionary *) dictTableItems; //Метод
++ (NSDictionary *) dictTableItems; //Метод данных
 
 @end

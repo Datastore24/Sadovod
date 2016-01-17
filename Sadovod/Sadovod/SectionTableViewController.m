@@ -11,14 +11,16 @@
 #import "ViewSectionTable.h"
 #import "ViewControllerProductDetails.h"
 
-@interface SectionTableViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface SectionTableViewController ()
 
 @end
 
 @implementation SectionTableViewController
 {
-    UITableView * tableItems;
-    NSDictionary * dataTableItems;
+    NSDictionary * dataTableItems; //Данные
+    UIScrollView * mainScrollView; //Основной скрол вью
+    NSInteger numerator; //Кастомный счетчик
+    UIButton * buttonTableSelection; //Кнопка активации картинки
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -30,62 +32,72 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    numerator = 0; //Инициализация счетчика строк----------------------------------
+    
+    //Инициализация анных----------------------------------------------------------
     dataTableItems = [ModelSectionTableOwner dictTableItems];
     
-    //Параметры таблицы------------------
-    // UITableView, который отображает данные альбома
-    CGRect frame = CGRectMake(0.f, -35.f, self.view.frame.size.width, self.view.frame.size.height);
-    tableItems = [[UITableView alloc] initWithFrame:frame
-                                             style:UITableViewStyleGrouped];
-    tableItems.delegate = self;
-    tableItems.dataSource = self;
-    tableItems.backgroundView = nil;
-    [self.view addSubview:tableItems];
-}
+    //Инициализация скрол вью------------------------------------------------------
+    mainScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    mainScrollView.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    [self.view addSubview:mainScrollView];
+    
+    //Вставляем товар в скрол вью---------------------------------------------------
+    NSArray * arrayNameURL = [dataTableItems objectForKey:@"urlImage"];
+    for (int i = 0; i < arrayNameURL.count; i ++) {
+            if (i % 2 == 0) {
+                ViewSectionTable * image = [[ViewSectionTable alloc] initWithFrame:CGRectMake(10, 75 * numerator, 150, 75)andImageURL:[arrayNameURL objectAtIndex:i] andLabelPrice:[NSString stringWithFormat:@"%ld", [dataTableItems[@"price"][i] integerValue]]];
+                [mainScrollView addSubview:image];
+                
+                //Инициализация кнопок активации ячеек-------------------------------
+                buttonTableSelection = [UIButton buttonWithType:UIButtonTypeCustom];
+                [buttonTableSelection addTarget:self
+                                         action:@selector(buttonTableSelectionAction:)
+                               forControlEvents:UIControlEventTouchUpInside];
+                buttonTableSelection.backgroundColor = nil;
+                buttonTableSelection.tag = i;
+                buttonTableSelection.frame = CGRectMake(10, 75 * numerator, 150, 75);
+                [mainScrollView addSubview:buttonTableSelection];
+                
+                NSLog(@"%ld", (long)buttonTableSelection.tag);
+                
+            } else {
+                
+                ViewSectionTable * image = [[ViewSectionTable alloc] initWithFrame:CGRectMake(160, 75 * numerator, 150, 75)andImageURL:[arrayNameURL objectAtIndex:i] andLabelPrice:[NSString stringWithFormat:@"%ld", [dataTableItems[@"price"][i] integerValue]]];
+                [mainScrollView addSubview:image];                
+                
+                //Инициализация кнопок активации ячеек-------------------------------
+                buttonTableSelection = [UIButton buttonWithType:UIButtonTypeCustom];
+                [buttonTableSelection addTarget:self
+                                         action:@selector(buttonTableSelectionAction:)
+                               forControlEvents:UIControlEventTouchUpInside];
+                buttonTableSelection.backgroundColor = nil;
+                buttonTableSelection.tag = i;
+                buttonTableSelection.frame = CGRectMake(160, 75 * numerator, 150, 75);
+                [mainScrollView addSubview:buttonTableSelection];
+                
+                NSLog(@"%ld", (long)buttonTableSelection.tag);
+                
+                numerator += 1;
+            }
+    }
+        mainScrollView.contentSize = CGSizeMake(self.view.frame.size.width, 75 * numerator + 50);
+    }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     
 }
 
-#pragma mark - UITableViewDataSource
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+//Метод активации кнопок в ячейках----------------------------------
+- (void) buttonTableSelectionAction: (UIButton *) button;
 {
-    return [dataTableItems[@"urlImage"] count];;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-    if (!cell)
-    {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1
-                                      reuseIdentifier:@"cell"];
+    for (int i = 0; i < [dataTableItems[@"price"]count]; i++) {
+        if (button.tag == i) {
+            NSLog(@"%d", i);
+        }
     }
-    
-    ViewSectionTable * image = [[ViewSectionTable alloc] initWithFrame:CGRectMake(10, 0, 300, 150) andImageURL:dataTableItems[@"urlImage"][indexPath.row] andLabelPrice:
-                                [NSString stringWithFormat:@"%ld", [dataTableItems[@"price"][indexPath.row] integerValue]]];
-    [cell addSubview:image];
-    
-
-    
-    return cell;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 155;
-}
-
-#pragma mark - UITableViewDelegate
-
-- (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
-{
-    
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    ViewControllerProductDetails * detail = [self.storyboard
-                                           instantiateViewControllerWithIdentifier:@"ViewControllerProductDetails"];
+    ViewControllerProductDetails * detail = [self.storyboard instantiateViewControllerWithIdentifier:@"ViewControllerProductDetails"];
     [self.navigationController pushViewController:detail animated:YES];
 }
 
