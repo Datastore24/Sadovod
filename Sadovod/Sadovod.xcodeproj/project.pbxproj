@@ -38,6 +38,7 @@
 		ADFBF57F1C4C47FE007E080D /* APIGetClass.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFBF57E1C4C47FE007E080D /* APIGetClass.m */; };
 		ADFBF5821C4C496B007E080D /* APIPostClass.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFBF5811C4C496B007E080D /* APIPostClass.m */; };
 		ADFBF5861C4C4B35007E080D /* AlertClass.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFBF5851C4C4B35007E080D /* AlertClass.m */; };
+		ADFBF58B1C4C5F16007E080D /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = ADFBF58A1C4C5F16007E080D /* menu.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,6 +109,7 @@
 		ADFBF5811C4C496B007E080D /* APIPostClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIPostClass.m; sourceTree = "<group>"; };
 		ADFBF5841C4C4B35007E080D /* AlertClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertClass.h; sourceTree = "<group>"; };
 		ADFBF5851C4C4B35007E080D /* AlertClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertClass.m; sourceTree = "<group>"; };
+		ADFBF58A1C4C5F16007E080D /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu.png; sourceTree = "<group>"; };
 		C29A1CA412141FC74A35B3D2 /* Pods-Sadovod.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sadovod.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Sadovod/Pods-Sadovod.debug.xcconfig"; sourceTree = "<group>"; };
 		DB0C66A742FF03CE239AEFEF /* libPods-Sadovod.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Sadovod.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -214,6 +216,7 @@
 				ADFBF57C1C4C47E6007E080D /* API */,
 				ADFBF5831C4C4A0E007E080D /* CoreData */,
 				776BF2241C4B98600006C502 /* testImage */,
+				ADFBF5871C4C5A5F007E080D /* Icons */,
 				77BFED2F1C4ADF7A0091A336 /* Owner */,
 				77BFECF81C4AC5E80091A336 /* AppDelegate.h */,
 				77BFECF91C4AC5E80091A336 /* AppDelegate.m */,
@@ -305,6 +308,14 @@
 			children = (
 			);
 			name = CoreData;
+			sourceTree = "<group>";
+		};
+		ADFBF5871C4C5A5F007E080D /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+				ADFBF58A1C4C5F16007E080D /* menu.png */,
+			);
+			name = Icons;
 			sourceTree = "<group>";
 		};
 		D7172946F471A31E3679FAD2 /* Pods */ = {
@@ -433,6 +444,7 @@
 				776BF23A1C4B993C0006C502 /* 8image.jpg in Resources */,
 				776BF2331C4B993C0006C502 /* 11image.jpg in Resources */,
 				776BF2341C4B993C0006C502 /* 2image.jpg in Resources */,
+				ADFBF58B1C4C5F16007E080D /* menu.png in Resources */,
 				776BF2381C4B993C0006C502 /* 9image.jpg in Resources */,
 				776BF2301C4B993C0006C502 /* 3image.jpg in Resources */,
 				776BF2361C4B993C0006C502 /* 7image.jpg in Resources */,

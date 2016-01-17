@@ -10,6 +10,7 @@
 #import "ModelSectionTableOwner.h"
 #import "ViewSectionTable.h"
 #import "ViewControllerProductDetails.h"
+#import "AlertClass.h" //Подключение Алертов
 
 @interface SectionTableViewController ()
 
@@ -32,6 +33,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+   
     numerator = 0; //Инициализация счетчика строк----------------------------------
     
     //Инициализация анных----------------------------------------------------------
@@ -82,6 +84,11 @@
             }
     }
         mainScrollView.contentSize = CGSizeMake(self.view.frame.size.width, 75 * numerator + 50);
+    //Отображение тестового алерта
+    
+    [AlertClass showAlertViewWithMessage:@"Отображение тестового алерта!" view:self];
+    //
+    
     }
 
 - (void)didReceiveMemoryWarning {
@@ -95,6 +102,7 @@
     for (int i = 0; i < [dataTableItems[@"price"]count]; i++) {
         if (button.tag == i) {
             NSLog(@"%d", i);
+           
         }
     }
     ViewControllerProductDetails * detail = [self.storyboard instantiateViewControllerWithIdentifier:@"ViewControllerProductDetails"];
