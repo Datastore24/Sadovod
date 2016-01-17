@@ -13,6 +13,7 @@
 
 @interface ViewSectionTable : UIView
 
+//Инициализация картинок-----------------------------
 - (instancetype)initWithFrame:(CGRect)frame
                   andImageURL: (NSString*) imageUrl
                 andLabelPrice: (NSString*) price;

@@ -30,14 +30,14 @@
         imageView.image = [UIImage imageNamed:imageUrl];
         [self addSubview:imageView];
         
-        
-        //Создаем ценник---------------------------
+        //Создаем ценник----------------------------------------
         labelPrice = [[UILabel alloc] initWithFrame:CGRectMake(110, 58.5, 35, 12)];
         labelPrice.backgroundColor = [UIColor lightGrayColor];
         labelPrice.text = price;
         labelPrice.font = [UIFont fontWithName:@"HelveticaNeue" size:12];
         labelPrice.textAlignment = NSTextAlignmentCenter;
         [imageView addSubview:labelPrice];
+        
         
     }
     return self;

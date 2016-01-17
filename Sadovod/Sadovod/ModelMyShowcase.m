@@ -13,11 +13,13 @@
 + (NSDictionary *) dictTableData
 {
     NSDictionary * dictTableData = [NSDictionary dictionaryWithObjectsAndKeys:
+                            //Наименование------------------------------------------
                            [NSArray arrayWithObjects:@"Свитеры и кардеганы",
                                                      @"Капри и бриджи",
                                                      @"Джинсы",
                                                      @"Брюки", nil],
                            @"title",
+                            //Колличество--------------------------------------------
                            [NSArray arrayWithObjects:[NSNumber numberWithInteger:18],
                                                      [NSNumber numberWithInteger:3],
                                                      [NSNumber numberWithInteger:21],
