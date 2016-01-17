@@ -35,6 +35,9 @@
 		77BFED2E1C4ACF900091A336 /* UserMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77BFED2D1C4ACF900091A336 /* UserMenuViewController.m */; };
 		77CE81941C4AF296003C7FFE /* ModelMyShowcase.m in Sources */ = {isa = PBXBuildFile; fileRef = 77CE81931C4AF296003C7FFE /* ModelMyShowcase.m */; };
 		77CE819A1C4AFC44003C7FFE /* LabelViewMyShowcase.m in Sources */ = {isa = PBXBuildFile; fileRef = 77CE81991C4AFC44003C7FFE /* LabelViewMyShowcase.m */; };
+		ADFBF57F1C4C47FE007E080D /* APIGetClass.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFBF57E1C4C47FE007E080D /* APIGetClass.m */; };
+		ADFBF5821C4C496B007E080D /* APIPostClass.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFBF5811C4C496B007E080D /* APIPostClass.m */; };
+		ADFBF5861C4C4B35007E080D /* AlertClass.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFBF5851C4C4B35007E080D /* AlertClass.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +102,12 @@
 		77CE81981C4AFC44003C7FFE /* LabelViewMyShowcase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LabelViewMyShowcase.h; sourceTree = "<group>"; };
 		77CE81991C4AFC44003C7FFE /* LabelViewMyShowcase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LabelViewMyShowcase.m; sourceTree = "<group>"; };
 		87269916B8AC7706E07A131E /* Pods-Sadovod.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sadovod.release.xcconfig"; path = "Pods/Target Support Files/Pods-Sadovod/Pods-Sadovod.release.xcconfig"; sourceTree = "<group>"; };
+		ADFBF57D1C4C47FD007E080D /* APIGetClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIGetClass.h; sourceTree = "<group>"; };
+		ADFBF57E1C4C47FE007E080D /* APIGetClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIGetClass.m; sourceTree = "<group>"; };
+		ADFBF5801C4C496B007E080D /* APIPostClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIPostClass.h; sourceTree = "<group>"; };
+		ADFBF5811C4C496B007E080D /* APIPostClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIPostClass.m; sourceTree = "<group>"; };
+		ADFBF5841C4C4B35007E080D /* AlertClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertClass.h; sourceTree = "<group>"; };
+		ADFBF5851C4C4B35007E080D /* AlertClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertClass.m; sourceTree = "<group>"; };
 		C29A1CA412141FC74A35B3D2 /* Pods-Sadovod.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sadovod.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Sadovod/Pods-Sadovod.debug.xcconfig"; sourceTree = "<group>"; };
 		DB0C66A742FF03CE239AEFEF /* libPods-Sadovod.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Sadovod.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -202,10 +211,14 @@
 		77BFECF41C4AC5E80091A336 /* Sadovod */ = {
 			isa = PBXGroup;
 			children = (
+				ADFBF57C1C4C47E6007E080D /* API */,
+				ADFBF5831C4C4A0E007E080D /* CoreData */,
 				776BF2241C4B98600006C502 /* testImage */,
 				77BFED2F1C4ADF7A0091A336 /* Owner */,
 				77BFECF81C4AC5E80091A336 /* AppDelegate.h */,
 				77BFECF91C4AC5E80091A336 /* AppDelegate.m */,
+				ADFBF5841C4C4B35007E080D /* AlertClass.h */,
+				ADFBF5851C4C4B35007E080D /* AlertClass.m */,
 				77BFECFE1C4AC5E80091A336 /* Main.storyboard */,
 				77BFED011C4AC5E80091A336 /* Assets.xcassets */,
 				77BFED031C4AC5E80091A336 /* LaunchScreen.storyboard */,
@@ -274,6 +287,24 @@
 				77CE81991C4AFC44003C7FFE /* LabelViewMyShowcase.m */,
 			);
 			name = MyShowcase;
+			sourceTree = "<group>";
+		};
+		ADFBF57C1C4C47E6007E080D /* API */ = {
+			isa = PBXGroup;
+			children = (
+				ADFBF57D1C4C47FD007E080D /* APIGetClass.h */,
+				ADFBF57E1C4C47FE007E080D /* APIGetClass.m */,
+				ADFBF5801C4C496B007E080D /* APIPostClass.h */,
+				ADFBF5811C4C496B007E080D /* APIPostClass.m */,
+			);
+			name = API;
+			sourceTree = "<group>";
+		};
+		ADFBF5831C4C4A0E007E080D /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = CoreData;
 			sourceTree = "<group>";
 		};
 		D7172946F471A31E3679FAD2 /* Pods */ = {
@@ -478,6 +509,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				77BFECFD1C4AC5E80091A336 /* ViewController.m in Sources */,
+				ADFBF5861C4C4B35007E080D /* AlertClass.m in Sources */,
 				77BFED2E1C4ACF900091A336 /* UserMenuViewController.m in Sources */,
 				77BFECFA1C4AC5E80091A336 /* AppDelegate.m in Sources */,
 				776BF23E1C4BB2510006C502 /* ViewControllerProductDetails.m in Sources */,
@@ -485,7 +517,9 @@
 				77BFECF71C4AC5E80091A336 /* main.m in Sources */,
 				77CE81941C4AF296003C7FFE /* ModelMyShowcase.m in Sources */,
 				776BF2231C4B95B80006C502 /* ModelSectionTableOwner.m in Sources */,
+				ADFBF5821C4C496B007E080D /* APIPostClass.m in Sources */,
 				776BF2201C4B92780006C502 /* ViewSectionTable.m in Sources */,
+				ADFBF57F1C4C47FE007E080D /* APIGetClass.m in Sources */,
 				77BFED2B1C4AC9F10091A336 /* SWRevealViewController.m in Sources */,
 				77CE819A1C4AFC44003C7FFE /* LabelViewMyShowcase.m in Sources */,
 			);
