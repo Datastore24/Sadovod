@@ -30,7 +30,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    tableDict = [ModelMyShowcase dictTableData];
+    tableDict = [ModelMyShowcase dictTableData]; //передача данных
     
     
     //Задаем цвет бара----------------------------------------
