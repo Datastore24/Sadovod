@@ -7,6 +7,7 @@
 //
 
 #import "LabelViewMyShowcase.h"
+#import "UIColor+HexColor.h"
 
 @implementation LabelViewMyShowcase
 
@@ -16,9 +17,10 @@
     if (self) {
         
         self.frame = CGRectMake(270, 10, 30, 30);
-        self.backgroundColor = [UIColor blueColor];
+        self.backgroundColor = [UIColor colorWithHexString:@"3038a0"];
         self.alpha = 0.8;
         self.text = stringValue;
+        self.textColor = [UIColor colorWithHexString:@"909090"];
         self.font = [UIFont fontWithName:@"HelveticaNeue" size:16];
         self.textAlignment = NSTextAlignmentCenter;
         self.layer.cornerRadius = 10.f;
