@@ -38,6 +38,10 @@
 		77D9D4FC1C4CE9AB003C3610 /* UIColor+HexColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D9D4FB1C4CE9AB003C3610 /* UIColor+HexColor.m */; };
 		77D9D4FF1C4CEBD1003C3610 /* LognViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D9D4FE1C4CEBD1003C3610 /* LognViewController.m */; };
 		77D9D5031C4CEC30003C3610 /* LoginTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D9D5021C4CEC30003C3610 /* LoginTextField.m */; };
+		AD6F100E1C4D1C3A00FF70B3 /* UserModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AD6F100C1C4D1C3A00FF70B3 /* UserModel.xcdatamodeld */; };
+		AD6F10131C4D1C9F00FF70B3 /* Auth+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = AD6F10101C4D1C9F00FF70B3 /* Auth+CoreDataProperties.m */; };
+		AD6F10141C4D1C9F00FF70B3 /* Auth.m in Sources */ = {isa = PBXBuildFile; fileRef = AD6F10121C4D1C9F00FF70B3 /* Auth.m */; };
+		AD6F10171C4D1CD600FF70B3 /* AuthDbClass.m in Sources */ = {isa = PBXBuildFile; fileRef = AD6F10161C4D1CD600FF70B3 /* AuthDbClass.m */; };
 		ADFBF57F1C4C47FE007E080D /* APIGetClass.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFBF57E1C4C47FE007E080D /* APIGetClass.m */; };
 		ADFBF5821C4C496B007E080D /* APIPostClass.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFBF5811C4C496B007E080D /* APIPostClass.m */; };
 		ADFBF5861C4C4B35007E080D /* AlertClass.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFBF5851C4C4B35007E080D /* AlertClass.m */; };
@@ -112,6 +116,13 @@
 		77D9D5011C4CEC30003C3610 /* LoginTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginTextField.h; sourceTree = "<group>"; };
 		77D9D5021C4CEC30003C3610 /* LoginTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginTextField.m; sourceTree = "<group>"; };
 		87269916B8AC7706E07A131E /* Pods-Sadovod.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sadovod.release.xcconfig"; path = "Pods/Target Support Files/Pods-Sadovod/Pods-Sadovod.release.xcconfig"; sourceTree = "<group>"; };
+		AD6F100D1C4D1C3A00FF70B3 /* UserModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserModel.xcdatamodel; sourceTree = "<group>"; };
+		AD6F100F1C4D1C9F00FF70B3 /* Auth+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Auth+CoreDataProperties.h"; path = "../Auth+CoreDataProperties.h"; sourceTree = "<group>"; };
+		AD6F10101C4D1C9F00FF70B3 /* Auth+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Auth+CoreDataProperties.m"; path = "../Auth+CoreDataProperties.m"; sourceTree = "<group>"; };
+		AD6F10111C4D1C9F00FF70B3 /* Auth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Auth.h; path = ../Auth.h; sourceTree = "<group>"; };
+		AD6F10121C4D1C9F00FF70B3 /* Auth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Auth.m; path = ../Auth.m; sourceTree = "<group>"; };
+		AD6F10151C4D1CD600FF70B3 /* AuthDbClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthDbClass.h; sourceTree = "<group>"; };
+		AD6F10161C4D1CD600FF70B3 /* AuthDbClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthDbClass.m; sourceTree = "<group>"; };
 		ADFBF57D1C4C47FD007E080D /* APIGetClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIGetClass.h; sourceTree = "<group>"; };
 		ADFBF57E1C4C47FE007E080D /* APIGetClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIGetClass.m; sourceTree = "<group>"; };
 		ADFBF5801C4C496B007E080D /* APIPostClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIPostClass.h; sourceTree = "<group>"; };
@@ -238,6 +249,7 @@
 				77BFED031C4AC5E80091A336 /* LaunchScreen.storyboard */,
 				77BFED061C4AC5E80091A336 /* Info.plist */,
 				77BFECF51C4AC5E80091A336 /* Supporting Files */,
+				AD6F100C1C4D1C3A00FF70B3 /* UserModel.xcdatamodeld */,
 			);
 			path = Sadovod;
 			sourceTree = "<group>";
@@ -337,6 +349,12 @@
 		ADFBF5831C4C4A0E007E080D /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				AD6F100F1C4D1C9F00FF70B3 /* Auth+CoreDataProperties.h */,
+				AD6F10101C4D1C9F00FF70B3 /* Auth+CoreDataProperties.m */,
+				AD6F10111C4D1C9F00FF70B3 /* Auth.h */,
+				AD6F10121C4D1C9F00FF70B3 /* Auth.m */,
+				AD6F10151C4D1CD600FF70B3 /* AuthDbClass.h */,
+				AD6F10161C4D1CD600FF70B3 /* AuthDbClass.m */,
 			);
 			name = CoreData;
 			sourceTree = "<group>";
@@ -559,15 +577,19 @@
 				77BFECFA1C4AC5E80091A336 /* AppDelegate.m in Sources */,
 				776BF23E1C4BB2510006C502 /* ViewControllerProductDetails.m in Sources */,
 				776BF21D1C4B8A4C0006C502 /* SectionTableViewController.m in Sources */,
+				AD6F100E1C4D1C3A00FF70B3 /* UserModel.xcdatamodeld in Sources */,
 				77BFECF71C4AC5E80091A336 /* main.m in Sources */,
 				77CE81941C4AF296003C7FFE /* ModelMyShowcase.m in Sources */,
 				776BF2231C4B95B80006C502 /* ModelSectionTableOwner.m in Sources */,
 				ADFBF5821C4C496B007E080D /* APIPostClass.m in Sources */,
 				776BF2201C4B92780006C502 /* ViewSectionTable.m in Sources */,
+				AD6F10131C4D1C9F00FF70B3 /* Auth+CoreDataProperties.m in Sources */,
+				AD6F10141C4D1C9F00FF70B3 /* Auth.m in Sources */,
 				ADFBF57F1C4C47FE007E080D /* APIGetClass.m in Sources */,
 				77BFED2B1C4AC9F10091A336 /* SWRevealViewController.m in Sources */,
 				77D9D4FF1C4CEBD1003C3610 /* LognViewController.m in Sources */,
 				77CE819A1C4AFC44003C7FFE /* LabelViewMyShowcase.m in Sources */,
+				AD6F10171C4D1CD600FF70B3 /* AuthDbClass.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -816,6 +838,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		AD6F100C1C4D1C3A00FF70B3 /* UserModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				AD6F100D1C4D1C3A00FF70B3 /* UserModel.xcdatamodel */,
+			);
+			currentVersion = AD6F100D1C4D1C3A00FF70B3 /* UserModel.xcdatamodel */;
+			path = UserModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 77BFECEA1C4AC5E80091A336 /* Project object */;
 }
