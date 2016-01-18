@@ -162,6 +162,7 @@
         <scene sceneID="6Pk-Dw-Nqb">
             <objects>
                 <navigationController id="oYJ-tB-ykN" sceneMemberID="viewController">
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="fKI-2p-SA1">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -297,6 +298,6 @@
         <image name="menu.png" width="28" height="20"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="vRT-fd-hCD"/>
+        <segue reference="vFK-ek-mMt"/>
     </inferredMetricsTieBreakers>
 </document>

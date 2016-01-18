@@ -32,8 +32,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    tableDict = [ModelMyShowcase dictTableData]; //передача данных
-    
+    tableDict = [ModelMyShowcase dictTableData]; //передача данных    
     
     //Задаем цвет бара----------------------------------------
     self.navigationController.navigationBar.barTintColor = [UIColor colorWithHexString:@"3038a0"];
@@ -82,6 +81,7 @@
                                       reuseIdentifier:@"cell"];
     }
     cell.textLabel.text = tableDict[@"title"][indexPath.row];
+    cell.textLabel.textColor = [UIColor colorWithHexString:@"909090"];
     
     //Добаляет кастомный лейбл в ячейку-----------------------------
     LabelViewMyShowcase * viewLabel = [[LabelViewMyShowcase alloc]
