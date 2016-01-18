@@ -37,8 +37,17 @@
     self.navigationController.navigationBar.backgroundColor = [UIColor blueColor];
     
     //Реализация кнопки бокового меню---------------------------
-    _barButton.target = self.revealViewController;
-    _barButton.action = @selector(revealToggle:);
+    
+    UIImage *imageBarButton = [UIImage imageNamed:@"menu.png"];
+    [_barButton setImage:imageBarButton];
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.bounds = CGRectMake( 0, 0, imageBarButton.size.width, imageBarButton.size.height );
+    [button setImage:imageBarButton forState:UIControlStateNormal];
+    [button addTarget:self.revealViewController action:@selector(revealToggle:) forControlEvents:UIControlEventTouchUpInside];
+    _barButton.customView=button;
+
+//    _barButton.target = self.revealViewController;
+//    _barButton.action = @selector(revealToggle:);
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     
     //Параметры моей таблицы------------------------------------

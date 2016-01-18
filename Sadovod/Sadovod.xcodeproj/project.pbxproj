@@ -35,9 +35,13 @@
 		77BFED2E1C4ACF900091A336 /* UserMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77BFED2D1C4ACF900091A336 /* UserMenuViewController.m */; };
 		77CE81941C4AF296003C7FFE /* ModelMyShowcase.m in Sources */ = {isa = PBXBuildFile; fileRef = 77CE81931C4AF296003C7FFE /* ModelMyShowcase.m */; };
 		77CE819A1C4AFC44003C7FFE /* LabelViewMyShowcase.m in Sources */ = {isa = PBXBuildFile; fileRef = 77CE81991C4AFC44003C7FFE /* LabelViewMyShowcase.m */; };
+		77D9D4FC1C4CE9AB003C3610 /* UIColor+HexColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D9D4FB1C4CE9AB003C3610 /* UIColor+HexColor.m */; };
+		77D9D4FF1C4CEBD1003C3610 /* LognViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D9D4FE1C4CEBD1003C3610 /* LognViewController.m */; };
+		77D9D5031C4CEC30003C3610 /* LoginTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D9D5021C4CEC30003C3610 /* LoginTextField.m */; };
 		ADFBF57F1C4C47FE007E080D /* APIGetClass.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFBF57E1C4C47FE007E080D /* APIGetClass.m */; };
 		ADFBF5821C4C496B007E080D /* APIPostClass.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFBF5811C4C496B007E080D /* APIPostClass.m */; };
 		ADFBF5861C4C4B35007E080D /* AlertClass.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFBF5851C4C4B35007E080D /* AlertClass.m */; };
+		ADFBF58B1C4C5F16007E080D /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = ADFBF58A1C4C5F16007E080D /* menu.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,6 +105,12 @@
 		77CE81931C4AF296003C7FFE /* ModelMyShowcase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelMyShowcase.m; sourceTree = "<group>"; };
 		77CE81981C4AFC44003C7FFE /* LabelViewMyShowcase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LabelViewMyShowcase.h; sourceTree = "<group>"; };
 		77CE81991C4AFC44003C7FFE /* LabelViewMyShowcase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LabelViewMyShowcase.m; sourceTree = "<group>"; };
+		77D9D4FA1C4CE9AB003C3610 /* UIColor+HexColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+HexColor.h"; sourceTree = "<group>"; };
+		77D9D4FB1C4CE9AB003C3610 /* UIColor+HexColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HexColor.m"; sourceTree = "<group>"; };
+		77D9D4FD1C4CEBD1003C3610 /* LognViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LognViewController.h; sourceTree = "<group>"; };
+		77D9D4FE1C4CEBD1003C3610 /* LognViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LognViewController.m; sourceTree = "<group>"; };
+		77D9D5011C4CEC30003C3610 /* LoginTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginTextField.h; sourceTree = "<group>"; };
+		77D9D5021C4CEC30003C3610 /* LoginTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginTextField.m; sourceTree = "<group>"; };
 		87269916B8AC7706E07A131E /* Pods-Sadovod.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sadovod.release.xcconfig"; path = "Pods/Target Support Files/Pods-Sadovod/Pods-Sadovod.release.xcconfig"; sourceTree = "<group>"; };
 		ADFBF57D1C4C47FD007E080D /* APIGetClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIGetClass.h; sourceTree = "<group>"; };
 		ADFBF57E1C4C47FE007E080D /* APIGetClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIGetClass.m; sourceTree = "<group>"; };
@@ -108,6 +118,7 @@
 		ADFBF5811C4C496B007E080D /* APIPostClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIPostClass.m; sourceTree = "<group>"; };
 		ADFBF5841C4C4B35007E080D /* AlertClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertClass.h; sourceTree = "<group>"; };
 		ADFBF5851C4C4B35007E080D /* AlertClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertClass.m; sourceTree = "<group>"; };
+		ADFBF58A1C4C5F16007E080D /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu.png; sourceTree = "<group>"; };
 		C29A1CA412141FC74A35B3D2 /* Pods-Sadovod.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sadovod.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Sadovod/Pods-Sadovod.debug.xcconfig"; sourceTree = "<group>"; };
 		DB0C66A742FF03CE239AEFEF /* libPods-Sadovod.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Sadovod.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -211,9 +222,12 @@
 		77BFECF41C4AC5E80091A336 /* Sadovod */ = {
 			isa = PBXGroup;
 			children = (
+				77D9D5001C4CEBDC003C3610 /* Login */,
+				77D9D4F91C4CE993003C3610 /* Category */,
 				ADFBF57C1C4C47E6007E080D /* API */,
 				ADFBF5831C4C4A0E007E080D /* CoreData */,
 				776BF2241C4B98600006C502 /* testImage */,
+				ADFBF5871C4C5A5F007E080D /* Icons */,
 				77BFED2F1C4ADF7A0091A336 /* Owner */,
 				77BFECF81C4AC5E80091A336 /* AppDelegate.h */,
 				77BFECF91C4AC5E80091A336 /* AppDelegate.m */,
@@ -289,6 +303,26 @@
 			name = MyShowcase;
 			sourceTree = "<group>";
 		};
+		77D9D4F91C4CE993003C3610 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				77D9D4FA1C4CE9AB003C3610 /* UIColor+HexColor.h */,
+				77D9D4FB1C4CE9AB003C3610 /* UIColor+HexColor.m */,
+			);
+			name = Category;
+			sourceTree = "<group>";
+		};
+		77D9D5001C4CEBDC003C3610 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				77D9D4FD1C4CEBD1003C3610 /* LognViewController.h */,
+				77D9D4FE1C4CEBD1003C3610 /* LognViewController.m */,
+				77D9D5011C4CEC30003C3610 /* LoginTextField.h */,
+				77D9D5021C4CEC30003C3610 /* LoginTextField.m */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
 		ADFBF57C1C4C47E6007E080D /* API */ = {
 			isa = PBXGroup;
 			children = (
@@ -305,6 +339,14 @@
 			children = (
 			);
 			name = CoreData;
+			sourceTree = "<group>";
+		};
+		ADFBF5871C4C5A5F007E080D /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+				ADFBF58A1C4C5F16007E080D /* menu.png */,
+			);
+			name = Icons;
 			sourceTree = "<group>";
 		};
 		D7172946F471A31E3679FAD2 /* Pods */ = {
@@ -433,6 +475,7 @@
 				776BF23A1C4B993C0006C502 /* 8image.jpg in Resources */,
 				776BF2331C4B993C0006C502 /* 11image.jpg in Resources */,
 				776BF2341C4B993C0006C502 /* 2image.jpg in Resources */,
+				ADFBF58B1C4C5F16007E080D /* menu.png in Resources */,
 				776BF2381C4B993C0006C502 /* 9image.jpg in Resources */,
 				776BF2301C4B993C0006C502 /* 3image.jpg in Resources */,
 				776BF2361C4B993C0006C502 /* 7image.jpg in Resources */,
@@ -508,8 +551,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77D9D5031C4CEC30003C3610 /* LoginTextField.m in Sources */,
 				77BFECFD1C4AC5E80091A336 /* ViewController.m in Sources */,
 				ADFBF5861C4C4B35007E080D /* AlertClass.m in Sources */,
+				77D9D4FC1C4CE9AB003C3610 /* UIColor+HexColor.m in Sources */,
 				77BFED2E1C4ACF900091A336 /* UserMenuViewController.m in Sources */,
 				77BFECFA1C4AC5E80091A336 /* AppDelegate.m in Sources */,
 				776BF23E1C4BB2510006C502 /* ViewControllerProductDetails.m in Sources */,
@@ -521,6 +566,7 @@
 				776BF2201C4B92780006C502 /* ViewSectionTable.m in Sources */,
 				ADFBF57F1C4C47FE007E080D /* APIGetClass.m in Sources */,
 				77BFED2B1C4AC9F10091A336 /* SWRevealViewController.m in Sources */,
+				77D9D4FF1C4CEBD1003C3610 /* LognViewController.m in Sources */,
 				77CE819A1C4AFC44003C7FFE /* LabelViewMyShowcase.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
