@@ -11,6 +11,7 @@
 #import "ModelMyShowcase.h"
 #import "LabelViewMyShowcase.h"
 #import "SectionTableViewController.h"
+#import "UIColor+HexColor.h"
 
 @interface ViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableViewMyShowcase; // Таблица "Моя Витрина"
@@ -25,6 +26,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     self.title = @"Моя Витрина";
+    
 }
 
 - (void)viewDidLoad {
@@ -34,7 +36,11 @@
     
     
     //Задаем цвет бара----------------------------------------
-    self.navigationController.navigationBar.backgroundColor = [UIColor blueColor];
+    self.navigationController.navigationBar.barTintColor = [UIColor colorWithHexString:@"3038a0"];
+    [self.navigationController.navigationBar
+     setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    self.navigationController.navigationBar.translucent = NO;
     
     //Реализация кнопки бокового меню---------------------------
     
