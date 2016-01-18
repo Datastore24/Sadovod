@@ -7,7 +7,25 @@
 //
 
 #import "ParserResponse.h"
+#import "ParserAuthKey.h"
 
 @implementation ParserResponse
+- (NSMutableArray *)parsing:(id)response
 
+{
+    NSMutableArray * arrayResponse = [[NSMutableArray alloc] init];
+    //Если это обновление удаляем все объекты из массива и грузим заного
+    
+    //
+    ParserAuthKey *parserAuthKey = [[ParserAuthKey alloc] init];
+    
+    if ([response isKindOfClass:[NSDictionary class]]) {
+        
+        [parserAuthKey mts_setValuesForKeysWithDictionary:response];
+        
+        [arrayResponse addObject:parserAuthKey];
+        return arrayResponse;
+    }
+    return nil;
+}
 @end

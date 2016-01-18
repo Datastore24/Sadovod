@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @interface ParserResponse : NSObject
-
+- (NSMutableArray *)parsing:(id)response;
 @end

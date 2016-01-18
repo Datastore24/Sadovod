@@ -9,5 +9,16 @@
 #import "ParserAuthKey.h"
 
 @implementation ParserAuthKey
-
+//Метод парсинга
++ (NSDictionary *)mts_mapping {
+    
+    return @{
+             @"status" : mts_key(status),
+             @"key" : mts_key(key),
+             
+             
+             };
+    
+    
+}
 @end

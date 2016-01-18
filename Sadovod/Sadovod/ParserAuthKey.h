@@ -7,7 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Motis/Motis.h>
+#import <CoreGraphics/CoreGraphics.h>
+#import <UIKit/UIKit.h>
 
 @interface ParserAuthKey : NSObject
+@property (strong,nonatomic) NSString * status;
+@property (strong,nonatomic) NSString * key;
 
 @end

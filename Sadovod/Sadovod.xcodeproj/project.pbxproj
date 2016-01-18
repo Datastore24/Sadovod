@@ -42,6 +42,8 @@
 		AD6F10131C4D1C9F00FF70B3 /* Auth+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = AD6F10101C4D1C9F00FF70B3 /* Auth+CoreDataProperties.m */; };
 		AD6F10141C4D1C9F00FF70B3 /* Auth.m in Sources */ = {isa = PBXBuildFile; fileRef = AD6F10121C4D1C9F00FF70B3 /* Auth.m */; };
 		AD6F10171C4D1CD600FF70B3 /* AuthDbClass.m in Sources */ = {isa = PBXBuildFile; fileRef = AD6F10161C4D1CD600FF70B3 /* AuthDbClass.m */; };
+		AD6F101A1C4D1EF900FF70B3 /* ParserAuthKey.m in Sources */ = {isa = PBXBuildFile; fileRef = AD6F10191C4D1EF900FF70B3 /* ParserAuthKey.m */; };
+		AD6F101D1C4D1FB900FF70B3 /* ParserResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = AD6F101C1C4D1FB900FF70B3 /* ParserResponse.m */; };
 		ADFBF57F1C4C47FE007E080D /* APIGetClass.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFBF57E1C4C47FE007E080D /* APIGetClass.m */; };
 		ADFBF5821C4C496B007E080D /* APIPostClass.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFBF5811C4C496B007E080D /* APIPostClass.m */; };
 		ADFBF5861C4C4B35007E080D /* AlertClass.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFBF5851C4C4B35007E080D /* AlertClass.m */; };
@@ -123,6 +125,10 @@
 		AD6F10121C4D1C9F00FF70B3 /* Auth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Auth.m; path = ../Auth.m; sourceTree = "<group>"; };
 		AD6F10151C4D1CD600FF70B3 /* AuthDbClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthDbClass.h; sourceTree = "<group>"; };
 		AD6F10161C4D1CD600FF70B3 /* AuthDbClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthDbClass.m; sourceTree = "<group>"; };
+		AD6F10181C4D1EF900FF70B3 /* ParserAuthKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserAuthKey.h; sourceTree = "<group>"; };
+		AD6F10191C4D1EF900FF70B3 /* ParserAuthKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserAuthKey.m; sourceTree = "<group>"; };
+		AD6F101B1C4D1FB900FF70B3 /* ParserResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserResponse.h; sourceTree = "<group>"; };
+		AD6F101C1C4D1FB900FF70B3 /* ParserResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserResponse.m; sourceTree = "<group>"; };
 		ADFBF57D1C4C47FD007E080D /* APIGetClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIGetClass.h; sourceTree = "<group>"; };
 		ADFBF57E1C4C47FE007E080D /* APIGetClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIGetClass.m; sourceTree = "<group>"; };
 		ADFBF5801C4C496B007E080D /* APIPostClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIPostClass.h; sourceTree = "<group>"; };
@@ -342,6 +348,10 @@
 				ADFBF57E1C4C47FE007E080D /* APIGetClass.m */,
 				ADFBF5801C4C496B007E080D /* APIPostClass.h */,
 				ADFBF5811C4C496B007E080D /* APIPostClass.m */,
+				AD6F10181C4D1EF900FF70B3 /* ParserAuthKey.h */,
+				AD6F10191C4D1EF900FF70B3 /* ParserAuthKey.m */,
+				AD6F101B1C4D1FB900FF70B3 /* ParserResponse.h */,
+				AD6F101C1C4D1FB900FF70B3 /* ParserResponse.m */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -571,6 +581,7 @@
 			files = (
 				77D9D5031C4CEC30003C3610 /* LoginTextField.m in Sources */,
 				77BFECFD1C4AC5E80091A336 /* ViewController.m in Sources */,
+				AD6F101D1C4D1FB900FF70B3 /* ParserResponse.m in Sources */,
 				ADFBF5861C4C4B35007E080D /* AlertClass.m in Sources */,
 				77D9D4FC1C4CE9AB003C3610 /* UIColor+HexColor.m in Sources */,
 				77BFED2E1C4ACF900091A336 /* UserMenuViewController.m in Sources */,
@@ -581,6 +592,7 @@
 				77BFECF71C4AC5E80091A336 /* main.m in Sources */,
 				77CE81941C4AF296003C7FFE /* ModelMyShowcase.m in Sources */,
 				776BF2231C4B95B80006C502 /* ModelSectionTableOwner.m in Sources */,
+				AD6F101A1C4D1EF900FF70B3 /* ParserAuthKey.m in Sources */,
 				ADFBF5821C4C496B007E080D /* APIPostClass.m in Sources */,
 				776BF2201C4B92780006C502 /* ViewSectionTable.m in Sources */,
 				AD6F10131C4D1C9F00FF70B3 /* Auth+CoreDataProperties.m in Sources */,
