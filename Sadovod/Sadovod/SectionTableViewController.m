@@ -60,8 +60,7 @@
                 buttonTableSelection.tag = i;
                 buttonTableSelection.frame = CGRectMake(10, 75 * numerator, 150, 75);
                 [mainScrollView addSubview:buttonTableSelection];
-                
-                NSLog(@"%ld", (long)buttonTableSelection.tag);
+
                 
             } else {
                 
@@ -77,8 +76,6 @@
                 buttonTableSelection.tag = i;
                 buttonTableSelection.frame = CGRectMake(160, 75 * numerator, 150, 75);
                 [mainScrollView addSubview:buttonTableSelection];
-                
-                NSLog(@"%ld", (long)buttonTableSelection.tag);
                 
                 numerator += 1;
             }
