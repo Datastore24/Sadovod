@@ -8,8 +8,26 @@
 
 #import "LognViewController.h"
 #import "LoginTextField.h"
+#import "AlertClass.h"
+#import "ViewController.h"
+
+#import "AuthDbClass.h"
+#import "APIGetClass.h"
+#import "APIPostClass.h"
+#import "ParserAuthKey.h"
+#import "ParserAuthResponse.h"
+#import "ParserLoginPassword.h"
+#import "ParserLoginPasswordResponse.h"
+#import "Auth.h"
+#import "SingleTone.h"
+#import <MagicalRecord/MagicalRecord.h>
 
 @interface LognViewController () <UITextFieldDelegate>
+
+@property (strong, nonatomic) NSMutableArray * arrayResponce; //Массив с данными API
+@property (strong, nonatomic) NSMutableArray * arrayCheck; //Массив с данными API
+@property (strong, nonatomic) NSString * key; //Массив с данными API
+
 
 @end
 
@@ -22,11 +40,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    AuthDbClass * auth2 = [[AuthDbClass alloc] init];
+    NSArray * array2 = [auth2 showAllUsers]; //Массив данных CoreData
+
+    NSLog(@"USERS: %@",array2);
+    NSLog(@"USER COUNT: %i",array2.count);
+    
+
+       self.navigationController.navigationBar.userInteractionEnabled = NO;
+    self.navigationController.navigationBar.tintColor = [UIColor clearColor];
     
     //Инициализация ввода логина----------------------------------
     textFielsLoggin = [[LoginTextField alloc]
                      initWithFrame:CGRectMake(40, 200, 200, 30)
-                                        placeholder:@"Loggin"];
+                                        placeholder:@"Логин"];
     [self.view addSubview:textFielsLoggin];
     textFielsLoggin.center = CGPointMake(self.view.center.x, self.view.center.y - 100);
     textFielsLoggin.delegate = self;
@@ -34,7 +61,7 @@
     //Инициализация ввода пароля-----------------------------------
     textFielsPassword = [[LoginTextField alloc]
                          initWithFrame:CGRectMake(40, 200, 200, 30)
-                         placeholder:@"Password"];
+                         placeholder:@"Пароль"];
     [self.view addSubview:textFielsPassword];
     textFielsPassword.center = CGPointMake(self.view.center.x, self.view.center.y - 60);
     textFielsPassword.delegate = self;
@@ -44,12 +71,13 @@
     [buttonLoggin addTarget:self
                action:@selector(buttonLogginAction)
      forControlEvents:UIControlEventTouchUpInside];
-    [buttonLoggin setTitle:@"Show View" forState:UIControlStateNormal];
+    [buttonLoggin setTitle:@"Войти" forState:UIControlStateNormal];
     buttonLoggin.backgroundColor = [UIColor blackColor];
     buttonLoggin.frame = CGRectMake(40, 200, 160, 50);
     buttonLoggin.center = CGPointMake(self.view.center.x, self.view.center.y);
     buttonLoggin.layer.cornerRadius = 5.f;
     [self.view addSubview:buttonLoggin];
+
     
 
 }
@@ -67,6 +95,155 @@
 - (void) buttonLogginAction
 {
     NSLog(@"Запускаем");
+
+    
+    if (textFielsLoggin.text.length == 0 && textFielsPassword.text.length == 0) {
+        
+        [AlertClass showAlertViewWithMessage:@"Введите Логин и Пароль" view:self];
+    }
+    
+    else if (textFielsLoggin.text.length == 0) {
+        [AlertClass showAlertViewWithMessage:@"Введите Логин" view:self];
+      
+    }
+    
+    else if (textFielsPassword.text.length == 0) {
+        [AlertClass showAlertViewWithMessage:@"Введите Пароль" view:self];
+    }
+    
+    else {
+        
+        //
+        
+        AuthDbClass * auth = [[AuthDbClass alloc] init];
+        NSArray * array = [auth showAllUsers]; //Массив данных CoreData
+        NSLog(@"Счетчик кнопки: %i",array.count);
+        
+        if (!array || !array.count){
+         [self getKey:^{
+             [self getAuth:textFielsLoggin.text password:textFielsPassword.text andKey:self.key andBlock:^{
+                 
+                 ParserLoginPassword * parse = [self.arrayResponce objectAtIndex:0];
+                 NSLog(@"STATUS:%@",parse.status);
+                 NSLog(@"TOKEN:%@",parse.token);
+                 
+                 //Проверка главного ключа входа 1- успешно, 0 - неуспешно
+                 if([parse.status isEqualToString:@"1"]){
+                     AuthDbClass * authDbClass = [[AuthDbClass alloc] init];
+                     
+                     //Проверка существует ли пользователь в CoreData
+                     
+                     if(![authDbClass checkUsers:textFielsLoggin.text andPassword:textFielsPassword.text]){
+                         
+                         //Добавление данных успешно вошедшего пользователя в CoreData
+                         [authDbClass authFist:textFielsLoggin.text andPassword:textFielsPassword.text andEnter:@"1" andKey:self.key];
+                         [authDbClass updateToken:parse.token];
+                         
+                         
+                         
+                     }
+                     //Переход в меню
+                     
+                     //[self.navigationController popToRootViewControllerAnimated:YES];
+                    
+                     
+                 }else{
+                     
+                     [AlertClass showAlertViewWithMessage:@"Не верный логин или пароль" view:self];
+                 }
+             }];
+         }];
+        }else{
+            [self.navigationController popToRootViewControllerAnimated:YES];
+            //Необходимо спрограммировать смену пользователя с удалением текущего,
+            //Необходимо обновить все кроме самомго KEY
+            
+//            NSLog(@"В базе найдены сочетания");
+//            Auth * authCoreData = [array objectAtIndex:0];
+//            BOOL keyTrue=[auth checkKey:authCoreData.key];
+//            
+//            if(keyTrue){
+//                NSLog(@"Ключ подошел: %@",authCoreData.key);
+//                [self sendKey:authCoreData.key];
+//                ViewController* detail = [self.storyboard instantiateViewControllerWithIdentifier:@"mainView"];
+//                [self.navigationController pushViewController:detail animated:YES];
+//            }else{
+//                NSLog(@"Ключ не подошел: %@",authCoreData.key);
+//                AuthDbClass * authDbClass = [[AuthDbClass alloc] init];
+//                [authDbClass deleteAuth];
+//                [self buttonLogginAction];
+//            }
+
+            
+        }
+        
+        
+        
+        
+        
+    }
 }
+
+#pragma mark - API
+
+-(void) getKey:(void (^)(void))block{
+    NSDictionary * params = nil;
+    APIGetClass * api = [APIGetClass new]; //Создаем экземпляр API
+    [api getDataFromServerWithParams:params method:@"abpro/check_superkey" complitionBlock:^(id response) {
+        ParserAuthResponse * parsingResponce = [[ParserAuthResponse alloc] init];
+        
+        ParserAuthKey * parserAuthKey =[[parsingResponce parsing:response] objectAtIndex:0];
+        //                //Проверка существует ли пользователь в CoreData
+        self.key=parserAuthKey.key;
+       
+        block();
+        
+
+    }];
+    
+}
+
+-(void) sendKey: (NSString*) key{
+    
+    NSDictionary * params = [[NSDictionary alloc] initWithObjectsAndKeys:
+                             key,@"key",
+                             nil];
+    APIPostClass * apiPost = [APIPostClass new]; //Создаем экземпляр API
+    [apiPost postDataToServerWithParams:params method:@"abpro/check_superkey" complitionBlock:^(id response) {
+        
+    }];
+    
+}
+
+////Авторизация пользователей
+-(void) getAuth:(NSString *) login password: (NSString *) password andKey:(NSString*) key andBlock:(void (^)(void))block{
+    
+
+    //Передаваемые параметры
+
+   NSDictionary * params = [[NSDictionary alloc] initWithObjectsAndKeys:
+                             login,@"login",
+                             password,@"password",
+                             key,@"key",
+                             nil];
+    
+    APIGetClass * api =[APIGetClass new]; //создаем API
+    [api getDataFromServerWithParams:params method:@"abpro/auth" complitionBlock:^(id response) {
+        
+        ParserLoginPasswordResponse * parsingLoginPasswordResponce =[[ParserLoginPasswordResponse alloc] init];
+        
+        
+        //парсинг данных и запись в массив
+        self.arrayResponce = [parsingLoginPasswordResponce parsing:response];
+       
+        NSLog(@"RESPONSE: %@",response);
+        
+        block();
+    }];
+    
+    
+}
+//
+
 
 @end

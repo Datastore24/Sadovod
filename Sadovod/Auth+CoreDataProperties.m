@@ -13,8 +13,11 @@
 
 @implementation Auth (CoreDataProperties)
 
+@dynamic login;
+@dynamic password;
 @dynamic key;
 @dynamic token;
 @dynamic enter;
+@dynamic uid;
 
 @end

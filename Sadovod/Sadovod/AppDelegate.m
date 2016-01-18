@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import <MagicalRecord/MagicalRecord.h>
+#import "Auth.h"
 
 @interface AppDelegate ()
 
@@ -20,6 +21,8 @@
     // Override point for customization after application launch.
     
     [MagicalRecord setupCoreDataStackWithStoreNamed:@"Auth.sqlite"];
+   
+    
     
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7)
     {
