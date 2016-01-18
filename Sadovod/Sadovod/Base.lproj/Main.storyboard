@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -169,7 +169,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="pls-4C-aWi">
-                        <barButtonItem key="leftBarButtonItem" systemItem="organize" id="MF3-zU-KaO"/>
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="menu.png" style="plain" id="MF3-zU-KaO"/>
                     </navigationItem>
                     <connections>
                         <outlet property="barButton" destination="MF3-zU-KaO" id="pdY-Xa-jYi"/>
@@ -267,7 +267,10 @@
             <point key="canvasLocation" x="1779" y="637"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="menu.png" width="28" height="20"/>
+    </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="vRT-fd-hCD"/>
+        <segue reference="vFK-ek-mMt"/>
     </inferredMetricsTieBreakers>
 </document>
