@@ -177,8 +177,8 @@
             
             if(authCoreData.login == nil || authCoreData.password == nil || authCoreData.key == nil){
                 NSLog(@"EERRRR");
-               // LognViewController * detail = [self.storyboard instantiateViewControllerWithIdentifier:@"LognViewController"];
-               // [self.navigationController pushViewController:detail animated:YES];
+               LognViewController * detail = [self.storyboard instantiateViewControllerWithIdentifier:@"LognViewController"];
+               [self.navigationController pushViewController:detail animated:YES];
             }else{
                 
             

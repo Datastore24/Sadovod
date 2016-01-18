@@ -41,8 +41,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    //self.navigationController.navigationBar.userInteractionEnabled = NO;
-    //self.navigationController.navigationBar.tintColor = [UIColor clearColor];
+    self.navigationController.navigationBar.userInteractionEnabled = NO;
+    self.navigationController.navigationBar.tintColor = [UIColor clearColor];
     
     //Инициализация ввода логина----------------------------------
     textFielsLoggin = [[LoginTextField alloc]
@@ -137,9 +137,11 @@
                          
                      }
                      //Переход в меню
-                     
+//                     UIViewController *viewController = [[UIStoryboard storyboardWithName:@"Main" bundle:NULL] instantiateViewControllerWithIdentifier:@"MyShowcase"];
+//                     
+//                     [self.navigationController pushViewController:viewController animated:NO];
                      LognViewController * mainView = [self.storyboard instantiateViewControllerWithIdentifier:@"MyShowcase"];
-                     [self.navigationController pushViewController:mainView animated:YES];
+                     [self.navigationController pushViewController:mainView animated:NO];
                     
                      
                  }else{
@@ -150,7 +152,7 @@
          }];
         }else{
             ViewController* detail = [self.storyboard instantiateViewControllerWithIdentifier:@"MyShowcase"];
-            [self.navigationController pushViewController:detail animated:YES];
+            [self.navigationController pushViewController:detail animated:NO];
             //Необходимо спрограммировать смену пользователя с удалением текущего,
             //Необходимо обновить все кроме самомго KEY
             
