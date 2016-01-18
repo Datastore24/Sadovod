@@ -10,4 +10,7 @@
 
 @interface LoginTextField : UITextField
 
+- (id)initWithFrame:(CGRect)frame
+        placeholder: (NSString *) placeholder;
+
 @end

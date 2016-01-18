@@ -8,6 +8,7 @@
 
 #import "UserMenuViewController.h"
 #import "SWRevealViewController.h"
+#import "LognViewController.h"
 
 @implementation UserMenuViewController
 {
@@ -50,18 +51,6 @@
     NSString * cellIdentifier = [menu objectAtIndex:indexPath.row];
     UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     
-    if ([cellIdentifier  isEqual: @"goOut"]) {
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        [button addTarget:self
-                   action:@selector(aMethod)
-         forControlEvents:UIControlEventTouchUpInside];
-        [button setTitle:@"Выйти" forState:UIControlStateNormal];
-        button.frame = CGRectMake(0.f, 0.0, 80.0, 30.0);
-        button.titleLabel.font = [UIFont systemFontOfSize:16];
-        [cell addSubview:button];
-        
-    }
-    
     cell.backgroundColor = nil;
     
     return cell;
@@ -80,11 +69,6 @@
         };
         
     }
-}
-
-- (void) aMethod
-{
-    NSLog(@"Выйти !!!!");
 }
 
 @end
