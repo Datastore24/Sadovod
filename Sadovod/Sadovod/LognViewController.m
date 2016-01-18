@@ -40,15 +40,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    AuthDbClass * auth2 = [[AuthDbClass alloc] init];
-    NSArray * array2 = [auth2 showAllUsers]; //Массив данных CoreData
 
-    NSLog(@"USERS: %@",array2);
-    NSLog(@"USER COUNT: %i",array2.count);
-    
-
-       self.navigationController.navigationBar.userInteractionEnabled = NO;
-    self.navigationController.navigationBar.tintColor = [UIColor clearColor];
+    //self.navigationController.navigationBar.userInteractionEnabled = NO;
+    //self.navigationController.navigationBar.tintColor = [UIColor clearColor];
     
     //Инициализация ввода логина----------------------------------
     textFielsLoggin = [[LoginTextField alloc]
@@ -144,7 +138,8 @@
                      }
                      //Переход в меню
                      
-                     //[self.navigationController popToRootViewControllerAnimated:YES];
+                     LognViewController * mainView = [self.storyboard instantiateViewControllerWithIdentifier:@"MyShowcase"];
+                     [self.navigationController pushViewController:mainView animated:YES];
                     
                      
                  }else{
@@ -154,7 +149,8 @@
              }];
          }];
         }else{
-            [self.navigationController popToRootViewControllerAnimated:YES];
+            ViewController* detail = [self.storyboard instantiateViewControllerWithIdentifier:@"MyShowcase"];
+            [self.navigationController pushViewController:detail animated:YES];
             //Необходимо спрограммировать смену пользователя с удалением текущего,
             //Необходимо обновить все кроме самомго KEY
             

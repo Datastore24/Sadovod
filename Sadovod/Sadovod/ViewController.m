@@ -176,8 +176,9 @@
             //Проверка существования пользователя
             
             if(authCoreData.login == nil || authCoreData.password == nil || authCoreData.key == nil){
-                LognViewController * detail = [self.storyboard instantiateViewControllerWithIdentifier:@"LognViewController"];
-                [self.navigationController pushViewController:detail animated:YES];
+                NSLog(@"EERRRR");
+               // LognViewController * detail = [self.storyboard instantiateViewControllerWithIdentifier:@"LognViewController"];
+               // [self.navigationController pushViewController:detail animated:YES];
             }else{
                 
             
@@ -189,8 +190,7 @@
                 if([parse.status isEqual: @"1"]){
                     NSLog(@"Все хорошо");
                 }else{
-                    [MagicalRecord setupCoreDataStackWithStoreNamed:@"Auth.sqlite"];
-                    [Auth MR_truncateAll];
+                     [authDbClass deleteAuth];
                     LognViewController * detail = [self.storyboard instantiateViewControllerWithIdentifier:@"LognViewController"];
                     [self.navigationController pushViewController:detail animated:YES];
                 }
