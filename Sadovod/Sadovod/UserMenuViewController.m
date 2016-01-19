@@ -104,8 +104,8 @@
     //[auth DeleteUserWithOutKey];
     
     
-    LognViewController * detail = [self.storyboard instantiateViewControllerWithIdentifier:@"LognViewController"];
-    [self.navigationController pushViewController:detail animated:YES];
+//    LognViewController * detail = [self.storyboard instantiateViewControllerWithIdentifier:@"LognViewController"];
+    [self.navigationController popToRootViewControllerAnimated:YES];
     NSLog(@"Кнопка выхода");
 }
 
