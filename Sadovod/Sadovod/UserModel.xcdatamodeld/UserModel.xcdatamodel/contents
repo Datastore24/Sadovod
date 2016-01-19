@@ -3,9 +3,12 @@
     <entity name="Auth" representedClassName="Auth" syncable="YES">
         <attribute name="enter" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="key" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="login" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="password" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="token" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="uid" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Auth" positionX="-63" positionY="-18" width="128" height="90"/>
+        <element name="Auth" positionX="-63" positionY="-18" width="128" height="135"/>
     </elements>
 </model>

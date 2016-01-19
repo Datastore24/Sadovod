@@ -6,10 +6,10 @@
 //  Copyright © 2016 Viktor. All rights reserved.
 //
 
-#import "ParserResponse.h"
+#import "ParserAuthResponse.h"
 #import "ParserAuthKey.h"
 
-@implementation ParserResponse
+@implementation ParserAuthResponse
 - (NSMutableArray *)parsing:(id)response
 
 {

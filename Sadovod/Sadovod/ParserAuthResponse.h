@@ -8,6 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface ParserResponse : NSObject
+@interface ParserAuthResponse : NSObject
 - (NSMutableArray *)parsing:(id)response;
 @end

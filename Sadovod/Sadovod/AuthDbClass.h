@@ -9,5 +9,11 @@
 #import <Foundation/Foundation.h>
 
 @interface AuthDbClass : NSObject
-
+-(NSArray *) showAllUsers;
+- (void)deleteAuth;
+-(BOOL)checkKey:(NSString*) key;
+-(void) addKey: (NSString *) key;
+-(void) authFist: (NSString *) login andPassword: (NSString *) password andEnter:(NSString *) enter andKey:(NSString *) key;
+- (BOOL)checkUsers:(NSString*) login andPassword:(NSString*) password;
+- (void)updateToken:(NSString *)token;
 @end
