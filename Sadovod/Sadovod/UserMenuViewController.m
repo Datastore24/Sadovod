@@ -33,7 +33,7 @@
     [self.buttonExit addTarget:self action:@selector(buttonExitAction)
               forControlEvents:UIControlEventTouchUpInside];
     
-    menu = [NSArray arrayWithObjects:@"first", @"second", @"third", nil];
+    menu = [NSArray arrayWithObjects:@"first", @"second", @"third", @"fourth", nil];
 
     
 }
@@ -88,13 +88,12 @@
     }
 }
 
-- (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    [tableView dequeueReusableCellWithIdentifier:@"goOut"];
-    NSLog(@"Test");
-    
-
+    if (indexPath.row == 3) {
+        NSLog(@"Сюда вставляем все что необходимо по нажатию на выход !!!");
+        //Сюда вводит данные ---------------------------------------------------------
+    }
 }
 
 //Реализация кнопки выхода-----------------------
@@ -104,8 +103,8 @@
     //[auth DeleteUserWithOutKey];
     
     
-    LognViewController * detail = [self.storyboard instantiateViewControllerWithIdentifier:@"LognViewController"];
-    [self.navigationController pushViewController:detail animated:YES];
+//    LognViewController * detail = [self.storyboard instantiateViewControllerWithIdentifier:@"LognViewController"];
+    [self.navigationController popToRootViewControllerAnimated:YES];
     NSLog(@"Кнопка выхода");
 }
 
