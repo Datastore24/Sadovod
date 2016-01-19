@@ -158,6 +158,8 @@
             //Необходимо спрограммировать смену пользователя с удалением текущего,
             //Необходимо обновить все кроме самомго KEY
             
+           // [auth DeleteUserWithOutKey];
+            
 //            NSLog(@"В базе найдены сочетания");
 //            Auth * authCoreData = [array objectAtIndex:0];
 //            BOOL keyTrue=[auth checkKey:authCoreData.key];
@@ -202,7 +204,7 @@
     }];
     
 }
-
+//Отправление ключа при авторизации
 -(void) sendKey: (NSString*) key{
     
     NSDictionary * params = [[NSDictionary alloc] initWithObjectsAndKeys:
@@ -286,11 +288,7 @@
     }
     
     
-    if (!arrayUser || !arrayUser.count){
-        LognViewController * detail = [self.storyboard instantiateViewControllerWithIdentifier:@"LognViewController"];
-        [self.navigationController pushViewController:detail animated:YES];
-        
-    }else{
+    if (arrayUser || arrayUser.count){
         if(arrayUser.count>1){
             NSLog(@"Больше чем нужно");
             [authDbClass deleteAuth];
@@ -312,10 +310,6 @@
                     if([parse.status isEqual: @"1"]){
                         ViewController * mainView = [self.storyboard instantiateViewControllerWithIdentifier:@"MyShowcase"];
                         [self.navigationController pushViewController:mainView animated:YES];
-                    }else{
-                        [authDbClass deleteAuth];
-                        LognViewController * detail = [self.storyboard instantiateViewControllerWithIdentifier:@"LognViewController"];
-                        [self.navigationController pushViewController:detail animated:YES];
                     }
                     
                 }];

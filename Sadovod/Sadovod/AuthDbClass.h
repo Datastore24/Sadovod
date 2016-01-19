@@ -16,4 +16,5 @@
 -(void) authFist: (NSString *) login andPassword: (NSString *) password andEnter:(NSString *) enter andKey:(NSString *) key;
 - (BOOL)checkUsers:(NSString*) login andPassword:(NSString*) password;
 - (void)updateToken:(NSString *)token;
+- (void)DeleteUserWithOutKey;
 @end
