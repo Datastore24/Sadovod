@@ -291,9 +291,11 @@
     
     AuthDbClass * authDbClass = [[AuthDbClass alloc] init];
     NSArray * arrayUser = [authDbClass showAllUsers]; //Массив данных CoreData
-    
+    if(arrayUser.count>0){
     Auth * authCoreData = [arrayUser objectAtIndex:0];
-    if ((arrayUser || arrayUser.count) && ![authCoreData.enter isEqualToString:@"0"]){
+   
+    if (![authCoreData.enter isEqualToString:@"0"]){
+        
         if(arrayUser.count>1){
             
             [authDbClass deleteAuth];
@@ -328,7 +330,7 @@
         
     }
     
-    
+    }
     
 }
 

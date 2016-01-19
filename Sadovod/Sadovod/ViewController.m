@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-
+#import "UIColor+HexColor.h"
 
 
 @interface ViewController ()
@@ -30,6 +30,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    //Задаем цвет бара----------------------------------------
+    self.navigationController.navigationBar.barTintColor = [UIColor colorWithHexString:@"3038a0"];
+    [self.navigationController.navigationBar
+     setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    self.navigationController.navigationBar.translucent = NO;
    
 
 }
