@@ -9,6 +9,7 @@
 #import "UserMenuViewController.h"
 #import "SWRevealViewController.h"
 #import "LognViewController.h"
+#import "AuthDbClass.h"
 
 @interface UserMenuViewController ()
 
@@ -99,6 +100,12 @@
 //Реализация кнопки выхода-----------------------
 - (void) buttonExitAction
 {
+    //AuthDbClass * auth = [[AuthDbClass alloc] init];
+    //[auth DeleteUserWithOutKey];
+    
+    
+    LognViewController * detail = [self.storyboard instantiateViewControllerWithIdentifier:@"LognViewController"];
+    [self.navigationController pushViewController:detail animated:YES];
     NSLog(@"Кнопка выхода");
 }
 
