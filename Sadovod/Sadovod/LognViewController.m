@@ -40,6 +40,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
 
     self.navigationController.navigationBar.userInteractionEnabled = NO;
     self.navigationController.navigationBar.tintColor = [UIColor clearColor];
@@ -72,7 +74,7 @@
     buttonLoggin.layer.cornerRadius = 5.f;
     [self.view addSubview:buttonLoggin];
 
-    
+    [self CheckAuth];
 
 }
 
@@ -140,8 +142,8 @@
 //                     UIViewController *viewController = [[UIStoryboard storyboardWithName:@"Main" bundle:NULL] instantiateViewControllerWithIdentifier:@"MyShowcase"];
 //                     
 //                     [self.navigationController pushViewController:viewController animated:NO];
-                     LognViewController * mainView = [self.storyboard instantiateViewControllerWithIdentifier:@"MyShowcase"];
-                     [self.navigationController pushViewController:mainView animated:NO];
+                     ViewController * mainView = [self.storyboard instantiateViewControllerWithIdentifier:@"MyShowcase"];
+                     [self.navigationController pushViewController:mainView animated:YES];
                     
                      
                  }else{
@@ -152,7 +154,7 @@
          }];
         }else{
             ViewController* detail = [self.storyboard instantiateViewControllerWithIdentifier:@"MyShowcase"];
-            [self.navigationController pushViewController:detail animated:NO];
+            [self.navigationController pushViewController:detail animated:YES];
             //Необходимо спрограммировать смену пользователя с удалением текущего,
             //Необходимо обновить все кроме самомго KEY
             
@@ -242,6 +244,93 @@
     
 }
 //
+
+//Проверка существует ли такой пользователь или нет
+-(void) getApiAuthCheck:(NSString *) login password: (NSString *) password key: (NSString*) key andBlock:(void (^)(void))block{
+    //Передаваемые параметры
+    NSDictionary * params = [[NSDictionary alloc] initWithObjectsAndKeys:
+                             login,@"login",
+                             password,@"password",
+                             key,@"key",
+                             nil];
+    
+    APIGetClass * api =[APIGetClass new]; //создаем API
+    [api getDataFromServerWithParams:params method:@"abpro/auth" complitionBlock:^(id response) {
+        
+        ParserAuthResponse * parsingResponce =[[ParserAuthResponse alloc] init];
+        
+        //парсинг данных и запись в массив
+        self.arrayCheck = [parsingResponce parsing:response];
+        [[SingleTone sharedManager] setParsingArray:self.arrayCheck];
+        block();
+    }];
+    
+}
+
+//Проверяем входил ли пользователь, если входил перекидывай на меню
+-(void) CheckAuth{
+    
+    
+    AuthDbClass * authDbClass = [[AuthDbClass alloc] init];
+    //[authDbClass deleteAuth];
+    NSArray * arrayUser = [authDbClass showAllUsers]; //Массив данных CoreData
+    NSLog(@"ARRAY COUNT %i",arrayUser.count);
+    for (int i; i<arrayUser.count; i++) {
+        Auth * authCoreData = [arrayUser objectAtIndex:i];
+        NSLog(@"KEY %@",authCoreData.key);
+        NSLog(@"UID %@",authCoreData.uid);
+        NSLog(@"LOGIN %@",authCoreData.login);
+        NSLog(@"PASSWORD %@",authCoreData.password);
+        NSLog(@"TOKEN %@",authCoreData.token);
+        NSLog(@"ENTER %@",authCoreData.enter);
+    }
+    
+    
+    if (!arrayUser || !arrayUser.count){
+        LognViewController * detail = [self.storyboard instantiateViewControllerWithIdentifier:@"LognViewController"];
+        [self.navigationController pushViewController:detail animated:YES];
+        
+    }else{
+        if(arrayUser.count>1){
+            NSLog(@"Больше чем нужно");
+            [authDbClass deleteAuth];
+            
+        }
+        for (int i; i<arrayUser.count; i++) {
+            NSLog(@"ЦИКЛ");
+            Auth * authCoreData = [arrayUser objectAtIndex:i];
+            
+            //Проверка существования пользователя
+            
+            if(authCoreData.login != nil || authCoreData.password != nil || authCoreData.key != nil){
+                
+                [self getApiAuthCheck:authCoreData.login password:authCoreData.password key:authCoreData.key andBlock:^{
+                    ParserAuthKey * parse = [self.arrayCheck objectAtIndex:0];
+                    
+                    //Перенаправление пользоваетеля в слуачае если данные из базы и данные с сервера соответствуют
+                    
+                    if([parse.status isEqual: @"1"]){
+                        ViewController * mainView = [self.storyboard instantiateViewControllerWithIdentifier:@"MyShowcase"];
+                        [self.navigationController pushViewController:mainView animated:YES];
+                    }else{
+                        [authDbClass deleteAuth];
+                        LognViewController * detail = [self.storyboard instantiateViewControllerWithIdentifier:@"LognViewController"];
+                        [self.navigationController pushViewController:detail animated:YES];
+                    }
+                    
+                }];
+                
+            }
+
+                
+            }
+        
+        
+    }
+    
+    
+    
+}
 
 
 @end
