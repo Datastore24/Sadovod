@@ -301,8 +301,8 @@
         NSLog(@"ENTER %@",authCoreData.enter);
     }
     
-    
-    if (arrayUser || arrayUser.count){
+    Auth * authCoreData = [arrayUser objectAtIndex:0];
+    if ((arrayUser || arrayUser.count) && ![authCoreData.enter isEqualToString:@"0"]){
         if(arrayUser.count>1){
             NSLog(@"Больше чем нужно");
             [authDbClass deleteAuth];
