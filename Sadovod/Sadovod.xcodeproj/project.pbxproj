@@ -38,6 +38,8 @@
 		77D9D4FC1C4CE9AB003C3610 /* UIColor+HexColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D9D4FB1C4CE9AB003C3610 /* UIColor+HexColor.m */; };
 		77D9D4FF1C4CEBD1003C3610 /* LognViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D9D4FE1C4CEBD1003C3610 /* LognViewController.m */; };
 		77D9D5031C4CEC30003C3610 /* LoginTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D9D5021C4CEC30003C3610 /* LoginTextField.m */; };
+		AD69E5CE1C4E7C4400DF6151 /* ParserCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = AD69E5CD1C4E7C4400DF6151 /* ParserCategory.m */; };
+		AD69E5D11C4E7C9F00DF6151 /* ParserCategoryResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = AD69E5D01C4E7C9F00DF6151 /* ParserCategoryResponse.m */; };
 		AD6F100E1C4D1C3A00FF70B3 /* UserModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AD6F100C1C4D1C3A00FF70B3 /* UserModel.xcdatamodeld */; };
 		AD6F10131C4D1C9F00FF70B3 /* Auth+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = AD6F10101C4D1C9F00FF70B3 /* Auth+CoreDataProperties.m */; };
 		AD6F10141C4D1C9F00FF70B3 /* Auth.m in Sources */ = {isa = PBXBuildFile; fileRef = AD6F10121C4D1C9F00FF70B3 /* Auth.m */; };
@@ -121,6 +123,10 @@
 		77D9D5011C4CEC30003C3610 /* LoginTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginTextField.h; sourceTree = "<group>"; };
 		77D9D5021C4CEC30003C3610 /* LoginTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginTextField.m; sourceTree = "<group>"; };
 		87269916B8AC7706E07A131E /* Pods-Sadovod.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sadovod.release.xcconfig"; path = "Pods/Target Support Files/Pods-Sadovod/Pods-Sadovod.release.xcconfig"; sourceTree = "<group>"; };
+		AD69E5CC1C4E7C4400DF6151 /* ParserCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserCategory.h; sourceTree = "<group>"; };
+		AD69E5CD1C4E7C4400DF6151 /* ParserCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserCategory.m; sourceTree = "<group>"; };
+		AD69E5CF1C4E7C9F00DF6151 /* ParserCategoryResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserCategoryResponse.h; sourceTree = "<group>"; };
+		AD69E5D01C4E7C9F00DF6151 /* ParserCategoryResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserCategoryResponse.m; sourceTree = "<group>"; };
 		AD6F100D1C4D1C3A00FF70B3 /* UserModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserModel.xcdatamodel; sourceTree = "<group>"; };
 		AD6F100F1C4D1C9F00FF70B3 /* Auth+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Auth+CoreDataProperties.h"; path = "../Auth+CoreDataProperties.h"; sourceTree = "<group>"; };
 		AD6F10101C4D1C9F00FF70B3 /* Auth+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Auth+CoreDataProperties.m"; path = "../Auth+CoreDataProperties.m"; sourceTree = "<group>"; };
@@ -359,14 +365,18 @@
 				ADFBF57E1C4C47FE007E080D /* APIGetClass.m */,
 				ADFBF5801C4C496B007E080D /* APIPostClass.h */,
 				ADFBF5811C4C496B007E080D /* APIPostClass.m */,
-				AD6F10211C4D310900FF70B3 /* ParserLoginPassword.h */,
-				AD6F10221C4D310900FF70B3 /* ParserLoginPassword.m */,
 				AD6F10181C4D1EF900FF70B3 /* ParserAuthKey.h */,
 				AD6F10191C4D1EF900FF70B3 /* ParserAuthKey.m */,
 				AD6F101B1C4D1FB900FF70B3 /* ParserAuthResponse.h */,
 				AD6F101C1C4D1FB900FF70B3 /* ParserAuthResponse.m */,
+				AD6F10211C4D310900FF70B3 /* ParserLoginPassword.h */,
+				AD6F10221C4D310900FF70B3 /* ParserLoginPassword.m */,
 				AD6F10241C4D701600FF70B3 /* ParserLoginPasswordResponse.h */,
 				AD6F10251C4D701600FF70B3 /* ParserLoginPasswordResponse.m */,
+				AD69E5CC1C4E7C4400DF6151 /* ParserCategory.h */,
+				AD69E5CD1C4E7C4400DF6151 /* ParserCategory.m */,
+				AD69E5CF1C4E7C9F00DF6151 /* ParserCategoryResponse.h */,
+				AD69E5D01C4E7C9F00DF6151 /* ParserCategoryResponse.m */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -597,6 +607,7 @@
 				77D9D5031C4CEC30003C3610 /* LoginTextField.m in Sources */,
 				77BFECFD1C4AC5E80091A336 /* ViewController.m in Sources */,
 				AD6F101D1C4D1FB900FF70B3 /* ParserAuthResponse.m in Sources */,
+				AD69E5CE1C4E7C4400DF6151 /* ParserCategory.m in Sources */,
 				ADFBF5861C4C4B35007E080D /* AlertClass.m in Sources */,
 				AD6F10231C4D310900FF70B3 /* ParserLoginPassword.m in Sources */,
 				77D9D4FC1C4CE9AB003C3610 /* UIColor+HexColor.m in Sources */,
@@ -618,6 +629,7 @@
 				ADFBF57F1C4C47FE007E080D /* APIGetClass.m in Sources */,
 				77BFED2B1C4AC9F10091A336 /* SWRevealViewController.m in Sources */,
 				77D9D4FF1C4CEBD1003C3610 /* LognViewController.m in Sources */,
+				AD69E5D11C4E7C9F00DF6151 /* ParserCategoryResponse.m in Sources */,
 				77CE819A1C4AFC44003C7FFE /* LabelViewMyShowcase.m in Sources */,
 				AD6F10171C4D1CD600FF70B3 /* AuthDbClass.m in Sources */,
 			);

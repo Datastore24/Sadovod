@@ -7,6 +7,9 @@
 //
 
 #import "ModelMyShowcase.h"
+#import "SingleTone.h"
+#import "Auth.h"
+#import "AuthDbClass.h"
 
 @implementation ModelMyShowcase
 
@@ -28,6 +31,9 @@
     
     return dictTableData;
 }
+
+
+
 
 #pragma mark - API
 

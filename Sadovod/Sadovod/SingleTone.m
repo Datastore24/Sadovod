@@ -12,6 +12,7 @@
 
 @synthesize parsingArray;
 @synthesize parsingArrayKey;
+@synthesize parsingToken;
 
 
 #pragma mark Singleton Methods

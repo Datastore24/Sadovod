@@ -14,23 +14,22 @@
 #import "UIColor+HexColor.h"
 #import "AlertClass.h"
 
-#import <MagicalRecord/MagicalRecord.h>
-
-#import "AuthDbClass.h"
-#import "APIGetClass.h"
-#import "ParserAuthKey.h"
-#import "ParserAuthResponse.h"
-#import "Auth.h"
+#import "ParserCategory.h"
+#import "ParserCategoryResponse.h"
 #import "SingleTone.h"
-#import "LognViewController.h"
+#import "AuthDbClass.h"
+#import "Auth.h"
+
+#import "APIGetClass.h"
+#import "ParserCategory.h"
+#import "ParserCategoryResponse.h"
 
 
 
 @interface ViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableViewMyShowcase; // Таблица "Моя Витрина"
 
-@property (strong, nonatomic) NSMutableArray * arrayResponce; //Массив с данными API
-@property (strong, nonatomic) NSMutableArray * arrayCheck; //Массив с данными API
+@property (strong, nonatomic) NSMutableArray * arrayCategory; //Массив с заказами
 
 @end
 
@@ -42,13 +41,13 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     self.title = @"Моя Витрина";
-     [self CheckAuth];
+//     [self CheckAuth];
     
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-   
+    
     tableDict = [ModelMyShowcase dictTableData]; //передача данных    
     
     //Задаем цвет бара----------------------------------------
@@ -74,6 +73,9 @@
     
     //Параметры моей таблицы------------------------------------
     self.tableViewMyShowcase.frame = CGRectMake(0.f, 0.f, self.view.frame.size.width, self.view.frame.size.height);
+    
+  [self getApiOrders];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -85,7 +87,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [tableDict[@"title"] count];
+    return 1;
 }
 
 
@@ -97,6 +99,8 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1
                                       reuseIdentifier:@"cell"];
     }
+    
+    NSLog(@"CAT ARRAY %@",self.arrayCategory);
     cell.textLabel.text = tableDict[@"title"][indexPath.row];
     cell.textLabel.textColor = [UIColor colorWithHexString:@"909090"];
     
@@ -119,6 +123,53 @@
     [self.navigationController pushViewController:detail animated:YES];
 }
 
+
+
+//Тащим заказы с сервера
+-(void) getApiOrders{
+    //Передаваемые параметры
+    NSLog(@"TOKEN N:%@",[[SingleTone sharedManager] parsingToken]);
+    NSDictionary * params = [[NSDictionary alloc] initWithObjectsAndKeys:
+                             [[SingleTone sharedManager] parsingToken],@"token",
+                             nil];
+    
+     APIGetClass * api =[APIGetClass new]; //создаем API
+    [api getDataFromServerWithParams:params method:@"abpro/cats_list" complitionBlock:^(id response) {
+        
+        ParserCategoryResponse * parsingResponce =[[ParserCategoryResponse alloc] init];
+        
+        NSLog(@"RESP %@",response);
+        
+        [parsingResponce parsing:response andArray:self.arrayCategory andBlock:^{
+            
+            
+            [self reloadTableViewWhenNewEvent];
+            
+            
+        }];
+        
+        
+    }];
+    
+}
+
+//Обновление таблицы
+- (void)reloadTableViewWhenNewEvent {
+    
+    
+    [self.tableViewMyShowcase
+     reloadSections:[NSIndexSet indexSetWithIndex:0]
+     withRowAnimation:UITableViewRowAnimationFade];
+    
+    self.tableViewMyShowcase.scrollEnabled = YES;
+    
+    
+    //После обновления
+
+    
+}
+
+/*
 //Проверка существует ли такой пользователь или нет
 -(void) getApiAuthCheck:(NSString *) login password: (NSString *) password key: (NSString*) key andBlock:(void (^)(void))block{
     //Передаваемые параметры
@@ -199,20 +250,11 @@
                 
             }
     }
-        
-    
-   
-        
-     
-        
-        
-        
-        
-        
+ 
     }
     
+
     
-    
-}
+}*/
 
 @end
