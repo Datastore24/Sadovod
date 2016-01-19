@@ -42,6 +42,14 @@
                                 <rect key="frame" x="0.0" y="67" width="320" height="383"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <button key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="6iF-yg-XV5">
+                                    <rect key="frame" x="0.0" y="160" width="320" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                    <state key="normal" title="   Выйти">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                </button>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="first" textLabel="3ZX-xN-rZi" style="IBUITableViewCellStyleDefault" id="lxb-Yu-sbe">
                                         <rect key="frame" x="0.0" y="28" width="320" height="44"/>
@@ -106,27 +114,6 @@
                                             <segue destination="Qkt-WO-nhC" kind="custom" customClass="SWRevealViewControllerSegue" id="Ou6-U5-82o"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="goOut" textLabel="WK7-zo-AlB" style="IBUITableViewCellStyleDefault" id="Mpz-d6-jAD">
-                                        <rect key="frame" x="0.0" y="160" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Mpz-d6-jAD" id="N3l-Ve-tfl">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Выйти" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="WK7-zo-AlB">
-                                                    <rect key="frame" x="15" y="0.0" width="290" height="43"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                        <connections>
-                                            <segue destination="9be-10-rOe" kind="custom" customClass="SWRevealViewControllerSegue" id="EPp-dG-PHY"/>
-                                        </connections>
-                                    </tableViewCell>
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="NWF-0W-EBc" id="ocV-hT-MSf"/>
@@ -137,6 +124,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="buttonExit" destination="6iF-yg-XV5" id="eI7-f3-oF5"/>
                         <outlet property="menuTableView" destination="Q3k-0B-Bja" id="dw4-Jc-60p"/>
                     </connections>
                 </viewController>
@@ -299,7 +287,4 @@
     <resources>
         <image name="menu.png" width="28" height="20"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="Zr2-cT-Gzo"/>
-    </inferredMetricsTieBreakers>
 </document>

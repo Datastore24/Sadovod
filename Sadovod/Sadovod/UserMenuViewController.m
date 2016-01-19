@@ -10,6 +10,13 @@
 #import "SWRevealViewController.h"
 #import "LognViewController.h"
 
+@interface UserMenuViewController ()
+
+@property (weak, nonatomic) IBOutlet UIButton *buttonExit;
+
+
+@end
+
 @implementation UserMenuViewController
 {
     NSArray * menu;
@@ -21,8 +28,11 @@
     self.view.backgroundColor = [UIColor lightGrayColor];
     self.menuTableView.backgroundColor = nil;
     
+    //Инициализация селектора кнопки выхода-----------------------------
+    [self.buttonExit addTarget:self action:@selector(buttonExitAction)
+              forControlEvents:UIControlEventTouchUpInside];
     
-    menu = [NSArray arrayWithObjects:@"first", @"second", @"third", @"goOut", nil];
+    menu = [NSArray arrayWithObjects:@"first", @"second", @"third", nil];
 
     
 }
@@ -50,6 +60,12 @@
 {
     NSString * cellIdentifier = [menu objectAtIndex:indexPath.row];
     UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+////    if ([cellIdentifier  isEqual: @"goOut"]) {
+//    
+//        UIView * view = [[UIView alloc] initWithFrame:cell.frame];
+//        view.backgroundColor = [UIColor blueColor];
+//        [cell addSubview:view];
+////    }
     
     cell.backgroundColor = nil;
     
@@ -69,6 +85,21 @@
         };
         
     }
+}
+
+- (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
+{
+    
+    [tableView dequeueReusableCellWithIdentifier:@"goOut"];
+    NSLog(@"Test");
+    
+
+}
+
+//Реализация кнопки выхода-----------------------
+- (void) buttonExitAction
+{
+    NSLog(@"Кнопка выхода");
 }
 
 @end
