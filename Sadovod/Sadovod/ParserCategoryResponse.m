@@ -16,16 +16,16 @@
     
    
 if ([response isKindOfClass:[NSDictionary class]]) {
-     NSLog(@"START RESPONSE");
+   
         ParserCategory *parserCategory = [[ParserCategory alloc] init];
         [parserCategory mts_setValuesForKeysWithDictionary:response];
         NSArray * list = parserCategory.list;
     
+
     for (int i = 0; i < list.count; i++) {
         
-
         [arrayResponse addObject:[list objectAtIndex:i]];
-        
+
         //Отслеживаем конец цикла
         if ([[list objectAtIndex:i] isEqual:[list lastObject]]) {
           
@@ -34,9 +34,8 @@ if ([response isKindOfClass:[NSDictionary class]]) {
         }
     
     }
- 
     
-        //[arrayResponse addObject:parserLoginPassword];
+ 
 
     
     }

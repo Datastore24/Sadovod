@@ -40,6 +40,7 @@
 		77D9D5031C4CEC30003C3610 /* LoginTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D9D5021C4CEC30003C3610 /* LoginTextField.m */; };
 		AD69E5CE1C4E7C4400DF6151 /* ParserCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = AD69E5CD1C4E7C4400DF6151 /* ParserCategory.m */; };
 		AD69E5D11C4E7C9F00DF6151 /* ParserCategoryResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = AD69E5D01C4E7C9F00DF6151 /* ParserCategoryResponse.m */; };
+		AD69E5D41C4E974300DF6151 /* MyShowcaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD69E5D31C4E974300DF6151 /* MyShowcaseViewController.m */; };
 		AD6F100E1C4D1C3A00FF70B3 /* UserModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AD6F100C1C4D1C3A00FF70B3 /* UserModel.xcdatamodeld */; };
 		AD6F10131C4D1C9F00FF70B3 /* Auth+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = AD6F10101C4D1C9F00FF70B3 /* Auth+CoreDataProperties.m */; };
 		AD6F10141C4D1C9F00FF70B3 /* Auth.m in Sources */ = {isa = PBXBuildFile; fileRef = AD6F10121C4D1C9F00FF70B3 /* Auth.m */; };
@@ -127,6 +128,8 @@
 		AD69E5CD1C4E7C4400DF6151 /* ParserCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserCategory.m; sourceTree = "<group>"; };
 		AD69E5CF1C4E7C9F00DF6151 /* ParserCategoryResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserCategoryResponse.h; sourceTree = "<group>"; };
 		AD69E5D01C4E7C9F00DF6151 /* ParserCategoryResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserCategoryResponse.m; sourceTree = "<group>"; };
+		AD69E5D21C4E974300DF6151 /* MyShowcaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyShowcaseViewController.h; sourceTree = "<group>"; };
+		AD69E5D31C4E974300DF6151 /* MyShowcaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyShowcaseViewController.m; sourceTree = "<group>"; };
 		AD6F100D1C4D1C3A00FF70B3 /* UserModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserModel.xcdatamodel; sourceTree = "<group>"; };
 		AD6F100F1C4D1C9F00FF70B3 /* Auth+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Auth+CoreDataProperties.h"; path = "../Auth+CoreDataProperties.h"; sourceTree = "<group>"; };
 		AD6F10101C4D1C9F00FF70B3 /* Auth+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Auth+CoreDataProperties.m"; path = "../Auth+CoreDataProperties.m"; sourceTree = "<group>"; };
@@ -263,6 +266,8 @@
 				77BFED2F1C4ADF7A0091A336 /* Owner */,
 				77BFECF81C4AC5E80091A336 /* AppDelegate.h */,
 				77BFECF91C4AC5E80091A336 /* AppDelegate.m */,
+				77BFECFB1C4AC5E80091A336 /* ViewController.h */,
+				77BFECFC1C4AC5E80091A336 /* ViewController.m */,
 				ADFBF5841C4C4B35007E080D /* AlertClass.h */,
 				ADFBF5851C4C4B35007E080D /* AlertClass.m */,
 				AD6F101E1C4D266300FF70B3 /* SingleTone.h */,
@@ -328,12 +333,12 @@
 		77CE81911C4AEAF8003C7FFE /* MyShowcase */ = {
 			isa = PBXGroup;
 			children = (
-				77BFECFB1C4AC5E80091A336 /* ViewController.h */,
-				77BFECFC1C4AC5E80091A336 /* ViewController.m */,
 				77CE81921C4AF296003C7FFE /* ModelMyShowcase.h */,
 				77CE81931C4AF296003C7FFE /* ModelMyShowcase.m */,
 				77CE81981C4AFC44003C7FFE /* LabelViewMyShowcase.h */,
 				77CE81991C4AFC44003C7FFE /* LabelViewMyShowcase.m */,
+				AD69E5D21C4E974300DF6151 /* MyShowcaseViewController.h */,
+				AD69E5D31C4E974300DF6151 /* MyShowcaseViewController.m */,
 			);
 			name = MyShowcase;
 			sourceTree = "<group>";
@@ -607,6 +612,7 @@
 				77D9D5031C4CEC30003C3610 /* LoginTextField.m in Sources */,
 				77BFECFD1C4AC5E80091A336 /* ViewController.m in Sources */,
 				AD6F101D1C4D1FB900FF70B3 /* ParserAuthResponse.m in Sources */,
+				AD69E5D41C4E974300DF6151 /* MyShowcaseViewController.m in Sources */,
 				AD69E5CE1C4E7C4400DF6151 /* ParserCategory.m in Sources */,
 				ADFBF5861C4C4B35007E080D /* AlertClass.m in Sources */,
 				AD6F10231C4D310900FF70B3 /* ParserLoginPassword.m in Sources */,
