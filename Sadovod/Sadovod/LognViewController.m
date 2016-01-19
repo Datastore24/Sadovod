@@ -139,9 +139,6 @@
                          
                      }
                      //Переход в меню
-//                     UIViewController *viewController = [[UIStoryboard storyboardWithName:@"Main" bundle:NULL] instantiateViewControllerWithIdentifier:@"MyShowcase"];
-//                     
-//                     [self.navigationController pushViewController:viewController animated:NO];
                      ViewController * mainView = [self.storyboard instantiateViewControllerWithIdentifier:@"MyShowcase"];
                      [self.navigationController pushViewController:mainView animated:YES];
                     
@@ -153,28 +150,46 @@
              }];
          }];
         }else{
-            ViewController* detail = [self.storyboard instantiateViewControllerWithIdentifier:@"MyShowcase"];
-            [self.navigationController pushViewController:detail animated:YES];
+            
             //Необходимо спрограммировать смену пользователя с удалением текущего,
             //Необходимо обновить все кроме самомго KEY
             
-           // [auth DeleteUserWithOutKey];
+            [auth DeleteUserWithOutKey];
             
-//            NSLog(@"В базе найдены сочетания");
-//            Auth * authCoreData = [array objectAtIndex:0];
-//            BOOL keyTrue=[auth checkKey:authCoreData.key];
-//            
-//            if(keyTrue){
-//                NSLog(@"Ключ подошел: %@",authCoreData.key);
-//                [self sendKey:authCoreData.key];
-//                ViewController* detail = [self.storyboard instantiateViewControllerWithIdentifier:@"mainView"];
-//                [self.navigationController pushViewController:detail animated:YES];
-//            }else{
-//                NSLog(@"Ключ не подошел: %@",authCoreData.key);
-//                AuthDbClass * authDbClass = [[AuthDbClass alloc] init];
-//                [authDbClass deleteAuth];
-//                [self buttonLogginAction];
-//            }
+            NSLog(@"В базе найдены сочетания");
+            Auth * authCoreData = [array objectAtIndex:0];
+            BOOL keyTrue=[auth checkKey:authCoreData.key];
+            [self getAuth:textFielsLoggin.text password:textFielsPassword.text andKey:authCoreData.key andBlock:^{
+                ParserLoginPassword * parse = [self.arrayResponce objectAtIndex:0];
+                NSLog(@"STATUS:%@",parse.status);
+                NSLog(@"TOKEN:%@",parse.token);
+                
+                //Проверка главного ключа входа 1- успешно, 0 - неуспешно
+                if([parse.status isEqualToString:@"1"]){
+                    AuthDbClass * authDbClass = [[AuthDbClass alloc] init];
+                    
+                    //Проверка существует ли пользователь в CoreData
+                    
+                    if(![authDbClass checkUsers:textFielsLoggin.text andPassword:textFielsPassword.text]){
+                        
+                        //Добавление данных успешно вошедшего пользователя в CoreData
+                        [authDbClass UpdateUserWithOutKey:textFielsLoggin.text password:textFielsPassword.text];
+                        [authDbClass updateToken:parse.token];
+                        
+                        
+                        
+                    }
+                    //Переход в меню
+                    ViewController * mainView = [self.storyboard instantiateViewControllerWithIdentifier:@"MyShowcase"];
+                    [self.navigationController pushViewController:mainView animated:YES];
+                    
+                    
+                }else{
+                    
+                    [AlertClass showAlertViewWithMessage:@"Не верный логин или пароль" view:self];
+                }
+
+            }];
 
             
         }

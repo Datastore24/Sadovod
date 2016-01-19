@@ -131,6 +131,29 @@
     }
 }
 
+- (void)UpdateUserWithOutKey: (NSString *) login password:(NSString *) password
+{
+    // Get the local context
+    NSManagedObjectContext *localContext    = [NSManagedObjectContext MR_context];
+    
+    // Retrieve the first person who have the given firstname
+    NSPredicate *predicate                  = [NSPredicate predicateWithFormat:@"uid ==[c] 1"];
+    Auth *authFounded                   = [Auth MR_findFirstWithPredicate:predicate inContext:localContext];
+    
+    if (authFounded)
+    {
+        
+        authFounded.login = login;
+        authFounded.password = password;
+        authFounded.enter = @"1";
+        
+        
+        // Save the modification in the local context
+        // With MagicalRecords 2.0.8 or newer you should use the MR_saveNestedContexts
+        [localContext MR_saveToPersistentStoreAndWait];
+    }
+}
+
 
 
 -(NSArray *) showAllUsers{

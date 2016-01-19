@@ -17,4 +17,5 @@
 - (BOOL)checkUsers:(NSString*) login andPassword:(NSString*) password;
 - (void)updateToken:(NSString *)token;
 - (void)DeleteUserWithOutKey;
+- (void)UpdateUserWithOutKey: (NSString *) login password:(NSString *) password;
 @end
