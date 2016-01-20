@@ -22,6 +22,7 @@
 - (instancetype)initWithFrame:(CGRect)frame
                   andImageURL: (NSString*) imageUrl
                 andLabelPrice: (NSString*) price
+                   andResized: (BOOL) resized
 {
     self = [super initWithFrame:frame];
     if (self) {
@@ -51,6 +52,9 @@
                                     
                                   UIImage * imageResizing = [image resizedImage:targetSize interpolationQuality:kCGInterpolationHigh];
                                     
+                                    if(resized){
+                                        imageView.contentMode = UIViewContentModeScaleAspectFit;
+                                    }
                                      UIImage * imageCropped = [imageResizing croppedImage:CGRectMake(35,0, frame.size.width, frame.size.height)];
                                
                                    
@@ -93,5 +97,7 @@
     }
     return self;
 }
+
+
 
 @end

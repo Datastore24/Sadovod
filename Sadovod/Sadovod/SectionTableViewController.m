@@ -70,9 +70,9 @@
             
                 ViewSectionTable * image = [[ViewSectionTable alloc] initWithFrame:
                                             CGRectMake(0,
-                                                       300 * i,
+                                                       320 * i,
                                                        self.view.bounds.size.width,
-                                                       300)andImageURL:[itemsInfo objectForKey:@"img"] andLabelPrice:[NSString stringWithFormat:@"%ld", [[itemsInfo objectForKey:@"cost"] integerValue]]];
+                                                       320)andImageURL:[itemsInfo objectForKey:@"img"] andLabelPrice:[NSString stringWithFormat:@"%ld", [[itemsInfo objectForKey:@"cost"] integerValue]]andResized:NO];
                 [mainScrollView addSubview:image];
                 
                 //Инициализация кнопок активации ячеек-------------------------------
@@ -83,14 +83,14 @@
                 buttonTableSelection.backgroundColor = nil;
                 buttonTableSelection.tag = i;
                 buttonTableSelection.frame = CGRectMake(0,
-                                                        300 * i,
+                                                        320 * i,
                                                         self.view.bounds.size.width,
-                                                        300);
+                                                        320);
                 [mainScrollView addSubview:buttonTableSelection];
             
             
         }
-        mainScrollView.contentSize = CGSizeMake(self.view.frame.size.width, 300 * self.arrayCategoryItems.count + 50);
+        mainScrollView.contentSize = CGSizeMake(self.view.frame.size.width, 320 * self.arrayCategoryItems.count + 50);
         
     } else { //Если выше то--------------------------------------------
         
@@ -100,9 +100,9 @@
             if (i % 2 == 0) {
                 ViewSectionTable * image = [[ViewSectionTable alloc] initWithFrame:
                                             CGRectMake(0,
-                                                       self.view.frame.size.width / 4 * numerator,
-                                                       self.view.frame.size.width / 2 - 10,
-                                                       self.view.frame.size.width / 4) andImageURL:[itemsInfo objectForKey:@"img"] andLabelPrice:[NSString stringWithFormat:@"%ld", [[itemsInfo objectForKey:@"cost"] integerValue]]];
+                                                       self.view.frame.size.width /2 * numerator,
+                                                       self.view.frame.size.width / 2,
+                                                       self.view.frame.size.width/2 ) andImageURL:[itemsInfo objectForKey:@"img"] andLabelPrice:[NSString stringWithFormat:@"%ld", [[itemsInfo objectForKey:@"cost"] integerValue]] andResized:YES];
                 [mainScrollView addSubview:image];
                 
                 //Инициализация кнопок активации ячеек-------------------------------
@@ -113,9 +113,9 @@
                 buttonTableSelection.backgroundColor = nil;
                 buttonTableSelection.tag = i;
                 buttonTableSelection.frame = CGRectMake(10,
-                                                        self.view.frame.size.width / 4 * numerator,
-                                                        self.view.frame.size.width / 2 - 10,
-                                                        self.view.frame.size.width / 4);
+                                                        self.view.frame.size.width/2 * numerator,
+                                                        self.view.frame.size.width / 2 ,
+                                                        self.view.frame.size.width/2 );
                 [mainScrollView addSubview:buttonTableSelection];
 
                 
@@ -123,9 +123,9 @@
                 
                 ViewSectionTable * image = [[ViewSectionTable alloc] initWithFrame:
                                             CGRectMake(self.view.frame.size.width / 2,
-                                                       self.view.frame.size.width / 4 * numerator,
-                                                       self.view.frame.size.width / 2 - 10,
-                                                       self.view.frame.size.width / 4)andImageURL:[itemsInfo objectForKey:@"img"] andLabelPrice:[NSString stringWithFormat:@"%ld", [[itemsInfo objectForKey:@"cost"] integerValue]]];
+                                                       self.view.frame.size.width /2  * numerator,
+                                                       self.view.frame.size.width / 2 ,
+                                                       self.view.frame.size.width /2 )andImageURL:[itemsInfo objectForKey:@"img"] andLabelPrice:[NSString stringWithFormat:@"%ld", [[itemsInfo objectForKey:@"cost"] integerValue]] andResized:YES];
                 [mainScrollView addSubview:image];                
                 
                 //Инициализация кнопок активации ячеек-------------------------------
@@ -136,16 +136,16 @@
                 buttonTableSelection.backgroundColor = nil;
                 buttonTableSelection.tag = i;
                 buttonTableSelection.frame = CGRectMake(self.view.frame.size.width / 2,
-                                                        self.view.frame.size.width / 4 * numerator,
-                                                        self.view.frame.size.width / 2 - 10,
-                                                        self.view.frame.size.width / 4);
+                                                        self.view.frame.size.width /2  * numerator,
+                                                        self.view.frame.size.width / 2 ,
+                                                        self.view.frame.size.width/2 );
                 [mainScrollView addSubview:buttonTableSelection];
                 
                 numerator += 1;
             }
     }
     
-        mainScrollView.contentSize = CGSizeMake(self.view.frame.size.width, 93.75 * numerator + 50);
+        mainScrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.width /2 * numerator + 50);
     }
     }];
     }
