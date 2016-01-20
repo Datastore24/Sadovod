@@ -254,7 +254,6 @@
         //парсинг данных и запись в массив
         self.arrayResponce = [parsingLoginPasswordResponce parsing:response];
        
-        NSLog(@"RESPONSE: %@",response);
         
         block();
     }];

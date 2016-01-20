@@ -34,18 +34,16 @@
         //mailLabel.backgroundColor = [UIColor blackColor];
         [self.view addSubview:mailLabel];
     }];
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    [button addTarget:self
-               action:@selector(aMethod)
-     forControlEvents:UIControlEventTouchUpInside];
-    [button setTitle:@"Show View" forState:UIControlStateNormal];
-    button.frame = CGRectMake(80.0, 50, 160.0, 40.0);
-    button.backgroundColor = [UIColor blueColor];
-    [self.view addSubview:button];
+  
     
     
     
     
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style: UIBarButtonItemStylePlain target:self action:@selector(aMethod:)];
+    self.navigationItem.leftBarButtonItem = backButton;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -53,11 +51,12 @@
 }
 
 
-- (void) aMethod
+- (void) aMethod:(id)sender
 {
     
-    NSLog(@"Hello");
-    [self.navigationController popViewControllerAnimated:YES];
+    //Переход в меню
+    GuestPasswordViewController * mainView = [self.storyboard instantiateViewControllerWithIdentifier:@"MyShowcase"];
+    [self.navigationController pushViewController:mainView animated:YES];
 }
 
 ////Авторизация пользователей
