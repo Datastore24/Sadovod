@@ -71,7 +71,17 @@
         //[self addSubview:imageView];
         
         //Создаем ценник----------------------------------------
-        labelPrice = [[UILabel alloc] initWithFrame:CGRectMake(95, 58.5, 50, 12)];
+        if (frame.size.width == 300) {
+        labelPrice = [[UILabel alloc] initWithFrame:
+                      CGRectMake(imageView.frame.origin.x + imageView.frame.size.width - 67.5,
+                                 imageView.frame.origin.y + imageView.frame.size.height - 27.5,
+                                 65, 25)];
+        } else {
+        labelPrice = [[UILabel alloc] initWithFrame:
+                      CGRectMake(imageView.frame.origin.x + imageView.frame.size.width - 52.5,
+                                 imageView.frame.origin.y + imageView.frame.size.height - 14.5,
+                                 50, 12)];
+        }
         labelPrice.backgroundColor = [UIColor grayColor];
         labelPrice.text = [NSString stringWithFormat:@"%@ руб.",price];
         labelPrice.font = [UIFont fontWithName:@"HelveticaNeue" size:11];

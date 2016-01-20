@@ -29,22 +29,28 @@
     UIScrollView * mainScrollView; //Основной скрол вью
     NSInteger numerator; //Кастомный счетчик
     UIButton * buttonTableSelection; //Кнопка активации картинки
+    
+    //Размер картинки-------------------------------------------------
+    CGRect imageRact;
 }
+
+
 
 - (void) viewWillAppear:(BOOL)animated
 {
     self.title = self.catName;
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment: UIOffsetMake(10.f, -100.f) forBarMetrics:UIBarMetricsDefault];
+    
+    NSLog(@"%@", self.catName);
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.arrayCategoryItems = [NSMutableArray array];
-    NSLog(@"%@",self.catID);
     
     [self getApiOrders:^{
-        NSLog(@"COUNT %i",self.arrayCategoryItems.count);
-        NSLog(@"INF: %@",[self.arrayCategoryItems objectAtIndex:0]);
+//        NSLog(@"COUNT %i",self.arrayCategoryItems.count);
+//        NSLog(@"INF: %@",[self.arrayCategoryItems objectAtIndex:0]);
     
     
     numerator = 0; //Инициализация счетчика строк----------------------------------
@@ -59,13 +65,17 @@
     
     //Вставляем товар в скрол вью---------------------------------------------------
         
-        
-        
-    for (int i = 0; i < self.arrayCategoryItems.count; i ++) {
-        
-        NSDictionary * itemsInfo=[self.arrayCategoryItems objectAtIndex:i];
-            if (i % 2 == 0) {
-                ViewSectionTable * image = [[ViewSectionTable alloc] initWithFrame:CGRectMake(10, 75 * numerator, 150, 75)andImageURL:[itemsInfo objectForKey:@"img"] andLabelPrice:[NSString stringWithFormat:@"%ld", [[itemsInfo objectForKey:@"cost"] integerValue]]];
+    if(self.view.bounds.size.height < 586.0f) //Если пишем под 5ку и ниже
+    {
+        for (int i = 0; i < self.arrayCategoryItems.count; i ++) {
+            
+            NSDictionary * itemsInfo=[self.arrayCategoryItems objectAtIndex:i];
+            
+                ViewSectionTable * image = [[ViewSectionTable alloc] initWithFrame:
+                                            CGRectMake(10,
+                                                       150 * i,
+                                                       300,
+                                                       150)andImageURL:[itemsInfo objectForKey:@"img"] andLabelPrice:[NSString stringWithFormat:@"%ld", [[itemsInfo objectForKey:@"cost"] integerValue]]];
                 [mainScrollView addSubview:image];
                 
                 //Инициализация кнопок активации ячеек-------------------------------
@@ -75,13 +85,50 @@
                                forControlEvents:UIControlEventTouchUpInside];
                 buttonTableSelection.backgroundColor = nil;
                 buttonTableSelection.tag = i;
-                buttonTableSelection.frame = CGRectMake(10, 75 * numerator, 150, 75);
+                buttonTableSelection.frame = CGRectMake(10,
+                                                        150 * i,
+                                                        300,
+                                                        150);
+                [mainScrollView addSubview:buttonTableSelection];
+            
+            
+        }
+        mainScrollView.contentSize = CGSizeMake(self.view.frame.size.width, 150 * self.arrayCategoryItems.count + 50);
+        
+    } else { //Если выше то--------------------------------------------
+        
+    for (int i = 0; i < self.arrayCategoryItems.count; i ++) {
+        
+        NSDictionary * itemsInfo=[self.arrayCategoryItems objectAtIndex:i];
+            if (i % 2 == 0) {
+                ViewSectionTable * image = [[ViewSectionTable alloc] initWithFrame:
+                                            CGRectMake(10,
+                                                       self.view.frame.size.width / 4 * numerator,
+                                                       self.view.frame.size.width / 2 - 10,
+                                                       self.view.frame.size.width / 4) andImageURL:[itemsInfo objectForKey:@"img"] andLabelPrice:[NSString stringWithFormat:@"%ld", [[itemsInfo objectForKey:@"cost"] integerValue]]];
+                [mainScrollView addSubview:image];
+                
+                //Инициализация кнопок активации ячеек-------------------------------
+                buttonTableSelection = [UIButton buttonWithType:UIButtonTypeCustom];
+                [buttonTableSelection addTarget:self
+                                         action:@selector(buttonTableSelectionAction:)
+                               forControlEvents:UIControlEventTouchUpInside];
+                buttonTableSelection.backgroundColor = nil;
+                buttonTableSelection.tag = i;
+                buttonTableSelection.frame = CGRectMake(10,
+                                                        self.view.frame.size.width / 4 * numerator,
+                                                        self.view.frame.size.width / 2 - 10,
+                                                        self.view.frame.size.width / 4);
                 [mainScrollView addSubview:buttonTableSelection];
 
                 
             } else {
                 
-                ViewSectionTable * image = [[ViewSectionTable alloc] initWithFrame:CGRectMake(160, 75 * numerator, 150, 75)andImageURL:[itemsInfo objectForKey:@"img"] andLabelPrice:[NSString stringWithFormat:@"%ld", [[itemsInfo objectForKey:@"cost"] integerValue]]];
+                ViewSectionTable * image = [[ViewSectionTable alloc] initWithFrame:
+                                            CGRectMake(self.view.frame.size.width / 2,
+                                                       self.view.frame.size.width / 4 * numerator,
+                                                       self.view.frame.size.width / 2 - 10,
+                                                       self.view.frame.size.width / 4)andImageURL:[itemsInfo objectForKey:@"img"] andLabelPrice:[NSString stringWithFormat:@"%ld", [[itemsInfo objectForKey:@"cost"] integerValue]]];
                 [mainScrollView addSubview:image];                
                 
                 //Инициализация кнопок активации ячеек-------------------------------
@@ -91,16 +138,21 @@
                                forControlEvents:UIControlEventTouchUpInside];
                 buttonTableSelection.backgroundColor = nil;
                 buttonTableSelection.tag = i;
-                buttonTableSelection.frame = CGRectMake(160, 75 * numerator, 150, 75);
+                buttonTableSelection.frame = CGRectMake(self.view.frame.size.width / 2,
+                                                        self.view.frame.size.width / 4 * numerator,
+                                                        self.view.frame.size.width / 2 - 10,
+                                                        self.view.frame.size.width / 4);
                 [mainScrollView addSubview:buttonTableSelection];
                 
                 numerator += 1;
             }
     }
-        mainScrollView.contentSize = CGSizeMake(self.view.frame.size.width, 75 * numerator + 50);
-
+    
+        mainScrollView.contentSize = CGSizeMake(self.view.frame.size.width, 93.75 * numerator + 50);
+    }
     }];
     }
+     
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

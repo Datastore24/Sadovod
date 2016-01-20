@@ -16,7 +16,7 @@
     self = [super init];
     if (self) {
         
-        self.frame = CGRectMake(270, 10, 30, 30);
+//        self.frame = CGRectMake(270, 10, 30, 30);
         self.backgroundColor = [UIColor colorWithHexString:@"3038a0"];
         self.alpha = 0.8;
         self.text = stringValue;
