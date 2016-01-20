@@ -50,6 +50,8 @@
 		AD69E5E51C4EE6B800DF6151 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = AD69E5DF1C4EE6B800DF6151 /* UIImage+Resize.m */; };
 		AD69E5E61C4EE6B800DF6151 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = AD69E5E11C4EE6B800DF6151 /* UIImage+RoundedCorner.m */; };
 		AD69E5E91C4EE75D00DF6151 /* TextAndImageHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = AD69E5E81C4EE75D00DF6151 /* TextAndImageHeight.m */; };
+		AD69E5EC1C501CE000DF6151 /* ParserGuestPassword.m in Sources */ = {isa = PBXBuildFile; fileRef = AD69E5EB1C501CE000DF6151 /* ParserGuestPassword.m */; };
+		AD69E5EF1C501CF600DF6151 /* ParserGuestPasswordResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = AD69E5EE1C501CF600DF6151 /* ParserGuestPasswordResponse.m */; };
 		AD6F100E1C4D1C3A00FF70B3 /* UserModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AD6F100C1C4D1C3A00FF70B3 /* UserModel.xcdatamodeld */; };
 		AD6F10131C4D1C9F00FF70B3 /* Auth+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = AD6F10101C4D1C9F00FF70B3 /* Auth+CoreDataProperties.m */; };
 		AD6F10141C4D1C9F00FF70B3 /* Auth.m in Sources */ = {isa = PBXBuildFile; fileRef = AD6F10121C4D1C9F00FF70B3 /* Auth.m */; };
@@ -157,6 +159,10 @@
 		AD69E5E11C4EE6B800DF6151 /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
 		AD69E5E71C4EE75D00DF6151 /* TextAndImageHeight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextAndImageHeight.h; sourceTree = "<group>"; };
 		AD69E5E81C4EE75D00DF6151 /* TextAndImageHeight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextAndImageHeight.m; sourceTree = "<group>"; };
+		AD69E5EA1C501CE000DF6151 /* ParserGuestPassword.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserGuestPassword.h; sourceTree = "<group>"; };
+		AD69E5EB1C501CE000DF6151 /* ParserGuestPassword.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserGuestPassword.m; sourceTree = "<group>"; };
+		AD69E5ED1C501CF600DF6151 /* ParserGuestPasswordResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserGuestPasswordResponse.h; sourceTree = "<group>"; };
+		AD69E5EE1C501CF600DF6151 /* ParserGuestPasswordResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserGuestPasswordResponse.m; sourceTree = "<group>"; };
 		AD6F100D1C4D1C3A00FF70B3 /* UserModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserModel.xcdatamodel; sourceTree = "<group>"; };
 		AD6F100F1C4D1C9F00FF70B3 /* Auth+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Auth+CoreDataProperties.h"; path = "../Auth+CoreDataProperties.h"; sourceTree = "<group>"; };
 		AD6F10101C4D1C9F00FF70B3 /* Auth+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Auth+CoreDataProperties.m"; path = "../Auth+CoreDataProperties.m"; sourceTree = "<group>"; };
@@ -435,6 +441,10 @@
 				AD69E5CD1C4E7C4400DF6151 /* ParserCategory.m */,
 				AD69E5CF1C4E7C9F00DF6151 /* ParserCategoryResponse.h */,
 				AD69E5D01C4E7C9F00DF6151 /* ParserCategoryResponse.m */,
+				AD69E5EA1C501CE000DF6151 /* ParserGuestPassword.h */,
+				AD69E5EB1C501CE000DF6151 /* ParserGuestPassword.m */,
+				AD69E5ED1C501CF600DF6151 /* ParserGuestPasswordResponse.h */,
+				AD69E5EE1C501CF600DF6151 /* ParserGuestPasswordResponse.m */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -669,6 +679,7 @@
 				AD6F101D1C4D1FB900FF70B3 /* ParserAuthResponse.m in Sources */,
 				AD69E5D41C4E974300DF6151 /* MyShowcaseViewController.m in Sources */,
 				AD69E5CE1C4E7C4400DF6151 /* ParserCategory.m in Sources */,
+				AD69E5EF1C501CF600DF6151 /* ParserGuestPasswordResponse.m in Sources */,
 				7767156A1C4FA8230008DC24 /* TitleClass.m in Sources */,
 				ADFBF5861C4C4B35007E080D /* AlertClass.m in Sources */,
 				AD6F10231C4D310900FF70B3 /* ParserLoginPassword.m in Sources */,
@@ -692,6 +703,7 @@
 				776BF2201C4B92780006C502 /* ViewSectionTable.m in Sources */,
 				AD6F10131C4D1C9F00FF70B3 /* Auth+CoreDataProperties.m in Sources */,
 				AD6F10141C4D1C9F00FF70B3 /* Auth.m in Sources */,
+				AD69E5EC1C501CE000DF6151 /* ParserGuestPassword.m in Sources */,
 				7767156D1C4FC4A70008DC24 /* ViewProductDetails.m in Sources */,
 				ADFBF57F1C4C47FE007E080D /* APIGetClass.m in Sources */,
 				77BFED2B1C4AC9F10091A336 /* SWRevealViewController.m in Sources */,
