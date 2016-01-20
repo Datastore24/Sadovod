@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface GuestPasswordViewController : UIViewController
-
+@property (strong, nonatomic) NSMutableArray * arrayResponce; //Массив с Категориями
 @end
