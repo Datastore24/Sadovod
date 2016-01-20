@@ -11,11 +11,17 @@
 #import "ViewProductDetails.h"
 #import "UIColor+HexColor.h"
 
+@interface ViewControllerProductDetails () <UITableViewDataSource, UITableViewDelegate>
+
+
+@end
+
 @implementation ViewControllerProductDetails
 {
     UIScrollView * mainScrollView; //Основной скрол вью
     UIButton * areAvailable; //Кнопка есть в наличии
     UIButton *notAvailable; //Кнопка нет в наличии
+    UITableView * tableDetails; //Таблица деталей
 }
 
 - (void)viewDidLoad {
@@ -30,7 +36,7 @@
     mainScrollView = [[UIScrollView alloc] initWithFrame: CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     mainScrollView.backgroundColor = [UIColor colorWithHexString:@"f4f4f4"];
     [self.view addSubview:mainScrollView];
-    mainScrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height + 200);
+    mainScrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height + 350);
     
     ViewProductDetails * scrollViewImge = [[ViewProductDetails alloc] initWithFrame:CGRectMake(0, 0,
                                             self.view.frame.size.width,
@@ -62,7 +68,7 @@
     //Вью границы-------------------------------------------------------------------------
     UIView * borderView = [[UIView alloc] initWithFrame:CGRectMake(0, priceView.frame.origin.y + 40, self.view.frame.size.width, 42)];
     borderView.backgroundColor = nil;
-    borderView.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    borderView.layer.borderColor = [UIColor groupTableViewBackgroundColor].CGColor;
     borderView.layer.borderWidth = 2;
     [mainScrollView addSubview:borderView];
     
@@ -87,15 +93,53 @@
     [notAvailable.titleLabel setFont:[UIFont systemFontOfSize:16]];
     notAvailable.frame = CGRectMake(self.view.frame.size.width / 2, priceView.frame.origin.y + 40, self.view.frame.size.width / 2, 40.0);
     notAvailable.backgroundColor = [UIColor whiteColor];
-//    notAvailable.layer.borderColor = [UIColor blackColor].CGColor;
-//    notAvailable.layer.borderWidth = 2;
     [mainScrollView addSubview:notAvailable];
     
-
+    //Лейбл заголовка Доступные размеры---------------------------------------------------
+    UILabel * titleSize = [[UILabel alloc] initWithFrame:CGRectMake(10, notAvailable.frame.origin.y + 45, 150, 40)];
+    titleSize.text = @"Доступные размеры";
+    titleSize.textColor = [UIColor colorWithHexString:@"3038a0"];
+    titleSize.font = [UIFont fontWithName:@"Helvetica-Bold" size:12];
+    [mainScrollView addSubview:titleSize];
     
+    //Вью доступных размеров---------------------------------------------------------------
+    UIView * mainViewSize = [[UIView alloc] initWithFrame:CGRectMake(0, titleSize.frame.origin.y + 40, self.view.frame.size.width, 100)];
+    mainViewSize.backgroundColor = [UIColor whiteColor];
+    mainViewSize.layer.borderColor = [UIColor groupTableViewBackgroundColor].CGColor;
+    mainViewSize.layer.borderWidth = 2.f;
+    [mainScrollView addSubview:mainViewSize];
+    
+    //Лейбл заголовка Описание-------------------------------------------------------------
+    UILabel * titleDescription = [[UILabel alloc] initWithFrame:CGRectMake(10, mainViewSize.frame.origin.y + 105, 150, 40)];
+    titleDescription.text = @"Описание";
+    titleDescription.textColor = [UIColor colorWithHexString:@"3038a0"];
+    titleDescription.font = [UIFont fontWithName:@"Helvetica-Bold" size:12];
+    [mainScrollView addSubview:titleDescription];
+    
+    //Вью описания---------------------------------------------------------------------------
+    UIView * viewDescription = [[UIView alloc] initWithFrame:CGRectMake(0, titleDescription.frame.origin.y + 40, self.view.frame.size.width, 40)];
+    viewDescription.backgroundColor = [UIColor whiteColor];
+    viewDescription.layer.borderColor = [UIColor groupTableViewBackgroundColor].CGColor;
+    viewDescription.layer.borderWidth = 2.f;
+    [mainScrollView addSubview:viewDescription];
+    
+    //Лейбл заголовка Описание-------------------------------------------------------------
+    UILabel * titleDetails = [[UILabel alloc] initWithFrame:CGRectMake(10, viewDescription.frame.origin.y + 45, 150, 40)];
+    titleDetails.text = @"Детально";
+    titleDetails.textColor = [UIColor colorWithHexString:@"3038a0"];
+    titleDetails.font = [UIFont fontWithName:@"Helvetica-Bold" size:12];
+    [mainScrollView addSubview:titleDetails];
+    
+    //Таблица деалей----------------------------------------------------------------------
+    CGRect frame = CGRectMake(0.f, titleDetails.frame.origin.y + 40, self.view.frame.size.width, 350);
+    tableDetails = [[UITableView alloc] initWithFrame:frame
+                                             style:UITableViewStyleGrouped];
+    tableDetails.delegate = self;
+    tableDetails.dataSource = self;
+    tableDetails.backgroundView = nil;
+    [mainScrollView addSubview:tableDetails];
+
 }
-
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -129,6 +173,26 @@
         [notAvailable setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     }];
 
+}
+
+#pragma mark - UITableViewDataSource
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 7;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    if (!cell)
+    {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1
+                                      reuseIdentifier:@"cell"];
+    }
+    cell.textLabel.text = @"Привет";
+    cell.detailTextLabel.text = @"Как дела";
+    
+    return cell;
 }
 
 @end
