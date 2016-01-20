@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		699EBCA81799B1C85B4EFAF6 /* libPods-Sadovod.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB0C66A742FF03CE239AEFEF /* libPods-Sadovod.a */; };
 		7767156A1C4FA8230008DC24 /* TitleClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 776715691C4FA8230008DC24 /* TitleClass.m */; };
+		7767156D1C4FC4A70008DC24 /* ViewProductDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 7767156C1C4FC4A70008DC24 /* ViewProductDetails.m */; };
 		776BF21D1C4B8A4C0006C502 /* SectionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 776BF21C1C4B8A4C0006C502 /* SectionTableViewController.m */; };
 		776BF2201C4B92780006C502 /* ViewSectionTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 776BF21F1C4B92780006C502 /* ViewSectionTable.m */; };
 		776BF2231C4B95B80006C502 /* ModelSectionTableOwner.m in Sources */ = {isa = PBXBuildFile; fileRef = 776BF2221C4B95B80006C502 /* ModelSectionTableOwner.m */; };
@@ -83,6 +84,8 @@
 /* Begin PBXFileReference section */
 		776715681C4FA8230008DC24 /* TitleClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitleClass.h; sourceTree = "<group>"; };
 		776715691C4FA8230008DC24 /* TitleClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TitleClass.m; sourceTree = "<group>"; };
+		7767156B1C4FC4A70008DC24 /* ViewProductDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewProductDetails.h; sourceTree = "<group>"; };
+		7767156C1C4FC4A70008DC24 /* ViewProductDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewProductDetails.m; sourceTree = "<group>"; };
 		776BF21B1C4B8A4C0006C502 /* SectionTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionTableViewController.h; sourceTree = "<group>"; };
 		776BF21C1C4B8A4C0006C502 /* SectionTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionTableViewController.m; sourceTree = "<group>"; };
 		776BF21E1C4B92780006C502 /* ViewSectionTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewSectionTable.h; sourceTree = "<group>"; };
@@ -249,6 +252,8 @@
 			children = (
 				776BF23C1C4BB2510006C502 /* ViewControllerProductDetails.h */,
 				776BF23D1C4BB2510006C502 /* ViewControllerProductDetails.m */,
+				7767156B1C4FC4A70008DC24 /* ViewProductDetails.h */,
+				7767156C1C4FC4A70008DC24 /* ViewProductDetails.m */,
 			);
 			name = ProductDetails;
 			sourceTree = "<group>";
@@ -674,6 +679,7 @@
 				776BF2201C4B92780006C502 /* ViewSectionTable.m in Sources */,
 				AD6F10131C4D1C9F00FF70B3 /* Auth+CoreDataProperties.m in Sources */,
 				AD6F10141C4D1C9F00FF70B3 /* Auth.m in Sources */,
+				7767156D1C4FC4A70008DC24 /* ViewProductDetails.m in Sources */,
 				ADFBF57F1C4C47FE007E080D /* APIGetClass.m in Sources */,
 				77BFED2B1C4AC9F10091A336 /* SWRevealViewController.m in Sources */,
 				77D9D4FF1C4CEBD1003C3610 /* LognViewController.m in Sources */,
