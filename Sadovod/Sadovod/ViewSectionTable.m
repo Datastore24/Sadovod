@@ -47,11 +47,11 @@
                                 if(image){
                                     imageView.frame=CGRectMake(2.5f, 2.5f, frame.size.width - 5, frame.size.height - 5);
                                     
-                                    CGSize targetSize = CGSizeMake(image.size.width/2, image.size.height/2);
+                                    CGSize targetSize = CGSizeMake(image.size.width, image.size.height);
                                     
                                   UIImage * imageResizing = [image resizedImage:targetSize interpolationQuality:kCGInterpolationHigh];
                                     
-                                     UIImage * imageCropped = [imageResizing croppedImage:CGRectMake(0,20, frame.size.width, frame.size.height)];
+                                     UIImage * imageCropped = [imageResizing croppedImage:CGRectMake(35,0, frame.size.width, frame.size.height)];
                                
                                    
                                     
