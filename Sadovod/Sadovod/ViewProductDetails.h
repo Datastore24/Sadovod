@@ -13,4 +13,5 @@
 - (id)initWithFrame:(CGRect)frame
            andArray: (NSArray *) array; //Массив картинок
 
+
 @end

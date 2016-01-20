@@ -7,6 +7,7 @@
 //
 
 #import "ViewProductDetails.h"
+#import "UIColor+HexColor.h"
 
 @interface ViewProductDetails () <UIScrollViewDelegate>
 
