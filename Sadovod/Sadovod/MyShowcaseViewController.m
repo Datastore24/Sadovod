@@ -13,6 +13,7 @@
 #import "SectionTableViewController.h"
 #import "UIColor+HexColor.h"
 #import "AlertClass.h"
+#import "TitleClass.h"
 
 #import "ParserCategory.h"
 #import "ParserCategoryResponse.h"
@@ -39,9 +40,8 @@ NSDictionary * tableDict; //Директория хранения данных
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    self.title = @"Моя Витрина";
-    //     [self CheckAuth];
-    
+    TitleClass * title = [[TitleClass alloc]initWithTitle:@"Моя Витрина"];
+    self.navigationItem.titleView = title;
 }
 
 - (void)viewDidLoad {
