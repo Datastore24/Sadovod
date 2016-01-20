@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -61,7 +61,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
-                                            <segue destination="XlC-wD-h2S" kind="custom" customClass="SWRevealViewControllerSegue" id="vRT-fd-hCD"/>
+                                            <segue destination="wQK-iB-GM8" kind="custom" customClass="SWRevealViewControllerSegue" id="Tup-Dt-eWt"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="second" textLabel="c9x-he-adG" style="IBUITableViewCellStyleDefault" id="6fM-xb-5Ri">
@@ -159,6 +159,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xEb-sd-eom" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="580" y="1421"/>
+        </scene>
+        <!--Guest Password View Controller-->
+        <scene sceneID="ZtM-9s-Mcp">
+            <objects>
+                <viewController id="wQK-iB-GM8" customClass="GuestPasswordViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="aVx-4H-gtE">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <toolbarItems>
+                        <barButtonItem systemItem="pageCurl" id="yaS-zA-xka"/>
+                    </toolbarItems>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="a5l-EJ-wU8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1024" y="1421"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="6Pk-Dw-Nqb">
