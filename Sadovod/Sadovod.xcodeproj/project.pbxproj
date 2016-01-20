@@ -38,6 +38,15 @@
 		77D9D4FC1C4CE9AB003C3610 /* UIColor+HexColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D9D4FB1C4CE9AB003C3610 /* UIColor+HexColor.m */; };
 		77D9D4FF1C4CEBD1003C3610 /* LognViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D9D4FE1C4CEBD1003C3610 /* LognViewController.m */; };
 		77D9D5031C4CEC30003C3610 /* LoginTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D9D5021C4CEC30003C3610 /* LoginTextField.m */; };
+		AD69E5CE1C4E7C4400DF6151 /* ParserCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = AD69E5CD1C4E7C4400DF6151 /* ParserCategory.m */; };
+		AD69E5D11C4E7C9F00DF6151 /* ParserCategoryResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = AD69E5D01C4E7C9F00DF6151 /* ParserCategoryResponse.m */; };
+		AD69E5D41C4E974300DF6151 /* MyShowcaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD69E5D31C4E974300DF6151 /* MyShowcaseViewController.m */; };
+		AD69E5E21C4EE6B800DF6151 /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = AD69E5D91C4EE6B800DF6151 /* UIImage+Alpha.m */; };
+		AD69E5E31C4EE6B800DF6151 /* UIImage+Blured_And_SnapShot_Image.m in Sources */ = {isa = PBXBuildFile; fileRef = AD69E5DB1C4EE6B800DF6151 /* UIImage+Blured_And_SnapShot_Image.m */; };
+		AD69E5E41C4EE6B800DF6151 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = AD69E5DD1C4EE6B800DF6151 /* UIImage+ImageEffects.m */; };
+		AD69E5E51C4EE6B800DF6151 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = AD69E5DF1C4EE6B800DF6151 /* UIImage+Resize.m */; };
+		AD69E5E61C4EE6B800DF6151 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = AD69E5E11C4EE6B800DF6151 /* UIImage+RoundedCorner.m */; };
+		AD69E5E91C4EE75D00DF6151 /* TextAndImageHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = AD69E5E81C4EE75D00DF6151 /* TextAndImageHeight.m */; };
 		AD6F100E1C4D1C3A00FF70B3 /* UserModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AD6F100C1C4D1C3A00FF70B3 /* UserModel.xcdatamodeld */; };
 		AD6F10131C4D1C9F00FF70B3 /* Auth+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = AD6F10101C4D1C9F00FF70B3 /* Auth+CoreDataProperties.m */; };
 		AD6F10141C4D1C9F00FF70B3 /* Auth.m in Sources */ = {isa = PBXBuildFile; fileRef = AD6F10121C4D1C9F00FF70B3 /* Auth.m */; };
@@ -121,6 +130,24 @@
 		77D9D5011C4CEC30003C3610 /* LoginTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginTextField.h; sourceTree = "<group>"; };
 		77D9D5021C4CEC30003C3610 /* LoginTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginTextField.m; sourceTree = "<group>"; };
 		87269916B8AC7706E07A131E /* Pods-Sadovod.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sadovod.release.xcconfig"; path = "Pods/Target Support Files/Pods-Sadovod/Pods-Sadovod.release.xcconfig"; sourceTree = "<group>"; };
+		AD69E5CC1C4E7C4400DF6151 /* ParserCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserCategory.h; sourceTree = "<group>"; };
+		AD69E5CD1C4E7C4400DF6151 /* ParserCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserCategory.m; sourceTree = "<group>"; };
+		AD69E5CF1C4E7C9F00DF6151 /* ParserCategoryResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserCategoryResponse.h; sourceTree = "<group>"; };
+		AD69E5D01C4E7C9F00DF6151 /* ParserCategoryResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserCategoryResponse.m; sourceTree = "<group>"; };
+		AD69E5D21C4E974300DF6151 /* MyShowcaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyShowcaseViewController.h; sourceTree = "<group>"; };
+		AD69E5D31C4E974300DF6151 /* MyShowcaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyShowcaseViewController.m; sourceTree = "<group>"; };
+		AD69E5D81C4EE6B800DF6151 /* UIImage+Alpha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Alpha.h"; sourceTree = "<group>"; };
+		AD69E5D91C4EE6B800DF6151 /* UIImage+Alpha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Alpha.m"; sourceTree = "<group>"; };
+		AD69E5DA1C4EE6B800DF6151 /* UIImage+Blured_And_SnapShot_Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Blured_And_SnapShot_Image.h"; sourceTree = "<group>"; };
+		AD69E5DB1C4EE6B800DF6151 /* UIImage+Blured_And_SnapShot_Image.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Blured_And_SnapShot_Image.m"; sourceTree = "<group>"; };
+		AD69E5DC1C4EE6B800DF6151 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
+		AD69E5DD1C4EE6B800DF6151 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
+		AD69E5DE1C4EE6B800DF6151 /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
+		AD69E5DF1C4EE6B800DF6151 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
+		AD69E5E01C4EE6B800DF6151 /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
+		AD69E5E11C4EE6B800DF6151 /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
+		AD69E5E71C4EE75D00DF6151 /* TextAndImageHeight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextAndImageHeight.h; sourceTree = "<group>"; };
+		AD69E5E81C4EE75D00DF6151 /* TextAndImageHeight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextAndImageHeight.m; sourceTree = "<group>"; };
 		AD6F100D1C4D1C3A00FF70B3 /* UserModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserModel.xcdatamodel; sourceTree = "<group>"; };
 		AD6F100F1C4D1C9F00FF70B3 /* Auth+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Auth+CoreDataProperties.h"; path = "../Auth+CoreDataProperties.h"; sourceTree = "<group>"; };
 		AD6F10101C4D1C9F00FF70B3 /* Auth+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Auth+CoreDataProperties.m"; path = "../Auth+CoreDataProperties.m"; sourceTree = "<group>"; };
@@ -257,6 +284,8 @@
 				77BFED2F1C4ADF7A0091A336 /* Owner */,
 				77BFECF81C4AC5E80091A336 /* AppDelegate.h */,
 				77BFECF91C4AC5E80091A336 /* AppDelegate.m */,
+				77BFECFB1C4AC5E80091A336 /* ViewController.h */,
+				77BFECFC1C4AC5E80091A336 /* ViewController.m */,
 				ADFBF5841C4C4B35007E080D /* AlertClass.h */,
 				ADFBF5851C4C4B35007E080D /* AlertClass.m */,
 				AD6F101E1C4D266300FF70B3 /* SingleTone.h */,
@@ -322,12 +351,12 @@
 		77CE81911C4AEAF8003C7FFE /* MyShowcase */ = {
 			isa = PBXGroup;
 			children = (
-				77BFECFB1C4AC5E80091A336 /* ViewController.h */,
-				77BFECFC1C4AC5E80091A336 /* ViewController.m */,
 				77CE81921C4AF296003C7FFE /* ModelMyShowcase.h */,
 				77CE81931C4AF296003C7FFE /* ModelMyShowcase.m */,
 				77CE81981C4AFC44003C7FFE /* LabelViewMyShowcase.h */,
 				77CE81991C4AFC44003C7FFE /* LabelViewMyShowcase.m */,
+				AD69E5D21C4E974300DF6151 /* MyShowcaseViewController.h */,
+				AD69E5D31C4E974300DF6151 /* MyShowcaseViewController.m */,
 			);
 			name = MyShowcase;
 			sourceTree = "<group>";
@@ -335,6 +364,18 @@
 		77D9D4F91C4CE993003C3610 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				AD69E5E71C4EE75D00DF6151 /* TextAndImageHeight.h */,
+				AD69E5E81C4EE75D00DF6151 /* TextAndImageHeight.m */,
+				AD69E5D81C4EE6B800DF6151 /* UIImage+Alpha.h */,
+				AD69E5D91C4EE6B800DF6151 /* UIImage+Alpha.m */,
+				AD69E5DA1C4EE6B800DF6151 /* UIImage+Blured_And_SnapShot_Image.h */,
+				AD69E5DB1C4EE6B800DF6151 /* UIImage+Blured_And_SnapShot_Image.m */,
+				AD69E5DC1C4EE6B800DF6151 /* UIImage+ImageEffects.h */,
+				AD69E5DD1C4EE6B800DF6151 /* UIImage+ImageEffects.m */,
+				AD69E5DE1C4EE6B800DF6151 /* UIImage+Resize.h */,
+				AD69E5DF1C4EE6B800DF6151 /* UIImage+Resize.m */,
+				AD69E5E01C4EE6B800DF6151 /* UIImage+RoundedCorner.h */,
+				AD69E5E11C4EE6B800DF6151 /* UIImage+RoundedCorner.m */,
 				77D9D4FA1C4CE9AB003C3610 /* UIColor+HexColor.h */,
 				77D9D4FB1C4CE9AB003C3610 /* UIColor+HexColor.m */,
 			);
@@ -359,14 +400,18 @@
 				ADFBF57E1C4C47FE007E080D /* APIGetClass.m */,
 				ADFBF5801C4C496B007E080D /* APIPostClass.h */,
 				ADFBF5811C4C496B007E080D /* APIPostClass.m */,
-				AD6F10211C4D310900FF70B3 /* ParserLoginPassword.h */,
-				AD6F10221C4D310900FF70B3 /* ParserLoginPassword.m */,
 				AD6F10181C4D1EF900FF70B3 /* ParserAuthKey.h */,
 				AD6F10191C4D1EF900FF70B3 /* ParserAuthKey.m */,
 				AD6F101B1C4D1FB900FF70B3 /* ParserAuthResponse.h */,
 				AD6F101C1C4D1FB900FF70B3 /* ParserAuthResponse.m */,
+				AD6F10211C4D310900FF70B3 /* ParserLoginPassword.h */,
+				AD6F10221C4D310900FF70B3 /* ParserLoginPassword.m */,
 				AD6F10241C4D701600FF70B3 /* ParserLoginPasswordResponse.h */,
 				AD6F10251C4D701600FF70B3 /* ParserLoginPasswordResponse.m */,
+				AD69E5CC1C4E7C4400DF6151 /* ParserCategory.h */,
+				AD69E5CD1C4E7C4400DF6151 /* ParserCategory.m */,
+				AD69E5CF1C4E7C9F00DF6151 /* ParserCategoryResponse.h */,
+				AD69E5D01C4E7C9F00DF6151 /* ParserCategoryResponse.m */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -594,12 +639,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD69E5E41C4EE6B800DF6151 /* UIImage+ImageEffects.m in Sources */,
 				77D9D5031C4CEC30003C3610 /* LoginTextField.m in Sources */,
+				AD69E5E61C4EE6B800DF6151 /* UIImage+RoundedCorner.m in Sources */,
 				77BFECFD1C4AC5E80091A336 /* ViewController.m in Sources */,
 				AD6F101D1C4D1FB900FF70B3 /* ParserAuthResponse.m in Sources */,
+				AD69E5D41C4E974300DF6151 /* MyShowcaseViewController.m in Sources */,
+				AD69E5CE1C4E7C4400DF6151 /* ParserCategory.m in Sources */,
 				ADFBF5861C4C4B35007E080D /* AlertClass.m in Sources */,
 				AD6F10231C4D310900FF70B3 /* ParserLoginPassword.m in Sources */,
+				AD69E5E91C4EE75D00DF6151 /* TextAndImageHeight.m in Sources */,
+				AD69E5E51C4EE6B800DF6151 /* UIImage+Resize.m in Sources */,
 				77D9D4FC1C4CE9AB003C3610 /* UIColor+HexColor.m in Sources */,
+				AD69E5E21C4EE6B800DF6151 /* UIImage+Alpha.m in Sources */,
 				77BFED2E1C4ACF900091A336 /* UserMenuViewController.m in Sources */,
 				77BFECFA1C4AC5E80091A336 /* AppDelegate.m in Sources */,
 				AD6F10261C4D701600FF70B3 /* ParserLoginPasswordResponse.m in Sources */,
@@ -611,6 +663,7 @@
 				776BF2231C4B95B80006C502 /* ModelSectionTableOwner.m in Sources */,
 				AD6F101A1C4D1EF900FF70B3 /* ParserAuthKey.m in Sources */,
 				ADFBF5821C4C496B007E080D /* APIPostClass.m in Sources */,
+				AD69E5E31C4EE6B800DF6151 /* UIImage+Blured_And_SnapShot_Image.m in Sources */,
 				AD6F10201C4D266300FF70B3 /* SingleTone.m in Sources */,
 				776BF2201C4B92780006C502 /* ViewSectionTable.m in Sources */,
 				AD6F10131C4D1C9F00FF70B3 /* Auth+CoreDataProperties.m in Sources */,
@@ -618,6 +671,7 @@
 				ADFBF57F1C4C47FE007E080D /* APIGetClass.m in Sources */,
 				77BFED2B1C4AC9F10091A336 /* SWRevealViewController.m in Sources */,
 				77D9D4FF1C4CEBD1003C3610 /* LognViewController.m in Sources */,
+				AD69E5D11C4E7C9F00DF6151 /* ParserCategoryResponse.m in Sources */,
 				77CE819A1C4AFC44003C7FFE /* LabelViewMyShowcase.m in Sources */,
 				AD6F10171C4D1CD600FF70B3 /* AuthDbClass.m in Sources */,
 			);

@@ -134,6 +134,7 @@
                          //Добавление данных успешно вошедшего пользователя в CoreData
                          [authDbClass authFist:textFielsLoggin.text andPassword:textFielsPassword.text andEnter:@"1" andKey:self.key];
                          [authDbClass updateToken:parse.token];
+                         [[SingleTone sharedManager] setParsingToken:parse.token];
                          
                          
                          
@@ -174,6 +175,7 @@
                         //Добавление данных успешно вошедшего пользователя в CoreData
                         [authDbClass UpdateUserWithOutKey:textFielsLoggin.text password:textFielsPassword.text];
                         [authDbClass updateToken:parse.token];
+                        [[SingleTone sharedManager] setParsingToken:parse.token];
                         
                         
                         
@@ -288,28 +290,19 @@
     
     
     AuthDbClass * authDbClass = [[AuthDbClass alloc] init];
-    //[authDbClass deleteAuth];
     NSArray * arrayUser = [authDbClass showAllUsers]; //Массив данных CoreData
-    NSLog(@"ARRAY COUNT %i",arrayUser.count);
-    for (int i; i<arrayUser.count; i++) {
-        Auth * authCoreData = [arrayUser objectAtIndex:i];
-        NSLog(@"KEY %@",authCoreData.key);
-        NSLog(@"UID %@",authCoreData.uid);
-        NSLog(@"LOGIN %@",authCoreData.login);
-        NSLog(@"PASSWORD %@",authCoreData.password);
-        NSLog(@"TOKEN %@",authCoreData.token);
-        NSLog(@"ENTER %@",authCoreData.enter);
-    }
-    
-    
-    if (arrayUser || arrayUser.count){
+    if(arrayUser.count>0){
+    Auth * authCoreData = [arrayUser objectAtIndex:0];
+   
+    if (![authCoreData.enter isEqualToString:@"0"]){
+        
         if(arrayUser.count>1){
-            NSLog(@"Больше чем нужно");
+            
             [authDbClass deleteAuth];
             
         }
         for (int i; i<arrayUser.count; i++) {
-            NSLog(@"ЦИКЛ");
+            
             Auth * authCoreData = [arrayUser objectAtIndex:i];
             
             //Проверка существования пользователя
@@ -322,6 +315,7 @@
                     //Перенаправление пользоваетеля в слуачае если данные из базы и данные с сервера соответствуют
                     
                     if([parse.status isEqual: @"1"]){
+                        [[SingleTone sharedManager] setParsingToken:authCoreData.token];
                         ViewController * mainView = [self.storyboard instantiateViewControllerWithIdentifier:@"MyShowcase"];
                         [self.navigationController pushViewController:mainView animated:YES];
                     }
@@ -336,7 +330,7 @@
         
     }
     
-    
+    }
     
 }
 

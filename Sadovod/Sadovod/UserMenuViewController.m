@@ -92,6 +92,8 @@
     
     if (indexPath.row == 3) {
         NSLog(@"Сюда вставляем все что необходимо по нажатию на выход !!!");
+        AuthDbClass * auth = [[AuthDbClass alloc] init];
+        [auth DeleteUserWithOutKey];
         //Сюда вводит данные ---------------------------------------------------------
     }
 }
@@ -99,12 +101,7 @@
 //Реализация кнопки выхода-----------------------
 - (void) buttonExitAction
 {
-    //AuthDbClass * auth = [[AuthDbClass alloc] init];
-    //[auth DeleteUserWithOutKey];
-    
-    
-//    LognViewController * detail = [self.storyboard instantiateViewControllerWithIdentifier:@"LognViewController"];
-    [self.navigationController popToRootViewControllerAnimated:YES];
+
     NSLog(@"Кнопка выхода");
 }
 
