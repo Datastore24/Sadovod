@@ -14,6 +14,8 @@
 @implementation ViewControllerProductDetails
 {
     UIScrollView * mainScrollView; //Основной скрол вью
+    UIButton * areAvailable; //Кнопка есть в наличии
+    UIButton *notAvailable; //Кнопка нет в наличии
 }
 
 - (void)viewDidLoad {
@@ -35,7 +37,7 @@
                                             self.view.frame.size.height / 3) andArray:array];
     [mainScrollView addSubview:scrollViewImge];
     
-    //Инициализация вью изменения цены-------------------------
+    //Инициализация вью изменения цены---------------------------------------------------
     UIView * priceView = [[UIView alloc] initWithFrame:CGRectMake(0, scrollViewImge.frame.size.height + 20,
                                                                      self.view.frame.size.width, 40)];
     priceView.backgroundColor = [UIColor colorWithHexString:@"3038a0"];
@@ -54,8 +56,43 @@
     [buttonChangePrice setTitle:@"Изменить цену" forState:UIControlStateNormal];
     [buttonChangePrice.titleLabel setFont:[UIFont systemFontOfSize:12]];
     buttonChangePrice.frame = CGRectMake(self.view.frame.size.width - 100, 0, 100, 40.0);
-//    buttonChangePrice.backgroundColor = [UIColor whiteColor];
+
     [priceView addSubview:buttonChangePrice];
+    
+    //Вью границы-------------------------------------------------------------------------
+    UIView * borderView = [[UIView alloc] initWithFrame:CGRectMake(0, priceView.frame.origin.y + 40, self.view.frame.size.width, 42)];
+    borderView.backgroundColor = nil;
+    borderView.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    borderView.layer.borderWidth = 2;
+    [mainScrollView addSubview:borderView];
+    
+    //Инициализация вью есть в наличии---------------------------------------------------
+    areAvailable = [UIButton buttonWithType:UIButtonTypeCustom];
+    [areAvailable addTarget:self
+                          action:@selector(areAvailableAction)
+                forControlEvents:UIControlEventTouchUpInside];
+    [areAvailable setTitle:@"Есть в наличии" forState:UIControlStateNormal];
+    [areAvailable.titleLabel setFont:[UIFont systemFontOfSize:16]];
+    areAvailable.frame = CGRectMake(0, priceView.frame.origin.y + 40, self.view.frame.size.width / 2, 40.0);
+    areAvailable.backgroundColor = [UIColor colorWithHexString:@"a0a7db"];
+    [mainScrollView addSubview:areAvailable];
+    
+    //Инициализация нет в наличии--------------------------------------------------------
+    notAvailable = [UIButton buttonWithType:UIButtonTypeCustom];
+    [notAvailable addTarget:self
+                     action:@selector(notAvailableAction)
+           forControlEvents:UIControlEventTouchUpInside];
+    [notAvailable setTitle:@"Нет в наличии" forState:UIControlStateNormal];
+    [notAvailable setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [notAvailable.titleLabel setFont:[UIFont systemFontOfSize:16]];
+    notAvailable.frame = CGRectMake(self.view.frame.size.width / 2, priceView.frame.origin.y + 40, self.view.frame.size.width / 2, 40.0);
+    notAvailable.backgroundColor = [UIColor whiteColor];
+//    notAvailable.layer.borderColor = [UIColor blackColor].CGColor;
+//    notAvailable.layer.borderWidth = 2;
+    [mainScrollView addSubview:notAvailable];
+    
+
+    
 }
 
 
@@ -68,6 +105,30 @@
 - (void) buttonChangePriceAction
 {
     NSLog(@"Изменить цену");
+}
+
+- (void) areAvailableAction
+{
+    [UIView animateWithDuration:0.3 animations:^{
+        notAvailable.backgroundColor = [UIColor whiteColor];
+        [notAvailable setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        
+        areAvailable.backgroundColor = [UIColor colorWithHexString:@"a0a7db"];
+        [areAvailable setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    }];
+}
+
+- (void) notAvailableAction
+{
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        areAvailable.backgroundColor = [UIColor whiteColor];
+        [areAvailable setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        
+        notAvailable.backgroundColor = [UIColor colorWithHexString:@"a0a7db"];
+        [notAvailable setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    }];
+
 }
 
 @end
