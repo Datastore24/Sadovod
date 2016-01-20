@@ -11,6 +11,7 @@
 #import "ViewSectionTable.h"
 #import "ViewControllerProductDetails.h"
 #import "AlertClass.h" //Подключение Алертов
+#import "TitleClass.h"
 
 #import "APIGetClass.h"
 #import "ParserCategory.h"
@@ -38,7 +39,8 @@
 
 - (void) viewWillAppear:(BOOL)animated
 {
-    self.title = self.catName;
+    TitleClass * title = [[TitleClass alloc]initWithTitle:self.catName];
+    self.navigationItem.titleView = title;
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment: UIOffsetMake(10.f, -100.f) forBarMetrics:UIBarMetricsDefault];
     
     NSLog(@"%@", self.catName);
