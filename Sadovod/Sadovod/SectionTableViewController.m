@@ -35,19 +35,14 @@
     CGRect imageRact;
 }
 
-
-
-- (void) viewWillAppear:(BOOL)animated
-{
-    TitleClass * title = [[TitleClass alloc]initWithTitle:self.catName];
-    self.navigationItem.titleView = title;
-    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment: UIOffsetMake(10.f, -100.f) forBarMetrics:UIBarMetricsDefault];
-    
-    NSLog(@"%@", self.catName);
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
+    TitleClass * title = [[TitleClass alloc]initWithTitle:self.catName];
+    self.navigationItem.titleView = title;
+    
+    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment: UIOffsetMake(10.f, -100.f) forBarMetrics:UIBarMetricsDefault];
+    
+    
     self.arrayCategoryItems = [NSMutableArray array];
     
     [self getApiOrders:^{

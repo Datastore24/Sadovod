@@ -38,14 +38,12 @@
 NSDictionary * tableDict; //Директория хранения данных
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    TitleClass * title = [[TitleClass alloc]initWithTitle:@"Моя Витрина"];
-    self.navigationItem.titleView = title;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    TitleClass * title = [[TitleClass alloc]initWithTitle:@"Моя Витрина"];
+    self.navigationItem.titleView = title;
+
     self.arrayCategory = [NSMutableArray array];
     tableDict = [ModelMyShowcase dictTableData]; //передача данных
     
