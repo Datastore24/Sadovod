@@ -55,7 +55,7 @@
                                
                                    
                                     
-                                    imageView.image = imageCropped;
+                                    imageView.image = image;
                                     
                                     [self addSubview:imageView];
                                     

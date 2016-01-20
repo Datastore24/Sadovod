@@ -69,10 +69,10 @@
             NSDictionary * itemsInfo=[self.arrayCategoryItems objectAtIndex:i];
             
                 ViewSectionTable * image = [[ViewSectionTable alloc] initWithFrame:
-                                            CGRectMake(10,
-                                                       150 * i,
-                                                       300,
-                                                       150)andImageURL:[itemsInfo objectForKey:@"img"] andLabelPrice:[NSString stringWithFormat:@"%ld", [[itemsInfo objectForKey:@"cost"] integerValue]]];
+                                            CGRectMake(0,
+                                                       300 * i,
+                                                       self.view.bounds.size.width,
+                                                       300)andImageURL:[itemsInfo objectForKey:@"img"] andLabelPrice:[NSString stringWithFormat:@"%ld", [[itemsInfo objectForKey:@"cost"] integerValue]]];
                 [mainScrollView addSubview:image];
                 
                 //Инициализация кнопок активации ячеек-------------------------------
@@ -82,15 +82,15 @@
                                forControlEvents:UIControlEventTouchUpInside];
                 buttonTableSelection.backgroundColor = nil;
                 buttonTableSelection.tag = i;
-                buttonTableSelection.frame = CGRectMake(10,
-                                                        150 * i,
-                                                        300,
-                                                        150);
+                buttonTableSelection.frame = CGRectMake(0,
+                                                        300 * i,
+                                                        self.view.bounds.size.width,
+                                                        300);
                 [mainScrollView addSubview:buttonTableSelection];
             
             
         }
-        mainScrollView.contentSize = CGSizeMake(self.view.frame.size.width, 150 * self.arrayCategoryItems.count + 50);
+        mainScrollView.contentSize = CGSizeMake(self.view.frame.size.width, 300 * self.arrayCategoryItems.count + 50);
         
     } else { //Если выше то--------------------------------------------
         
@@ -99,7 +99,7 @@
         NSDictionary * itemsInfo=[self.arrayCategoryItems objectAtIndex:i];
             if (i % 2 == 0) {
                 ViewSectionTable * image = [[ViewSectionTable alloc] initWithFrame:
-                                            CGRectMake(10,
+                                            CGRectMake(0,
                                                        self.view.frame.size.width / 4 * numerator,
                                                        self.view.frame.size.width / 2 - 10,
                                                        self.view.frame.size.width / 4) andImageURL:[itemsInfo objectForKey:@"img"] andLabelPrice:[NSString stringWithFormat:@"%ld", [[itemsInfo objectForKey:@"cost"] integerValue]]];
