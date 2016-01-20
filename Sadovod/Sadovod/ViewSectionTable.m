@@ -9,6 +9,9 @@
 //Создание изображения товара
 
 #import "ViewSectionTable.h"
+#import <SDWebImage/UIImageView+WebCache.h> //Загрузка изображения
+#import "UIImage+Resize.h"//Ресайз изображения
+
 
 @implementation ViewSectionTable
 {
@@ -26,15 +29,53 @@
         self.backgroundColor = nil;
         
         //Создаем изображение с небольшим отступом - 5 пикселей открая:
+        NSURL *imgURL = [NSURL URLWithString:imageUrl];
+        
+        
         imageView = [[UIImageView alloc] initWithFrame:CGRectMake(2.5f, 2.5f, frame.size.width - 5, frame.size.height - 5)];
-        imageView.image = [UIImage imageNamed:imageUrl];
-        [self addSubview:imageView];
+        
+        
+        //SingleTone с ресайз изображения
+        SDWebImageManager *manager = [SDWebImageManager sharedManager];
+        [manager downloadImageWithURL:imgURL
+                              options:0
+                             progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+                                 // progression tracking code
+                             }
+                            completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                              
+                                if(image){
+                                    imageView.frame=CGRectMake(2.5f, 2.5f, frame.size.width - 5, frame.size.height - 5);
+                                    
+                                    CGSize targetSize = CGSizeMake(image.size.width/2, image.size.height/2);
+                                    
+                                  UIImage * imageResizing = [image resizedImage:targetSize interpolationQuality:kCGInterpolationHigh];
+                                    
+                                     UIImage * imageCropped = [imageResizing croppedImage:CGRectMake(0,20, frame.size.width, frame.size.height)];
+                               
+                                   
+                                    
+                                    imageView.image = imageCropped;
+                                    
+                                    [self addSubview:imageView];
+                                    
+                                    
+                                }else{
+                                    
+                                }
+                            }];
+
+       
+        
+      // imageView.image = [UIImage imageNamed:imageUrl];
+        //[self addSubview:imageView];
         
         //Создаем ценник----------------------------------------
-        labelPrice = [[UILabel alloc] initWithFrame:CGRectMake(110, 58.5, 35, 12)];
-        labelPrice.backgroundColor = [UIColor lightGrayColor];
-        labelPrice.text = price;
-        labelPrice.font = [UIFont fontWithName:@"HelveticaNeue" size:12];
+        labelPrice = [[UILabel alloc] initWithFrame:CGRectMake(95, 58.5, 50, 12)];
+        labelPrice.backgroundColor = [UIColor grayColor];
+        labelPrice.text = [NSString stringWithFormat:@"%@ руб.",price];
+        labelPrice.font = [UIFont fontWithName:@"HelveticaNeue" size:11];
+        [labelPrice setTextColor:[UIColor whiteColor]];
         labelPrice.textAlignment = NSTextAlignmentCenter;
         [imageView addSubview:labelPrice];
         

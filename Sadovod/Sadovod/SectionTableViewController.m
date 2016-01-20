@@ -12,7 +12,14 @@
 #import "ViewControllerProductDetails.h"
 #import "AlertClass.h" //Подключение Алертов
 
+#import "APIGetClass.h"
+#import "ParserCategory.h"
+#import "ParserCategoryResponse.h"
+#import "SingleTone.h"
+
 @interface SectionTableViewController ()
+
+@property (strong, nonatomic) NSMutableArray * arrayCategoryItems; //Массив с Товарами
 
 @end
 
@@ -26,14 +33,20 @@
 
 - (void) viewWillAppear:(BOOL)animated
 {
-    self.title = @"Свитера и кардеганы";
+    self.title = self.catName;
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment: UIOffsetMake(10.f, -100.f) forBarMetrics:UIBarMetricsDefault];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.arrayCategoryItems = [NSMutableArray array];
+    NSLog(@"%@",self.catID);
     
-   
+    [self getApiOrders:^{
+        NSLog(@"COUNT %i",self.arrayCategoryItems.count);
+        NSLog(@"INF: %@",[self.arrayCategoryItems objectAtIndex:0]);
+    
+    
     numerator = 0; //Инициализация счетчика строк----------------------------------
     
     //Инициализация анных----------------------------------------------------------
@@ -45,10 +58,14 @@
     [self.view addSubview:mainScrollView];
     
     //Вставляем товар в скрол вью---------------------------------------------------
-    NSArray * arrayNameURL = [dataTableItems objectForKey:@"urlImage"];
-    for (int i = 0; i < arrayNameURL.count; i ++) {
+        
+        
+        
+    for (int i = 0; i < self.arrayCategoryItems.count; i ++) {
+        
+        NSDictionary * itemsInfo=[self.arrayCategoryItems objectAtIndex:i];
             if (i % 2 == 0) {
-                ViewSectionTable * image = [[ViewSectionTable alloc] initWithFrame:CGRectMake(10, 75 * numerator, 150, 75)andImageURL:[arrayNameURL objectAtIndex:i] andLabelPrice:[NSString stringWithFormat:@"%ld", [dataTableItems[@"price"][i] integerValue]]];
+                ViewSectionTable * image = [[ViewSectionTable alloc] initWithFrame:CGRectMake(10, 75 * numerator, 150, 75)andImageURL:[itemsInfo objectForKey:@"img"] andLabelPrice:[NSString stringWithFormat:@"%ld", [[itemsInfo objectForKey:@"cost"] integerValue]]];
                 [mainScrollView addSubview:image];
                 
                 //Инициализация кнопок активации ячеек-------------------------------
@@ -64,7 +81,7 @@
                 
             } else {
                 
-                ViewSectionTable * image = [[ViewSectionTable alloc] initWithFrame:CGRectMake(160, 75 * numerator, 150, 75)andImageURL:[arrayNameURL objectAtIndex:i] andLabelPrice:[NSString stringWithFormat:@"%ld", [dataTableItems[@"price"][i] integerValue]]];
+                ViewSectionTable * image = [[ViewSectionTable alloc] initWithFrame:CGRectMake(160, 75 * numerator, 150, 75)andImageURL:[itemsInfo objectForKey:@"img"] andLabelPrice:[NSString stringWithFormat:@"%ld", [[itemsInfo objectForKey:@"cost"] integerValue]]];
                 [mainScrollView addSubview:image];                
                 
                 //Инициализация кнопок активации ячеек-------------------------------
@@ -81,11 +98,8 @@
             }
     }
         mainScrollView.contentSize = CGSizeMake(self.view.frame.size.width, 75 * numerator + 50);
-    //Отображение тестового алерта
-    
-    [AlertClass showAlertViewWithMessage:@"Отображение тестового алерта!" view:self];
-    //
-    
+
+    }];
     }
 
 - (void)didReceiveMemoryWarning {
@@ -104,6 +118,32 @@
     }
     ViewControllerProductDetails * detail = [self.storyboard instantiateViewControllerWithIdentifier:@"ViewControllerProductDetails"];
     [self.navigationController pushViewController:detail animated:YES];
+}
+
+//Тащим заказы с сервера
+-(void) getApiOrders: (void (^)(void))block{
+    //Передаваемые параметры
+    
+    NSDictionary * params = [[NSDictionary alloc] initWithObjectsAndKeys:
+                             [[SingleTone sharedManager] parsingToken],@"token",
+                             self.catID,@"cat",
+                             nil];
+    
+    APIGetClass * api =[APIGetClass new]; //создаем API
+    [api getDataFromServerWithParams:params method:@"abpro/products_list" complitionBlock:^(id response) {
+        
+        ParserCategoryResponse * parsingResponce =[[ParserCategoryResponse alloc] init];
+        
+        [parsingResponce parsing:response andArray:self.arrayCategoryItems andBlock:^{
+            
+            
+            block();
+            
+        }];
+        
+        
+    }];
+    
 }
 
 @end

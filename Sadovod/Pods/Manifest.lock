@@ -23,6 +23,9 @@ PODS:
   - MagicalRecord (2.3.0)
   - Motis (1.3.0)
   - SCLAlertView-Objective-C (0.8.0)
+  - SDWebImage (3.7.4):
+    - SDWebImage/Core (= 3.7.4)
+  - SDWebImage/Core (3.7.4)
   - SVPullToRefresh (0.4.1)
 
 DEPENDENCIES:
@@ -30,6 +33,7 @@ DEPENDENCIES:
   - MagicalRecord
   - Motis (~> 1.3.0)
   - SCLAlertView-Objective-C
+  - SDWebImage (~> 3.7)
   - SVPullToRefresh
 
 SPEC CHECKSUMS:
@@ -37,6 +41,7 @@ SPEC CHECKSUMS:
   MagicalRecord: 89eb7d7ead39fb37f01c3d010665ee94d17f8dba
   Motis: a5b1f6aa29ad14cd64e27c4fe15d9805c18c162f
   SCLAlertView-Objective-C: bf3590d5c8cf0fcf49f63f82fb3e4a78b545f7bb
+  SDWebImage: 247edd7dd80dd6124197b0d6a17846fe9d1df968
   SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
 
 COCOAPODS: 0.39.0

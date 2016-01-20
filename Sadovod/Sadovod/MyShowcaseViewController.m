@@ -29,7 +29,7 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableViewMyShowcase; // Таблица "Моя Витрина"
 
-@property (strong, nonatomic) NSMutableArray * arrayCategory; //Массив с заказами
+@property (strong, nonatomic) NSMutableArray * arrayCategory; //Массив с Категориями
 
 @end
 
@@ -118,14 +118,21 @@ NSDictionary * tableDict; //Директория хранения данных
 {
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    
+    
     SectionTableViewController * detail = [self.storyboard
                                            instantiateViewControllerWithIdentifier:@"SectionTableViewController"];
+         NSDictionary * categoryInfo = [self.arrayCategory objectAtIndex:indexPath.row];
+    detail.catID=[categoryInfo objectForKey:@"cat_id"];
+    detail.catName = [categoryInfo objectForKey:@"cat_name"];
+    
     [self.navigationController pushViewController:detail animated:YES];
 }
 
 
 
-//Тащим заказы с сервера
+//Тащим Категории с сервера
 -(void) getApiOrders{
     //Передаваемые параметры
    

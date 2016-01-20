@@ -11,5 +11,7 @@
 #import <UIKit/UIKit.h>
 
 @interface SectionTableViewController : UIViewController
+@property (strong,nonatomic) NSString * catID;
+@property (strong,nonatomic) NSString * catName;
 
 @end
