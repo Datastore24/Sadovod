@@ -10,20 +10,19 @@
 
 @implementation TextViewHeight
 
-- (id)initWhithText: (NSString *) text
+- (instancetype)initWithFrame:(CGRect)frame
+                      andText: (NSString *) text
 {
-    self = [super init];
+    self = [super initWithFrame:frame];
     if (self) {
-//        // leave the width at 300 otherwise the height wont measure correctly
-//        UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(10.0f, 0.0f, 300.0f, 100.0f)];
-//        // add text to the UITextView first so we know what size to make it
-//        textView.text = text;
-//        // get the size of the UITextView based on what it would be with the text
-//        CGFloat fixedWidth = textView.frame.size.width;
-//        CGSize newSize = [textView sizeThatFits:CGSizeMake(fixedWidth, MAXFLOAT)];
-//        CGRect newFrame = textView.frame;
-//        newFrame.size = CGSizeMake(fmaxf(newSize.width, fixedWidth), newSize.height);
-//        textView.frame = newFrame;
+
+        self.text = text;
+        // get the size of the UITextView based on what it would be with the text
+        CGFloat fixedWidth = self.frame.size.width;
+        CGSize newSize = [self sizeThatFits:CGSizeMake(fixedWidth, MAXFLOAT)];
+        CGRect newFrame = self.frame;
+        newFrame.size = CGSizeMake(fmaxf(newSize.width, fixedWidth), newSize.height);
+        self.frame = newFrame;
     }
     return self;
 }

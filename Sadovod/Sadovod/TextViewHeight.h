@@ -10,4 +10,7 @@
 
 @interface TextViewHeight : UITextView
 
+- (instancetype)initWithFrame:(CGRect)frame
+                      andText: (NSString *) text;
+
 @end
