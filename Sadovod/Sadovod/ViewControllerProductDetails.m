@@ -144,6 +144,33 @@
     mainViewSize.layer.borderColor = [UIColor groupTableViewBackgroundColor].CGColor;
     mainViewSize.layer.borderWidth = 2.f;
     [mainScrollView addSubview:mainViewSize];
+        
+    //Кнопки размеров---------------------------------------------------------------------
+        for (int i = 0; i < 3; i++) {
+            UIButton *buttonSize = [UIButton buttonWithType:UIButtonTypeSystem];
+            [buttonSize addTarget:self
+                           action:@selector(buttonSizeAction:)
+                 forControlEvents:UIControlEventTouchUpInside];
+            buttonSize.frame = CGRectMake ((2.5 + (self.view.frame.size.width / 3) * i), 10, (self.view.frame.size.width / 3) - 5, 35);
+            
+            buttonSize.tag = i;
+            [buttonSize setTitle:@"47" forState:UIControlStateNormal];
+            [buttonSize setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            buttonSize.backgroundColor = [UIColor colorWithHexString:@"e9eaf7"];
+            buttonSize.titleLabel.font = [UIFont systemFontOfSize:15];
+            [mainViewSize addSubview:buttonSize];
+        }
+        UIButton *buttonSizeAdd = [UIButton buttonWithType:UIButtonTypeSystem];
+        [buttonSizeAdd addTarget:self
+                       action:@selector(buttonSizeAddAction)
+             forControlEvents:UIControlEventTouchUpInside];
+        buttonSizeAdd.frame = CGRectMake ((2.5 + (self.view.frame.size.width / 3)), 55, (self.view.frame.size.width / 3) - 5, 35);
+        [buttonSizeAdd setTitle:@"+" forState:UIControlStateNormal];
+        [buttonSizeAdd setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        buttonSizeAdd.backgroundColor = [UIColor colorWithHexString:@"e9eaf7"];
+        buttonSizeAdd.titleLabel.font = [UIFont systemFontOfSize:15];
+        [mainViewSize addSubview:buttonSizeAdd];
+
     
     //Лейбл заголовка Описание-------------------------------------------------------------
     UILabel * titleDescription = [[UILabel alloc] initWithFrame:CGRectMake(10, mainViewSize.frame.origin.y + 105, 150, 40)];
@@ -289,5 +316,19 @@
 //    
 //    return cell;
 //}
+
+- (void) buttonSizeAction: (UIButton *) button
+{
+    for (int i = 0; i < 3; i ++) {
+        if (button.tag == i) {
+            NSLog(@"Button tag %d", i);
+        }
+    }
+}
+
+- (void) buttonSizeAddAction
+{
+    NSLog(@"КНОПКА ДОБАВИТЬ");
+}
 
 @end
