@@ -11,7 +11,7 @@
 #import "ViewProductDetails.h"
 #import "UIColor+HexColor.h"
 
-@interface ViewControllerProductDetails () <UITableViewDataSource, UITableViewDelegate>
+@interface ViewControllerProductDetails ()
 
 
 @end
@@ -37,6 +37,7 @@
     mainScrollView.backgroundColor = [UIColor colorWithHexString:@"f4f4f4"];
     [self.view addSubview:mainScrollView];
     mainScrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height + 350);
+    mainScrollView.showsVerticalScrollIndicator = NO;
     
     ViewProductDetails * scrollViewImge = [[ViewProductDetails alloc] initWithFrame:CGRectMake(0, 0,
                                             self.view.frame.size.width,
