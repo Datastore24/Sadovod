@@ -71,17 +71,10 @@
                                     
                                     if(image){
                                         if(fullScreen){
-                                        CGSize targetSize = CGSizeMake(image.size.width*1.2, image.size.height*1.2);
-                                        
-                                        UIImage * imageResizing = [image resizedImage:targetSize interpolationQuality:kCGInterpolationHigh];
-                                        
-                                            _viewOne.contentMode = UIViewContentModeScaleAspectFill;
-                                           
-
-                                        UIImage * imageCropped = [imageResizing croppedImage:CGRectMake(0,0, self.frame.size.width/2, self.frame.size.width/2)];
-                                        
-                                        _viewOne.image = image;
-                                        
+                                            
+                                            _viewOne.contentMode = UIViewContentModeScaleAspectFill; // Пропорционально на весь экран
+                                            [_viewOne setClipsToBounds:YES];
+                                            _viewOne.image = image;
                                         
                                         }else{
                                             _viewOne.contentMode = UIViewContentModeScaleAspectFit;
