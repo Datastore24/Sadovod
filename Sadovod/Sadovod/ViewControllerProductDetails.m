@@ -41,10 +41,6 @@
         
       NSDictionary * productInfo=[self.arrayProduct objectAtIndex:0];
         
-       // NSArray *imagesArray = [[productInfo objectForKey:@"images"] componentsSeparatedByString:@","];
-        NSLog(@"PRODUCT INFO %@",[productInfo objectForKey:@"images"]);
-        
-        
         
     NSArray * array = [productInfo objectForKey:@"images"];
     
@@ -147,6 +143,7 @@
         
     //Кнопки размеров---------------------------------------------------------------------
         NSArray * productSizes = [productInfo objectForKey:@"sizes"];
+        NSLog(@"SIZE: %@",productSizes);
         for (int i = 0; i < productSizes.count; i++) {
             
             NSDictionary * productSizesInfo = [productSizes objectAtIndex:i];
