@@ -146,7 +146,10 @@
     [mainScrollView addSubview:mainViewSize];
         
     //Кнопки размеров---------------------------------------------------------------------
-        for (int i = 0; i < 3; i++) {
+        NSArray * productSizes = [productInfo objectForKey:@"sizes"];
+        for (int i = 0; i < productSizes.count; i++) {
+            
+            NSDictionary * productSizesInfo = [productSizes objectAtIndex:i];
             UIButton *buttonSize = [UIButton buttonWithType:UIButtonTypeSystem];
             [buttonSize addTarget:self
                            action:@selector(buttonSizeAction:)
@@ -154,9 +157,17 @@
             buttonSize.frame = CGRectMake ((2.5 + (self.view.frame.size.width / 3) * i), 10, (self.view.frame.size.width / 3) - 5, 35);
             
             buttonSize.tag = i;
-            [buttonSize setTitle:@"47" forState:UIControlStateNormal];
+            [buttonSize setTitle:[productSizesInfo objectForKey:@"value"] forState:UIControlStateNormal];
             [buttonSize setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-            buttonSize.backgroundColor = [UIColor colorWithHexString:@"e9eaf7"];
+            
+            NSString * colorAviableSizes;
+            if([[productSizesInfo objectForKey:@"aviable"] integerValue] == 0){
+                    colorAviableSizes = @"ffebee";
+            }else{
+                    colorAviableSizes = @"e9eaf7";
+            }
+            
+            buttonSize.backgroundColor = [UIColor colorWithHexString:colorAviableSizes];
             buttonSize.titleLabel.font = [UIFont systemFontOfSize:15];
             [mainViewSize addSubview:buttonSize];
         }
