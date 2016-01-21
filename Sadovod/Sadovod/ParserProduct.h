@@ -10,5 +10,5 @@
 #import <Motis/Motis.h>
 @interface ParserProduct : NSObject
 @property (strong,nonatomic) NSString * status;
-@property (strong,nonatomic) NSArray * product;
+@property (strong,nonatomic) NSDictionary * product;
 @end

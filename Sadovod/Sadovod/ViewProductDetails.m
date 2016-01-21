@@ -8,6 +8,8 @@
 
 #import "ViewProductDetails.h"
 #import "UIColor+HexColor.h"
+#import <SDWebImage/UIImageView+WebCache.h> //Загрузка изображения
+#import "UIImage+Resize.h"//Ресайз изображения
 
 @interface ViewProductDetails () <UIScrollViewDelegate>
 
@@ -38,20 +40,53 @@
         [_scrollView setPagingEnabled:YES];
         [_scrollView setContentSize:CGSizeMake(self.frame.size.width*array.count, self.scrollView.frame.size.height)]; // задаем количество слайдов
         _scrollView.showsHorizontalScrollIndicator = NO;
-        [_scrollView setBackgroundColor:[UIColor clearColor]]; // цвет фона скролвью
+        [_scrollView setBackgroundColor:[UIColor whiteColor]]; // цвет фона скролвью
         [self.scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
         
         //Реализация вью-----------------
         for (int i = 0; i < array.count; i++) {
+            
             if (i == 0) {
             _viewOne = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
             } else {
             _viewOne = [[UIImageView alloc] initWithFrame:CGRectMake(self.frame.size.width * i, 0, self.frame.size.width, self.frame.size.height)];
             }
-            _viewOne.image = [UIImage imageNamed:[array objectAtIndex:i]];
+//            _viewOne.image = [UIImage imageNamed:[array objectAtIndex:i]];
+            NSURL *imgURL = [NSURL URLWithString:[array objectAtIndex:i]];
+            NSLog(@"COUNT: %i URL:%@",i,[array objectAtIndex:i]);
+            //SingleTone с ресайз изображения
+            SDWebImageManager *manager = [SDWebImageManager sharedManager];
+            [manager downloadImageWithURL:imgURL
+                                  options:0
+                                 progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+                                     // progression tracking code
+                                 }
+                                completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                                    
+                                    if(image){
+                                        
+                                        CGSize targetSize = CGSizeMake(image.size.width, image.size.height);
+                                        
+                                        UIImage * imageResizing = [image resizedImage:targetSize interpolationQuality:kCGInterpolationHigh];
+                                        
+//
+                                            _viewOne.contentMode = UIViewContentModeScaleAspectFit;
 
+                                        UIImage * imageCropped = [imageResizing croppedImage:CGRectMake(35,0, frame.size.width, frame.size.height)];
+                                        
+                                        
+                                        
+                                        _viewOne.image = image;
+                                        
+                                        [_scrollView addSubview:_viewOne];
+                                        
+                                        
+                                    }else{
+                                        
+                                    }
+                                }];
 
-            [_scrollView addSubview:_viewOne];
+//            [_scrollView addSubview:_viewOne];
             [self addSubview:_scrollView];
         }
 

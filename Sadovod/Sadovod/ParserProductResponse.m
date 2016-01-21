@@ -19,21 +19,13 @@
         
         ParserProduct *parserProduct = [[ParserProduct alloc] init];
         [parserProduct mts_setValuesForKeysWithDictionary:response];
-        NSArray * product = parserProduct.product;
+        NSDictionary * product = parserProduct.product;
         
-        
-        for (int i = 0; i < product.count; i++) {
+            [arrayResponse addObject:product];
             
-            [arrayResponse addObject:[product objectAtIndex:i]];
-            
-            //Отслеживаем конец цикла
-            if ([[product objectAtIndex:i] isEqual:[product lastObject]]) {
-                
                 block();
                 
-            }
-            
-        }
+
         
         
         

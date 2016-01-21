@@ -46,8 +46,6 @@
     self.arrayCategoryItems = [NSMutableArray array];
     
     [self getApiProductOfCategory:^{
-//        NSLog(@"COUNT %i",self.arrayCategoryItems.count);
-//        NSLog(@"INF: %@",[self.arrayCategoryItems objectAtIndex:0]);
     
     
     numerator = 0; //Инициализация счетчика строк----------------------------------
@@ -68,7 +66,7 @@
         for (int i = 0; i < self.arrayCategoryItems.count; i ++) {
             
             NSDictionary * itemsInfo=[self.arrayCategoryItems objectAtIndex:i];
-            NSLog(@"%@",itemsInfo);
+          
                 ViewSectionTable * image = [[ViewSectionTable alloc] initWithFrame:
                                             CGRectMake(0,
                                                        320 * i,
@@ -160,13 +158,14 @@
 //Метод активации кнопок в ячейках----------------------------------
 - (void) buttonTableSelectionAction: (UIButton *) button;
 {
-    for (int i = 0; i < [dataTableItems[@"price"]count]; i++) {
-        if (button.tag == i) {
-            NSLog(@"%d", i);
-           
-        }
-    }
+
+    NSDictionary * itemsInfo=[self.arrayCategoryItems objectAtIndex:button.tag];
+    
+    
     ViewControllerProductDetails * detail = [self.storyboard instantiateViewControllerWithIdentifier:@"ViewControllerProductDetails"];
+    detail.productID = [itemsInfo objectForKey:@"id"];
+    detail.productName = [itemsInfo objectForKey:@"name"];
+    
     [self.navigationController pushViewController:detail animated:YES];
 }
 
