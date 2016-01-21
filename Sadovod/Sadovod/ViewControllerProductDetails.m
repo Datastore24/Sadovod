@@ -16,6 +16,7 @@
 #import "ParserProduct.h"
 #import "ParserProductResponse.h"
 #import "SingleTone.h"
+#import "TextViewHeight.h"
 
 @interface ViewControllerProductDetails ()
 @property (strong, nonatomic) NSMutableArray * arrayProduct; //Массив с Товарами
@@ -48,7 +49,7 @@
     mainScrollView = [[UIScrollView alloc] initWithFrame: CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     mainScrollView.backgroundColor = [UIColor colorWithHexString:@"f4f4f4"];
     [self.view addSubview:mainScrollView];
-    mainScrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height + 350);
+    mainScrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height + 550);
     mainScrollView.showsVerticalScrollIndicator = NO;
     
     ViewProductDetails * scrollViewImge = [[ViewProductDetails alloc] initWithFrame:CGRectMake(0, 0,
@@ -188,14 +189,14 @@
     [mainScrollView addSubview:titleDescription];
     
     //Вью описания---------------------------------------------------------------------------
-    UIView * viewDescription = [[UIView alloc] initWithFrame:CGRectMake(0, titleDescription.frame.origin.y + 40, self.view.frame.size.width, 40)];
+    TextViewHeight * viewDescription = [[TextViewHeight alloc] initWithFrame:CGRectMake(0, titleDescription.frame.origin.y + 60, self.view.frame.size.width, 40) andText:@"Привет я текст вью умею расширяться, расширяююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююсь"];
     viewDescription.backgroundColor = [UIColor whiteColor];
     viewDescription.layer.borderColor = [UIColor groupTableViewBackgroundColor].CGColor;
     viewDescription.layer.borderWidth = 2.f;
     [mainScrollView addSubview:viewDescription];
     
     //Лейбл заголовка Описание-------------------------------------------------------------
-    UILabel * titleDetails = [[UILabel alloc] initWithFrame:CGRectMake(10, viewDescription.frame.origin.y + 45, 150, 40)];
+    UILabel * titleDetails = [[UILabel alloc] initWithFrame:CGRectMake(10, viewDescription.frame.origin.y + viewDescription.frame.size.height, 150, 40)];
     titleDetails.text = @"Детально";
     titleDetails.textColor = [UIColor colorWithHexString:@"3038a0"];
     titleDetails.font = [UIFont fontWithName:@"Helvetica-Bold" size:12];
