@@ -46,11 +46,7 @@
         //Реализация вью-----------------
         for (int i = 0; i < array.count; i++) {
             
-            if (i == 0) {
-            _viewOne = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
-            } else {
-            _viewOne = [[UIImageView alloc] initWithFrame:CGRectMake(self.frame.size.width * i, 0, self.frame.size.width, self.frame.size.height)];
-            }
+           
 //            _viewOne.image = [UIImage imageNamed:[array objectAtIndex:i]];
             NSURL *imgURL = [NSURL URLWithString:[array objectAtIndex:i]];
             NSLog(@"COUNT: %i URL:%@",i,[array objectAtIndex:i]);
@@ -62,6 +58,12 @@
                                      // progression tracking code
                                  }
                                 completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                                    
+                                    if (i == 0) {
+                                        _viewOne = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
+                                    } else {
+                                        _viewOne = [[UIImageView alloc] initWithFrame:CGRectMake(self.frame.size.width * i, 0, self.frame.size.width, self.frame.size.height)];
+                                    }
                                     
                                     if(image){
                                         
