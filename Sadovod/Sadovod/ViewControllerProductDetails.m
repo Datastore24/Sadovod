@@ -130,14 +130,42 @@
     titleDetails.font = [UIFont fontWithName:@"Helvetica-Bold" size:12];
     [mainScrollView addSubview:titleDetails];
     
-    //Таблица деалей----------------------------------------------------------------------
-    CGRect frame = CGRectMake(0.f, titleDetails.frame.origin.y + 40, self.view.frame.size.width, 350);
-    tableDetails = [[UITableView alloc] initWithFrame:frame
-                                             style:UITableViewStyleGrouped];
-    tableDetails.delegate = self;
-    tableDetails.dataSource = self;
-    tableDetails.backgroundView = nil;
-    [mainScrollView addSubview:tableDetails];
+//    //Таблица деалей----------------------------------------------------------------------
+//    CGRect frame = CGRectMake(0.f, titleDetails.frame.origin.y + 40, self.view.frame.size.width, 350);
+//    tableDetails = [[UITableView alloc] initWithFrame:frame
+//                                             style:UITableViewStyleGrouped];
+//    tableDetails.delegate = self;
+//    tableDetails.dataSource = self;
+//    tableDetails.backgroundView = nil;
+//    [mainScrollView addSubview:tableDetails];
+    
+    //Реализация таблицы деталей через цикл создваеммых вью-------------------------------------
+    for (int i = 0; i < 7; i++) {
+        UIView * viewDetails = [[UIView alloc] initWithFrame:CGRectMake(0, (titleDetails.frame.origin.y + 40) + 40 * i, self.view.frame.size.width, 40)];
+        viewDetails.backgroundColor = [UIColor whiteColor];
+        viewDetails.layer.borderColor = [UIColor groupTableViewBackgroundColor].CGColor;
+        viewDetails.layer.borderWidth = 0.5;
+        [mainScrollView addSubview:viewDetails];
+        
+        //Создаем заголовки деталей-------------------------------------------------------------
+        UILabel * labelDetail = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 120, 40)];
+        labelDetail.layer.borderColor = [UIColor groupTableViewBackgroundColor].CGColor;
+        labelDetail.layer.borderWidth = 1;
+        labelDetail.textColor = [UIColor colorWithHexString:@"c6c6c6"];
+        labelDetail.text = @"   Цвет";
+        labelDetail.font = [UIFont fontWithName:@"HelveticaNeue" size:12];
+        [viewDetails addSubview:labelDetail];
+        
+        //Создаем заголовок данных--------------------------------------------------------------
+        UILabel * labelData = [[UILabel alloc] initWithFrame:CGRectMake(120, 0, self.view.frame.size.width - 120, 40)];
+        labelData.layer.borderColor = [UIColor groupTableViewBackgroundColor].CGColor;
+        labelData.layer.borderWidth = 1;
+        labelData.text = @"  Черный";
+        labelData.font = [UIFont fontWithName:@"HelveticaNeue" size:12];
+        [viewDetails addSubview:labelData];
+    }
+    
+    
 
 }
 
@@ -175,24 +203,24 @@
 
 }
 
-#pragma mark - UITableViewDataSource
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return 7;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-    if (!cell)
-    {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1
-                                      reuseIdentifier:@"cell"];
-    }
-    cell.textLabel.text = @"Привет";
-    cell.detailTextLabel.text = @"Как дела";
-    
-    return cell;
-}
+//#pragma mark - UITableViewDataSource
+//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+//{
+//    return 7;
+//}
+//
+//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+//    if (!cell)
+//    {
+//        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1
+//                                      reuseIdentifier:@"cell"];
+//    }
+//    cell.textLabel.text = @"Привет";
+//    cell.detailTextLabel.text = @"Как дела";
+//    
+//    return cell;
+//}
 
 @end
