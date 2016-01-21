@@ -45,7 +45,7 @@
     
     self.arrayCategoryItems = [NSMutableArray array];
     
-    [self getApiOrders:^{
+    [self getApiProductOfCategory:^{
 //        NSLog(@"COUNT %i",self.arrayCategoryItems.count);
 //        NSLog(@"INF: %@",[self.arrayCategoryItems objectAtIndex:0]);
     
@@ -68,7 +68,7 @@
         for (int i = 0; i < self.arrayCategoryItems.count; i ++) {
             
             NSDictionary * itemsInfo=[self.arrayCategoryItems objectAtIndex:i];
-            
+            NSLog(@"%@",itemsInfo);
                 ViewSectionTable * image = [[ViewSectionTable alloc] initWithFrame:
                                             CGRectMake(0,
                                                        320 * i,
@@ -170,8 +170,8 @@
     [self.navigationController pushViewController:detail animated:YES];
 }
 
-//Тащим заказы с сервера
--(void) getApiOrders: (void (^)(void))block{
+//Тащим товары категории
+-(void) getApiProductOfCategory: (void (^)(void))block{
     //Передаваемые параметры
     
     NSDictionary * params = [[NSDictionary alloc] initWithObjectsAndKeys:

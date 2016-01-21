@@ -11,8 +11,14 @@
 #import "ViewProductDetails.h"
 #import "UIColor+HexColor.h"
 
-@interface ViewControllerProductDetails ()
+#import "APIPostClass.h"
+#import "APIGetClass.h"
+#import "ParserProduct.h"
+#import "ParserProductResponse.h"
+#import "SingleTone.h"
 
+@interface ViewControllerProductDetails ()
+@property (strong, nonatomic) NSMutableArray * arrayProduct; //Массив с Товарами
 
 @end
 
@@ -202,6 +208,34 @@
         [notAvailable setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     }];
 
+}
+
+
+
+//Тащим товары категории
+-(void) getApiProduct: (void (^)(void))block{
+    //Передаваемые параметры
+    
+    NSDictionary * params = [[NSDictionary alloc] initWithObjectsAndKeys:
+                             [[SingleTone sharedManager] parsingToken],@"token",
+                             self.catID,@"cat",
+                             nil];
+    
+    APIGetClass * api =[APIGetClass new]; //создаем API
+    [api getDataFromServerWithParams:params method:@"abpro/products_list" complitionBlock:^(id response) {
+        
+        ParserProductResponse * parsingResponce =[[ParserProductResponse alloc] init];
+        
+        [parsingResponce parsing:response andArray:self.arrayProduct andBlock:^{
+            
+            
+            block();
+            
+        }];
+        
+        
+    }];
+    
 }
 
 //#pragma mark - UITableViewDataSource
