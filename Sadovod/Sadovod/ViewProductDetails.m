@@ -94,6 +94,7 @@
         //Инициализация pageControl-------------------------------------------
         _pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(10, self.frame.size.height-20, 60, 10)];
         [_pageControl setCurrentPageIndicatorTintColor:[UIColor colorWithHexString:@"303f9f"]]; //цвет "точек" при пролистывании экрана приветствия
+        _pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
         [_pageControl setNumberOfPages:array.count]; // задаем количетсво слайдов приветствия
         [self addSubview:_pageControl];
     }
