@@ -57,6 +57,7 @@
     
     //Инициализация скрол вью------------------------------------------------------
     mainScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+        mainScrollView.showsVerticalScrollIndicator = NO;
     mainScrollView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     [self.view addSubview:mainScrollView];
     

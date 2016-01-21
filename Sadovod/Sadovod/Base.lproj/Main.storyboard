@@ -178,6 +178,20 @@
             </objects>
             <point key="canvasLocation" x="1024" y="1421"/>
         </scene>
+        <!--Orders View Controller-->
+        <scene sceneID="idh-Oh-yaJ">
+            <objects>
+                <viewController storyboardIdentifier="OrdersViewController" id="OOD-uv-J8m" customClass="OrdersViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="d76-il-yTo">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="l6m-QR-AU3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1379" y="1421"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="6Pk-Dw-Nqb">
             <objects>

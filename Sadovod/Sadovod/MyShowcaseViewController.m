@@ -14,6 +14,7 @@
 #import "UIColor+HexColor.h"
 #import "AlertClass.h"
 #import "TitleClass.h"
+#import "OrdersViewController.h"
 
 #import "ParserCategory.h"
 #import "ParserCategoryResponse.h"
@@ -40,6 +41,15 @@ NSDictionary * tableDict; //Директория хранения данных
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    //Кнопка бара--------------------------------------------
+    UIButton * buttonOrders =  [UIButton buttonWithType:UIButtonTypeCustom];
+    [buttonOrders setImage:[UIImage imageNamed:@"ic_orders.png"] forState:UIControlStateNormal];
+    [buttonOrders addTarget:self action:@selector(buttonOrdersAction)forControlEvents:UIControlEventTouchUpInside];
+    [buttonOrders setFrame:CGRectMake(0, 0, 30, 30)];
+
+    UIBarButtonItem *barButtonOrders = [[UIBarButtonItem alloc] initWithCustomView:buttonOrders];
+    self.navigationItem.rightBarButtonItem = barButtonOrders;
     
     TitleClass * title = [[TitleClass alloc]initWithTitle:@"Моя Витрина"];
     self.navigationItem.titleView = title;
@@ -264,5 +274,11 @@ NSDictionary * tableDict; //Директория хранения данных
  
  
  }*/
+
+- (void) buttonOrdersAction
+{
+    OrdersViewController * detail = [self.storyboard instantiateViewControllerWithIdentifier:@"OrdersViewController"];
+    [self.navigationController pushViewController:detail animated:YES];
+}
 
 @end

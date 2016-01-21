@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		699EBCA81799B1C85B4EFAF6 /* libPods-Sadovod.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB0C66A742FF03CE239AEFEF /* libPods-Sadovod.a */; };
+		775B79C41C50CECF0036ABCE /* ic_orders.png in Resources */ = {isa = PBXBuildFile; fileRef = 775B79C31C50CECF0036ABCE /* ic_orders.png */; };
+		775B79C81C50CFB60036ABCE /* OrdersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 775B79C71C50CFB60036ABCE /* OrdersViewController.m */; };
 		7767156A1C4FA8230008DC24 /* TitleClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 776715691C4FA8230008DC24 /* TitleClass.m */; };
 		7767156D1C4FC4A70008DC24 /* ViewProductDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 7767156C1C4FC4A70008DC24 /* ViewProductDetails.m */; };
 		776BF21D1C4B8A4C0006C502 /* SectionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 776BF21C1C4B8A4C0006C502 /* SectionTableViewController.m */; };
@@ -85,6 +87,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		775B79C31C50CECF0036ABCE /* ic_orders.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_orders.png; sourceTree = "<group>"; };
+		775B79C61C50CFB60036ABCE /* OrdersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrdersViewController.h; sourceTree = "<group>"; };
+		775B79C71C50CFB60036ABCE /* OrdersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrdersViewController.m; sourceTree = "<group>"; };
 		776715681C4FA8230008DC24 /* TitleClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitleClass.h; sourceTree = "<group>"; };
 		776715691C4FA8230008DC24 /* TitleClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TitleClass.m; sourceTree = "<group>"; };
 		7767156B1C4FC4A70008DC24 /* ViewProductDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewProductDetails.h; sourceTree = "<group>"; };
@@ -225,6 +230,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		775B79C51C50CF9D0036ABCE /* Orders */ = {
+			isa = PBXGroup;
+			children = (
+				775B79C61C50CFB60036ABCE /* OrdersViewController.h */,
+				775B79C71C50CFB60036ABCE /* OrdersViewController.m */,
+			);
+			name = Orders;
+			sourceTree = "<group>";
+		};
 		776BF21A1C4B898A0006C502 /* SectionTableMyShowcase */ = {
 			isa = PBXGroup;
 			children = (
@@ -359,6 +373,7 @@
 		77BFED2F1C4ADF7A0091A336 /* Owner */ = {
 			isa = PBXGroup;
 			children = (
+				775B79C51C50CF9D0036ABCE /* Orders */,
 				77FC43C61C4FFBC700F750A1 /* GuestPassword */,
 				776BF23B1C4BB1FF0006C502 /* ProductDetails */,
 				776BF21A1C4B898A0006C502 /* SectionTableMyShowcase */,
@@ -465,6 +480,7 @@
 		ADFBF5871C4C5A5F007E080D /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				775B79C31C50CECF0036ABCE /* ic_orders.png */,
 				ADFBF58A1C4C5F16007E080D /* menu.png */,
 			);
 			name = Icons;
@@ -595,6 +611,7 @@
 				77BFED001C4AC5E80091A336 /* Main.storyboard in Resources */,
 				776BF23A1C4B993C0006C502 /* 8image.jpg in Resources */,
 				776BF2331C4B993C0006C502 /* 11image.jpg in Resources */,
+				775B79C41C50CECF0036ABCE /* ic_orders.png in Resources */,
 				776BF2341C4B993C0006C502 /* 2image.jpg in Resources */,
 				ADFBF58B1C4C5F16007E080D /* menu.png in Resources */,
 				776BF2381C4B993C0006C502 /* 9image.jpg in Resources */,
@@ -675,6 +692,7 @@
 				AD69E5E41C4EE6B800DF6151 /* UIImage+ImageEffects.m in Sources */,
 				77D9D5031C4CEC30003C3610 /* LoginTextField.m in Sources */,
 				AD69E5E61C4EE6B800DF6151 /* UIImage+RoundedCorner.m in Sources */,
+				775B79C81C50CFB60036ABCE /* OrdersViewController.m in Sources */,
 				77BFECFD1C4AC5E80091A336 /* ViewController.m in Sources */,
 				AD6F101D1C4D1FB900FF70B3 /* ParserAuthResponse.m in Sources */,
 				AD69E5D41C4E974300DF6151 /* MyShowcaseViewController.m in Sources */,
