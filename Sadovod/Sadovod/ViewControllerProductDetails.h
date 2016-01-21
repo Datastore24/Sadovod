@@ -11,4 +11,5 @@
 @interface ViewControllerProductDetails : ViewController
 @property (strong,nonatomic) NSString * productID;
 @property (strong,nonatomic) NSString * productName;
+-(void) largeImage;
 @end

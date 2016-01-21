@@ -10,6 +10,7 @@
 #import "UIColor+HexColor.h"
 #import <SDWebImage/UIImageView+WebCache.h> //Загрузка изображения
 #import "UIImage+Resize.h"//Ресайз изображения
+#import "ViewControllerProductDetails.h"
 
 @interface ViewProductDetails () <UIScrollViewDelegate>
 
@@ -49,7 +50,7 @@
            
 //            _viewOne.image = [UIImage imageNamed:[array objectAtIndex:i]];
             NSURL *imgURL = [NSURL URLWithString:[array objectAtIndex:i]];
-            NSLog(@"COUNT: %i URL:%@",i,[array objectAtIndex:i]);
+
             //SingleTone с ресайз изображения
             SDWebImageManager *manager = [SDWebImageManager sharedManager];
             [manager downloadImageWithURL:imgURL
