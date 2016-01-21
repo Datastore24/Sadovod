@@ -40,7 +40,7 @@
         [_scrollView setPagingEnabled:YES];
         [_scrollView setContentSize:CGSizeMake(self.frame.size.width*array.count, self.scrollView.frame.size.height)]; // задаем количество слайдов
         _scrollView.showsHorizontalScrollIndicator = NO;
-        [_scrollView setBackgroundColor:[UIColor whiteColor]]; // цвет фона скролвью
+        [_scrollView setBackgroundColor:[UIColor colorWithHexString:@"303f9f"]]; // цвет фона скролвью
         [self.scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
         
         //Реализация вью-----------------
