@@ -40,7 +40,7 @@
         [_scrollView setPagingEnabled:YES];
         [_scrollView setContentSize:CGSizeMake(self.frame.size.width*array.count, self.scrollView.frame.size.height)]; // задаем количество слайдов
         _scrollView.showsHorizontalScrollIndicator = NO;
-        [_scrollView setBackgroundColor:[UIColor colorWithHexString:@"303f9f"]]; // цвет фона скролвью
+        [_scrollView setBackgroundColor:[UIColor whiteColor]]; // цвет фона скролвью
         [self.scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
         
         //Реализация вью-----------------
@@ -93,7 +93,7 @@
         
         //Инициализация pageControl-------------------------------------------
         _pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(10, self.frame.size.height-20, 60, 10)];
-        [_pageControl setCurrentPageIndicatorTintColor:[UIColor whiteColor]]; //цвет "точек" при пролистывании экрана приветствия
+        [_pageControl setCurrentPageIndicatorTintColor:[UIColor colorWithHexString:@"303f9f"]]; //цвет "точек" при пролистывании экрана приветствия
         [_pageControl setNumberOfPages:array.count]; // задаем количетсво слайдов приветствия
         [self addSubview:_pageControl];
     }
