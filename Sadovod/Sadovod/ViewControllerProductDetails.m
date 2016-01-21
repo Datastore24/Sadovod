@@ -11,8 +11,14 @@
 #import "ViewProductDetails.h"
 #import "UIColor+HexColor.h"
 
-@interface ViewControllerProductDetails ()
+#import "APIPostClass.h"
+#import "APIGetClass.h"
+#import "ParserProduct.h"
+#import "ParserProductResponse.h"
+#import "SingleTone.h"
 
+@interface ViewControllerProductDetails ()
+@property (strong, nonatomic) NSMutableArray * arrayProduct; //Массив с Товарами
 
 @end
 
@@ -26,11 +32,21 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    TitleClass * title = [[TitleClass alloc]initWithTitle:@"Джампер"];
+    TitleClass * title = [[TitleClass alloc]initWithTitle:self.productName];
     self.navigationItem.titleView = title;
     
-    NSArray * array = [NSArray arrayWithObjects:@"1image.jpg", @"2image.jpg", @"3image.jpg",
-                                                @"5image.jpg", @"6image.jpg", nil];
+     self.arrayProduct = [NSMutableArray array];
+    
+    [self getApiProduct:^{
+        
+      NSDictionary * productInfo=[self.arrayProduct objectAtIndex:0];
+        
+       // NSArray *imagesArray = [[productInfo objectForKey:@"images"] componentsSeparatedByString:@","];
+        NSLog(@"PRODUCT INFO %@",[productInfo objectForKey:@"images"]);
+        
+        
+        
+    NSArray * array = [productInfo objectForKey:@"images"];
     
     //Инициализация scrollView-----------
     mainScrollView = [[UIScrollView alloc] initWithFrame: CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
@@ -50,8 +66,8 @@
     priceView.backgroundColor = [UIColor colorWithHexString:@"3038a0"];
     [mainScrollView addSubview:priceView];
     //Лейбл цены------------------------------------------------
-    UILabel * priceLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, 60, 30)];
-    priceLabel.text = @"400 руб";
+    UILabel * priceLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, 120, 30)];
+    priceLabel.text = [NSString stringWithFormat:@"%@ руб.",[productInfo objectForKey:@"cost"]];
     priceLabel.textColor = [UIColor whiteColor];
     priceLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:16];
     [priceView addSubview:priceLabel];
@@ -72,16 +88,35 @@
     borderView.layer.borderColor = [UIColor groupTableViewBackgroundColor].CGColor;
     borderView.layer.borderWidth = 2;
     [mainScrollView addSubview:borderView];
-    
+        
+        //Цвета в зависимости от статуса
+        NSInteger status= [[productInfo objectForKey:@"status"] integerValue];
+        NSString * colorAvailableStatus;
+        NSString * colorNotAvailableStatus;
+        UIColor * textColorAvailableStatus;
+        UIColor * textColorNotAvailableStatus;
+        if(status == 1){
+            colorAvailableStatus = @"a0a7db";
+            colorNotAvailableStatus = @"ffffff";
+            textColorAvailableStatus = [UIColor whiteColor];
+            textColorNotAvailableStatus = [UIColor blackColor];
+        }else{
+            colorAvailableStatus = @"ffffff";
+            colorNotAvailableStatus = @"a0a7db";
+            textColorAvailableStatus = [UIColor blackColor];
+            textColorNotAvailableStatus = [UIColor whiteColor];
+        }
+        //
     //Инициализация вью есть в наличии---------------------------------------------------
     areAvailable = [UIButton buttonWithType:UIButtonTypeCustom];
     [areAvailable addTarget:self
                           action:@selector(areAvailableAction)
                 forControlEvents:UIControlEventTouchUpInside];
     [areAvailable setTitle:@"Есть в наличии" forState:UIControlStateNormal];
+    [areAvailable setTitleColor:textColorAvailableStatus forState:UIControlStateNormal];
     [areAvailable.titleLabel setFont:[UIFont systemFontOfSize:16]];
     areAvailable.frame = CGRectMake(0, priceView.frame.origin.y + 40, self.view.frame.size.width / 2, 40.0);
-    areAvailable.backgroundColor = [UIColor colorWithHexString:@"a0a7db"];
+    areAvailable.backgroundColor = [UIColor colorWithHexString:colorAvailableStatus];
     [mainScrollView addSubview:areAvailable];
     
     //Инициализация нет в наличии--------------------------------------------------------
@@ -90,10 +125,10 @@
                      action:@selector(notAvailableAction)
            forControlEvents:UIControlEventTouchUpInside];
     [notAvailable setTitle:@"Нет в наличии" forState:UIControlStateNormal];
-    [notAvailable setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [notAvailable setTitleColor:textColorNotAvailableStatus forState:UIControlStateNormal];
     [notAvailable.titleLabel setFont:[UIFont systemFontOfSize:16]];
     notAvailable.frame = CGRectMake(self.view.frame.size.width / 2, priceView.frame.origin.y + 40, self.view.frame.size.width / 2, 40.0);
-    notAvailable.backgroundColor = [UIColor whiteColor];
+    notAvailable.backgroundColor = [UIColor colorWithHexString:colorNotAvailableStatus];
     [mainScrollView addSubview:notAvailable];
     
     //Лейбл заголовка Доступные размеры---------------------------------------------------
@@ -141,7 +176,11 @@
 //    [mainScrollView addSubview:tableDetails];
     
     //Реализация таблицы деталей через цикл создваеммых вью-------------------------------------
-    for (int i = 0; i < 7; i++) {
+        NSArray * productOptions = [[NSArray alloc] initWithArray:[productInfo objectForKey:@"opts"]];
+        
+    for (int i = 0; i < productOptions.count; i++) {
+        NSDictionary * productOptionsInfo = [productOptions objectAtIndex:i];
+        
         UIView * viewDetails = [[UIView alloc] initWithFrame:CGRectMake(0, (titleDetails.frame.origin.y + 40) + 40 * i, self.view.frame.size.width, 40)];
         viewDetails.backgroundColor = [UIColor whiteColor];
         viewDetails.layer.borderColor = [UIColor groupTableViewBackgroundColor].CGColor;
@@ -153,7 +192,7 @@
         labelDetail.layer.borderColor = [UIColor groupTableViewBackgroundColor].CGColor;
         labelDetail.layer.borderWidth = 1;
         labelDetail.textColor = [UIColor colorWithHexString:@"c6c6c6"];
-        labelDetail.text = @"   Цвет";
+        labelDetail.text = [productOptionsInfo objectForKey:@"name"];
         labelDetail.font = [UIFont fontWithName:@"HelveticaNeue" size:12];
         [viewDetails addSubview:labelDetail];
         
@@ -161,12 +200,12 @@
         UILabel * labelData = [[UILabel alloc] initWithFrame:CGRectMake(120, 0, self.view.frame.size.width - 120, 40)];
         labelData.layer.borderColor = [UIColor groupTableViewBackgroundColor].CGColor;
         labelData.layer.borderWidth = 1;
-        labelData.text = @"  Черный";
+        labelData.text = [productOptionsInfo objectForKey:@"value"];
         labelData.font = [UIFont fontWithName:@"HelveticaNeue" size:12];
         [viewDetails addSubview:labelData];
     }
     
-    
+    }];
 
 }
 
@@ -202,6 +241,33 @@
         [notAvailable setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     }];
 
+}
+
+
+
+//Тащим товары категории
+-(void) getApiProduct: (void (^)(void))block{
+    //Передаваемые параметры
+    
+    NSDictionary * params = [[NSDictionary alloc] initWithObjectsAndKeys:
+                             [[SingleTone sharedManager] parsingToken],@"token",
+                             self.productID,@"product",
+                             nil];
+    
+    APIGetClass * api =[APIGetClass new]; //создаем API
+    [api getDataFromServerWithParams:params method:@"abpro/product" complitionBlock:^(id response) {
+        
+        ParserProductResponse * parsingResponce =[[ParserProductResponse alloc] init];
+        [parsingResponce parsing:response andArray:self.arrayProduct andBlock:^{
+            
+            
+            block();
+            
+        }];
+        
+        
+    }];
+    
 }
 
 //#pragma mark - UITableViewDataSource

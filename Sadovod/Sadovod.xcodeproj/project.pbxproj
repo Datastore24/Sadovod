@@ -43,6 +43,8 @@
 		77D9D4FF1C4CEBD1003C3610 /* LognViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D9D4FE1C4CEBD1003C3610 /* LognViewController.m */; };
 		77D9D5031C4CEC30003C3610 /* LoginTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D9D5021C4CEC30003C3610 /* LoginTextField.m */; };
 		77FC43C91C4FFC0B00F750A1 /* GuestPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FC43C81C4FFC0B00F750A1 /* GuestPasswordViewController.m */; };
+		AD379B911C50EC9A005DDDAC /* ParserProduct.m in Sources */ = {isa = PBXBuildFile; fileRef = AD379B901C50EC9A005DDDAC /* ParserProduct.m */; };
+		AD379B941C50ECA4005DDDAC /* ParserProductResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = AD379B931C50ECA4005DDDAC /* ParserProductResponse.m */; };
 		AD69E5CE1C4E7C4400DF6151 /* ParserCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = AD69E5CD1C4E7C4400DF6151 /* ParserCategory.m */; };
 		AD69E5D11C4E7C9F00DF6151 /* ParserCategoryResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = AD69E5D01C4E7C9F00DF6151 /* ParserCategoryResponse.m */; };
 		AD69E5D41C4E974300DF6151 /* MyShowcaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD69E5D31C4E974300DF6151 /* MyShowcaseViewController.m */; };
@@ -146,6 +148,10 @@
 		77FC43C71C4FFC0B00F750A1 /* GuestPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuestPasswordViewController.h; sourceTree = "<group>"; };
 		77FC43C81C4FFC0B00F750A1 /* GuestPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuestPasswordViewController.m; sourceTree = "<group>"; };
 		87269916B8AC7706E07A131E /* Pods-Sadovod.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sadovod.release.xcconfig"; path = "Pods/Target Support Files/Pods-Sadovod/Pods-Sadovod.release.xcconfig"; sourceTree = "<group>"; };
+		AD379B8F1C50EC9A005DDDAC /* ParserProduct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserProduct.h; sourceTree = "<group>"; };
+		AD379B901C50EC9A005DDDAC /* ParserProduct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserProduct.m; sourceTree = "<group>"; };
+		AD379B921C50ECA4005DDDAC /* ParserProductResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserProductResponse.h; sourceTree = "<group>"; };
+		AD379B931C50ECA4005DDDAC /* ParserProductResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserProductResponse.m; sourceTree = "<group>"; };
 		AD69E5CC1C4E7C4400DF6151 /* ParserCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserCategory.h; sourceTree = "<group>"; };
 		AD69E5CD1C4E7C4400DF6151 /* ParserCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserCategory.m; sourceTree = "<group>"; };
 		AD69E5CF1C4E7C9F00DF6151 /* ParserCategoryResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserCategoryResponse.h; sourceTree = "<group>"; };
@@ -460,6 +466,10 @@
 				AD69E5EB1C501CE000DF6151 /* ParserGuestPassword.m */,
 				AD69E5ED1C501CF600DF6151 /* ParserGuestPasswordResponse.h */,
 				AD69E5EE1C501CF600DF6151 /* ParserGuestPasswordResponse.m */,
+				AD379B8F1C50EC9A005DDDAC /* ParserProduct.h */,
+				AD379B901C50EC9A005DDDAC /* ParserProduct.m */,
+				AD379B921C50ECA4005DDDAC /* ParserProductResponse.h */,
+				AD379B931C50ECA4005DDDAC /* ParserProductResponse.m */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -699,6 +709,7 @@
 				AD69E5CE1C4E7C4400DF6151 /* ParserCategory.m in Sources */,
 				AD69E5EF1C501CF600DF6151 /* ParserGuestPasswordResponse.m in Sources */,
 				7767156A1C4FA8230008DC24 /* TitleClass.m in Sources */,
+				AD379B911C50EC9A005DDDAC /* ParserProduct.m in Sources */,
 				ADFBF5861C4C4B35007E080D /* AlertClass.m in Sources */,
 				AD6F10231C4D310900FF70B3 /* ParserLoginPassword.m in Sources */,
 				AD69E5E91C4EE75D00DF6151 /* TextAndImageHeight.m in Sources */,
@@ -709,6 +720,7 @@
 				77BFECFA1C4AC5E80091A336 /* AppDelegate.m in Sources */,
 				AD6F10261C4D701600FF70B3 /* ParserLoginPasswordResponse.m in Sources */,
 				776BF23E1C4BB2510006C502 /* ViewControllerProductDetails.m in Sources */,
+				AD379B941C50ECA4005DDDAC /* ParserProductResponse.m in Sources */,
 				776BF21D1C4B8A4C0006C502 /* SectionTableViewController.m in Sources */,
 				AD6F100E1C4D1C3A00FF70B3 /* UserModel.xcdatamodeld in Sources */,
 				77BFECF71C4AC5E80091A336 /* main.m in Sources */,
