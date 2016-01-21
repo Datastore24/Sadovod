@@ -8,10 +8,12 @@
 
 #import "OrdersViewController.h"
 #import "TitleClass.h"
+#import "UIColor+HexColor.h"
 
 @implementation OrdersViewController
 {
-    UIScrollView * mainCrollView;
+    UIScrollView * mainScrollView;
+    CGFloat heightScrollView;
 }
 
 - (void) viewDidLoad {
@@ -23,14 +25,67 @@
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment: UIOffsetMake(10.f, -100.f) forBarMetrics:UIBarMetricsDefault];
     
     //Раздел основного вью-----------------------------------------------
-    mainCrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-    mainCrollView.showsVerticalScrollIndicator = NO;
+    mainScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    mainScrollView.showsVerticalScrollIndicator = NO;
+    mainScrollView.backgroundColor = [UIColor colorWithHexString:@"f4f4f4"];
+    [self.view addSubview:mainScrollView];
     
     //Раздел таблицы из вью----------------------------------------------
-    for (int i; i < 7; i ++) {
-        UIView * viewData = [UIView alloc] initWithFrame:CGRectMake(0, <#CGFloat y#>, <#CGFloat width#>, <#CGFloat height#>)
+    for (int i = 0; i < 7; i ++) {
+        //Лейбл ID ---------------------------
+        UILabel * labelID = [[UILabel alloc] initWithFrame:CGRectMake(0, 0 + 40 * i, self.view.frame.size.width / 5, 40)];
+        labelID.layer.borderColor = [UIColor groupTableViewBackgroundColor].CGColor;
+        labelID.layer.borderWidth = 1;
+        labelID.text = @"163";
+        labelID.textColor = [UIColor colorWithHexString:@"626262"];
+        labelID.textAlignment = NSTextAlignmentCenter;
+        labelID.font = [UIFont fontWithName:@"HelveticaNeue" size:12];
+        labelID.backgroundColor = [UIColor whiteColor];
+        [mainScrollView addSubview:labelID];
+        
+        //Лейбл даты--------------------------
+        UILabel * labelDate = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 5, 0 + 40 * i, (self.view.frame.size.width / 5) * 2, 40)];
+        labelDate.layer.borderColor = [UIColor groupTableViewBackgroundColor].CGColor;
+        labelDate.layer.borderWidth = 1;
+        labelDate.text = @"14.01 22:51";
+        labelDate.textColor = [UIColor colorWithHexString:@"d9d9d9"];
+        labelDate.textAlignment = NSTextAlignmentCenter;
+        labelDate.font = [UIFont fontWithName:@"HelveticaNeue" size:12];
+        labelDate.backgroundColor = [UIColor whiteColor];
+        [mainScrollView addSubview:labelDate];
+        
+        //Лейбл кол-ва и цена------------------
+        UILabel * labelNumber = [[UILabel alloc] initWithFrame:CGRectMake (labelDate.frame.origin.x + ((self.view.frame.size.width / 5) * 2), 0 + 40 * i, (self.view.frame.size.width / 5) * 2, 40)];
+        labelNumber.layer.borderColor = [UIColor groupTableViewBackgroundColor].CGColor;
+        labelNumber.layer.borderWidth = 1;
+        labelNumber.text = @"5 шт, на 2750 руб";
+        labelNumber.textColor = [UIColor colorWithHexString:@"626262"];
+        labelNumber.textAlignment = NSTextAlignmentCenter;
+        labelNumber.font = [UIFont fontWithName:@"HelveticaNeue" size:12];
+        labelNumber.backgroundColor = [UIColor whiteColor];
+        [mainScrollView addSubview:labelNumber];
+        
+        //Кнопка заказа------------------------
+        UIButton *buttonOrder = [UIButton buttonWithType:UIButtonTypeSystem];
+        [buttonOrder addTarget:self
+                        action:@selector(buttonOrderAction:)
+         forControlEvents:UIControlEventTouchUpInside];
+        buttonOrder.frame = CGRectMake(0, 0 + 40 * i, self.view.frame.size.width, 40.0);
+        buttonOrder.tag = i;
+        buttonOrder.backgroundColor = nil;
+        [mainScrollView addSubview:buttonOrder];
     }
+    mainScrollView.contentSize = CGSizeMake(self.view.frame.size.width, 0 + 40 * 7);
     
+}
+
+- (void) buttonOrderAction: (UIButton *) button
+{
+    for (int i = 0; i < 7; i ++) {
+        if (button.tag == i) {
+            NSLog(@"Button tag = %d", i);
+        }
+    }
 }
 
 @end
