@@ -56,7 +56,9 @@
     
     ViewProductDetails * scrollViewImge = [[ViewProductDetails alloc] initWithFrame:CGRectMake(0, 0,
                                             self.view.frame.size.width,
-                                            self.view.frame.size.height / 3) andArray:array];
+                                            self.view.frame.size.height / 3)
+                                            andArray:array
+                                            andFullScreen:NO];
         
        //Распознование нажатия на скролл
         UITapGestureRecognizer *tapRecognizer;
@@ -357,13 +359,17 @@
 
 //Увеличиваем изображение
 -(void) largeImage{
-    NSLog(@"Large Image");
+    NSLog(@"Large Image: %f",self.view.bounds.size.width);
     NSDictionary * productInfo=[self.arrayProduct objectAtIndex:0];
-    
+    CGFloat width = [UIScreen mainScreen].bounds.size.width;
+    CGFloat height = [UIScreen mainScreen].bounds.size.height;
     NSArray * array = [productInfo objectForKey:@"images"];
     self.viewProductDetails = [[ViewProductDetails alloc] initWithFrame:CGRectMake(0, 0,
-                                                                                               self.view.frame.size.width,
-                                                                                               self.view.frame.size.height) andArray:array];
+                                                                                               width,
+                                                                                               height)
+                               andArray:array
+                               andFullScreen:YES];
+    NSLog(@"Large Image2: %f",self.viewProductDetails.frame.size.width);
     mainScrollView.scrollEnabled=NO;
     self.viewProductDetails.alpha =0;
     

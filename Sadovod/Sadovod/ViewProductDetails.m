@@ -29,7 +29,8 @@
 @implementation ViewProductDetails
 
 - (id)initWithFrame:(CGRect)frame
-           andArray: (NSArray *) array //Массив картинок
+           andArray: (NSArray *) array
+      andFullScreen: (BOOL) fullScreen//Массив картинок
 {
     self = [super initWithFrame:frame];
     if(self){
@@ -60,6 +61,8 @@
                                  }
                                 completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
                                     
+                                
+                                    
                                     if (i == 0) {
                                         _viewOne = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
                                     } else {
@@ -67,19 +70,23 @@
                                     }
                                     
                                     if(image){
-                                        
-                                        CGSize targetSize = CGSizeMake(image.size.width, image.size.height);
+                                        if(fullScreen){
+                                        CGSize targetSize = CGSizeMake(image.size.width*1.2, image.size.height*1.2);
                                         
                                         UIImage * imageResizing = [image resizedImage:targetSize interpolationQuality:kCGInterpolationHigh];
                                         
-//
-                                            _viewOne.contentMode = UIViewContentModeScaleAspectFit;
+                                            _viewOne.contentMode = UIViewContentModeScaleAspectFill;
+                                           
 
-                                        UIImage * imageCropped = [imageResizing croppedImage:CGRectMake(35,0, frame.size.width, frame.size.height)];
-                                        
-                                        
+                                        UIImage * imageCropped = [imageResizing croppedImage:CGRectMake(0,0, self.frame.size.width/2, self.frame.size.width/2)];
                                         
                                         _viewOne.image = image;
+                                        
+                                        
+                                        }else{
+                                            _viewOne.contentMode = UIViewContentModeScaleAspectFit;
+                                            _viewOne.image = image;
+                                        }
                                         
                                         [_scrollView addSubview:_viewOne];
                                         
