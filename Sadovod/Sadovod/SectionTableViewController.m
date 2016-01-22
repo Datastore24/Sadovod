@@ -71,7 +71,9 @@
                                             CGRectMake(0,
                                                        320 * i,
                                                        self.view.bounds.size.width,
-                                                       320)andImageURL:[itemsInfo objectForKey:@"img"] andLabelPrice:[NSString stringWithFormat:@"%ld", [[itemsInfo objectForKey:@"cost"] integerValue]]andResized:NO];
+                                                       320)andImageURL:[itemsInfo objectForKey:@"img"]
+                                            isInternetURL:YES
+                                                                     andLabelPrice:[NSString stringWithFormat:@"%ld", [[itemsInfo objectForKey:@"cost"] integerValue]]andResized:NO];
                 [mainScrollView addSubview:image];
                 
                 //Инициализация кнопок активации ячеек-------------------------------
@@ -101,7 +103,9 @@
                                             CGRectMake(0,
                                                        self.view.frame.size.width /2 * numerator,
                                                        self.view.frame.size.width / 2,
-                                                       self.view.frame.size.width/2 ) andImageURL:[itemsInfo objectForKey:@"img"] andLabelPrice:[NSString stringWithFormat:@"%ld", [[itemsInfo objectForKey:@"cost"] integerValue]] andResized:YES];
+                                                       self.view.frame.size.width/2 ) andImageURL:[itemsInfo objectForKey:@"img"]
+                                             isInternetURL:YES
+                                                                     andLabelPrice:[NSString stringWithFormat:@"%ld", [[itemsInfo objectForKey:@"cost"] integerValue]] andResized:YES];
                 [mainScrollView addSubview:image];
                 
                 //Инициализация кнопок активации ячеек-------------------------------
@@ -124,7 +128,9 @@
                                             CGRectMake(self.view.frame.size.width / 2,
                                                        self.view.frame.size.width /2  * numerator,
                                                        self.view.frame.size.width / 2 ,
-                                                       self.view.frame.size.width /2 )andImageURL:[itemsInfo objectForKey:@"img"] andLabelPrice:[NSString stringWithFormat:@"%ld", [[itemsInfo objectForKey:@"cost"] integerValue]] andResized:YES];
+                                                       self.view.frame.size.width /2 )andImageURL:[itemsInfo objectForKey:@"img"]
+                                             isInternetURL:YES
+                                                                     andLabelPrice:[NSString stringWithFormat:@"%ld", [[itemsInfo objectForKey:@"cost"] integerValue]] andResized:YES];
                 [mainScrollView addSubview:image];                
                 
                 //Инициализация кнопок активации ячеек-------------------------------
