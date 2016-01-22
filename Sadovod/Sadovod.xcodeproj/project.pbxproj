@@ -43,6 +43,8 @@
 		77D9D4FC1C4CE9AB003C3610 /* UIColor+HexColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D9D4FB1C4CE9AB003C3610 /* UIColor+HexColor.m */; };
 		77D9D4FF1C4CEBD1003C3610 /* LognViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D9D4FE1C4CEBD1003C3610 /* LognViewController.m */; };
 		77D9D5031C4CEC30003C3610 /* LoginTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D9D5021C4CEC30003C3610 /* LoginTextField.m */; };
+		77E801A91C5261BD00091F9A /* OrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E801A81C5261BD00091F9A /* OrderViewController.m */; };
+		77E801AC1C5261D900091F9A /* OrderViewDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E801AB1C5261D900091F9A /* OrderViewDetails.m */; };
 		77FC43C91C4FFC0B00F750A1 /* GuestPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FC43C81C4FFC0B00F750A1 /* GuestPasswordViewController.m */; };
 		AD379B911C50EC9A005DDDAC /* ParserProduct.m in Sources */ = {isa = PBXBuildFile; fileRef = AD379B901C50EC9A005DDDAC /* ParserProduct.m */; };
 		AD379B941C50ECA4005DDDAC /* ParserProductResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = AD379B931C50ECA4005DDDAC /* ParserProductResponse.m */; };
@@ -150,6 +152,10 @@
 		77D9D4FE1C4CEBD1003C3610 /* LognViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LognViewController.m; sourceTree = "<group>"; };
 		77D9D5011C4CEC30003C3610 /* LoginTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginTextField.h; sourceTree = "<group>"; };
 		77D9D5021C4CEC30003C3610 /* LoginTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginTextField.m; sourceTree = "<group>"; };
+		77E801A71C5261BD00091F9A /* OrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderViewController.h; sourceTree = "<group>"; };
+		77E801A81C5261BD00091F9A /* OrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderViewController.m; sourceTree = "<group>"; };
+		77E801AA1C5261D900091F9A /* OrderViewDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderViewDetails.h; sourceTree = "<group>"; };
+		77E801AB1C5261D900091F9A /* OrderViewDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderViewDetails.m; sourceTree = "<group>"; };
 		77FC43C71C4FFC0B00F750A1 /* GuestPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuestPasswordViewController.h; sourceTree = "<group>"; };
 		77FC43C81C4FFC0B00F750A1 /* GuestPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuestPasswordViewController.m; sourceTree = "<group>"; };
 		87269916B8AC7706E07A131E /* Pods-Sadovod.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sadovod.release.xcconfig"; path = "Pods/Target Support Files/Pods-Sadovod/Pods-Sadovod.release.xcconfig"; sourceTree = "<group>"; };
@@ -390,6 +396,7 @@
 		77BFED2F1C4ADF7A0091A336 /* Owner */ = {
 			isa = PBXGroup;
 			children = (
+				77E801A61C52619500091F9A /* ViewOrder */,
 				775B79C51C50CF9D0036ABCE /* Orders */,
 				77FC43C61C4FFBC700F750A1 /* GuestPassword */,
 				776BF23B1C4BB1FF0006C502 /* ProductDetails */,
@@ -443,6 +450,17 @@
 				77D9D5021C4CEC30003C3610 /* LoginTextField.m */,
 			);
 			name = Login;
+			sourceTree = "<group>";
+		};
+		77E801A61C52619500091F9A /* ViewOrder */ = {
+			isa = PBXGroup;
+			children = (
+				77E801A71C5261BD00091F9A /* OrderViewController.h */,
+				77E801A81C5261BD00091F9A /* OrderViewController.m */,
+				77E801AA1C5261D900091F9A /* OrderViewDetails.h */,
+				77E801AB1C5261D900091F9A /* OrderViewDetails.m */,
+			);
+			name = ViewOrder;
 			sourceTree = "<group>";
 		};
 		77FC43C61C4FFBC700F750A1 /* GuestPassword */ = {
@@ -715,6 +733,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AD69E5E41C4EE6B800DF6151 /* UIImage+ImageEffects.m in Sources */,
+				77E801A91C5261BD00091F9A /* OrderViewController.m in Sources */,
 				77D9D5031C4CEC30003C3610 /* LoginTextField.m in Sources */,
 				AD69E5E61C4EE6B800DF6151 /* UIImage+RoundedCorner.m in Sources */,
 				775B79C81C50CFB60036ABCE /* OrdersViewController.m in Sources */,
@@ -739,6 +758,7 @@
 				AD379B941C50ECA4005DDDAC /* ParserProductResponse.m in Sources */,
 				776BF21D1C4B8A4C0006C502 /* SectionTableViewController.m in Sources */,
 				AD6F100E1C4D1C3A00FF70B3 /* UserModel.xcdatamodeld in Sources */,
+				77E801AC1C5261D900091F9A /* OrderViewDetails.m in Sources */,
 				77BFECF71C4AC5E80091A336 /* main.m in Sources */,
 				77CE81941C4AF296003C7FFE /* ModelMyShowcase.m in Sources */,
 				776BF2231C4B95B80006C502 /* ModelSectionTableOwner.m in Sources */,
