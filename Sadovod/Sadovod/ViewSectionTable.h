@@ -16,7 +16,7 @@
 //Инициализация картинок-----------------------------
 - (instancetype)initWithFrame:(CGRect)frame
                   andImageURL: (NSString*) imageUrl
+                isInternetURL: (BOOL) isInternetURL
                 andLabelPrice: (NSString*) price
-                andResized: (BOOL) resized;
-
+                   andResized: (BOOL) resized;
 @end

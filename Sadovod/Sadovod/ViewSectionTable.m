@@ -21,6 +21,7 @@
 
 - (instancetype)initWithFrame:(CGRect)frame
                   andImageURL: (NSString*) imageUrl
+                isInternetURL: (BOOL) isInternetURL
                 andLabelPrice: (NSString*) price
                    andResized: (BOOL) resized
 {
@@ -28,12 +29,12 @@
     if (self) {
         
         self.backgroundColor = nil;
+        imageView = [[UIImageView alloc] initWithFrame:CGRectMake(2.5f, 2.5f, frame.size.width - 5, frame.size.height - 5)];
         
         //Создаем изображение с небольшим отступом - 5 пикселей открая:
+        if(isInternetURL){
+        
         NSURL *imgURL = [NSURL URLWithString:imageUrl];
-        
-        
-        imageView = [[UIImageView alloc] initWithFrame:CGRectMake(2.5f, 2.5f, frame.size.width - 5, frame.size.height - 5)];
         
         
         //SingleTone с ресайз изображения
@@ -48,16 +49,11 @@
                                 if(image){
                                     imageView.frame=CGRectMake(2.5f, 2.5f, frame.size.width - 5, frame.size.height - 5);
                                     
-                                    CGSize targetSize = CGSizeMake(image.size.width, image.size.height);
-                                    
-                                  UIImage * imageResizing = [image resizedImage:targetSize interpolationQuality:kCGInterpolationHigh];
                                     
                                     if(resized){
                                         imageView.contentMode = UIViewContentModeScaleAspectFit;
                                     }
-                                     UIImage * imageCropped = [imageResizing croppedImage:CGRectMake(35,0, frame.size.width, frame.size.height)];
                                
-                                   
                                     
                                     imageView.image = image;
                                     
@@ -71,8 +67,14 @@
 
        
         
-      // imageView.image = [UIImage imageNamed:imageUrl];
-        //[self addSubview:imageView];
+        }else{
+            if(resized){
+                imageView.contentMode = UIViewContentModeScaleAspectFit;
+            }
+            imageView.image = [UIImage imageNamed:imageUrl];
+            [self addSubview:imageView];
+            
+        }
         
         //Создаем ценник----------------------------------------
         if (frame.size.width == 300) {
