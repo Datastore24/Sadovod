@@ -71,8 +71,9 @@
                                     
                                     if(image){
                                         if(fullScreen){
+                                            //_viewOne.contentMode = UIViewContentModeScaleAspectFill; // Растягивает, но режет ноги
+                                            _viewOne.contentMode = UIViewContentModeScaleAspectFit; // Пропорционально на весь экран
                                             
-                                            _viewOne.contentMode = UIViewContentModeScaleAspectFill; // Пропорционально на весь экран
                                             [_viewOne setClipsToBounds:YES];
                                             _viewOne.image = image;
                                         
