@@ -84,12 +84,12 @@
                         action:@selector(buttonOrderAction:)
          forControlEvents:UIControlEventTouchUpInside];
         buttonOrder.frame = CGRectMake(0, 0 + 40 * i, self.view.frame.size.width, 40.0);
-        buttonOrder.tag = i;
+        buttonOrder.tag = [[ordersInfo objectForKey:@"id"] integerValue];
         buttonOrder.backgroundColor = nil;
         [mainScrollView addSubview:buttonOrder];
     }
         }];
-    mainScrollView.contentSize = CGSizeMake(self.view.frame.size.width, 0 + 40 * 7);
+    mainScrollView.contentSize = CGSizeMake(self.view.frame.size.width, 0 + 40 * self.arrayOrders.count);
     
 }
 
@@ -122,7 +122,7 @@
 {
     for (int i = 0; i < 7; i ++) {
         if (button.tag == i) {
-            NSLog(@"Button tag = %d", i);
+            NSLog(@"Button tag ID = %d", i);
         }
     }
 }
