@@ -366,7 +366,7 @@
     NSArray * array = [productInfo objectForKey:@"images"];
     self.viewProductDetails = [[ViewProductDetails alloc] initWithFrame:CGRectMake(0, 0,
                                                                                                width,
-                                                                                               height)
+                                                                                               height-64)
                                andArray:array
                                andFullScreen:YES];
     NSLog(@"Large Image2: %f",self.viewProductDetails.frame.size.width);
