@@ -279,7 +279,7 @@
         labelDetail.layer.borderColor = [UIColor groupTableViewBackgroundColor].CGColor;
         labelDetail.layer.borderWidth = 1;
         labelDetail.textColor = [UIColor colorWithHexString:@"c6c6c6"];
-        labelDetail.text = [productOptionsInfo objectForKey:@"name"];
+        labelDetail.text = [NSString stringWithFormat:@"   %@",  [productOptionsInfo objectForKey:@"name"]];
         labelDetail.font = [UIFont fontWithName:@"HelveticaNeue" size:12];
         [viewDetails addSubview:labelDetail];
         
@@ -287,7 +287,7 @@
         UILabel * labelData = [[UILabel alloc] initWithFrame:CGRectMake(120, 0, self.view.frame.size.width - 120, 40)];
         labelData.layer.borderColor = [UIColor groupTableViewBackgroundColor].CGColor;
         labelData.layer.borderWidth = 1;
-        labelData.text = [productOptionsInfo objectForKey:@"value"];
+        labelData.text = [NSString stringWithFormat:@"      %@",  [productOptionsInfo objectForKey:@"value"]];
         labelData.font = [UIFont fontWithName:@"HelveticaNeue" size:12];
         [viewDetails addSubview:labelData];
     }
