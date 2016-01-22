@@ -20,6 +20,8 @@
 
 @interface ViewControllerProductDetails ()
 @property (strong, nonatomic) NSMutableArray * arrayProduct; //Массив с Товарами
+@property (strong, nonatomic) ViewProductDetails * viewProductDetails; //Экземпляр класса
+@property (strong, nonatomic) UIButton * buttonCloseZoom;
 
 @end
 
@@ -54,7 +56,18 @@
     
     ViewProductDetails * scrollViewImge = [[ViewProductDetails alloc] initWithFrame:CGRectMake(0, 0,
                                             self.view.frame.size.width,
-                                            self.view.frame.size.height / 3) andArray:array];
+                                            self.view.frame.size.height / 3)
+                                            andArray:array
+                                            andFullScreen:NO];
+        
+       //Распознование нажатия на скролл
+        UITapGestureRecognizer *tapRecognizer;
+        tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(largeImage)];
+        
+        [scrollViewImge addGestureRecognizer:tapRecognizer];
+        scrollViewImge.userInteractionEnabled = YES;
+        //
+        
     [mainScrollView addSubview:scrollViewImge];
     
     //Инициализация вью изменения цены---------------------------------------------------
@@ -136,7 +149,7 @@
     [mainScrollView addSubview:titleSize];
     
     //Вью доступных размеров---------------------------------------------------------------
-    UIView * mainViewSize = [[UIView alloc] initWithFrame:CGRectMake(0, titleSize.frame.origin.y + 40, self.view.frame.size.width, 100)];
+    UIView * mainViewSize = [[UIView alloc] init];
     mainViewSize.backgroundColor = [UIColor whiteColor];
     mainViewSize.layer.borderColor = [UIColor groupTableViewBackgroundColor].CGColor;
     mainViewSize.layer.borderWidth = 2.f;
@@ -145,6 +158,10 @@
     //Кнопки размеров---------------------------------------------------------------------
         NSArray * productSizes = [productInfo objectForKey:@"sizes"];
         NSLog(@"SIZE: %@",productSizes);
+        int heightLine=0; //На каждую строку добавляется +45
+        int countSizePerline=0; // Количество в строке от 0
+        int countSizeLine=1; //Количество строк
+        
         for (int i = 0; i < productSizes.count; i++) {
             
             NSDictionary * productSizesInfo = [productSizes objectAtIndex:i];
@@ -152,7 +169,20 @@
             [buttonSize addTarget:self
                            action:@selector(buttonSizeAction:)
                  forControlEvents:UIControlEventTouchUpInside];
-            buttonSize.frame = CGRectMake ((2.5 + (self.view.frame.size.width / 3) * i), 10, (self.view.frame.size.width / 3) - 5, 35);
+            if(i!=0 && countSizePerline==3){
+                NSLog(@"YES");
+                buttonSize.frame = CGRectMake (2.5, 55+heightLine, (self.view.frame.size.width / 3) - 5, 35);
+                heightLine += 45;
+                countSizePerline = 1;
+                countSizeLine += 1;
+                
+            }else{
+                NSLog(@"NO");
+                buttonSize.frame = CGRectMake ((2.5 + (self.view.frame.size.width / 3) * countSizePerline), 10+heightLine, (self.view.frame.size.width / 3) - 5, 35);
+                countSizePerline += 1;
+                
+                
+            }
             
             buttonSize.tag = i;
             [buttonSize setTitle:[productSizesInfo objectForKey:@"value"] forState:UIControlStateNormal];
@@ -160,43 +190,64 @@
             
             NSString * colorAviableSizes;
             if([[productSizesInfo objectForKey:@"aviable"] integerValue] == 0){
-                    colorAviableSizes = @"ffebee";
+                colorAviableSizes = @"ffebee";
             }else{
-                    colorAviableSizes = @"e9eaf7";
+                colorAviableSizes = @"e9eaf7";
             }
             
             buttonSize.backgroundColor = [UIColor colorWithHexString:colorAviableSizes];
             buttonSize.titleLabel.font = [UIFont systemFontOfSize:15];
             [mainViewSize addSubview:buttonSize];
         }
+        
+        //Исправление высоты при необходимости
+        int addMainViewSizeHeight=0;
+        
+        if(countSizePerline==3){
+            heightLine+=45;//Увеличиваем отступ вниз
+            countSizePerline=0;//Сбрасываем счетчик количество размеров в линию
+            
+        }
+        //
+        mainViewSize.frame=CGRectMake(0, titleSize.frame.origin.y + 40, self.view.frame.size.width, 55+heightLine+addMainViewSizeHeight);
+
         UIButton *buttonSizeAdd = [UIButton buttonWithType:UIButtonTypeSystem];
         [buttonSizeAdd addTarget:self
                        action:@selector(buttonSizeAddAction)
              forControlEvents:UIControlEventTouchUpInside];
-        buttonSizeAdd.frame = CGRectMake ((2.5 + (self.view.frame.size.width / 3)), 55, (self.view.frame.size.width / 3) - 5, 35);
+        
+        
+        
+        buttonSizeAdd.frame = CGRectMake ((2.5 + (self.view.frame.size.width / 3) * countSizePerline), 10+heightLine, (self.view.frame.size.width / 3) - 5, 35);
         [buttonSizeAdd setTitle:@"+" forState:UIControlStateNormal];
         [buttonSizeAdd setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         buttonSizeAdd.backgroundColor = [UIColor colorWithHexString:@"e9eaf7"];
         buttonSizeAdd.titleLabel.font = [UIFont systemFontOfSize:15];
         [mainViewSize addSubview:buttonSizeAdd];
 
-    
+        UILabel * titleDetails;
+        if(![[productInfo objectForKey:@"mini_desc"] isEqualToString:@""]){
+            
+        
     //Лейбл заголовка Описание-------------------------------------------------------------
-    UILabel * titleDescription = [[UILabel alloc] initWithFrame:CGRectMake(10, mainViewSize.frame.origin.y + 105, 150, 40)];
+    UILabel * titleDescription = [[UILabel alloc] initWithFrame:CGRectMake(10, mainViewSize.frame.origin.y + mainViewSize.frame.size.height, 150, 40)];
     titleDescription.text = @"Описание";
     titleDescription.textColor = [UIColor colorWithHexString:@"3038a0"];
     titleDescription.font = [UIFont fontWithName:@"Helvetica-Bold" size:12];
     [mainScrollView addSubview:titleDescription];
     
     //Вью описания---------------------------------------------------------------------------
-    TextViewHeight * viewDescription = [[TextViewHeight alloc] initWithFrame:CGRectMake(0, titleDescription.frame.origin.y + 60, self.view.frame.size.width, 40) andText:@"Привет я текст вью умею расширяться, расширяююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююсь"];
+    TextViewHeight * viewDescription = [[TextViewHeight alloc] initWithFrame:CGRectMake(0, titleDescription.frame.origin.y + 42, self.view.frame.size.width, 40) andText:[productInfo objectForKey:@"mini_desc"]];
     viewDescription.backgroundColor = [UIColor whiteColor];
     viewDescription.layer.borderColor = [UIColor groupTableViewBackgroundColor].CGColor;
     viewDescription.layer.borderWidth = 2.f;
     [mainScrollView addSubview:viewDescription];
     
-    //Лейбл заголовка Описание-------------------------------------------------------------
-    UILabel * titleDetails = [[UILabel alloc] initWithFrame:CGRectMake(10, viewDescription.frame.origin.y + viewDescription.frame.size.height, 150, 40)];
+        titleDetails = [[UILabel alloc] initWithFrame:CGRectMake(10, viewDescription.frame.origin.y + viewDescription.frame.size.height, 150, 40)];
+    }else{
+        //Лейбл заголовка Описание-------------------------------------------------------------
+        titleDetails = [[UILabel alloc] initWithFrame:CGRectMake(10,  mainViewSize.frame.origin.y + mainViewSize.frame.size.height, 150, 40)];
+    }
     titleDetails.text = @"Детально";
     titleDetails.textColor = [UIColor colorWithHexString:@"3038a0"];
     titleDetails.font = [UIFont fontWithName:@"Helvetica-Bold" size:12];
@@ -305,6 +356,79 @@
     }];
     
 }
+
+//Увеличиваем изображение
+-(void) largeImage{
+    NSLog(@"Large Image: %f",self.view.bounds.size.width);
+    NSDictionary * productInfo=[self.arrayProduct objectAtIndex:0];
+    CGFloat width = [UIScreen mainScreen].bounds.size.width;
+    CGFloat height = [UIScreen mainScreen].bounds.size.height;
+    NSArray * array = [productInfo objectForKey:@"images"];
+    self.viewProductDetails = [[ViewProductDetails alloc] initWithFrame:CGRectMake(0, 0,
+                                                                                               width,
+                                                                                               height)
+                               andArray:array
+                               andFullScreen:YES];
+    NSLog(@"Large Image2: %f",self.viewProductDetails.frame.size.width);
+    mainScrollView.scrollEnabled=NO;
+    self.viewProductDetails.alpha =0;
+    
+    
+    //Кнопка закрыть
+    self.buttonCloseZoom = [[UIButton alloc] init];
+    [self.buttonCloseZoom addTarget:self
+                          action:@selector(closeZoom)
+                forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.buttonCloseZoom setTitle:@"X" forState:UIControlStateNormal];
+    [self.buttonCloseZoom.titleLabel setFont:[UIFont systemFontOfSize:22]];
+    [self.buttonCloseZoom setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    self.buttonCloseZoom.backgroundColor= [UIColor clearColor];
+    self.buttonCloseZoom.frame = CGRectMake(self.view.frame.size.width-45, 5, 40, 40);
+    self.buttonCloseZoom.alpha = 0;
+    self.buttonCloseZoom.layer.borderColor = [[UIColor grayColor] CGColor];
+    self.buttonCloseZoom.layer.borderWidth = 2.0;
+    self.buttonCloseZoom.layer.cornerRadius = 20; // this value vary as per your desire
+    self.buttonCloseZoom.clipsToBounds = YES;
+    
+    //
+    
+
+    
+    //Распознование нажатия на скролл
+    UITapGestureRecognizer *tapRecognizer;
+    tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(closeZoom)];
+    [self.viewProductDetails addGestureRecognizer:tapRecognizer];
+   
+    self.viewProductDetails.userInteractionEnabled = YES;
+    //
+    
+    [mainScrollView addSubview:self.viewProductDetails];
+    [mainScrollView addSubview:self.buttonCloseZoom];
+
+    [UIView animateWithDuration:1.0 animations:^(void) {
+        self.viewProductDetails.alpha = 1;
+        self.buttonCloseZoom.alpha = 1;
+        
+    }];
+  
+    
+    
+}
+
+-(void) closeZoom{
+    [UIView animateWithDuration:1.0 animations:^(void) {
+        self.viewProductDetails.alpha = 0;
+        self.buttonCloseZoom.alpha = 0;
+        
+    }];
+    self.viewProductDetails=nil;
+    self.buttonCloseZoom=nil;
+    mainScrollView.scrollEnabled=YES;
+
+    
+}
+
 
 //#pragma mark - UITableViewDataSource
 //- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

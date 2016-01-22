@@ -11,7 +11,8 @@
 @interface ViewProductDetails : UIView
 
 - (id)initWithFrame:(CGRect)frame
-           andArray: (NSArray *) array; //Массив картинок
+           andArray: (NSArray *) array
+           andFullScreen: (BOOL) fullScreen; //Массив картинок
 
 
 @end

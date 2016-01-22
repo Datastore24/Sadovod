@@ -10,6 +10,7 @@
 #import "UIColor+HexColor.h"
 #import <SDWebImage/UIImageView+WebCache.h> //Загрузка изображения
 #import "UIImage+Resize.h"//Ресайз изображения
+#import "ViewControllerProductDetails.h"
 
 @interface ViewProductDetails () <UIScrollViewDelegate>
 
@@ -28,7 +29,8 @@
 @implementation ViewProductDetails
 
 - (id)initWithFrame:(CGRect)frame
-           andArray: (NSArray *) array //Массив картинок
+           andArray: (NSArray *) array
+      andFullScreen: (BOOL) fullScreen//Массив картинок
 {
     self = [super initWithFrame:frame];
     if(self){
@@ -49,7 +51,7 @@
            
 //            _viewOne.image = [UIImage imageNamed:[array objectAtIndex:i]];
             NSURL *imgURL = [NSURL URLWithString:[array objectAtIndex:i]];
-            NSLog(@"COUNT: %i URL:%@",i,[array objectAtIndex:i]);
+
             //SingleTone с ресайз изображения
             SDWebImageManager *manager = [SDWebImageManager sharedManager];
             [manager downloadImageWithURL:imgURL
@@ -59,6 +61,8 @@
                                  }
                                 completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
                                     
+                                
+                                    
                                     if (i == 0) {
                                         _viewOne = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
                                     } else {
@@ -66,19 +70,16 @@
                                     }
                                     
                                     if(image){
+                                        if(fullScreen){
+                                            
+                                            _viewOne.contentMode = UIViewContentModeScaleAspectFill; // Пропорционально на весь экран
+                                            [_viewOne setClipsToBounds:YES];
+                                            _viewOne.image = image;
                                         
-                                        CGSize targetSize = CGSizeMake(image.size.width, image.size.height);
-                                        
-                                        UIImage * imageResizing = [image resizedImage:targetSize interpolationQuality:kCGInterpolationHigh];
-                                        
-//
+                                        }else{
                                             _viewOne.contentMode = UIViewContentModeScaleAspectFit;
-
-                                        UIImage * imageCropped = [imageResizing croppedImage:CGRectMake(35,0, frame.size.width, frame.size.height)];
-                                        
-                                        
-                                        
-                                        _viewOne.image = image;
+                                            _viewOne.image = image;
+                                        }
                                         
                                         [_scrollView addSubview:_viewOne];
                                         
