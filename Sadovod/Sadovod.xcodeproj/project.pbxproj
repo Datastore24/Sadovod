@@ -46,6 +46,8 @@
 		77FC43C91C4FFC0B00F750A1 /* GuestPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FC43C81C4FFC0B00F750A1 /* GuestPasswordViewController.m */; };
 		AD379B911C50EC9A005DDDAC /* ParserProduct.m in Sources */ = {isa = PBXBuildFile; fileRef = AD379B901C50EC9A005DDDAC /* ParserProduct.m */; };
 		AD379B941C50ECA4005DDDAC /* ParserProductResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = AD379B931C50ECA4005DDDAC /* ParserProductResponse.m */; };
+		AD379B9A1C526109005DDDAC /* ParserOrders.m in Sources */ = {isa = PBXBuildFile; fileRef = AD379B991C526109005DDDAC /* ParserOrders.m */; };
+		AD379B9D1C526119005DDDAC /* ParserOrdersResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = AD379B9C1C526119005DDDAC /* ParserOrdersResponse.m */; };
 		AD69E5CE1C4E7C4400DF6151 /* ParserCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = AD69E5CD1C4E7C4400DF6151 /* ParserCategory.m */; };
 		AD69E5D11C4E7C9F00DF6151 /* ParserCategoryResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = AD69E5D01C4E7C9F00DF6151 /* ParserCategoryResponse.m */; };
 		AD69E5D41C4E974300DF6151 /* MyShowcaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD69E5D31C4E974300DF6151 /* MyShowcaseViewController.m */; };
@@ -155,6 +157,10 @@
 		AD379B901C50EC9A005DDDAC /* ParserProduct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserProduct.m; sourceTree = "<group>"; };
 		AD379B921C50ECA4005DDDAC /* ParserProductResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserProductResponse.h; sourceTree = "<group>"; };
 		AD379B931C50ECA4005DDDAC /* ParserProductResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserProductResponse.m; sourceTree = "<group>"; };
+		AD379B981C526109005DDDAC /* ParserOrders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserOrders.h; sourceTree = "<group>"; };
+		AD379B991C526109005DDDAC /* ParserOrders.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserOrders.m; sourceTree = "<group>"; };
+		AD379B9B1C526119005DDDAC /* ParserOrdersResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserOrdersResponse.h; sourceTree = "<group>"; };
+		AD379B9C1C526119005DDDAC /* ParserOrdersResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserOrdersResponse.m; sourceTree = "<group>"; };
 		AD69E5CC1C4E7C4400DF6151 /* ParserCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserCategory.h; sourceTree = "<group>"; };
 		AD69E5CD1C4E7C4400DF6151 /* ParserCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserCategory.m; sourceTree = "<group>"; };
 		AD69E5CF1C4E7C9F00DF6151 /* ParserCategoryResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserCategoryResponse.h; sourceTree = "<group>"; };
@@ -475,6 +481,10 @@
 				AD379B901C50EC9A005DDDAC /* ParserProduct.m */,
 				AD379B921C50ECA4005DDDAC /* ParserProductResponse.h */,
 				AD379B931C50ECA4005DDDAC /* ParserProductResponse.m */,
+				AD379B981C526109005DDDAC /* ParserOrders.h */,
+				AD379B991C526109005DDDAC /* ParserOrders.m */,
+				AD379B9B1C526119005DDDAC /* ParserOrdersResponse.h */,
+				AD379B9C1C526119005DDDAC /* ParserOrdersResponse.m */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -718,6 +728,7 @@
 				ADFBF5861C4C4B35007E080D /* AlertClass.m in Sources */,
 				AD6F10231C4D310900FF70B3 /* ParserLoginPassword.m in Sources */,
 				AD69E5E91C4EE75D00DF6151 /* TextAndImageHeight.m in Sources */,
+				AD379B9A1C526109005DDDAC /* ParserOrders.m in Sources */,
 				AD69E5E51C4EE6B800DF6151 /* UIImage+Resize.m in Sources */,
 				77D9D4FC1C4CE9AB003C3610 /* UIColor+HexColor.m in Sources */,
 				AD69E5E21C4EE6B800DF6151 /* UIImage+Alpha.m in Sources */,
@@ -735,6 +746,7 @@
 				ADFBF5821C4C496B007E080D /* APIPostClass.m in Sources */,
 				AD69E5E31C4EE6B800DF6151 /* UIImage+Blured_And_SnapShot_Image.m in Sources */,
 				AD6F10201C4D266300FF70B3 /* SingleTone.m in Sources */,
+				AD379B9D1C526119005DDDAC /* ParserOrdersResponse.m in Sources */,
 				776BF2201C4B92780006C502 /* ViewSectionTable.m in Sources */,
 				AD6F10131C4D1C9F00FF70B3 /* Auth+CoreDataProperties.m in Sources */,
 				AD6F10141C4D1C9F00FF70B3 /* Auth.m in Sources */,
