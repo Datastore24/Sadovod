@@ -10,6 +10,7 @@
 #import "TitleClass.h"
 #import "ViewProductDetails.h"
 #import "UIColor+HexColor.h"
+#import "EditSizeViewController.h"
 
 #import "APIPostClass.h"
 #import "APIGetClass.h"
@@ -464,6 +465,12 @@
             NSLog(@"Button tag %d", i);
         }
     }
+}
+
+- (void) buttonSizeAddAction
+{
+    EditSizeViewController * detail = [self.storyboard instantiateViewControllerWithIdentifier:@"EditSizeViewController"];
+    [self.navigationController pushViewController:detail animated:YES];
 }
 
 

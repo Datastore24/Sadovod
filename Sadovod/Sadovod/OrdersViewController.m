@@ -40,7 +40,7 @@
     
     [self getApiOrders:^{
         
-        NSLog(@"ARRAY %@",self.arrayOrders);
+//        NSLog(@"ARRAY %@",self.arrayOrders);
         
     
     //Раздел таблицы из вью----------------------------------------------
@@ -109,7 +109,7 @@
         
         [parsingResponce parsing:response andArray:self.arrayOrders andBlock:^{
             
-            NSLog(@"%@",response);
+//            NSLog(@"%@",response);
             block();
             
         }];
@@ -121,16 +121,16 @@
 
 - (void) buttonOrderAction: (UIButton *) button
 {
-    for (int i = 0; i < 7; i ++) {
-        if (button.tag == i) {
-//<<<<<<< HEAD
-            NSLog(@"Button tag = %d", i);
+    
+    for (int i = 0; i < self.arrayOrders.count; i ++) {
+        NSDictionary * ordersInfo = [self.arrayOrders objectAtIndex:i];
+        if (button.tag == [[ordersInfo objectForKey:@"id"] integerValue]) {
+
+            NSLog(@"Button tag = %ld", [[ordersInfo objectForKey:@"id"] integerValue]);
             
             OrderViewController * detail = [self.storyboard instantiateViewControllerWithIdentifier:@"OrderViewController"];
             [self.navigationController pushViewController:detail animated:YES];
-//=======
-            NSLog(@"Button tag ID = %d", i);
-//>>>>>>> master
+
         }
     }
 }
