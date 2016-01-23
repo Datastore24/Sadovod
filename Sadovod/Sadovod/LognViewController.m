@@ -175,6 +175,7 @@
                         //Добавление данных успешно вошедшего пользователя в CoreData
                         [authDbClass UpdateUserWithOutKey:textFielsLoggin.text password:textFielsPassword.text];
                         [authDbClass updateToken:parse.token];
+                        [self sendKey:parse.token];
                         [[SingleTone sharedManager] setParsingToken:parse.token];
                         
                         
