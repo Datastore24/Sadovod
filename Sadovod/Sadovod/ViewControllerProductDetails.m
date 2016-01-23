@@ -22,6 +22,10 @@
 @property (strong, nonatomic) NSMutableArray * arrayProduct; //Массив с Товарами
 @property (strong, nonatomic) ViewProductDetails * viewProductDetails; //Экземпляр класса
 @property (strong, nonatomic) UIButton * buttonCloseZoom;
+@property (strong, nonatomic) UIView * viewAddSize; //Экземпляр класса
+@property (strong, nonatomic) UIButton * buttonCloseAddSize;
+@property (strong, nonatomic) UILabel *  lableTitle;
+@property (strong, nonatomic) UILabel *  lableAnnotation;
 
 @end
 
@@ -223,6 +227,7 @@
         [buttonSizeAdd setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         buttonSizeAdd.backgroundColor = [UIColor colorWithHexString:@"e9eaf7"];
         buttonSizeAdd.titleLabel.font = [UIFont systemFontOfSize:15];
+
         [mainViewSize addSubview:buttonSizeAdd];
 
         UILabel * titleDetails;
@@ -425,9 +430,94 @@
     self.viewProductDetails=nil;
     self.buttonCloseZoom=nil;
     mainScrollView.scrollEnabled=YES;
-
+    
     
 }
+
+
+//Добавление размера
+-(void) buttonSizeAddAction{
+    CGFloat width = [UIScreen mainScreen].bounds.size.width;
+    CGFloat height = [UIScreen mainScreen].bounds.size.height;
+    self.viewAddSize = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, height)];
+    
+    mainScrollView.scrollEnabled=NO;
+    self.viewAddSize.alpha =0;
+    self.viewAddSize.backgroundColor =[UIColor whiteColor];
+    
+    
+
+    //Кнопка закрыть
+    self.buttonCloseAddSize = [[UIButton alloc] init];
+    [self.buttonCloseAddSize addTarget:self
+                             action:@selector(closeAddSize)
+                   forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.buttonCloseAddSize setTitle:@"X" forState:UIControlStateNormal];
+    [self.buttonCloseAddSize.titleLabel setFont:[UIFont systemFontOfSize:22]];
+    [self.buttonCloseAddSize setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    self.buttonCloseAddSize.backgroundColor= [UIColor clearColor];
+    self.buttonCloseAddSize.frame = CGRectMake(self.view.frame.size.width-45, 5, 40, 40);
+    self.buttonCloseAddSize.alpha = 0;
+    self.buttonCloseAddSize.layer.borderColor = [[UIColor grayColor] CGColor];
+    self.buttonCloseAddSize.layer.borderWidth = 2.0;
+    self.buttonCloseAddSize.layer.cornerRadius = 20; // this value vary as per your desire
+    self.buttonCloseAddSize.clipsToBounds = YES;
+    
+    //
+    
+    //Заголовок
+    self.lableTitle = [[UILabel alloc] initWithFrame:CGRectMake(5, 5, 100, 40)];
+    self.lableTitle.text = @"Размеры";
+    self.lableTitle.textColor = [UIColor colorWithHexString:@"3038a1"];
+    self.lableTitle.font = [UIFont fontWithName:@"HelveticaNeue" size:18];
+    self.lableTitle.alpha =0;
+    //
+    
+    //Анотация страницы
+    self.lableAnnotation = [[UILabel alloc] initWithFrame:CGRectMake(5, 40, 250, 40)];
+    self.lableAnnotation.text = @"Выберите нужный размер";
+    self.lableAnnotation.textColor = [UIColor grayColor];
+    self.lableAnnotation.font = [UIFont fontWithName:@"HelveticaNeue" size:12];
+    self.lableAnnotation.alpha =0;
+    //
+    
+    [mainScrollView addSubview:self.viewAddSize];
+    [mainScrollView addSubview:self.buttonCloseAddSize];
+    [mainScrollView addSubview:self.lableTitle];
+    [mainScrollView addSubview:self.lableAnnotation];
+    
+    [UIView animateWithDuration:1.0 animations:^(void) {
+        self.viewAddSize.alpha = 0.8;
+        self.buttonCloseAddSize.alpha = 0.8;
+        self.lableTitle.alpha = 1;
+        self.lableAnnotation.alpha = 1;
+        
+    }];
+    
+    
+    
+}
+
+-(void) closeAddSize{
+    [UIView animateWithDuration:1.0 animations:^(void) {
+        self.viewAddSize.alpha = 0;
+        self.buttonCloseAddSize.alpha = 0;
+        self.lableTitle.alpha = 0;
+        self.lableAnnotation.alpha = 0;
+        
+    }];
+    self.viewAddSize=nil;
+    self.buttonCloseAddSize=nil;
+    self.lableTitle = nil;
+    self.lableAnnotation = nil;
+    mainScrollView.scrollEnabled=YES;
+    
+    
+}
+
+
+
 
 
 //#pragma mark - UITableViewDataSource
@@ -459,9 +549,5 @@
     }
 }
 
-- (void) buttonSizeAddAction
-{
-    NSLog(@"КНОПКА ДОБАВИТЬ");
-}
 
 @end
