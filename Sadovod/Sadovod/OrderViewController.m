@@ -21,7 +21,7 @@
     [super viewDidLoad];
     
     //Раздел заголовка---------------------------------------------------
-    TitleClass * title = [[TitleClass alloc]initWithTitle:@"Заказы"];
+    TitleClass * title = [[TitleClass alloc]initWithTitle:@"Заказ № 137"];
     self.navigationItem.titleView = title;
     
     //Кнопка бара--------------------------------------------

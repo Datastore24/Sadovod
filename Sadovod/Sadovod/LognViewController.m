@@ -166,6 +166,7 @@
                 
                 //Проверка главного ключа входа 1- успешно, 0 - неуспешно
                 if([parse.status isEqualToString:@"1"]){
+                    
                     AuthDbClass * authDbClass = [[AuthDbClass alloc] init];
                     
                     //Проверка существует ли пользователь в CoreData
@@ -195,10 +196,6 @@
 
             
         }
-        
-        
-        
-        
         
     }
 }
