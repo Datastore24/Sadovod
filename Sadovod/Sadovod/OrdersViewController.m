@@ -11,6 +11,11 @@
 #import "UIColor+HexColor.h"
 #import "OrderViewController.h"
 
+#import "APIGetClass.h"
+#import "ParserCategory.h"
+#import "ParserCategoryResponse.h"
+#import "SingleTone.h"
+
 @implementation OrdersViewController
 {
     UIScrollView * mainScrollView;
@@ -19,9 +24,11 @@
 
 - (void) viewDidLoad {
     [super viewDidLoad];
+    self.arrayOrders = [NSMutableArray array];
     //Раздел заголовка---------------------------------------------------
     TitleClass * title = [[TitleClass alloc]initWithTitle:@"Заказы"];
     self.navigationItem.titleView = title;
+   
     
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment: UIOffsetMake(10.f, -100.f) forBarMetrics:UIBarMetricsDefault];
     
@@ -31,13 +38,19 @@
     mainScrollView.backgroundColor = [UIColor colorWithHexString:@"f4f4f4"];
     [self.view addSubview:mainScrollView];
     
+    [self getApiOrders:^{
+        
+        NSLog(@"ARRAY %@",self.arrayOrders);
+        
+    
     //Раздел таблицы из вью----------------------------------------------
-    for (int i = 0; i < 7; i ++) {
+    for (int i = 0; i < self.arrayOrders.count; i ++) {
+        NSDictionary * ordersInfo = [self.arrayOrders objectAtIndex:i];
         //Лейбл ID ---------------------------
         UILabel * labelID = [[UILabel alloc] initWithFrame:CGRectMake(0, 0 + 40 * i, self.view.frame.size.width / 5, 40)];
         labelID.layer.borderColor = [UIColor groupTableViewBackgroundColor].CGColor;
         labelID.layer.borderWidth = 1;
-        labelID.text = @"163";
+        labelID.text = [ordersInfo objectForKey:@"id"];
         labelID.textColor = [UIColor colorWithHexString:@"626262"];
         labelID.textAlignment = NSTextAlignmentCenter;
         labelID.font = [UIFont fontWithName:@"HelveticaNeue" size:12];
@@ -48,7 +61,7 @@
         UILabel * labelDate = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 5, 0 + 40 * i, (self.view.frame.size.width / 5) * 2, 40)];
         labelDate.layer.borderColor = [UIColor groupTableViewBackgroundColor].CGColor;
         labelDate.layer.borderWidth = 1;
-        labelDate.text = @"14.01 22:51";
+        labelDate.text = [ordersInfo objectForKey:@"dt"];;
         labelDate.textColor = [UIColor colorWithHexString:@"d9d9d9"];
         labelDate.textAlignment = NSTextAlignmentCenter;
         labelDate.font = [UIFont fontWithName:@"HelveticaNeue" size:12];
@@ -59,7 +72,7 @@
         UILabel * labelNumber = [[UILabel alloc] initWithFrame:CGRectMake (labelDate.frame.origin.x + ((self.view.frame.size.width / 5) * 2), 0 + 40 * i, (self.view.frame.size.width / 5) * 2, 40)];
         labelNumber.layer.borderColor = [UIColor groupTableViewBackgroundColor].CGColor;
         labelNumber.layer.borderWidth = 1;
-        labelNumber.text = @"5 шт, на 2750 руб";
+        labelNumber.text = [NSString stringWithFormat:@"%@ шт. на %@ руб.",[ordersInfo objectForKey:@"cnt"],[ordersInfo objectForKey:@"cost"]];
         labelNumber.textColor = [UIColor colorWithHexString:@"626262"];
         labelNumber.textAlignment = NSTextAlignmentCenter;
         labelNumber.font = [UIFont fontWithName:@"HelveticaNeue" size:12];
@@ -72,11 +85,37 @@
                         action:@selector(buttonOrderAction:)
          forControlEvents:UIControlEventTouchUpInside];
         buttonOrder.frame = CGRectMake(0, 0 + 40 * i, self.view.frame.size.width, 40.0);
-        buttonOrder.tag = i;
+        buttonOrder.tag = [[ordersInfo objectForKey:@"id"] integerValue];
         buttonOrder.backgroundColor = nil;
         [mainScrollView addSubview:buttonOrder];
     }
-    mainScrollView.contentSize = CGSizeMake(self.view.frame.size.width, 0 + 40 * 7);
+        }];
+    mainScrollView.contentSize = CGSizeMake(self.view.frame.size.width, 0 + 40 * self.arrayOrders.count);
+    
+}
+
+//Тащим заказы
+-(void) getApiOrders: (void (^)(void))block{
+    //Передаваемые параметры
+    
+    NSDictionary * params = [[NSDictionary alloc] initWithObjectsAndKeys:
+                             [[SingleTone sharedManager] parsingToken],@"token",
+                             nil];
+    
+    APIGetClass * api =[APIGetClass new]; //создаем API
+    [api getDataFromServerWithParams:params method:@"abpro/get_orders" complitionBlock:^(id response) {
+        
+        ParserCategoryResponse * parsingResponce =[[ParserCategoryResponse alloc] init];
+        
+        [parsingResponce parsing:response andArray:self.arrayOrders andBlock:^{
+            
+            NSLog(@"%@",response);
+            block();
+            
+        }];
+        
+        
+    }];
     
 }
 
@@ -84,10 +123,14 @@
 {
     for (int i = 0; i < 7; i ++) {
         if (button.tag == i) {
+<<<<<<< HEAD
             NSLog(@"Button tag = %d", i);
             
             OrderViewController * detail = [self.storyboard instantiateViewControllerWithIdentifier:@"OrderViewController"];
             [self.navigationController pushViewController:detail animated:YES];
+=======
+            NSLog(@"Button tag ID = %d", i);
+>>>>>>> master
         }
     }
 }

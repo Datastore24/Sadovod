@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface OrdersViewController : UIViewController
-
+@property (strong,nonatomic) NSMutableArray * arrayOrders;
 @end

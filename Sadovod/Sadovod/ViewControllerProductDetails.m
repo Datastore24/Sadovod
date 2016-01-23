@@ -23,6 +23,7 @@
 @property (strong, nonatomic) ViewProductDetails * viewProductDetails; //Экземпляр класса
 @property (strong, nonatomic) UIButton * buttonCloseZoom;
 
+
 @end
 
 @implementation ViewControllerProductDetails
@@ -223,6 +224,7 @@
         [buttonSizeAdd setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         buttonSizeAdd.backgroundColor = [UIColor colorWithHexString:@"e9eaf7"];
         buttonSizeAdd.titleLabel.font = [UIFont systemFontOfSize:15];
+
         [mainViewSize addSubview:buttonSizeAdd];
 
         UILabel * titleDetails;
@@ -425,9 +427,14 @@
     self.viewProductDetails=nil;
     self.buttonCloseZoom=nil;
     mainScrollView.scrollEnabled=YES;
-
+    
     
 }
+
+
+
+
+
 
 
 //#pragma mark - UITableViewDataSource
@@ -459,9 +466,5 @@
     }
 }
 
-- (void) buttonSizeAddAction
-{
-    NSLog(@"КНОПКА ДОБАВИТЬ");
-}
 
 @end
