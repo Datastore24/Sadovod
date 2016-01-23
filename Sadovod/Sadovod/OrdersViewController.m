@@ -123,14 +123,14 @@
 {
     for (int i = 0; i < 7; i ++) {
         if (button.tag == i) {
-<<<<<<< HEAD
+//<<<<<<< HEAD
             NSLog(@"Button tag = %d", i);
             
             OrderViewController * detail = [self.storyboard instantiateViewControllerWithIdentifier:@"OrderViewController"];
             [self.navigationController pushViewController:detail animated:YES];
-=======
+//=======
             NSLog(@"Button tag ID = %d", i);
->>>>>>> master
+//>>>>>>> master
         }
     }
 }
