@@ -9,6 +9,7 @@
 #import "OrdersViewController.h"
 #import "TitleClass.h"
 #import "UIColor+HexColor.h"
+#import "OrderViewController.h"
 
 #import "APIGetClass.h"
 #import "ParserCategory.h"
@@ -122,7 +123,14 @@
 {
     for (int i = 0; i < 7; i ++) {
         if (button.tag == i) {
+//<<<<<<< HEAD
+            NSLog(@"Button tag = %d", i);
+            
+            OrderViewController * detail = [self.storyboard instantiateViewControllerWithIdentifier:@"OrderViewController"];
+            [self.navigationController pushViewController:detail animated:YES];
+//=======
             NSLog(@"Button tag ID = %d", i);
+//>>>>>>> master
         }
     }
 }
