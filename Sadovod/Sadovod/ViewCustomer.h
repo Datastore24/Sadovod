@@ -10,4 +10,11 @@
 
 @interface ViewCustomer : UIView
 
+- (id)initWithPhone: (NSString *) phone
+            andName: (NSString *) name
+         andAddress: (NSString*) address
+         andComment: (NSString *) comment
+             andSum: (NSString *) sum
+        andMainView: (UIView*) view;
+
 @end
