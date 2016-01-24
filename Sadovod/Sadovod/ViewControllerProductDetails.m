@@ -18,6 +18,7 @@
 #import "ParserProductResponse.h"
 #import "SingleTone.h"
 #import "TextViewHeight.h"
+#import <SCLAlertView-Objective-C/SCLAlertView.h>
 
 @interface ViewControllerProductDetails ()
 @property (strong, nonatomic) NSMutableArray * arrayProduct; //Массив с Товарами
@@ -33,6 +34,8 @@
     UIButton * areAvailable; //Кнопка есть в наличии
     UIButton *notAvailable; //Кнопка нет в наличии
     UITableView * tableDetails; //Таблица деталей
+    
+    NSArray * productSizes;
 }
 
 - (void)viewDidLoad {
@@ -158,7 +161,7 @@
     [mainScrollView addSubview:mainViewSize];
         
     //Кнопки размеров---------------------------------------------------------------------
-        NSArray * productSizes = [productInfo objectForKey:@"sizes"];
+        productSizes = [productInfo objectForKey:@"sizes"];
         NSLog(@"SIZE: %@",productSizes);
         int heightLine=0; //На каждую строку добавляется +45
         int countSizePerline=0; // Количество в строке от 0
@@ -306,7 +309,15 @@
 
 - (void) buttonChangePriceAction
 {
-    NSLog(@"Изменить цену");
+    SCLAlertView *alert = [[SCLAlertView alloc] init];
+    
+    UITextField *textField = [alert addTextField:@"Новая цена"];
+    
+    [alert addButton:@"Изменить" actionBlock:^(void) {
+        NSLog(@"Новай Цена: %@", textField.text);
+    }];
+    
+    [alert showEdit:self title:@"Измените цену" subTitle:@"Введите новую цену" closeButtonTitle:@"Отмена" duration:0.0f];
 }
 
 - (void) areAvailableAction
@@ -460,11 +471,37 @@
 
 - (void) buttonSizeAction: (UIButton *) button
 {
-    for (int i = 0; i < 3; i ++) {
+    for (int i = 0; i < productSizes.count; i ++) {
         if (button.tag == i) {
-            NSLog(@"Button tag %d", i);
+            NSDictionary * testDict = [productSizes objectAtIndex:i];
+            
+            NSLog(@"%@", [testDict objectForKey:@"aviable"]);
+            if([[testDict objectForKey:@"aviable"] integerValue] == 0){
+                SCLAlertView *alert = [[SCLAlertView alloc] init];
+                //Using Selector
+                [alert addButton:@"Ok" target:self selector:@selector(firstButton1)];
+                [alert showSuccess:self title:@"Включение размера" subTitle:@"Размера 48 нет в наличии, включить ?" closeButtonTitle:@"Отмена" duration:0.0f];
+                NSLog(@"Yes");
+            }else{
+                SCLAlertView *alert = [[SCLAlertView alloc] init];
+                //Using Selector
+                [alert addButton:@"Ok" target:self selector:@selector(firstButton2)];
+                [alert showSuccess:self title:@"Отключение размера" subTitle:@"Размер 48 в наличии, отключить ?" closeButtonTitle:@"Отмена" duration:0.0f];
+                NSLog(@"no");
+            }
+            
         }
     }
+}
+
+- (void) firstButton1
+{
+    NSLog(@"firstButton1");
+}
+
+- (void) firstButton2
+{
+    NSLog(@"firstButton2");
 }
 
 - (void) buttonSizeAddAction
