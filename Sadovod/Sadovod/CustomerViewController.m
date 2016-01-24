@@ -58,6 +58,15 @@
     
 }
 
+<<<<<<< HEAD
+=======
+- (void) buttonConfirmAction
+{
+    NSLog(@"Test");
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+>>>>>>> origin/master
 
 
 -(void) getApiOrderClientInfo: (void (^)(void))block{
