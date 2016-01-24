@@ -26,11 +26,6 @@
 {
     [super viewDidLoad];
     
-    //Раздел заголовка---------------------------------------------------
-    
-    
-    self.arrayOrder = [NSMutableArray array];
-    
     
     //Кнопка бара--------------------------------------------
     UIButton * buttonCustomer =  [UIButton buttonWithType:UIButtonTypeCustom];
@@ -45,7 +40,14 @@
     mainscrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     mainscrollView.contentSize = CGSizeMake(self.view.frame.size.width, 2000);
     [self.view addSubview:mainscrollView];
-    [self getApiOrder:^{
+
+    
+  
+    
+    
+    self.arrayOrder = [NSMutableArray array];
+    
+        [self getApiOrder:^{
         
     
     if(self.arrayOrder.count > 0 ){
@@ -53,7 +55,10 @@
         NSDictionary * orderInfo =parserOrder.order;
         NSArray * listOrderItems = parserOrder.list;
         
-    TitleClass * title = [[TitleClass alloc]initWithTitle:[orderInfo objectForKey:@"id"]];
+        //Раздел заголовка---------------------------------------------------
+      
+        
+    TitleClass * title = [[TitleClass alloc]initWithTitle:[NSString stringWithFormat:@"Заказ №%@",[orderInfo objectForKey:@"id"]]];
     self.navigationItem.titleView = title;
     
     for (int i = 0; i < listOrderItems.count; i ++) {
@@ -104,6 +109,7 @@
 - (void) buttonCustomerAction
 {
     CustomerViewController * detail = [self.storyboard instantiateViewControllerWithIdentifier:@"CustomerViewController"];
+    detail.orderID=self.orderID;
     [self.navigationController pushViewController:detail animated:YES];
 }
 

@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface CustomerViewController : UIViewController
-
+@property (strong,nonatomic) NSString * orderID;
+@property (strong, nonatomic) NSMutableArray * arrayOrderClientInfo; //Массив с Товарами
 @end
