@@ -51,9 +51,11 @@
                                     
                                     
                                     if(resized){
-                                        imageView.contentMode = UIViewContentModeScaleAspectFit;
+                                        imageView.contentMode = UIViewContentModeScaleAspectFill;
+                                        imageView.clipsToBounds =YES;
                                     }
                                
+                
                                     
                                     imageView.image = image;
                                     
