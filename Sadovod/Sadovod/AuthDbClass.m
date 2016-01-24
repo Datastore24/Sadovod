@@ -11,7 +11,8 @@
 #import <MagicalRecord/MagicalRecord.h>
 
 @implementation AuthDbClass
--(void) authFist: (NSString *) login andPassword: (NSString *) password andEnter:(NSString *) enter andKey:(NSString *) key{
+-(void) authFist: (NSString *) login andPassword: (NSString *) password andEnter:(NSString *) enter andKey:(NSString *) key
+andCatalogKey: (NSString*) catalogKey {
     [MagicalRecord setupCoreDataStackWithStoreNamed:@"Auth.sqlite"];
     NSManagedObjectContext *localContext    = [NSManagedObjectContext MR_context];
     Auth *auth = [Auth MR_createEntityInContext:localContext];
@@ -20,6 +21,7 @@
     auth.enter = enter;
     auth.uid=@"1";
     auth.key=key;
+    auth.catalogkey=catalogKey;
     NSLog(@"SAVE");
     [localContext MR_saveToPersistentStoreAndWait];
 }
@@ -41,21 +43,22 @@
     }
 }
 
--(void) addKey: (NSString *) key{
+-(void) addKey: (NSString *) key andCatalogKey: (NSString*) catalogKey{
     [MagicalRecord setupCoreDataStackWithStoreNamed:@"Auth.sqlite"];
     NSManagedObjectContext *localContext    = [NSManagedObjectContext MR_context];
     Auth *auth = [Auth MR_createEntityInContext:localContext];
     auth.key=key;
+    auth.catalogkey=catalogKey;
     auth.uid=@"1";
     [localContext MR_saveToPersistentStoreAndWait];
 }
 
-- (BOOL)checkKey:(NSString*) key{
+- (BOOL)checkKey:(NSString*) key andCatalogKey: (NSString*) catalogKey{
     
     NSManagedObjectContext *localContext    = [NSManagedObjectContext MR_context];
     
     
-    NSPredicate *predicate                  = [NSPredicate predicateWithFormat:@"key ==[c] %@",key];
+    NSPredicate *predicate                  = [NSPredicate predicateWithFormat:@"key ==[c] %@ AND catalogkey == [c] %@",key,catalogKey];
     Auth *keyFounded                   = [Auth MR_findFirstWithPredicate:predicate inContext:localContext];
     
     // If a person was founded

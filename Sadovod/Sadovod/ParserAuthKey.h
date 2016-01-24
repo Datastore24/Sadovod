@@ -13,6 +13,7 @@
 
 @interface ParserAuthKey : NSObject
 @property (strong,nonatomic) NSString * status;
-@property (strong,nonatomic) NSString * key;
+@property (strong,nonatomic) NSString * super_key;
+@property (strong,nonatomic) NSString * catalog_key;
 
 @end

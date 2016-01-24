@@ -11,9 +11,9 @@
 @interface AuthDbClass : NSObject
 -(NSArray *) showAllUsers;
 - (void)deleteAuth;
--(BOOL)checkKey:(NSString*) key;
--(void) addKey: (NSString *) key;
--(void) authFist: (NSString *) login andPassword: (NSString *) password andEnter:(NSString *) enter andKey:(NSString *) key;
+-(BOOL)checkKey:(NSString*) key andCatalogKey: (NSString*) catalogKey;
+-(void) addKey: (NSString *) key andCatalogKey: (NSString*) catalogKey;
+-(void) authFist: (NSString *) login andPassword: (NSString *) password andEnter:(NSString *) enter andKey:(NSString *) key andCatalogKey: (NSString*) catalogKey;
 - (BOOL)checkUsers:(NSString*) login andPassword:(NSString*) password;
 - (void)updateToken:(NSString *)token;
 - (void)DeleteUserWithOutKey;
