@@ -11,6 +11,12 @@
 #import "TitleClass.h"
 #import "CustomerViewController.h"
 
+#import "ParserOrder.h"
+#import "ParserOrderResponse.h"
+#import "APIGetClass.h"
+#import "APIPostClass.h"
+#import "SingleTone.h"
+
 @implementation OrderViewController
 {
     UIScrollView * mainscrollView;
@@ -23,6 +29,9 @@
     //Раздел заголовка---------------------------------------------------
     TitleClass * title = [[TitleClass alloc]initWithTitle:@"Заказ № 137"];
     self.navigationItem.titleView = title;
+    
+    self.arrayOrder = [NSMutableArray array];
+    
     
     //Кнопка бара--------------------------------------------
     UIButton * buttonCustomer =  [UIButton buttonWithType:UIButtonTypeCustom];
@@ -81,6 +90,30 @@
 {
     CustomerViewController * detail = [self.storyboard instantiateViewControllerWithIdentifier:@"CustomerViewController"];
     [self.navigationController pushViewController:detail animated:YES];
+}
+
+-(void) getApiOrder: (void (^)(void))block{
+    //Передаваемые параметры
+    
+    NSDictionary * params = [[NSDictionary alloc] initWithObjectsAndKeys:
+                             [[SingleTone sharedManager] parsingToken],@"token",
+                             self.orderID,@"order",
+                             nil];
+    
+    APIGetClass * api =[APIGetClass new]; //создаем API
+    [api getDataFromServerWithParams:params method:@"abpro/product" complitionBlock:^(id response) {
+        
+        ParserOrderResponse * parsingResponce =[[ParserOrderResponse alloc] init];
+        [parsingResponce parsing:response andArray:self.arrayOrder andBlock:^{
+            
+            
+            block();
+            
+        }];
+        
+        
+    }];
+    
 }
 
 @end
