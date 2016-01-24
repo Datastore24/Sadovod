@@ -26,7 +26,8 @@
 
 @property (strong, nonatomic) NSMutableArray * arrayResponce; //Массив с данными API
 @property (strong, nonatomic) NSMutableArray * arrayCheck; //Массив с данными API
-@property (strong, nonatomic) NSString * key; //Массив с данными API
+@property (strong, nonatomic) NSString * super_key; //Ключ
+@property (strong, nonatomic) NSString * catalog_key; //Каталожный ключ
 
 
 @end
@@ -117,7 +118,7 @@
         
         if (!array || !array.count){
          [self getKey:^{
-             [self getAuth:textFielsLoggin.text password:textFielsPassword.text andKey:self.key andBlock:^{
+             [self getAuth:textFielsLoggin.text password:textFielsPassword.text andKey:self.super_key andBlock:^{
                  
                  ParserLoginPassword * parse = [self.arrayResponce objectAtIndex:0];
                  NSLog(@"STATUS:%@",parse.status);
@@ -132,7 +133,8 @@
                      if(![authDbClass checkUsers:textFielsLoggin.text andPassword:textFielsPassword.text]){
                          
                          //Добавление данных успешно вошедшего пользователя в CoreData
-                         [authDbClass authFist:textFielsLoggin.text andPassword:textFielsPassword.text andEnter:@"1" andKey:self.key];
+                         NSLog(@"CATALOGK :%@ KEY:%@",self.catalog_key,self.super_key);
+                         [authDbClass authFist:textFielsLoggin.text andPassword:textFielsPassword.text andEnter:@"1" andKey:self.super_key andCatalogKey:self.catalog_key];
                          [authDbClass updateToken:parse.token];
                          [[SingleTone sharedManager] setParsingToken:parse.token];
                          
@@ -158,11 +160,13 @@
             
             NSLog(@"В базе найдены сочетания");
             Auth * authCoreData = [array objectAtIndex:0];
-            BOOL keyTrue=[auth checkKey:authCoreData.key];
+            BOOL keyTrue=[auth checkKey:authCoreData.key andCatalogKey:authCoreData.catalogkey];
             [self getAuth:textFielsLoggin.text password:textFielsPassword.text andKey:authCoreData.key andBlock:^{
                 ParserLoginPassword * parse = [self.arrayResponce objectAtIndex:0];
                 NSLog(@"STATUS:%@",parse.status);
                 NSLog(@"TOKEN:%@",parse.token);
+                NSLog(@"authCoreData.key: %@ CATALOG %@",authCoreData.key,authCoreData.catalogkey);
+                
                 
                 //Проверка главного ключа входа 1- успешно, 0 - неуспешно
                 if([parse.status isEqualToString:@"1"]){
@@ -176,8 +180,9 @@
                         //Добавление данных успешно вошедшего пользователя в CoreData
                         [authDbClass UpdateUserWithOutKey:textFielsLoggin.text password:textFielsPassword.text];
                         [authDbClass updateToken:parse.token];
-                        [self sendKey:parse.token];
-                        [[SingleTone sharedManager] setParsingToken:parse.token];
+                        [self sendKey:authCoreData.key andCatalogKey:authCoreData.catalogkey];
+                            [[SingleTone sharedManager] setParsingToken:parse.token];
+                      
                         
                         
                         
@@ -205,34 +210,38 @@
 -(void) getKey:(void (^)(void))block{
     NSDictionary * params = nil;
     APIGetClass * api = [APIGetClass new]; //Создаем экземпляр API
-    [api getDataFromServerWithParams:params method:@"abpro/check_superkey" complitionBlock:^(id response) {
+    [api getDataFromServerWithParams:params method:@"abpro/check_keys" complitionBlock:^(id response) {
         ParserAuthResponse * parsingResponce = [[ParserAuthResponse alloc] init];
-        
+        NSLog(@"RESPONSE %@",response);
         ParserAuthKey * parserAuthKey =[[parsingResponce parsing:response] objectAtIndex:0];
         //                //Проверка существует ли пользователь в CoreData
-        self.key=parserAuthKey.key;
-       
-        block();
+        self.super_key=parserAuthKey.super_key;
+        self.catalog_key=parserAuthKey.catalog_key;
+        if(parserAuthKey.catalog_key){
+                block();
+        }
+        
         
 
     }];
     
 }
 //Отправление ключа при авторизации
--(void) sendKey: (NSString*) key{
+-(void) sendKey: (NSString*) superKey andCatalogKey: (NSString*) catalogKey{
     
     NSDictionary * params = [[NSDictionary alloc] initWithObjectsAndKeys:
-                             key,@"key",
+                             superKey,@"super_key",
+                             catalogKey,@"catalog_key",
                              nil];
     APIPostClass * apiPost = [APIPostClass new]; //Создаем экземпляр API
-    [apiPost postDataToServerWithParams:params method:@"abpro/check_superkey" complitionBlock:^(id response) {
+    [apiPost postDataToServerWithParams:params method:@"abpro/check_keys" complitionBlock:^(id response) {
         
     }];
     
 }
 
 ////Авторизация пользователей
--(void) getAuth:(NSString *) login password: (NSString *) password andKey:(NSString*) key andBlock:(void (^)(void))block{
+-(void) getAuth:(NSString *) login password: (NSString *) password andKey:(NSString*) super_key andBlock:(void (^)(void))block{
     
 
     //Передаваемые параметры
@@ -240,7 +249,7 @@
    NSDictionary * params = [[NSDictionary alloc] initWithObjectsAndKeys:
                              login,@"login",
                              password,@"password",
-                             key,@"key",
+                             super_key,@"key",
                              nil];
     
     APIGetClass * api =[APIGetClass new]; //создаем API
@@ -261,12 +270,12 @@
 //
 
 //Проверка существует ли такой пользователь или нет
--(void) getApiAuthCheck:(NSString *) login password: (NSString *) password key: (NSString*) key andBlock:(void (^)(void))block{
+-(void) getApiAuthCheck:(NSString *) login password: (NSString *) password key: (NSString*) super_key andBlock:(void (^)(void))block{
     //Передаваемые параметры
     NSDictionary * params = [[NSDictionary alloc] initWithObjectsAndKeys:
                              login,@"login",
                              password,@"password",
-                             key,@"key",
+                             super_key,@"key",
                              nil];
     
     APIGetClass * api =[APIGetClass new]; //создаем API
@@ -292,7 +301,7 @@
     Auth * authCoreData = [arrayUser objectAtIndex:0];
    
     if (![authCoreData.enter isEqualToString:@"0"]){
-        
+        NSLog(@"ENTER: 0");
         if(arrayUser.count>1){
             
             [authDbClass deleteAuth];
@@ -304,8 +313,8 @@
             
             //Проверка существования пользователя
             
-            if(authCoreData.login != nil || authCoreData.password != nil || authCoreData.key != nil){
-                
+            if(authCoreData.login != nil && authCoreData.password != nil && authCoreData.key != nil && authCoreData.catalogkey != nil){
+               NSLog(@"COREDATA KEY %@, CatalogKEY: %@",authCoreData.key,authCoreData.catalogkey);
                 [self getApiAuthCheck:authCoreData.login password:authCoreData.password key:authCoreData.key andBlock:^{
                     ParserAuthKey * parse = [self.arrayCheck objectAtIndex:0];
                     

@@ -16,6 +16,7 @@
 @dynamic login;
 @dynamic password;
 @dynamic key;
+@dynamic catalogkey;
 @dynamic token;
 @dynamic enter;
 @dynamic uid;

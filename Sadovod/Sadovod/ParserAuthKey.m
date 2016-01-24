@@ -14,7 +14,8 @@
     
     return @{
              @"status" : mts_key(status),
-             @"key" : mts_key(key),
+             @"super_key" : mts_key(super_key),
+             @"catalog_key": mts_key(catalog_key),
              
              
              };

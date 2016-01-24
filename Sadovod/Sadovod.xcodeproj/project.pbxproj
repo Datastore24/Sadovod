@@ -53,8 +53,10 @@
 		77FC43C91C4FFC0B00F750A1 /* GuestPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FC43C81C4FFC0B00F750A1 /* GuestPasswordViewController.m */; };
 		AD379B911C50EC9A005DDDAC /* ParserProduct.m in Sources */ = {isa = PBXBuildFile; fileRef = AD379B901C50EC9A005DDDAC /* ParserProduct.m */; };
 		AD379B941C50ECA4005DDDAC /* ParserProductResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = AD379B931C50ECA4005DDDAC /* ParserProductResponse.m */; };
-		AD379B9A1C526109005DDDAC /* ParserOrders.m in Sources */ = {isa = PBXBuildFile; fileRef = AD379B991C526109005DDDAC /* ParserOrders.m */; };
-		AD379B9D1C526119005DDDAC /* ParserOrdersResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = AD379B9C1C526119005DDDAC /* ParserOrdersResponse.m */; };
+		AD379BB21C555B0C005DDDAC /* ParserOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = AD379BB11C555B0C005DDDAC /* ParserOrder.m */; };
+		AD379BB51C555B1C005DDDAC /* ParserOrderResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = AD379BB41C555B1C005DDDAC /* ParserOrderResponse.m */; };
+		AD379BB81C5560FE005DDDAC /* ParserOrderClientInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = AD379BB71C5560FE005DDDAC /* ParserOrderClientInfo.m */; };
+		AD379BBB1C556108005DDDAC /* ParserOrderClientInfoResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = AD379BBA1C556108005DDDAC /* ParserOrderClientInfoResponse.m */; };
 		AD69E5CE1C4E7C4400DF6151 /* ParserCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = AD69E5CD1C4E7C4400DF6151 /* ParserCategory.m */; };
 		AD69E5D11C4E7C9F00DF6151 /* ParserCategoryResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = AD69E5D01C4E7C9F00DF6151 /* ParserCategoryResponse.m */; };
 		AD69E5D41C4E974300DF6151 /* MyShowcaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD69E5D31C4E974300DF6151 /* MyShowcaseViewController.m */; };
@@ -176,10 +178,14 @@
 		AD379B901C50EC9A005DDDAC /* ParserProduct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserProduct.m; sourceTree = "<group>"; };
 		AD379B921C50ECA4005DDDAC /* ParserProductResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserProductResponse.h; sourceTree = "<group>"; };
 		AD379B931C50ECA4005DDDAC /* ParserProductResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserProductResponse.m; sourceTree = "<group>"; };
-		AD379B981C526109005DDDAC /* ParserOrders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserOrders.h; sourceTree = "<group>"; };
-		AD379B991C526109005DDDAC /* ParserOrders.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserOrders.m; sourceTree = "<group>"; };
-		AD379B9B1C526119005DDDAC /* ParserOrdersResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserOrdersResponse.h; sourceTree = "<group>"; };
-		AD379B9C1C526119005DDDAC /* ParserOrdersResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserOrdersResponse.m; sourceTree = "<group>"; };
+		AD379BB01C555B0C005DDDAC /* ParserOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserOrder.h; sourceTree = "<group>"; };
+		AD379BB11C555B0C005DDDAC /* ParserOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserOrder.m; sourceTree = "<group>"; };
+		AD379BB31C555B1C005DDDAC /* ParserOrderResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserOrderResponse.h; sourceTree = "<group>"; };
+		AD379BB41C555B1C005DDDAC /* ParserOrderResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserOrderResponse.m; sourceTree = "<group>"; };
+		AD379BB61C5560FE005DDDAC /* ParserOrderClientInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserOrderClientInfo.h; sourceTree = "<group>"; };
+		AD379BB71C5560FE005DDDAC /* ParserOrderClientInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserOrderClientInfo.m; sourceTree = "<group>"; };
+		AD379BB91C556108005DDDAC /* ParserOrderClientInfoResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserOrderClientInfoResponse.h; sourceTree = "<group>"; };
+		AD379BBA1C556108005DDDAC /* ParserOrderClientInfoResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserOrderClientInfoResponse.m; sourceTree = "<group>"; };
 		AD69E5CC1C4E7C4400DF6151 /* ParserCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserCategory.h; sourceTree = "<group>"; };
 		AD69E5CD1C4E7C4400DF6151 /* ParserCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserCategory.m; sourceTree = "<group>"; };
 		AD69E5CF1C4E7C9F00DF6151 /* ParserCategoryResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserCategoryResponse.h; sourceTree = "<group>"; };
@@ -526,10 +532,14 @@
 				AD379B901C50EC9A005DDDAC /* ParserProduct.m */,
 				AD379B921C50ECA4005DDDAC /* ParserProductResponse.h */,
 				AD379B931C50ECA4005DDDAC /* ParserProductResponse.m */,
-				AD379B981C526109005DDDAC /* ParserOrders.h */,
-				AD379B991C526109005DDDAC /* ParserOrders.m */,
-				AD379B9B1C526119005DDDAC /* ParserOrdersResponse.h */,
-				AD379B9C1C526119005DDDAC /* ParserOrdersResponse.m */,
+				AD379BB01C555B0C005DDDAC /* ParserOrder.h */,
+				AD379BB11C555B0C005DDDAC /* ParserOrder.m */,
+				AD379BB31C555B1C005DDDAC /* ParserOrderResponse.h */,
+				AD379BB41C555B1C005DDDAC /* ParserOrderResponse.m */,
+				AD379BB61C5560FE005DDDAC /* ParserOrderClientInfo.h */,
+				AD379BB71C5560FE005DDDAC /* ParserOrderClientInfo.m */,
+				AD379BB91C556108005DDDAC /* ParserOrderClientInfoResponse.h */,
+				AD379BBA1C556108005DDDAC /* ParserOrderClientInfoResponse.m */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -637,6 +647,7 @@
 				TargetAttributes = {
 					77BFECF11C4AC5E80091A336 = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = Y2KN3X79KQ;
 					};
 					77BFED0A1C4AC5E90091A336 = {
 						CreatedOnToolsVersion = 7.2;
@@ -778,7 +789,6 @@
 				ADFBF5861C4C4B35007E080D /* AlertClass.m in Sources */,
 				AD6F10231C4D310900FF70B3 /* ParserLoginPassword.m in Sources */,
 				AD69E5E91C4EE75D00DF6151 /* TextAndImageHeight.m in Sources */,
-				AD379B9A1C526109005DDDAC /* ParserOrders.m in Sources */,
 				AD69E5E51C4EE6B800DF6151 /* UIImage+Resize.m in Sources */,
 				77729FF71C53C53900BC7791 /* ViewCustomer.m in Sources */,
 				77D9D4FC1C4CE9AB003C3610 /* UIColor+HexColor.m in Sources */,
@@ -790,6 +800,7 @@
 				AD379B941C50ECA4005DDDAC /* ParserProductResponse.m in Sources */,
 				77729FF41C53C52100BC7791 /* CustomerViewController.m in Sources */,
 				776BF21D1C4B8A4C0006C502 /* SectionTableViewController.m in Sources */,
+				AD379BB51C555B1C005DDDAC /* ParserOrderResponse.m in Sources */,
 				AD6F100E1C4D1C3A00FF70B3 /* UserModel.xcdatamodeld in Sources */,
 				77729FF01C53B94400BC7791 /* EditSizeViewController.m in Sources */,
 				77E801AC1C5261D900091F9A /* OrderViewDetails.m in Sources */,
@@ -800,7 +811,6 @@
 				ADFBF5821C4C496B007E080D /* APIPostClass.m in Sources */,
 				AD69E5E31C4EE6B800DF6151 /* UIImage+Blured_And_SnapShot_Image.m in Sources */,
 				AD6F10201C4D266300FF70B3 /* SingleTone.m in Sources */,
-				AD379B9D1C526119005DDDAC /* ParserOrdersResponse.m in Sources */,
 				776BF2201C4B92780006C502 /* ViewSectionTable.m in Sources */,
 				AD6F10131C4D1C9F00FF70B3 /* Auth+CoreDataProperties.m in Sources */,
 				AD6F10141C4D1C9F00FF70B3 /* Auth.m in Sources */,
@@ -808,11 +818,14 @@
 				7767156D1C4FC4A70008DC24 /* ViewProductDetails.m in Sources */,
 				ADFBF57F1C4C47FE007E080D /* APIGetClass.m in Sources */,
 				77BFED2B1C4AC9F10091A336 /* SWRevealViewController.m in Sources */,
+				AD379BBB1C556108005DDDAC /* ParserOrderClientInfoResponse.m in Sources */,
 				77D9D4FF1C4CEBD1003C3610 /* LognViewController.m in Sources */,
 				AD69E5D11C4E7C9F00DF6151 /* ParserCategoryResponse.m in Sources */,
 				775B79CB1C51168B0036ABCE /* TextViewHeight.m in Sources */,
 				77CE819A1C4AFC44003C7FFE /* LabelViewMyShowcase.m in Sources */,
+				AD379BB21C555B0C005DDDAC /* ParserOrder.m in Sources */,
 				77FC43C91C4FFC0B00F750A1 /* GuestPasswordViewController.m in Sources */,
+				AD379BB81C5560FE005DDDAC /* ParserOrderClientInfo.m in Sources */,
 				AD6F10171C4D1CD600FF70B3 /* AuthDbClass.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -955,10 +968,13 @@
 			baseConfigurationReference = C29A1CA412141FC74A35B3D2 /* Pods-Sadovod.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Sadovod/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Ugi-Ugi.Sadovod";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -967,10 +983,13 @@
 			baseConfigurationReference = 87269916B8AC7706E07A131E /* Pods-Sadovod.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Sadovod/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Ugi-Ugi.Sadovod";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

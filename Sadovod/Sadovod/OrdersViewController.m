@@ -129,6 +129,7 @@
             NSLog(@"Button tag = %ld", [[ordersInfo objectForKey:@"id"] integerValue]);
             
             OrderViewController * detail = [self.storyboard instantiateViewControllerWithIdentifier:@"OrderViewController"];
+            detail.orderID=[NSString stringWithFormat:@"%ld",button.tag];
             [self.navigationController pushViewController:detail animated:YES];
 
         }

@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface OrderViewController : UIViewController
-
+@property (strong,nonatomic) NSString * orderID;
+@property (strong, nonatomic) NSMutableArray * arrayOrder; //Массив с Товарами
 @end
