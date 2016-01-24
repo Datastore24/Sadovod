@@ -37,6 +37,10 @@
         [self addSubview:[self addCommentViewWithView:view andHeight:200 andText:comment]];
         [self addSubview:[self addLabelSum]];
         [self addSubview:[self addLabelPhoneChangeWithText:phone]];
+        [self addSubview:[self addLabelNameChangeWithText:name]];
+        [self addSubview:[self addLabelSumChangeWithText:sum]];
+        [self addSubview:[self addButtonConfirmWithView:view]];
+        [self addSubview:[self addButtonCallWithView:view]];
         
         
     }
@@ -55,7 +59,7 @@
 
 - (UILabel*) addLabelPhoneChangeWithText: (NSString*) text
 {
-    UILabel * labelPhoneChange = [[UILabel alloc] initWithFrame:CGRectMake(90, 10, 250, 20)];
+    UILabel * labelPhoneChange = [[UILabel alloc] initWithFrame:CGRectMake(75, 10, 250, 20)];
     labelPhoneChange.text = text;
     labelPhoneChange.textColor = [UIColor colorWithHexString:@"a9a9a9"];
     labelPhoneChange.font = [UIFont fontWithName:@"HelveticaNeue" size:13];
@@ -70,6 +74,16 @@
     labelName.font = [UIFont fontWithName:@"Helvetica-Bold" size:13];
     
     return labelName;
+}
+
+- (UILabel*) addLabelNameChangeWithText: (NSString*) text
+{
+    UILabel * labelNameChange= [[UILabel alloc] initWithFrame:CGRectMake(45, 30, 120, 20)];
+    labelNameChange.text = text;
+    labelNameChange.textColor = [UIColor colorWithHexString:@"a9a9a9"];
+    labelNameChange.font = [UIFont fontWithName:@"HelveticaNeue" size:13];
+    
+    return labelNameChange;
 }
 
 - (UILabel*) addLabelAddress
@@ -112,12 +126,47 @@
 
 - (UILabel*) addLabelSum
 {
-    UILabel * labelAddress= [[UILabel alloc] initWithFrame:CGRectMake(10, 70 + adressChange.frame.size.height + commentChange.frame.size.height + 50, 95, 20)];
-    labelAddress.text = @"Сумма заказа:";
-    labelAddress.textColor = [UIColor colorWithHexString:@"3038a0"];
-    labelAddress.font = [UIFont fontWithName:@"Helvetica-Bold" size:13];
+    UILabel * labelSum= [[UILabel alloc] initWithFrame:CGRectMake(10, 70 + adressChange.frame.size.height + commentChange.frame.size.height + 50, 95, 20)];
+    labelSum.text = @"Сумма заказа:";
+    labelSum.textColor = [UIColor colorWithHexString:@"3038a0"];
+    labelSum.font = [UIFont fontWithName:@"Helvetica-Bold" size:13];
     
-    return labelAddress;
+    return labelSum;
+}
+
+- (UILabel*) addLabelSumChangeWithText: (NSString*) text
+{
+    UILabel * labelSumChange= [[UILabel alloc] initWithFrame:CGRectMake(110, 120 + adressChange.frame.size.height + commentChange.frame.size.height, 95, 20)];
+    labelSumChange.text = text;
+    labelSumChange.textColor = [UIColor colorWithHexString:@"a9a9a9"];
+    labelSumChange.font = [UIFont fontWithName:@"HelveticaNeue" size:13];
+    
+    return labelSumChange;
+}
+
+- (UIButton*) addButtonConfirmWithView: (UIView*) view
+{
+    UIButton * buttonConfirm = [UIButton buttonWithType:UIButtonTypeSystem];
+    buttonConfirm.frame = CGRectMake(0, 150 + adressChange.frame.size.height + commentChange.frame.size.height, view.frame.size.width, 30);
+    buttonConfirm.backgroundColor = [UIColor colorWithHexString:@"3038a0"];
+    buttonConfirm.tag = 1068;
+    [buttonConfirm setTitle:@"OK" forState:UIControlStateNormal];
+    [buttonConfirm setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    
+    return buttonConfirm;
+}
+
+- (UIButton*) addButtonCallWithView: (UIView*) view
+{
+    UIButton * buttonCall = [UIButton buttonWithType:UIButtonTypeSystem];
+    buttonCall.frame = CGRectMake(view.frame.size.width - 90, 10, 80, 20);
+    buttonCall.backgroundColor = nil;
+    buttonCall.tag = 1070;
+    [buttonCall setTitle:@"Позвонить" forState:UIControlStateNormal];
+    [buttonCall setTitleColor:[UIColor colorWithHexString:@"3038a0"] forState:UIControlStateNormal];
+    buttonCall.titleLabel.font = [UIFont systemFontOfSize:13];
+    
+    return buttonCall;
 }
 
 
