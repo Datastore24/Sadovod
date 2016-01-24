@@ -61,6 +61,7 @@
 - (void) buttonConfirmAction
 {
     NSLog(@"Test");
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 
