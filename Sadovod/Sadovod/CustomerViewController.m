@@ -58,16 +58,7 @@
     
 }
 
-- (void) buttonConfirmAction
-{
-    NSLog(@"Test");
-}
 
-
-- (void) buttonCallAction
-{
-    NSLog(@"Дзынь дзынь");
-}
 
 -(void) getApiOrderClientInfo: (void (^)(void))block{
     //Передаваемые параметры
@@ -91,6 +82,17 @@
         
     }];
     
+}
+
+- (void) buttonConfirmAction
+{
+    NSLog(@"Test");
+}
+
+
+- (void) buttonCallAction
+{
+    NSLog(@"Дзынь дзынь");
 }
 
 @end
