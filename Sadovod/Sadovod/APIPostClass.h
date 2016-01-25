@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @interface APIPostClass : NSObject
--(void) postDataToServerWithParams: (NSDictionary *) params method:(NSString*) method complitionBlock: (void (^) (id response)) compitionBack;
+-(void) postDataToServerWithParams: (NSDictionary *) params andAddParam: (NSString *) addParam method:(NSString*) method complitionBlock: (void (^) (id response)) compitionBack;
 @end

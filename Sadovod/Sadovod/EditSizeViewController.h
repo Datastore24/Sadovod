@@ -9,5 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface EditSizeViewController : UIViewController
+@property (strong,nonatomic) NSMutableArray * arrayProductSizes;
+@property (strong,nonatomic) NSString * productID;
+@property (strong,nonatomic) NSMutableArray * postArray;
+@property (strong,nonatomic) NSArray * postArraySorted;
 
 @end

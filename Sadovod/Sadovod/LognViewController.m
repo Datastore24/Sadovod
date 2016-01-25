@@ -234,7 +234,7 @@
                              catalogKey,@"catalog_key",
                              nil];
     APIPostClass * apiPost = [APIPostClass new]; //Создаем экземпляр API
-    [apiPost postDataToServerWithParams:params method:@"abpro/check_keys" complitionBlock:^(id response) {
+    [apiPost postDataToServerWithParams:params andAddParam:nil method:@"abpro/check_keys" complitionBlock:^(id response) {
         
     }];
     

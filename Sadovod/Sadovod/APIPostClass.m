@@ -13,9 +13,9 @@
 
 
 @implementation APIPostClass
--(void) postDataToServerWithParams: (NSDictionary *) params method:(NSString*) method complitionBlock: (void (^) (id response)) compitionBack{
+-(void) postDataToServerWithParams: (NSDictionary *) params andAddParam: (NSString *) addParam method:(NSString*) method complitionBlock: (void (^) (id response)) compitionBack{
     
-    NSString * url = [NSString stringWithFormat:@"%@/%@/",MAIN_URL,method];
+    NSString * url = [NSString stringWithFormat:@"%@/%@/?%@",MAIN_URL,method,addParam];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];

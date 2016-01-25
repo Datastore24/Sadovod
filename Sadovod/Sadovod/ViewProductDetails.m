@@ -53,6 +53,9 @@
             NSURL *imgURL = [NSURL URLWithString:[array objectAtIndex:i]];
 
             //SingleTone с ресайз изображения
+            __block UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+            activityIndicator.center = _scrollView.center;
+            activityIndicator.hidesWhenStopped = YES;
             SDWebImageManager *manager = [SDWebImageManager sharedManager];
             [manager downloadImageWithURL:imgURL
                                   options:0
@@ -84,14 +87,17 @@
                                         
                                         [_scrollView addSubview:_viewOne];
                                         
-                                        
+                                        [activityIndicator removeFromSuperview];
                                     }else{
-                                        
+                                        [activityIndicator removeFromSuperview];
                                     }
                                 }];
 
 //            [_scrollView addSubview:_viewOne];
+            
             [self addSubview:_scrollView];
+            [self addSubview:activityIndicator];
+            [activityIndicator startAnimating];
         }
 
         
