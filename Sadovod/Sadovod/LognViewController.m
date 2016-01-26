@@ -234,7 +234,7 @@
                              catalogKey,@"catalog_key",
                              nil];
     APIPostClass * apiPost = [APIPostClass new]; //Создаем экземпляр API
-    [apiPost postDataToServerWithParams:params method:@"abpro/check_keys" complitionBlock:^(id response) {
+    [apiPost postDataToServerWithParams:params andAddParam:nil method:@"abpro/check_keys" complitionBlock:^(id response) {
         
     }];
     
@@ -301,7 +301,7 @@
     Auth * authCoreData = [arrayUser objectAtIndex:0];
    
     if (![authCoreData.enter isEqualToString:@"0"]){
-        NSLog(@"ENTER: 0");
+        NSLog(@"ENTER: 1");
         if(arrayUser.count>1){
             
             [authDbClass deleteAuth];
@@ -314,7 +314,7 @@
             //Проверка существования пользователя
             
             if(authCoreData.login != nil && authCoreData.password != nil && authCoreData.key != nil && authCoreData.catalogkey != nil){
-               NSLog(@"COREDATA KEY %@, CatalogKEY: %@",authCoreData.key,authCoreData.catalogkey);
+               NSLog(@"COREDATA KEY %@, CatalogKEY: %@ TOKEN: %@",authCoreData.key,authCoreData.catalogkey,authCoreData.token);
                 [self getApiAuthCheck:authCoreData.login password:authCoreData.password key:authCoreData.key andBlock:^{
                     ParserAuthKey * parse = [self.arrayCheck objectAtIndex:0];
                     

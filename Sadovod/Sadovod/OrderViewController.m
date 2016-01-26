@@ -82,13 +82,13 @@
         [mainscrollView addSubview:numberObjectLabel];
         
         //Создание кнопки редактировать товар-----------------
-        UIButton * buttonEditOrder = [UIButton buttonWithType:UIButtonTypeSystem];
-        buttonEditOrder.frame = CGRectMake((self.view.frame.size.width / 4) + 25,
-                                           120 + self.view.frame.size.width / 2 * i, 25, 25);
-        buttonEditOrder.tag = [[infoOrderItems objectForKey:@"id"] integerValue];
-        [buttonEditOrder setImage:[UIImage imageNamed:@"ic_order_edit.png"] forState:UIControlStateNormal];
-        [buttonEditOrder addTarget:self action:@selector(buttonEditOrderAction:) forControlEvents:UIControlEventTouchUpInside];
-        [mainscrollView addSubview:buttonEditOrder];
+//        UIButton * buttonEditOrder = [UIButton buttonWithType:UIButtonTypeSystem];
+//        buttonEditOrder.frame = CGRectMake((self.view.frame.size.width / 4) + 25,
+//                                           120 + self.view.frame.size.width / 2 * i, 25, 25);
+//        buttonEditOrder.tag = [[infoOrderItems objectForKey:@"id"] integerValue];
+//        [buttonEditOrder setImage:[UIImage imageNamed:@"ic_order_edit.png"] forState:UIControlStateNormal];
+//        [buttonEditOrder addTarget:self action:@selector(buttonEditOrderAction:) forControlEvents:UIControlEventTouchUpInside];
+//        [mainscrollView addSubview:buttonEditOrder];
         
     }
         

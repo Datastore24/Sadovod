@@ -11,6 +11,7 @@
 #import "ViewProductDetails.h"
 #import "UIColor+HexColor.h"
 #import "EditSizeViewController.h"
+#import "AlertClass.h"
 
 #import "APIPostClass.h"
 #import "APIGetClass.h"
@@ -24,6 +25,8 @@
 @property (strong, nonatomic) NSMutableArray * arrayProduct; //Массив с Товарами
 @property (strong, nonatomic) ViewProductDetails * viewProductDetails; //Экземпляр класса
 @property (strong, nonatomic) UIButton * buttonCloseZoom;
+@property (strong, nonatomic) UILabel * priceLabel;
+@property (strong, nonatomic) NSMutableArray * tempArraySizes;
 
 
 @end
@@ -38,16 +41,30 @@
     NSArray * productSizes;
 }
 
+
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     TitleClass * title = [[TitleClass alloc]initWithTitle:self.productName];
     self.navigationItem.titleView = title;
     
+    //NOTIFICATION
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadView) name:@"ReloadView" object:nil];
+    //
+    
      self.arrayProduct = [NSMutableArray array];
+    
     
     [self getApiProduct:^{
         
+        
+        
       NSDictionary * productInfo=[self.arrayProduct objectAtIndex:0];
+        
+        
+        if([productInfo objectForKey:@"id"] != [NSNull null]){
+            
         
         
     NSArray * array = [productInfo objectForKey:@"images"];
@@ -81,11 +98,11 @@
     priceView.backgroundColor = [UIColor colorWithHexString:@"3038a0"];
     [mainScrollView addSubview:priceView];
     //Лейбл цены------------------------------------------------
-    UILabel * priceLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, 120, 30)];
-    priceLabel.text = [NSString stringWithFormat:@"%@ руб.",[productInfo objectForKey:@"cost"]];
-    priceLabel.textColor = [UIColor whiteColor];
-    priceLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:16];
-    [priceView addSubview:priceLabel];
+    self.priceLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, 120, 30)];
+    self.priceLabel.text = [NSString stringWithFormat:@"%@ руб.",[productInfo objectForKey:@"cost"]];
+    self.priceLabel.textColor = [UIColor whiteColor];
+    self.priceLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:16];
+    [priceView addSubview:self.priceLabel];
     //Кнопка изменения цены-------------------------------------
     UIButton *buttonChangePrice = [UIButton buttonWithType:UIButtonTypeCustom];
     [buttonChangePrice addTarget:self
@@ -162,7 +179,8 @@
         
     //Кнопки размеров---------------------------------------------------------------------
         productSizes = [productInfo objectForKey:@"sizes"];
-        NSLog(@"SIZE: %@",productSizes);
+    
+        
         int heightLine=0; //На каждую строку добавляется +45
         int countSizePerline=0; // Количество в строке от 0
         int countSizeLine=1; //Количество строк
@@ -175,21 +193,21 @@
                            action:@selector(buttonSizeAction:)
                  forControlEvents:UIControlEventTouchUpInside];
             if(i!=0 && countSizePerline==3){
-                NSLog(@"YES");
+               
                 buttonSize.frame = CGRectMake (2.5, 55+heightLine, (self.view.frame.size.width / 3) - 5, 35);
                 heightLine += 45;
                 countSizePerline = 1;
                 countSizeLine += 1;
                 
             }else{
-                NSLog(@"NO");
+              
                 buttonSize.frame = CGRectMake ((2.5 + (self.view.frame.size.width / 3) * countSizePerline), 10+heightLine, (self.view.frame.size.width / 3) - 5, 35);
                 countSizePerline += 1;
                 
                 
             }
             
-            buttonSize.tag = i;
+            buttonSize.tag = [[productSizesInfo objectForKey:@"id"] integerValue];
             [buttonSize setTitle:[productSizesInfo objectForKey:@"value"] forState:UIControlStateNormal];
             [buttonSize setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
             
@@ -296,9 +314,42 @@
         labelData.text = [NSString stringWithFormat:@"      %@",  [productOptionsInfo objectForKey:@"value"]];
         labelData.font = [UIFont fontWithName:@"HelveticaNeue" size:12];
         [viewDetails addSubview:labelData];
+        
+        
+        if(i==productOptions.count-1){
+            
+            UIView * viewDetails = [[UIView alloc] initWithFrame:CGRectMake(0, (titleDetails.frame.origin.y + 40) + 40 * i, self.view.frame.size.width, 40)];
+            viewDetails.backgroundColor = [UIColor whiteColor];
+            viewDetails.layer.borderColor = [UIColor groupTableViewBackgroundColor].CGColor;
+            viewDetails.layer.borderWidth = 0.5;
+            [mainScrollView addSubview:viewDetails];
+            
+            //Создаем заголовки деталей-------------------------------------------------------------
+            UILabel * labelDetail = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 120, 40)];
+            labelDetail.layer.borderColor = [UIColor groupTableViewBackgroundColor].CGColor;
+            labelDetail.layer.borderWidth = 1;
+            labelDetail.textColor = [UIColor colorWithHexString:@"c6c6c6"];
+            labelDetail.text = @"   ID";
+            labelDetail.font = [UIFont fontWithName:@"HelveticaNeue" size:12];
+            [viewDetails addSubview:labelDetail];
+            
+            //Создаем заголовок данных--------------------------------------------------------------
+            UILabel * labelData = [[UILabel alloc] initWithFrame:CGRectMake(120, 0, self.view.frame.size.width - 120, 40)];
+            labelData.layer.borderColor = [UIColor groupTableViewBackgroundColor].CGColor;
+            labelData.layer.borderWidth = 1;
+            labelData.text = [NSString stringWithFormat:@"      %@",  self.productID];
+            labelData.font = [UIFont fontWithName:@"HelveticaNeue" size:12];
+            [viewDetails addSubview:labelData];
+            
+        }
     }
+            
+        }else{
+            [AlertClass showAlertViewWithMessage:@"Ошибка загрузки товара" view:self];
+        }
     
     }];
+        
 
 }
 
@@ -314,7 +365,8 @@
     UITextField *textField = [alert addTextField:@"Новая цена"];
     
     [alert addButton:@"Изменить" actionBlock:^(void) {
-        NSLog(@"Новай Цена: %@", textField.text);
+        [self postApiPrice:textField.text];
+       
     }];
     
     [alert showEdit:self title:@"Измените цену" subTitle:@"Введите новую цену" closeButtonTitle:@"Отмена" duration:0.0f];
@@ -322,18 +374,21 @@
 
 - (void) areAvailableAction
 {
-    [UIView animateWithDuration:0.3 animations:^{
-        notAvailable.backgroundColor = [UIColor whiteColor];
-        [notAvailable setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        
-        areAvailable.backgroundColor = [UIColor colorWithHexString:@"a0a7db"];
-        [areAvailable setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self postApiAviable:@"1" andBlock:^{
+        [UIView animateWithDuration:0.3 animations:^{
+            notAvailable.backgroundColor = [UIColor whiteColor];
+            [notAvailable setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            
+            areAvailable.backgroundColor = [UIColor colorWithHexString:@"a0a7db"];
+            [areAvailable setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        }];
     }];
+    
 }
 
 - (void) notAvailableAction
 {
-    
+    [self postApiAviable:@"-5" andBlock:^{
     [UIView animateWithDuration:0.3 animations:^{
         areAvailable.backgroundColor = [UIColor whiteColor];
         [areAvailable setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -341,6 +396,7 @@
         notAvailable.backgroundColor = [UIColor colorWithHexString:@"a0a7db"];
         [notAvailable setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     }];
+        }];
 
 }
 
@@ -371,19 +427,109 @@
     
 }
 
+//Отправляем цену на сервер
+- (void)postApiPrice:(NSString *) price
+{
+    //Передаваемые параметры
+    
+    NSDictionary* params = [[NSDictionary alloc] initWithObjectsAndKeys:
+                            [[SingleTone sharedManager] parsingToken],@"token",
+                            self.productID,@"product",
+                            price,@"cost",
+                            nil];
+    
+    APIPostClass* api = [APIPostClass new]; //создаем API
+    [api postDataToServerWithParams:params
+                        andAddParam:nil
+                             method:@"abpro/product_cost"
+                    complitionBlock:^(id response) {
+                        NSDictionary* dict = (NSDictionary*)response;
+                        if ([[dict objectForKey:@"status"] integerValue] == 1) {
+                            
+                            self.priceLabel.text = [NSString stringWithFormat:@"%@ руб.",price];
+                            
+                        }else {
+                            
+                        }
+                    }];
+}
+
+//Отправляем цену на сервер
+- (void)postApiAviable:(NSString*) aviable andBlock:(void (^)(void))block
+{
+    //Передаваемые параметры
+    NSDictionary* params = [[NSDictionary alloc] initWithObjectsAndKeys:
+                            [[SingleTone sharedManager] parsingToken],@"token",
+                            self.productID,@"product",
+                            aviable,@"status",
+                            nil];
+    
+    APIPostClass* api = [APIPostClass new]; //создаем API
+    [api postDataToServerWithParams:params andAddParam:nil
+                             method:@"abpro/product_status"
+                    complitionBlock:^(id response) {
+                        NSDictionary* dict = (NSDictionary*)response;
+                        
+                        if ([[dict objectForKey:@"status"] integerValue] == 1) {
+                            
+                            block();
+                        }else {
+                            
+                        }
+                    }];
+}
+
+//Отправляем доступность размера
+- (void)postApiAviableSize:(NSString *) aviable andPriceID:(NSString *) priceID andBlock:(void (^)(void))block
+{
+    //Передаваемые параметры
+    NSDictionary* params = [[NSDictionary alloc] initWithObjectsAndKeys:
+                            [[SingleTone sharedManager] parsingToken],@"token",
+                            priceID,@"price",
+
+                            nil];
+    NSString * addParam = [NSString stringWithFormat:@"aviable=%@",aviable];
+    
+    APIPostClass* api = [APIPostClass new]; //создаем API
+    [api postDataToServerWithParams:params andAddParam:addParam
+                             method:@"abpro/price_aviable"
+                    complitionBlock:^(id response) {
+                        NSDictionary* dict = (NSDictionary*)response;
+                        
+                        if ([[dict objectForKey:@"status"] integerValue] == 1) {
+                            
+                            block();
+                        }else {
+                            
+                        }
+                    }];
+}
+
 //Увеличиваем изображение
 -(void) largeImage{
-    NSLog(@"Large Image: %f",self.view.bounds.size.width);
+   
     NSDictionary * productInfo=[self.arrayProduct objectAtIndex:0];
     CGFloat width = [UIScreen mainScreen].bounds.size.width;
     CGFloat height = [UIScreen mainScreen].bounds.size.height;
     NSArray * array = [productInfo objectForKey:@"images"];
+    
+    NSMutableArray * arrayFullImage = [NSMutableArray array];
+    NSString * newURLImage;
+    for (int i=0; i<array.count; i++) {
+        NSString * oldURL = [array objectAtIndex:i];
+         newURLImage = [oldURL stringByReplacingOccurrencesOfString:@"img_med"
+                                             withString:@"img"];
+        [arrayFullImage addObject:newURLImage];
+        
+    }
+    
+    
     self.viewProductDetails = [[ViewProductDetails alloc] initWithFrame:CGRectMake(0, 0,
                                                                                                width,
                                                                                                height-64)
-                               andArray:array
+                               andArray:arrayFullImage
                                andFullScreen:YES];
-    NSLog(@"Large Image2: %f",self.viewProductDetails.frame.size.width);
+   
     mainScrollView.scrollEnabled=NO;
     self.viewProductDetails.alpha =0;
     
@@ -472,41 +618,62 @@
 - (void) buttonSizeAction: (UIButton *) button
 {
     for (int i = 0; i < productSizes.count; i ++) {
-        if (button.tag == i) {
-            NSDictionary * testDict = [productSizes objectAtIndex:i];
+        NSDictionary * testDict = [productSizes objectAtIndex:i];
+        self.tempArraySizes = [NSMutableArray array];
+        
+        if (button.tag == [[testDict objectForKey:@"id"] integerValue]) {
             
-            NSLog(@"%@", [testDict objectForKey:@"aviable"]);
+            
             if([[testDict objectForKey:@"aviable"] integerValue] == 0){
                 SCLAlertView *alert = [[SCLAlertView alloc] init];
                 //Using Selector
-                [alert addButton:@"Ok" target:self selector:@selector(firstButton1)];
-                [alert showSuccess:self title:@"Включение размера" subTitle:@"Размера 48 нет в наличии, включить ?" closeButtonTitle:@"Отмена" duration:0.0f];
-                NSLog(@"Yes");
+                
+                [alert addButton:@"Ok" actionBlock:^{
+                    [self postApiAviableSize:@"1" andPriceID:[testDict objectForKey:@"id"] andBlock:^{
+                        
+                        button.backgroundColor = [UIColor colorWithHexString:@"e9eaf7"];
+                        [[NSNotificationCenter defaultCenter] postNotificationName:@"ReloadView" object:self];
+                        
+                        
+                    }];
+                }];
+                
+                NSString * sizeText = [NSString stringWithFormat:@"Размера %@ нет в наличии, включить ?",[testDict objectForKey:@"value"]];
+                [alert showSuccess:self title:@"Включение размера" subTitle:sizeText closeButtonTitle:@"Отмена" duration:0.0f];
+                
             }else{
                 SCLAlertView *alert = [[SCLAlertView alloc] init];
                 //Using Selector
-                [alert addButton:@"Ok" target:self selector:@selector(firstButton2)];
-                [alert showSuccess:self title:@"Отключение размера" subTitle:@"Размер 48 в наличии, отключить ?" closeButtonTitle:@"Отмена" duration:0.0f];
-                NSLog(@"no");
+                
+                [alert addButton:@"Ok" actionBlock:^{
+                    [self postApiAviableSize:@"0" andPriceID:[testDict objectForKey:@"id"] andBlock:^{
+                        
+                        button.backgroundColor = [UIColor colorWithHexString:@"ffebee"];
+                        [[NSNotificationCenter defaultCenter] postNotificationName:@"ReloadView" object:self];
+                        
+                       
+                    }];
+                }];
+                
+                NSString * sizeText = [NSString stringWithFormat:@"Размера %@ в наличии, отключить ?",[testDict objectForKey:@"value"]];
+                [alert showSuccess:self title:@"Отключение размера" subTitle:sizeText closeButtonTitle:@"Отмена" duration:0.0f];
+                
             }
             
         }
     }
 }
 
-- (void) firstButton1
-{
-    NSLog(@"firstButton1");
+- (void)reloadView{
+    [self viewDidLoad]; [self viewWillAppear:YES];
 }
 
-- (void) firstButton2
-{
-    NSLog(@"firstButton2");
-}
+
 
 - (void) buttonSizeAddAction
 {
     EditSizeViewController * detail = [self.storyboard instantiateViewControllerWithIdentifier:@"EditSizeViewController"];
+    detail.productID=self.productID;
     [self.navigationController pushViewController:detail animated:YES];
 }
 
