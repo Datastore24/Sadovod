@@ -21,6 +21,9 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Сохранить" style: UIBarButtonItemStylePlain target:self action:@selector(aMethod:)];
+        [backButton setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys: [UIColor lightGrayColor],  UITextAttributeTextColor,nil] forState:UIControlStateNormal];
+
+    
     self.navigationItem.rightBarButtonItem = backButton;
 }
 

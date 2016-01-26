@@ -26,6 +26,10 @@
 {
     [super viewDidLoad];
     
+     self.arrayOrder = [NSMutableArray array];
+    TitleClass * title = [[TitleClass alloc]initWithTitle:[NSString stringWithFormat:@"Заказ №%@", self.orderID]];
+    self.navigationItem.titleView = title;
+    
     
     //Кнопка бара--------------------------------------------
     UIButton * buttonCustomer =  [UIButton buttonWithType:UIButtonTypeCustom];
@@ -40,26 +44,19 @@
     mainscrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     mainscrollView.contentSize = CGSizeMake(self.view.frame.size.width, 2000);
     [self.view addSubview:mainscrollView];
-
-    
   
     
-    
-    self.arrayOrder = [NSMutableArray array];
+   
     
         [self getApiOrder:^{
         
     
     if(self.arrayOrder.count > 0 ){
         ParserOrder * parserOrder = [self.arrayOrder objectAtIndex:0];
-        NSDictionary * orderInfo =parserOrder.order;
         NSArray * listOrderItems = parserOrder.list;
         
-        //Раздел заголовка---------------------------------------------------
-      
-        
-    TitleClass * title = [[TitleClass alloc]initWithTitle:[NSString stringWithFormat:@"Заказ №%@",[orderInfo objectForKey:@"id"]]];
-    self.navigationItem.titleView = title;
+ 
+
     
     for (int i = 0; i < listOrderItems.count; i ++) {
         

@@ -47,7 +47,7 @@
                             completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
                               
                                 if(image){
-                                    imageView.frame=CGRectMake(2.5f, 2.5f, frame.size.width - 5, frame.size.height - 5);
+                                    imageView.frame=CGRectMake(0, 0, frame.size.width - 2.5, frame.size.height - 5);
                                     
                                     
                                     if(resized){

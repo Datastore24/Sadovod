@@ -21,7 +21,12 @@
 - (void) viewDidLoad {
     [super viewDidLoad];
     NSLog(@"%@",self.orderID);
+    
+    //Раздел заголовка---------------------------------------------------
     self.arrayOrderClientInfo =[NSMutableArray array];
+    
+    TitleClass * title = [[TitleClass alloc]initWithTitle:[NSString stringWithFormat:@"Заказ № %@", self.orderID]];
+    self.navigationItem.titleView = title;
     
     [self getApiOrderClientInfo:^{
         
@@ -30,10 +35,7 @@
         ParserOrderClientInfo * parserOrderClientInfo = [self.arrayOrderClientInfo objectAtIndex:0];
     
 
-    //Раздел заголовка---------------------------------------------------
-      
-        TitleClass * title = [[TitleClass alloc]initWithTitle:[NSString stringWithFormat:@"Заказ № %@", parserOrderClientInfo.order_id]];
-    self.navigationItem.titleView = title;
+
     
     //Инициализация графического интерфейса------------------------------
     ViewCustomer * viewCustomer = [[ViewCustomer alloc] initWithPhone:parserOrderClientInfo.phone
@@ -65,8 +67,6 @@
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
-
-
 -(void) getApiOrderClientInfo: (void (^)(void))block{
     //Передаваемые параметры
     
@@ -91,5 +91,10 @@
     
 }
 
+
+- (void) buttonCallAction
+{
+    NSLog(@"Дзынь дзынь");
+}
 
 @end

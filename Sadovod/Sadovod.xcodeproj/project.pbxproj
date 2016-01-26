@@ -33,6 +33,7 @@
 		77729FF41C53C52100BC7791 /* CustomerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77729FF31C53C52100BC7791 /* CustomerViewController.m */; };
 		77729FF71C53C53900BC7791 /* ViewCustomer.m in Sources */ = {isa = PBXBuildFile; fileRef = 77729FF61C53C53900BC7791 /* ViewCustomer.m */; };
 		77729FF91C53C7E700BC7791 /* ic_order_info.png in Resources */ = {isa = PBXBuildFile; fileRef = 77729FF81C53C7E700BC7791 /* ic_order_info.png */; };
+		77A01D181C5819ED0001DFC1 /* saveimage.png in Resources */ = {isa = PBXBuildFile; fileRef = 77A01D171C5819ED0001DFC1 /* saveimage.png */; };
 		77BFECF71C4AC5E80091A336 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 77BFECF61C4AC5E80091A336 /* main.m */; };
 		77BFECFA1C4AC5E80091A336 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 77BFECF91C4AC5E80091A336 /* AppDelegate.m */; };
 		77BFECFD1C4AC5E80091A336 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77BFECFC1C4AC5E80091A336 /* ViewController.m */; };
@@ -139,6 +140,7 @@
 		77729FF51C53C53900BC7791 /* ViewCustomer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewCustomer.h; sourceTree = "<group>"; };
 		77729FF61C53C53900BC7791 /* ViewCustomer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewCustomer.m; sourceTree = "<group>"; };
 		77729FF81C53C7E700BC7791 /* ic_order_info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_order_info.png; sourceTree = "<group>"; };
+		77A01D171C5819ED0001DFC1 /* saveimage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = saveimage.png; sourceTree = "<group>"; };
 		77BFECF21C4AC5E80091A336 /* Sadovod.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sadovod.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77BFECF61C4AC5E80091A336 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		77BFECF81C4AC5E80091A336 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -279,6 +281,7 @@
 		775B79C51C50CF9D0036ABCE /* Orders */ = {
 			isa = PBXGroup;
 			children = (
+				ADFBF5871C4C5A5F007E080D /* Icons */,
 				775B79C61C50CFB60036ABCE /* OrdersViewController.h */,
 				775B79C71C50CFB60036ABCE /* OrdersViewController.m */,
 			);
@@ -370,7 +373,6 @@
 				ADFBF57C1C4C47E6007E080D /* API */,
 				ADFBF5831C4C4A0E007E080D /* CoreData */,
 				776BF2241C4B98600006C502 /* testImage */,
-				ADFBF5871C4C5A5F007E080D /* Icons */,
 				77BFED2F1C4ADF7A0091A336 /* Owner */,
 				77BFECF81C4AC5E80091A336 /* AppDelegate.h */,
 				77BFECF91C4AC5E80091A336 /* AppDelegate.m */,
@@ -570,6 +572,7 @@
 		ADFBF5871C4C5A5F007E080D /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				77A01D171C5819ED0001DFC1 /* saveimage.png */,
 				77729FF81C53C7E700BC7791 /* ic_order_info.png */,
 				77729FEC1C53B53F00BC7791 /* ic_order_edit.png */,
 				775B79C31C50CECF0036ABCE /* ic_orders.png */,
@@ -708,6 +711,7 @@
 				775B79C41C50CECF0036ABCE /* ic_orders.png in Resources */,
 				77729FF91C53C7E700BC7791 /* ic_order_info.png in Resources */,
 				776BF2341C4B993C0006C502 /* 2image.jpg in Resources */,
+				77A01D181C5819ED0001DFC1 /* saveimage.png in Resources */,
 				ADFBF58B1C4C5F16007E080D /* menu.png in Resources */,
 				776BF2381C4B993C0006C502 /* 9image.jpg in Resources */,
 				776BF2301C4B993C0006C502 /* 3image.jpg in Resources */,
