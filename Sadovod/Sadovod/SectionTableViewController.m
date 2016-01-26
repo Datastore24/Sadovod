@@ -69,8 +69,8 @@
           
                 ViewSectionTable * image = [[ViewSectionTable alloc] initWithFrame:
                                             CGRectMake(0,
-                                                       320 * i,
-                                                       self.view.bounds.size.width,
+                                                       320 * i - 2.5,
+                                                       self.view.bounds.size.width + 2.5,
                                                        320)andImageURL:[itemsInfo objectForKey:@"img"]
                                             isInternetURL:YES
                                                                      andLabelPrice:[NSString stringWithFormat:@"%ld", [[itemsInfo objectForKey:@"cost"] integerValue]]andResized:NO];
@@ -125,7 +125,7 @@
             } else {
                 
                 ViewSectionTable * image = [[ViewSectionTable alloc] initWithFrame:
-                                            CGRectMake(self.view.frame.size.width / 2,
+                                            CGRectMake(self.view.frame.size.width / 2 + 2.5,
                                                        self.view.frame.size.width /2  * numerator,
                                                        self.view.frame.size.width / 2 ,
                                                        self.view.frame.size.width /2 )andImageURL:[itemsInfo objectForKey:@"img"]

@@ -28,6 +28,7 @@
     
     self.view.backgroundColor = [UIColor lightGrayColor];
     self.menuTableView.backgroundColor = nil;
+    self.menuTableView.scrollEnabled = NO;
     
     //Инициализация селектора кнопки выхода-----------------------------
     [self.buttonExit addTarget:self action:@selector(buttonExitAction)
@@ -68,6 +69,11 @@
 //        [cell addSubview:view];
 ////    }
     
+    if ([cellIdentifier  isEqual: @"third"]) {
+        
+        cell.userInteractionEnabled = NO;
+    }
+    
     cell.backgroundColor = nil;
     
     return cell;
@@ -88,7 +94,11 @@
     }
 }
 
+#pragma mark - UITableViewDelegate
+//Анимация нажатия ячейки--------------------------------------------------------------
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if (indexPath.row == 3) {
         NSLog(@"Сюда вставляем все что необходимо по нажатию на выход !!!");
