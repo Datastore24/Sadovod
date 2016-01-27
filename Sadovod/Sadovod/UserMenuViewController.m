@@ -13,9 +13,6 @@
 
 @interface UserMenuViewController ()
 
-@property (weak, nonatomic) IBOutlet UIButton *buttonExit;
-
-
 @end
 
 @implementation UserMenuViewController
@@ -29,10 +26,6 @@
     self.view.backgroundColor = [UIColor lightGrayColor];
     self.menuTableView.backgroundColor = nil;
     self.menuTableView.scrollEnabled = NO;
-    
-    //Инициализация селектора кнопки выхода-----------------------------
-    [self.buttonExit addTarget:self action:@selector(buttonExitAction)
-              forControlEvents:UIControlEventTouchUpInside];
     
     menu = [NSArray arrayWithObjects:@"first", @"second", @"third", @"fourth", nil];
 
@@ -76,7 +69,48 @@
     
     cell.backgroundColor = nil;
     
+//    //Изменение в таблице-----------------------------------------------------------------
+//    UILabel * labelCell1 = (UILabel *)[self.view viewWithTag:1001];
+//    if (labelCell1) {
+//        labelCell1.text = @"Мои Поставщеки";
+//    }
+//    
+//    UILabel * labelCell2 = (UILabel *)[self.view viewWithTag:1002];
+//    if (labelCell2) {
+//        labelCell2.alpha = 0.f;
+//        
+//    }
+//    
+//    if ([cellIdentifier isEqual:@"second"]) {
+//        
+//        cell.userInteractionEnabled = NO;
+//        
+//        UILabel * newLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, -8, 130, 40)];
+//        newLabel.text = @"Покупки";
+//        newLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:17];
+//        newLabel.textColor = [UIColor blackColor];
+//        [cell addSubview:newLabel];
+//        
+//        //Create the button and add it to the cell
+//        UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+//        button.tag = 555;
+//        [button addTarget:self
+//                   action:@selector(customActionPressed:)
+//         forControlEvents:UIControlEventTouchUpInside];
+//        [button setTitle:@"Custom Action" forState:UIControlStateNormal];
+//        button.frame = CGRectMake(20.0f, 60.0f, 150.0f, 30.0f);
+//        [cell addSubview:button];
+//        
+//    }
+    
     return cell;
+}
+
+- (void) customActionPressed: (UIButton *) button
+{
+    if (button.tag == 555) {
+        NSLog(@"Hello");
+    }
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -115,4 +149,15 @@
     NSLog(@"Кнопка выхода");
 }
 
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+//    if (indexPath.row == 1)
+//    {
+//        return 150.f;
+//    } else {
+
+    return 44.f;
+//}
+}
 @end

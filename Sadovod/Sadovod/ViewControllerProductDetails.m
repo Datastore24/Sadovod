@@ -73,7 +73,7 @@
     mainScrollView = [[UIScrollView alloc] initWithFrame: CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     mainScrollView.backgroundColor = [UIColor colorWithHexString:@"f4f4f4"];
     [self.view addSubview:mainScrollView];
-    mainScrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height + 550);
+    mainScrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height + 210);
     mainScrollView.showsVerticalScrollIndicator = NO;
     
     ViewProductDetails * scrollViewImge = [[ViewProductDetails alloc] initWithFrame:CGRectMake(0, 0,
@@ -194,17 +194,22 @@
                  forControlEvents:UIControlEventTouchUpInside];
             if(i!=0 && countSizePerline==3){
                
-                buttonSize.frame = CGRectMake (2.5, 55+heightLine, (self.view.frame.size.width / 3) - 5, 35);
+                buttonSize.frame = CGRectMake (0, 55+heightLine, (self.view.frame.size.width / 3) - 2, 35);
                 heightLine += 45;
                 countSizePerline = 1;
                 countSizeLine += 1;
                 
             }else{
+                if (i==0) {
+                    buttonSize.frame = CGRectMake ((0 + (self.view.frame.size.width / 3) * countSizePerline), 10+heightLine, (self.view.frame.size.width / 3) - 2, 35);
+                    countSizePerline += 1;
+                    
+                } else {
+                    
+                    buttonSize.frame = CGRectMake ((0.5 + (self.view.frame.size.width / 3) * countSizePerline), 10+heightLine, (self.view.frame.size.width / 3) - 2, 35);
+                    countSizePerline += 1;
               
-                buttonSize.frame = CGRectMake ((2.5 + (self.view.frame.size.width / 3) * countSizePerline), 10+heightLine, (self.view.frame.size.width / 3) - 5, 35);
-                countSizePerline += 1;
-                
-                
+                }
             }
             
             buttonSize.tag = [[productSizesInfo objectForKey:@"id"] integerValue];
@@ -241,7 +246,7 @@
         
         
         
-        buttonSizeAdd.frame = CGRectMake ((2.5 + (self.view.frame.size.width / 3) * countSizePerline), 10+heightLine, (self.view.frame.size.width / 3) - 5, 35);
+        buttonSizeAdd.frame = CGRectMake ((0.5 + (self.view.frame.size.width / 3) * countSizePerline), 10+heightLine, (self.view.frame.size.width / 3) - 2, 35);
         [buttonSizeAdd setTitle:@"+" forState:UIControlStateNormal];
         [buttonSizeAdd setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         buttonSizeAdd.backgroundColor = [UIColor colorWithHexString:@"e9eaf7"];
@@ -361,6 +366,11 @@
 - (void) buttonChangePriceAction
 {
     SCLAlertView *alert = [[SCLAlertView alloc] init];
+    //Overwrite SCLAlertView (Buttons, top circle and borders) colors
+    alert.customViewColor = [UIColor colorWithHexString:@"3038a0"];
+    
+    //Set custom tint color for icon image.
+    alert.iconTintColor = [UIColor whiteColor];
     
     UITextField *textField = [alert addTextField:@"Новая цена"];
     
@@ -370,6 +380,7 @@
     }];
     
     [alert showEdit:self title:@"Измените цену" subTitle:@"Введите новую цену" closeButtonTitle:@"Отмена" duration:0.0f];
+    
 }
 
 - (void) areAvailableAction
@@ -626,6 +637,7 @@
             
             if([[testDict objectForKey:@"aviable"] integerValue] == 0){
                 SCLAlertView *alert = [[SCLAlertView alloc] init];
+                alert.customViewColor = [UIColor colorWithHexString:@"3038a0"];
                 //Using Selector
                 
                 [alert addButton:@"Ok" actionBlock:^{
@@ -643,6 +655,7 @@
                 
             }else{
                 SCLAlertView *alert = [[SCLAlertView alloc] init];
+                alert.customViewColor = [UIColor colorWithHexString:@"3038a0"];
                 //Using Selector
                 
                 [alert addButton:@"Ok" actionBlock:^{
