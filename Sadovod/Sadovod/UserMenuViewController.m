@@ -10,6 +10,7 @@
 #import "SWRevealViewController.h"
 #import "LognViewController.h"
 #import "AuthDbClass.h"
+#import "SingleTone.h"
 
 @interface UserMenuViewController ()
 
@@ -22,6 +23,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    //NOTIFICATION
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableViewWhenNewEvent) name:@"ReloadMenu" object:nil];
+    //
     
     self.view.backgroundColor = [UIColor lightGrayColor];
     self.menuTableView.backgroundColor = nil;
@@ -70,39 +75,41 @@
     cell.backgroundColor = nil;
     
 //    //Изменение в таблице-----------------------------------------------------------------
-//    UILabel * labelCell1 = (UILabel *)[self.view viewWithTag:1001];
-//    if (labelCell1) {
-//        labelCell1.text = @"Мои Поставщеки";
-//    }
-//    
-//    UILabel * labelCell2 = (UILabel *)[self.view viewWithTag:1002];
-//    if (labelCell2) {
-//        labelCell2.alpha = 0.f;
-//        
-//    }
-//    
-//    if ([cellIdentifier isEqual:@"second"]) {
-//        
-//        cell.userInteractionEnabled = NO;
-//        
-//        UILabel * newLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, -8, 130, 40)];
-//        newLabel.text = @"Покупки";
-//        newLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:17];
-//        newLabel.textColor = [UIColor blackColor];
-//        [cell addSubview:newLabel];
-//        
-//        //Create the button and add it to the cell
-//        UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-//        button.tag = 555;
-//        [button addTarget:self
-//                   action:@selector(customActionPressed:)
-//         forControlEvents:UIControlEventTouchUpInside];
-//        [button setTitle:@"Custom Action" forState:UIControlStateNormal];
-//        button.frame = CGRectMake(20.0f, 60.0f, 150.0f, 30.0f);
-//        [cell addSubview:button];
-//        
-//    }
+    NSLog(@"TYPE: %@",[[SingleTone sharedManager] typeOfUsers]);
+    if([[[SingleTone sharedManager] typeOfUsers] integerValue] ==2){
+    UILabel * labelCell1 = (UILabel *)[self.view viewWithTag:1001];
+    if (labelCell1) {
+        labelCell1.text = @"Мои Поставщеки";
+    }
     
+    UILabel * labelCell2 = (UILabel *)[self.view viewWithTag:1002];
+    if (labelCell2) {
+        labelCell2.alpha = 0.f;
+        
+    }
+    
+    if ([cellIdentifier isEqual:@"second"]) {
+        
+        cell.userInteractionEnabled = NO;
+        
+        UILabel * newLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, -8, 130, 40)];
+        newLabel.text = @"Покупки";
+        newLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:17];
+        newLabel.textColor = [UIColor blackColor];
+        [cell addSubview:newLabel];
+        
+        //Create the button and add it to the cell
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        button.tag = 555;
+        [button addTarget:self
+                   action:@selector(customActionPressed:)
+         forControlEvents:UIControlEventTouchUpInside];
+        [button setTitle:@"Custom Action" forState:UIControlStateNormal];
+        button.frame = CGRectMake(20.0f, 60.0f, 150.0f, 30.0f);
+        [cell addSubview:button];
+        
+    }
+    }
     return cell;
 }
 
@@ -160,4 +167,18 @@
     return 44.f;
 //}
 }
+
+//Обновление таблицы
+- (void)reloadTableViewWhenNewEvent {
+    
+    NSLog(@"RELOAD MENU");
+    
+   [self.menuTableView reloadData];
+    
+    
+    //После обновления
+    
+    
+}
+
 @end

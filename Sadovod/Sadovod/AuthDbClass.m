@@ -12,7 +12,7 @@
 
 @implementation AuthDbClass
 -(void) authFist: (NSString *) login andPassword: (NSString *) password andEnter:(NSString *) enter andKey:(NSString *) key
-andCatalogKey: (NSString*) catalogKey {
+andCatalogKey: (NSString*) catalogKey{
     [MagicalRecord setupCoreDataStackWithStoreNamed:@"Auth.sqlite"];
     NSManagedObjectContext *localContext    = [NSManagedObjectContext MR_context];
     Auth *auth = [Auth MR_createEntityInContext:localContext];
@@ -22,6 +22,7 @@ andCatalogKey: (NSString*) catalogKey {
     auth.uid=@"1";
     auth.key=key;
     auth.catalogkey=catalogKey;
+    auth.type=0;
     NSLog(@"SAVE");
     [localContext MR_saveToPersistentStoreAndWait];
 }

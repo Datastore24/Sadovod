@@ -28,6 +28,7 @@
 @property (strong, nonatomic) NSMutableArray * arrayCheck; //Массив с данными API
 @property (strong, nonatomic) NSString * super_key; //Ключ
 @property (strong, nonatomic) NSString * catalog_key; //Каталожный ключ
+@property (strong, nonatomic) NSString * type; //Каталожный ключ
 
 
 @end
@@ -123,6 +124,7 @@
                  ParserLoginPassword * parse = [self.arrayResponce objectAtIndex:0];
                  NSLog(@"STATUS:%@",parse.status);
                  NSLog(@"TOKEN:%@",parse.token);
+                 NSLog(@"TYPE:%@",parse.type);
                  
                  //Проверка главного ключа входа 1- успешно, 0 - неуспешно
                  if([parse.status isEqualToString:@"1"]){
@@ -137,12 +139,12 @@
                          [authDbClass authFist:textFielsLoggin.text andPassword:textFielsPassword.text andEnter:@"1" andKey:self.super_key andCatalogKey:self.catalog_key];
                          [authDbClass updateToken:parse.token];
                          [[SingleTone sharedManager] setParsingToken:parse.token];
-                         [[SingleTone sharedManager] setTypeOfUsers:parse.type];
                          
                          
                          
                      }
                      //Переход в меню
+                     [[NSNotificationCenter defaultCenter] postNotificationName:@"ReloadMenu" object:self];
                      ViewController * mainView = [self.storyboard instantiateViewControllerWithIdentifier:@"MyShowcase"];
                      [self.navigationController pushViewController:mainView animated:YES];
                     
@@ -161,7 +163,7 @@
             
             NSLog(@"В базе найдены сочетания");
             Auth * authCoreData = [array objectAtIndex:0];
-            BOOL keyTrue=[auth checkKey:authCoreData.key andCatalogKey:authCoreData.catalogkey];
+//          BOOL keyTrue=[auth checkKey:authCoreData.key andCatalogKey:authCoreData.catalogkey];
             [self getAuth:textFielsLoggin.text password:textFielsPassword.text andKey:authCoreData.key andBlock:^{
                 ParserLoginPassword * parse = [self.arrayResponce objectAtIndex:0];
                 NSLog(@"STATUS:%@",parse.status);
@@ -182,14 +184,13 @@
                         [authDbClass UpdateUserWithOutKey:textFielsLoggin.text password:textFielsPassword.text];
                         [authDbClass updateToken:parse.token];
                         [self sendKey:authCoreData.key andCatalogKey:authCoreData.catalogkey];
-                            [[SingleTone sharedManager] setParsingToken:parse.token];
-                        [[SingleTone sharedManager] setTypeOfUsers:parse.type];
-                      
+                        [[SingleTone sharedManager] setParsingToken:parse.token];
                         
                         
                         
                     }
                     //Переход в меню
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"ReloadMenu" object:self];
                     ViewController * mainView = [self.storyboard instantiateViewControllerWithIdentifier:@"MyShowcase"];
                     [self.navigationController pushViewController:mainView animated:YES];
                     
@@ -262,6 +263,11 @@
         
         //парсинг данных и запись в массив
         self.arrayResponce = [parsingLoginPasswordResponce parsing:response];
+        
+        NSDictionary * userInfoDict =[[NSDictionary alloc] initWithDictionary:response];
+        NSLog(@"SG TYPE:%@",[userInfoDict objectForKey:@"type"]);
+        
+        [[SingleTone sharedManager] setTypeOfUsers:[userInfoDict objectForKey:@"type"]];
        
         
         block();
@@ -289,6 +295,7 @@
         self.arrayCheck = [parsingResponce parsing:response];
         
         NSDictionary * userInfoDict =[[NSDictionary alloc] initWithDictionary:response];
+        
         [[SingleTone sharedManager] setTypeOfUsers:[userInfoDict objectForKey:@"type"]];
         
         
@@ -333,7 +340,7 @@
                     if([parse.status isEqual: @"1"]){
                         [[SingleTone sharedManager] setParsingToken:authCoreData.token];
                         
-                        
+                        [[NSNotificationCenter defaultCenter] postNotificationName:@"ReloadMenu" object:self];
                         ViewController * mainView = [self.storyboard instantiateViewControllerWithIdentifier:@"MyShowcase"];
                         [self.navigationController pushViewController:mainView animated:YES];
                     }
