@@ -137,6 +137,7 @@
                          [authDbClass authFist:textFielsLoggin.text andPassword:textFielsPassword.text andEnter:@"1" andKey:self.super_key andCatalogKey:self.catalog_key];
                          [authDbClass updateToken:parse.token];
                          [[SingleTone sharedManager] setParsingToken:parse.token];
+                         [[SingleTone sharedManager] setTypeOfUsers:parse.type];
                          
                          
                          
@@ -182,6 +183,7 @@
                         [authDbClass updateToken:parse.token];
                         [self sendKey:authCoreData.key andCatalogKey:authCoreData.catalogkey];
                             [[SingleTone sharedManager] setParsingToken:parse.token];
+                        [[SingleTone sharedManager] setTypeOfUsers:parse.type];
                       
                         
                         
@@ -285,7 +287,14 @@
         
         //парсинг данных и запись в массив
         self.arrayCheck = [parsingResponce parsing:response];
+        
+        NSDictionary * userInfoDict =[[NSDictionary alloc] initWithDictionary:response];
+        [[SingleTone sharedManager] setTypeOfUsers:[userInfoDict objectForKey:@"type"]];
+        
+        
+        
         [[SingleTone sharedManager] setParsingArray:self.arrayCheck];
+        
         block();
     }];
     
@@ -317,11 +326,15 @@
                NSLog(@"COREDATA KEY %@, CatalogKEY: %@ TOKEN: %@",authCoreData.key,authCoreData.catalogkey,authCoreData.token);
                 [self getApiAuthCheck:authCoreData.login password:authCoreData.password key:authCoreData.key andBlock:^{
                     ParserAuthKey * parse = [self.arrayCheck objectAtIndex:0];
+                   
+          
                     
                     //Перенаправление пользоваетеля в слуачае если данные из базы и данные с сервера соответствуют
                     
                     if([parse.status isEqual: @"1"]){
                         [[SingleTone sharedManager] setParsingToken:authCoreData.token];
+                        
+                        
                         ViewController * mainView = [self.storyboard instantiateViewControllerWithIdentifier:@"MyShowcase"];
                         [self.navigationController pushViewController:mainView animated:YES];
                     }

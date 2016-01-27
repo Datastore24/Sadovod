@@ -15,6 +15,7 @@
 @property (strong,nonatomic) NSMutableArray* parsingArray;
 @property (strong,nonatomic) NSMutableArray* parsingArrayKey;
 @property (strong,nonatomic) NSString* parsingToken;
+@property (strong,nonatomic) NSString * typeOfUsers;
 
 + (id)sharedManager;
 
