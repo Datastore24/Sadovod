@@ -7,9 +7,10 @@
         <attribute name="login" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="password" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="token" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="uid" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Auth" positionX="-63" positionY="-18" width="128" height="150"/>
+        <element name="Auth" positionX="-63" positionY="-18" width="128" height="165"/>
     </elements>
 </model>

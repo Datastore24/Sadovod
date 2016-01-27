@@ -20,5 +20,6 @@
 @dynamic token;
 @dynamic enter;
 @dynamic uid;
+@dynamic type;
 
 @end
