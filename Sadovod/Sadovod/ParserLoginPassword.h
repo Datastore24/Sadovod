@@ -12,4 +12,5 @@
 @interface ParserLoginPassword : NSObject
 @property (strong,nonatomic) NSString * status;
 @property (strong,nonatomic) NSString * token;
+@property (strong,nonatomic) NSString * type;
 @end
