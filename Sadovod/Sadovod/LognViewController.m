@@ -292,7 +292,6 @@
         [[SingleTone sharedManager] setTypeOfUsers:[userInfoDict objectForKey:@"type"]];
         
         
-        
         [[SingleTone sharedManager] setParsingArray:self.arrayCheck];
         
         block();
