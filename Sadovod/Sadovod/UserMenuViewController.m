@@ -75,7 +75,7 @@
     cell.backgroundColor = nil;
     
 //    //Изменение в таблице-----------------------------------------------------------------
-    NSLog(@"TYPE: %@",[[SingleTone sharedManager] typeOfUsers]);
+    
     if([[[SingleTone sharedManager] typeOfUsers] integerValue] ==2){
     UILabel * labelCell1 = (UILabel *)[self.view viewWithTag:1001];
     if (labelCell1) {
@@ -172,8 +172,12 @@
 - (void)reloadTableViewWhenNewEvent {
     
     NSLog(@"RELOAD MENU");
+    NSLog(@"TYPE: %@",[[SingleTone sharedManager] typeOfUsers]);
     
-   [self.menuTableView reloadData];
+   // [self viewDidLoad]; [self viewWillAppear:YES];
+    [self.menuTableView
+     reloadSections:[NSIndexSet indexSetWithIndex:0]
+     withRowAnimation:UITableViewRowAnimationFade];
     
     
     //После обновления
