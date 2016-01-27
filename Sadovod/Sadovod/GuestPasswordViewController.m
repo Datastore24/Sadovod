@@ -11,11 +11,16 @@
 #import "ParserGuestPasswordResponse.h"
 #import "APIGetClass.h"
 #import "SingleTone.h"
+#import "TitleClass.h"
 
 @implementation GuestPasswordViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    TitleClass * title = [[TitleClass alloc]initWithTitle:@"Гостевой пароль"];
+    self.navigationItem.titleView = title;
+    
     [self getPassowrd:^{
         ParserGuestPassword * parserGuestPassword = [self.arrayResponce objectAtIndex:0];
         //Главный лейбл---------------------------
@@ -42,8 +47,22 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style: UIBarButtonItemStylePlain target:self action:@selector(aMethod:)];
+//    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style: UIBarButtonItemStylePlain target:self action:@selector(aMethod:)];
+//    self.navigationItem.leftBarButtonItem = backButton;
+    
+    UIButton *favBackButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    favBackButton.frame = CGRectMake(0, 0, 35, 35);
+    
+    [favBackButton setImage:[UIImage imageNamed:@"backImage.png"] forState:UIControlStateNormal];
+    [favBackButton addTarget:self action:@selector(aMethod:)
+            forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc]
+                                   initWithCustomView:favBackButton];
+    
     self.navigationItem.leftBarButtonItem = backButton;
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {

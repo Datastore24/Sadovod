@@ -20,11 +20,25 @@
 @implementation EditSizeViewController
 
 -(void)viewWillAppear:(BOOL)animated{
-    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Сохранить" style: UIBarButtonItemStylePlain target:self action:@selector(aMethod:)];
-        [backButton setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys: [UIColor lightGrayColor],  UITextAttributeTextColor,nil] forState:UIControlStateNormal];
-
+//    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Сохранить" style: UIBarButtonItemStylePlain target:self action:@selector(aMethod:)];
+//        [backButton setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys: [UIColor lightGrayColor],  UITextAttributeTextColor,nil] forState:UIControlStateNormal];
+//
+//    
+//    self.navigationItem.rightBarButtonItem = backButton;
     
-    self.navigationItem.rightBarButtonItem = backButton;
+    
+    UIButton *favSaveButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    favSaveButton.frame = CGRectMake(0, 0, 35, 35);
+    
+    [favSaveButton setImage:[UIImage imageNamed:@"imagesave.png"] forState:UIControlStateNormal];
+    [favSaveButton addTarget:self action:@selector(aMethod:)
+        forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *saveButton = [[UIBarButtonItem alloc]
+                               initWithCustomView:favSaveButton];
+    
+    self.navigationItem.rightBarButtonItem = saveButton;
+
 }
 
 - (void) viewDidLoad
