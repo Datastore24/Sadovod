@@ -11,6 +11,7 @@
 @interface ParserBuyProductInfo : NSObject
 @property (strong,nonatomic) NSString * status;
 @property (strong,nonatomic) NSDictionary * product;
+@property (strong,nonatomic) NSArray * sizes;
 @property (strong,nonatomic) NSString * total;
 @property (strong,nonatomic) NSString * global_count;
 @property (strong,nonatomic) NSString * global_cost;

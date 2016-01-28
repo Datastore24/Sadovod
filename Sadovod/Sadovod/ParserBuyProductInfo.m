@@ -20,6 +20,7 @@
     return @{
              @"status" : mts_key(status),
              @"product" : mts_key(product),
+             @"sizes" : mts_key(sizes),
              @"total" : mts_key(total),
              @"global_count" : mts_key(global_count),
              @"global_cost" : mts_key(global_cost),
