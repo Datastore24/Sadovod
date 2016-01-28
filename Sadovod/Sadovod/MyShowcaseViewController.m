@@ -61,7 +61,7 @@ NSDictionary * tableDict; //Директория хранения данных
         self.navigationItem.titleView = title;
     } else {
         
-        TitleClass * title = [[TitleClass alloc]initWithTitle:[NSString stringWithFormat:@"Витрина-%@", @"NP576F"]];
+        TitleClass * title = [[TitleClass alloc]initWithTitle:[NSString stringWithFormat:@"Витрина - %@", [[SingleTone sharedManager] loginUser]]];
         self.navigationItem.titleView = title;
         
         //Кнопка бара--------------------------------------------

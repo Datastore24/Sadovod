@@ -10,8 +10,12 @@
 #import "TitleClass.h"
 #import "ViewSectionTable.h"
 #import "IssueViewController.h"
+#import "UIColor+HexColor.h"
 
 @implementation BasketViewController
+{
+    UIScrollView * mainScrollView;
+}
 
 - (void) viewDidLoad
 {
@@ -21,38 +25,37 @@
     
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment: UIOffsetMake(10.f, -100.f) forBarMetrics:UIBarMetricsDefault];
     
-//    //Изобрадение предмета--------------------------------
-//    ViewSectionTable * image = [[ViewSectionTable alloc] initWithFrame:CGRectMake(-2.5, - 2.5, self.view.frame.size.width / 4 + 20, (self.view.frame.size.width / 2)) andImageURL:@"1image.jpg" isInternetURL:NO andLabelPrice:nil andResized:NO];
-//    [self.view addSubview:image];
+
     
     
     
-    UIScrollView * mainScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    mainScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     mainScrollView.contentSize = CGSizeMake(self.view.frame.size.width, 1000);
-    mainScrollView.backgroundColor = [UIColor lightGrayColor];
     [self.view addSubview:mainScrollView];
     
-    //Вью Оформить-----------------------------------------------------------
+    for (int i = 0; i < 7; i++) {
+        //Изобрадение предмета--------------------------------
+        ViewSectionTable * image = [[ViewSectionTable alloc] initWithFrame:CGRectMake(0, self.view.frame.size.width / 2 * i, self.view.frame.size.width / 4 + 20, (self.view.frame.size.width / 2)) andImageURL:@"1image.jpg" isInternetURL:NO andResized:NO];
+        
+        [mainScrollView addSubview:image];
+        
+        
+        //Размер предмета-------------------------------------
+        UILabel * sizeObjectLabel = [[UILabel alloc] initWithFrame:CGRectMake((self.view.frame.size.width / 4) + 25, 10 + self.view.frame.size.width / 2 * i, 250, 20)];
+        sizeObjectLabel.text = @"Предмет";
+        sizeObjectLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:13];
+        [mainScrollView addSubview:sizeObjectLabel];
+        
+        //Колличество заказанного товара----------------------
+        UILabel * numberObjectLabel = [[UILabel alloc] initWithFrame:CGRectMake((self.view.frame.size.width / 4) + 25, 30 + self.view.frame.size.width / 2 * i, 150, 20)];
+        numberObjectLabel.text = [NSString stringWithFormat:@"%@ руб", @"400"];
+        numberObjectLabel.textColor = [UIColor colorWithHexString:@"3038a0"];
+        numberObjectLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:12];
+        [mainScrollView addSubview:numberObjectLabel];
+        
+        //
+    }
     
-    UIView * basketView = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - 100, self.view.frame.size.width, 100)];
-    basketView.backgroundColor = [UIColor blueColor];
-    [self.view addSubview:basketView];
-    
-    //Кнопка оформить
-    UIButton * issueButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    issueButton.frame = CGRectMake(270, 5, 90, 25);
-    issueButton.backgroundColor = [UIColor blackColor];
-    [issueButton setTitle:@"Оформить" forState:UIControlStateNormal];
-    [issueButton addTarget:self action:@selector(issueButtonAction) forControlEvents:UIControlEventTouchUpInside];
-    [basketView addSubview:issueButton];
-    
-    
-}
-
-- (void) issueButtonAction
-{
-    IssueViewController * detail = [self.storyboard instantiateViewControllerWithIdentifier:@"IssueViewController"];
-    [self.navigationController pushViewController:detail animated:YES];
 }
 
 @end
