@@ -104,6 +104,9 @@
     self.priceLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:16];
     [priceView addSubview:self.priceLabel];
     //Кнопка изменения цены-------------------------------------
+    //Кнопка доступна если пользователь владелец----------------
+    if ([[[SingleTone sharedManager] typeOfUsers] integerValue] ==1)
+    {
     UIButton *buttonChangePrice = [UIButton buttonWithType:UIButtonTypeCustom];
     [buttonChangePrice addTarget:self
                action:@selector(buttonChangePriceAction)
@@ -111,8 +114,18 @@
     [buttonChangePrice setTitle:@"Изменить цену" forState:UIControlStateNormal];
     [buttonChangePrice.titleLabel setFont:[UIFont systemFontOfSize:12]];
     buttonChangePrice.frame = CGRectMake(self.view.frame.size.width - 100, 0, 100, 40.0);
-
     [priceView addSubview:buttonChangePrice];
+    } else {
+        UIButton * buyButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [buyButton addTarget:self
+                              action:@selector(buyButtonAction)
+                    forControlEvents:UIControlEventTouchUpInside];
+        [buyButton setTitle:@"Купить" forState:UIControlStateNormal];
+        [buyButton.titleLabel setFont:[UIFont systemFontOfSize:12]];
+        buyButton.frame = CGRectMake(self.view.frame.size.width - 100, 0, 100, 40.0);
+        [priceView addSubview:buyButton];
+        
+    }
     
     //Вью границы-------------------------------------------------------------------------
     UIView * borderView = [[UIView alloc] initWithFrame:CGRectMake(0, priceView.frame.origin.y + 40, self.view.frame.size.width, 42)];
@@ -162,6 +175,13 @@
     notAvailable.frame = CGRectMake(self.view.frame.size.width / 2, priceView.frame.origin.y + 40, self.view.frame.size.width / 2, 40.0);
     notAvailable.backgroundColor = [UIColor colorWithHexString:colorNotAvailableStatus];
     [mainScrollView addSubview:notAvailable];
+            
+     //Если клиент, то кнопки есть в наличии нет в наличии не активны---------------------
+     if ([[[SingleTone sharedManager] typeOfUsers] integerValue] ==2)
+      {
+          areAvailable.userInteractionEnabled = NO;
+          notAvailable.userInteractionEnabled = NO;
+      }
     
     //Лейбл заголовка Доступные размеры---------------------------------------------------
     UILabel * titleSize = [[UILabel alloc] initWithFrame:CGRectMake(10, notAvailable.frame.origin.y + 45, 150, 40)];
@@ -226,33 +246,43 @@
             buttonSize.backgroundColor = [UIColor colorWithHexString:colorAviableSizes];
             buttonSize.titleLabel.font = [UIFont systemFontOfSize:15];
             [mainViewSize addSubview:buttonSize];
+            //Если клмент то кнопки размернов есть в наличии, нет в наличии не доступно----------------
+            if ([[[SingleTone sharedManager] typeOfUsers] integerValue] ==2)
+            {
+                buttonSize.userInteractionEnabled = NO;
+            }
         }
         
         //Исправление высоты при необходимости
         int addMainViewSizeHeight=0;
         
         if(countSizePerline==3){
+            //Если клиент и копки добавить рамер в новой строке, то вью не увеличивается---------------
+            if ([[[SingleTone sharedManager] typeOfUsers] integerValue] ==1)
+            {
             heightLine+=45;//Увеличиваем отступ вниз
             countSizePerline=0;//Сбрасываем счетчик количество размеров в линию
-            
+            }
         }
         //
         mainViewSize.frame=CGRectMake(0, titleSize.frame.origin.y + 40, self.view.frame.size.width, 55+heightLine+addMainViewSizeHeight);
 
-        UIButton *buttonSizeAdd = [UIButton buttonWithType:UIButtonTypeSystem];
-        [buttonSizeAdd addTarget:self
-                       action:@selector(buttonSizeAddAction)
-             forControlEvents:UIControlEventTouchUpInside];
-        
-        
-        
-        buttonSizeAdd.frame = CGRectMake ((0.5 + (self.view.frame.size.width / 3) * countSizePerline), 10+heightLine, (self.view.frame.size.width / 3) - 2, 35);
-        [buttonSizeAdd setTitle:@"+" forState:UIControlStateNormal];
-        [buttonSizeAdd setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        buttonSizeAdd.backgroundColor = [UIColor colorWithHexString:@"e9eaf7"];
-        buttonSizeAdd.titleLabel.font = [UIFont systemFontOfSize:15];
-
-        [mainViewSize addSubview:buttonSizeAdd];
+        //Если владелец то добавляем нопку добавить размер----------------------------------
+            if ([[[SingleTone sharedManager] typeOfUsers] integerValue] ==1) {
+                
+                UIButton *buttonSizeAdd = [UIButton buttonWithType:UIButtonTypeSystem];
+                [buttonSizeAdd addTarget:self
+                                  action:@selector(buttonSizeAddAction)
+                        forControlEvents:UIControlEventTouchUpInside];
+                
+                buttonSizeAdd.frame = CGRectMake ((0.5 + (self.view.frame.size.width / 3) * countSizePerline), 10+heightLine, (self.view.frame.size.width / 3) - 2, 35);
+                [buttonSizeAdd setTitle:@"+" forState:UIControlStateNormal];
+                [buttonSizeAdd setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+                buttonSizeAdd.backgroundColor = [UIColor colorWithHexString:@"e9eaf7"];
+                buttonSizeAdd.titleLabel.font = [UIFont systemFontOfSize:15];
+                
+                [mainViewSize addSubview:buttonSizeAdd];
+            }
 
         UILabel * titleDetails;
         if(![[productInfo objectForKey:@"mini_desc"] isEqualToString:@""]){
@@ -688,6 +718,11 @@
     EditSizeViewController * detail = [self.storyboard instantiateViewControllerWithIdentifier:@"EditSizeViewController"];
     detail.productID=self.productID;
     [self.navigationController pushViewController:detail animated:YES];
+}
+
+- (void) buyButtonAction
+{
+    NSLog(@"Купить");
 }
 
 
