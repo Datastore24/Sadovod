@@ -43,6 +43,7 @@
     UITableView * tableDetails; //Таблица деталей
     
     NSArray * productSizes;
+    UILabel * titleSize;
 }
 
 
@@ -156,6 +157,8 @@
             textColorNotAvailableStatus = [UIColor whiteColor];
         }
         //
+            
+    if ([[[SingleTone sharedManager] typeOfUsers] integerValue] == 1) {
     //Инициализация вью есть в наличии---------------------------------------------------
     areAvailable = [UIButton buttonWithType:UIButtonTypeCustom];
     [areAvailable addTarget:self
@@ -179,20 +182,25 @@
     notAvailable.frame = CGRectMake(self.view.frame.size.width / 2, priceView.frame.origin.y + 40, self.view.frame.size.width / 2, 40.0);
     notAvailable.backgroundColor = [UIColor colorWithHexString:colorNotAvailableStatus];
     [mainScrollView addSubview:notAvailable];
-            
-     //Если клиент, то кнопки есть в наличии нет в наличии не активны---------------------
-     if ([[[SingleTone sharedManager] typeOfUsers] integerValue] ==2)
-      {
-          areAvailable.userInteractionEnabled = NO;
-          notAvailable.userInteractionEnabled = NO;
-      }
-    
+        
     //Лейбл заголовка Доступные размеры---------------------------------------------------
-    UILabel * titleSize = [[UILabel alloc] initWithFrame:CGRectMake(10, notAvailable.frame.origin.y + 45, 150, 40)];
+    titleSize = [[UILabel alloc] initWithFrame:CGRectMake(10, priceView.frame.origin.y + 40 + 45, 150, 40)];
     titleSize.text = @"Доступные размеры";
     titleSize.textColor = [UIColor colorWithHexString:@"3038a0"];
     titleSize.font = [UIFont fontWithName:@"Helvetica-Bold" size:12];
     [mainScrollView addSubview:titleSize];
+    } else {
+            
+    //Лейбл заголовка Доступные размеры---------------------------------------------------
+    titleSize = [[UILabel alloc] initWithFrame:CGRectMake(10, priceView.frame.origin.y + 40, 150, 40)];
+    titleSize.text = @"Доступные размеры";
+    titleSize.textColor = [UIColor colorWithHexString:@"3038a0"];
+    titleSize.font = [UIFont fontWithName:@"Helvetica-Bold" size:12];
+    [mainScrollView addSubview:titleSize];
+    
+    }
+    
+
     
     //Вью доступных размеров---------------------------------------------------------------
     UIView * mainViewSize = [[UIView alloc] init];
