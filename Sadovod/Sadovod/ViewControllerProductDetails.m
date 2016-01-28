@@ -387,9 +387,12 @@
             [AlertClass showAlertViewWithMessage:@"Ошибка загрузки товара" view:self];
         }
         
-        if ([[[SingleTone sharedManager] typeOfUsers] integerValue] ==2)
+        if ([[[SingleTone sharedManager] typeOfUsers] integerValue] ==2 && [[SingleTone sharedManager] orderCart])
         {
-            DecorView * decor = [[DecorView alloc] initWithView:self.view andNumber:@"5" andPrice:@"2000"];
+            NSDictionary * cartOrder = [[SingleTone sharedManager] orderCart];
+            
+            DecorView * decor = [[DecorView alloc] initWithView:self.view andNumber:[cartOrder objectForKey:@"count"] andPrice:[cartOrder objectForKey:@"cost"]];
+            
             CGRect rect = decor.frame;
             rect.origin.y = rect.origin.y + 64;
             decor.frame = rect;
