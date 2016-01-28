@@ -140,6 +140,7 @@
                          [authDbClass authFist:textFielsLoggin.text andPassword:textFielsPassword.text andEnter:@"1" andKey:self.super_key andCatalogKey:self.catalog_key];
                          [authDbClass updateToken:parse.token];
                          [[SingleTone sharedManager] setParsingToken:parse.token];
+                         [[SingleTone sharedManager] setLoginUser:textFielsLoggin.text];
                          
                          
                          
@@ -186,6 +187,7 @@
                         [authDbClass updateToken:parse.token];
                         [self sendKey:authCoreData.key andCatalogKey:authCoreData.catalogkey];
                         [[SingleTone sharedManager] setParsingToken:parse.token];
+                        [[SingleTone sharedManager] setLoginUser:textFielsLoggin.text];
                         
                         
                         
@@ -339,7 +341,9 @@
                     //Перенаправление пользоваетеля в слуачае если данные из базы и данные с сервера соответствуют
                     
                     if([parse.status isEqual: @"1"]){
+                        [[SingleTone sharedManager] setLoginUser:authCoreData.login];
                         [[SingleTone sharedManager] setParsingToken:authCoreData.token];
+                       
                         
                         [[NSNotificationCenter defaultCenter] postNotificationName:@"ReloadMenu" object:self];
                         ViewController * mainView = [self.storyboard instantiateViewControllerWithIdentifier:@"MyShowcase"];
