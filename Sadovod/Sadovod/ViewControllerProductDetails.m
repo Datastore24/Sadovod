@@ -24,9 +24,11 @@
 @interface ViewControllerProductDetails ()
 @property (strong, nonatomic) NSMutableArray * arrayProduct; //Массив с Товарами
 @property (strong, nonatomic) ViewProductDetails * viewProductDetails; //Экземпляр класса
-@property (strong, nonatomic) UIButton * buttonCloseZoom;
+@property (strong, nonatomic) UIButton * buttonCloseView;
 @property (strong, nonatomic) UILabel * priceLabel;
 @property (strong, nonatomic) NSMutableArray * tempArraySizes;
+
+@property (strong,nonatomic) UIView * addToCartView; //Всплывашка
 
 
 @end
@@ -576,21 +578,21 @@
     
     
     //Кнопка закрыть
-    self.buttonCloseZoom = [[UIButton alloc] init];
-    [self.buttonCloseZoom addTarget:self
+    self.buttonCloseView = [[UIButton alloc] init];
+    [self.buttonCloseView addTarget:self
                           action:@selector(closeZoom)
                 forControlEvents:UIControlEventTouchUpInside];
     
-    [self.buttonCloseZoom setTitle:@"X" forState:UIControlStateNormal];
-    [self.buttonCloseZoom.titleLabel setFont:[UIFont systemFontOfSize:22]];
-    [self.buttonCloseZoom setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-    self.buttonCloseZoom.backgroundColor= [UIColor clearColor];
-    self.buttonCloseZoom.frame = CGRectMake(self.view.frame.size.width-45, 5, 40, 40);
-    self.buttonCloseZoom.alpha = 0;
-    self.buttonCloseZoom.layer.borderColor = [[UIColor grayColor] CGColor];
-    self.buttonCloseZoom.layer.borderWidth = 2.0;
-    self.buttonCloseZoom.layer.cornerRadius = 20; // this value vary as per your desire
-    self.buttonCloseZoom.clipsToBounds = YES;
+    [self.buttonCloseView setTitle:@"X" forState:UIControlStateNormal];
+    [self.buttonCloseView.titleLabel setFont:[UIFont systemFontOfSize:22]];
+    [self.buttonCloseView setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    self.buttonCloseView.backgroundColor= [UIColor clearColor];
+    self.buttonCloseView.frame = CGRectMake(self.view.frame.size.width-45, 5, 40, 40);
+    self.buttonCloseView.alpha = 0;
+    self.buttonCloseView.layer.borderColor = [[UIColor grayColor] CGColor];
+    self.buttonCloseView.layer.borderWidth = 2.0;
+    self.buttonCloseView.layer.cornerRadius = 20; // this value vary as per your desire
+    self.buttonCloseView.clipsToBounds = YES;
     
     //
     
@@ -605,11 +607,11 @@
     //
     
     [mainScrollView addSubview:self.viewProductDetails];
-    [mainScrollView addSubview:self.buttonCloseZoom];
+    [mainScrollView addSubview:self.buttonCloseView];
 
     [UIView animateWithDuration:1.0 animations:^(void) {
         self.viewProductDetails.alpha = 1;
-        self.buttonCloseZoom.alpha = 1;
+        self.buttonCloseView.alpha = 1;
         
     }];
   
@@ -620,11 +622,11 @@
 -(void) closeZoom{
     [UIView animateWithDuration:1.0 animations:^(void) {
         self.viewProductDetails.alpha = 0;
-        self.buttonCloseZoom.alpha = 0;
+        self.buttonCloseView.alpha = 0;
         
     }];
     self.viewProductDetails=nil;
-    self.buttonCloseZoom=nil;
+    self.buttonCloseView=nil;
     mainScrollView.scrollEnabled=YES;
     
     
@@ -720,9 +722,66 @@
     [self.navigationController pushViewController:detail animated:YES];
 }
 
+//View для кнопки купить
+
 - (void) buyButtonAction
 {
-    NSLog(@"Купить");
+    CGFloat width = [UIScreen mainScreen].bounds.size.width;
+    CGFloat height = [UIScreen mainScreen].bounds.size.height;
+    
+    
+    
+    self.addToCartView = [[UIView alloc]initWithFrame:CGRectMake(0, 0,
+                                                                    width,
+                                                                     height-64)];
+    self.addToCartView .backgroundColor =[UIColor whiteColor];
+    
+    mainScrollView.scrollEnabled=NO;
+    self.addToCartView.alpha =0;
+    
+    
+    //Кнопка закрыть
+    self.buttonCloseView = [[UIButton alloc] init];
+    [self.buttonCloseView addTarget:self
+                             action:@selector(closeAddToCart)
+                   forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.buttonCloseView setTitle:@"X" forState:UIControlStateNormal];
+    [self.buttonCloseView.titleLabel setFont:[UIFont systemFontOfSize:22]];
+    [self.buttonCloseView setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    self.buttonCloseView.backgroundColor= [UIColor clearColor];
+    self.buttonCloseView.frame = CGRectMake(self.view.frame.size.width-45, 5, 40, 40);
+    self.buttonCloseView.alpha = 0;
+    self.buttonCloseView.layer.borderColor = [[UIColor grayColor] CGColor];
+    self.buttonCloseView.layer.borderWidth = 2.0;
+    self.buttonCloseView.layer.cornerRadius = 20; // this value vary as per your desire
+    self.buttonCloseView.clipsToBounds = YES;
+    
+    //
+    
+    
+    
+    [mainScrollView addSubview:self.addToCartView ];
+    [mainScrollView addSubview:self.buttonCloseView];
+    
+    [UIView animateWithDuration:1.0 animations:^(void) {
+        self.addToCartView.alpha = 1;
+        self.buttonCloseView.alpha = 1;
+        
+    }];
+}
+
+-(void) closeAddToCart{
+    [UIView animateWithDuration:1.0 animations:^(void) {
+        self.addToCartView.alpha = 0;
+        self.buttonCloseView.alpha = 0;
+        
+    }];
+    self.addToCartView=nil;
+    self.buttonCloseView=nil;
+    mainScrollView.scrollEnabled=YES;
+    
+    
 }
 
 
