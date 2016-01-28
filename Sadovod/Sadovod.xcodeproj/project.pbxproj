@@ -54,6 +54,7 @@
 		77E6DABA1C59FEB300FD1029 /* BasketViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E6DAB91C59FEB300FD1029 /* BasketViewController.m */; };
 		77E6DAC11C5A0FD400FD1029 /* IssueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E6DAC01C5A0FD400FD1029 /* IssueViewController.m */; };
 		77E6DAC41C5A1AF600FD1029 /* DecorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E6DAC31C5A1AF600FD1029 /* DecorView.m */; };
+		77E6DAC61C5A4FA700FD1029 /* ic_delete.png in Resources */ = {isa = PBXBuildFile; fileRef = 77E6DAC51C5A4FA700FD1029 /* ic_delete.png */; };
 		77E801A91C5261BD00091F9A /* OrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E801A81C5261BD00091F9A /* OrderViewController.m */; };
 		77E801AC1C5261D900091F9A /* OrderViewDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E801AB1C5261D900091F9A /* OrderViewDetails.m */; };
 		77FC43C91C4FFC0B00F750A1 /* GuestPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FC43C81C4FFC0B00F750A1 /* GuestPasswordViewController.m */; };
@@ -184,6 +185,7 @@
 		77E6DAC01C5A0FD400FD1029 /* IssueViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IssueViewController.m; sourceTree = "<group>"; };
 		77E6DAC21C5A1AF600FD1029 /* DecorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DecorView.h; sourceTree = "<group>"; };
 		77E6DAC31C5A1AF600FD1029 /* DecorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DecorView.m; sourceTree = "<group>"; };
+		77E6DAC51C5A4FA700FD1029 /* ic_delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_delete.png; sourceTree = "<group>"; };
 		77E801A71C5261BD00091F9A /* OrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderViewController.h; sourceTree = "<group>"; };
 		77E801A81C5261BD00091F9A /* OrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderViewController.m; sourceTree = "<group>"; };
 		77E801AA1C5261D900091F9A /* OrderViewDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderViewDetails.h; sourceTree = "<group>"; };
@@ -615,6 +617,7 @@
 		ADFBF5871C4C5A5F007E080D /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				77E6DAC51C5A4FA700FD1029 /* ic_delete.png */,
 				7721D6721C59566C00B7BF83 /* ic_cart.png */,
 				77CCE9121C58FEB900D710D1 /* backImage.png */,
 				77CCE9101C58FCCE00D710D1 /* imagesave.png */,
@@ -746,6 +749,7 @@
 				776BF2371C4B993C0006C502 /* 4image.png in Resources */,
 				77BFED051C4AC5E80091A336 /* LaunchScreen.storyboard in Resources */,
 				7721D6731C59566C00B7BF83 /* ic_cart.png in Resources */,
+				77E6DAC61C5A4FA700FD1029 /* ic_delete.png in Resources */,
 				776BF2351C4B993C0006C502 /* 6image.jpg in Resources */,
 				776BF2311C4B993C0006C502 /* 1image.jpg in Resources */,
 				77BFED021C4AC5E80091A336 /* Assets.xcassets in Resources */,
