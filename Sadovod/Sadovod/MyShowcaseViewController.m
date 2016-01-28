@@ -15,6 +15,7 @@
 #import "AlertClass.h"
 #import "TitleClass.h"
 #import "OrdersViewController.h"
+#import "BasketViewController.h"
 
 #import "ParserCategory.h"
 #import "ParserCategoryResponse.h"
@@ -295,8 +296,15 @@ NSDictionary * tableDict; //Директория хранения данных
 
 - (void) buttonOrdersAction
 {
+    if ([[[SingleTone sharedManager] typeOfUsers] integerValue] ==1) {
     OrdersViewController * detail = [self.storyboard instantiateViewControllerWithIdentifier:@"OrdersViewController"];
-    [self.navigationController pushViewController:detail animated:YES];
+        [self.navigationController pushViewController:detail animated:YES];
+    } else {
+    BasketViewController * detail = [self.storyboard instantiateViewControllerWithIdentifier:@"BasketViewController"];
+        [self.navigationController pushViewController:detail animated:YES];
+       
+    }
+    
 }
 
 @end
