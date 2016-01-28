@@ -16,6 +16,7 @@
 #include "APIPostClass.h"
 #import "ParserProductSize.h"
 #import "ParserProductSizeResponse.h"
+#import "AlertClass.h"
 
 @implementation EditSizeViewController
 
@@ -189,13 +190,18 @@
 }
 
 //Отправляем размеры
-- (void)postApiOrder:(NSArray *) arraySizes
+- (BOOL)postApiOrder:(NSArray *) arraySizes
 {
     //Передаваемые параметры
     
     NSString * result = [[arraySizes valueForKey:@"description"] componentsJoinedByString:@","];
     NSString * addParam = [NSString stringWithFormat:@"sizes=%@",result];
+  
     
+    if([result isEqualToString:@""]){
+        return NO;
+    
+    }else{
     NSLog(@"ARRAY %@ PRODUCT ID %@",result,self.productID);
     NSDictionary* params = [[NSDictionary alloc] initWithObjectsAndKeys:
                             [[SingleTone sharedManager] parsingToken],@"token",
@@ -216,12 +222,20 @@
                             
                         }
                     }];
+        return YES;
+        
+        }
+    return NO;
 }
 
 - (void) aMethod:(id)sender
 {
-    [self postApiOrder:self.postArraySorted];
-   [self.navigationController popViewControllerAnimated:YES];
+    if([self postApiOrder:self.postArraySorted]){
+       [self.navigationController popViewControllerAnimated:YES]; 
+    }else{
+         [AlertClass showAlertViewWithMessage:@"Выберите хотя бы один размер!" view:self];
+    }
+   
     
     
 }
