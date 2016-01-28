@@ -12,6 +12,8 @@
 #import "ViewControllerProductDetails.h"
 #import "AlertClass.h" //Подключение Алертов
 #import "TitleClass.h"
+#import "DecorView.h"
+#import "IssueViewController.h"
 
 #import "APIGetClass.h"
 #import "ParserCategory.h"
@@ -152,7 +154,22 @@
     
         mainScrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.width /2 * numerator + 50);
     }
+        if ([[[SingleTone sharedManager] typeOfUsers] integerValue] ==2)
+        {
+            DecorView * decor = [[DecorView alloc] initWithView:self.view andNumber:@"5" andPrice:@"2000"];
+            CGRect rect = decor.frame;
+            rect.origin.y = rect.origin.y + 64;
+            decor.frame = rect;
+            decor.alpha = 0.7;
+            [self.view addSubview:decor];
+            
+            UIButton * buttonDecor = (UIButton *)[self.view viewWithTag:555];
+            [buttonDecor addTarget:self action:@selector(buttonDecorAction) forControlEvents:UIControlEventTouchUpInside];
+        }
+        
+        
     }];
+    
     }
      
 
@@ -199,6 +216,12 @@
         
     }];
     
+}
+
+- (void) buttonDecorAction
+{
+    IssueViewController * detail = [self.storyboard instantiateViewControllerWithIdentifier:@"IssueViewController"];
+    [self.navigationController pushViewController:detail animated:YES];
 }
 
 @end

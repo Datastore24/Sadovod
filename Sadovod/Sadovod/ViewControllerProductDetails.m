@@ -12,6 +12,8 @@
 #import "UIColor+HexColor.h"
 #import "EditSizeViewController.h"
 #import "AlertClass.h"
+#import "DecorView.h"
+#import "IssueViewController.h"
 
 #import "APIPostClass.h"
 #import "APIGetClass.h"
@@ -383,6 +385,19 @@
             
         }else{
             [AlertClass showAlertViewWithMessage:@"Ошибка загрузки товара" view:self];
+        }
+        
+        if ([[[SingleTone sharedManager] typeOfUsers] integerValue] ==2)
+        {
+            DecorView * decor = [[DecorView alloc] initWithView:self.view andNumber:@"5" andPrice:@"2000"];
+            CGRect rect = decor.frame;
+            rect.origin.y = rect.origin.y + 64;
+            decor.frame = rect;
+            decor.alpha = 0.7;
+            [self.view addSubview:decor];
+            
+            UIButton * buttonDecor = (UIButton *)[self.view viewWithTag:555];
+            [buttonDecor addTarget:self action:@selector(buttonDecorAction) forControlEvents:UIControlEventTouchUpInside];
         }
     
     }];
@@ -782,6 +797,12 @@
     mainScrollView.scrollEnabled=YES;
     
     
+}
+
+- (void) buttonDecorAction
+{
+    IssueViewController * detail = [self.storyboard instantiateViewControllerWithIdentifier:@"IssueViewController"];
+    [self.navigationController pushViewController:detail animated:YES];
 }
 
 
