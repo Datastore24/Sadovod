@@ -42,6 +42,9 @@ NSDictionary * tableDict; //Директория хранения данных
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    if([[[SingleTone sharedManager] typeOfUsers] integerValue] ==1)
+    {
+    
     //Кнопка бара--------------------------------------------
     UIButton * buttonOrders =  [UIButton buttonWithType:UIButtonTypeCustom];
     [buttonOrders setImage:[UIImage imageNamed:@"ic_orders.png"] forState:UIControlStateNormal];
@@ -50,9 +53,24 @@ NSDictionary * tableDict; //Директория хранения данных
 
     UIBarButtonItem *barButtonOrders = [[UIBarButtonItem alloc] initWithCustomView:buttonOrders];
     self.navigationItem.rightBarButtonItem = barButtonOrders;
-    
+        
     TitleClass * title = [[TitleClass alloc]initWithTitle:@"Моя Витрина"];
-    self.navigationItem.titleView = title;
+        self.navigationItem.titleView = title;
+    } else {
+        
+        TitleClass * title = [[TitleClass alloc]initWithTitle:[NSString stringWithFormat:@"Витрина-%@", @"NP576F"]];
+        self.navigationItem.titleView = title;
+        
+        //Кнопка бара--------------------------------------------
+        UIButton * buttonOrders =  [UIButton buttonWithType:UIButtonTypeCustom];
+        [buttonOrders setImage:[UIImage imageNamed:@"ic_cart.png"] forState:UIControlStateNormal];
+        [buttonOrders addTarget:self action:@selector(buttonOrdersAction)forControlEvents:UIControlEventTouchUpInside];
+        [buttonOrders setFrame:CGRectMake(0, 0, 30, 30)];
+        
+        UIBarButtonItem *barButtonOrders = [[UIBarButtonItem alloc] initWithCustomView:buttonOrders];
+        self.navigationItem.rightBarButtonItem = barButtonOrders;
+        
+    }
 
     self.arrayCategory = [NSMutableArray array];
     tableDict = [ModelMyShowcase dictTableData]; //передача данных
