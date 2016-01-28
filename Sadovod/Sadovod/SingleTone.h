@@ -17,6 +17,7 @@
 @property (strong,nonatomic) NSString* parsingToken;
 @property (strong,nonatomic) NSString * typeOfUsers;
 @property (strong,nonatomic) NSString * loginUser;
+@property (strong, nonatomic) NSDictionary * orderCart;
 
 + (id)sharedManager;
 

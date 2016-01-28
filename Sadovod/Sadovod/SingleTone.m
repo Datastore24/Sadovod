@@ -13,7 +13,8 @@
 @synthesize parsingArray;
 @synthesize parsingArrayKey;
 @synthesize parsingToken;
-
+@synthesize loginUser;
+@synthesize orderCart;
 
 #pragma mark Singleton Methods
 

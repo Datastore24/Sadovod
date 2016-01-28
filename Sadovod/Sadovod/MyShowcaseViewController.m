@@ -105,9 +105,20 @@ NSDictionary * tableDict; //Директория хранения данных
     [self getApiOrders];
     // Do any additional setup after loading the view.
     
-    if ([[[SingleTone sharedManager] typeOfUsers] integerValue] ==2)
+    
+    //ТЕСТОВАЯ КОРЗИНА
+    NSDictionary * orderCart = [[NSDictionary alloc] initWithObjectsAndKeys:
+                                @"5",@"count",
+                                @"2000",@"cost",
+                                nil];
+    [[SingleTone sharedManager] setOrderCart:orderCart];
+    //
+    if ([[[SingleTone sharedManager] typeOfUsers] integerValue] == 2 && [[SingleTone sharedManager] orderCart])
     {
-        DecorView * decor = [[DecorView alloc] initWithView:self.view andNumber:@"5" andPrice:@"2000"];
+        
+        NSDictionary * cartOrder = [[SingleTone sharedManager] orderCart];
+        
+        DecorView * decor = [[DecorView alloc] initWithView:self.view andNumber:[cartOrder objectForKey:@"count"] andPrice:[cartOrder objectForKey:@"cost"]];
         [self.view addSubview:decor];
         
         UIButton * buttonDecor = (UIButton *)[self.view viewWithTag:555];
