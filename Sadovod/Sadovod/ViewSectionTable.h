@@ -19,4 +19,10 @@
                 isInternetURL: (BOOL) isInternetURL
                 andLabelPrice: (NSString*) price
                    andResized: (BOOL) resized;
+
+//Инициализация картинок без цены---------------------
+- (instancetype)initWithFrame:(CGRect)frame
+                  andImageURL: (NSString*) imageUrl
+                isInternetURL: (BOOL) isInternetURL
+                   andResized: (BOOL) resized;
 @end
