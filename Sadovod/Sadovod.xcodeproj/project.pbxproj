@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		699EBCA81799B1C85B4EFAF6 /* libPods-Sadovod.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB0C66A742FF03CE239AEFEF /* libPods-Sadovod.a */; };
+		7721D6731C59566C00B7BF83 /* ic_cart.png in Resources */ = {isa = PBXBuildFile; fileRef = 7721D6721C59566C00B7BF83 /* ic_cart.png */; };
 		775B79C41C50CECF0036ABCE /* ic_orders.png in Resources */ = {isa = PBXBuildFile; fileRef = 775B79C31C50CECF0036ABCE /* ic_orders.png */; };
 		775B79C81C50CFB60036ABCE /* OrdersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 775B79C71C50CFB60036ABCE /* OrdersViewController.m */; };
 		775B79CB1C51168B0036ABCE /* TextViewHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = 775B79CA1C51168B0036ABCE /* TextViewHeight.m */; };
@@ -105,6 +106,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7721D6721C59566C00B7BF83 /* ic_cart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_cart.png; sourceTree = "<group>"; };
 		775B79C31C50CECF0036ABCE /* ic_orders.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_orders.png; sourceTree = "<group>"; };
 		775B79C61C50CFB60036ABCE /* OrdersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrdersViewController.h; sourceTree = "<group>"; };
 		775B79C71C50CFB60036ABCE /* OrdersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrdersViewController.m; sourceTree = "<group>"; };
@@ -574,6 +576,7 @@
 		ADFBF5871C4C5A5F007E080D /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				7721D6721C59566C00B7BF83 /* ic_cart.png */,
 				77CCE9121C58FEB900D710D1 /* backImage.png */,
 				77CCE9101C58FCCE00D710D1 /* imagesave.png */,
 				77729FF81C53C7E700BC7791 /* ic_order_info.png */,
@@ -703,6 +706,7 @@
 				776BF2391C4B993C0006C502 /* 10image.jpg in Resources */,
 				776BF2371C4B993C0006C502 /* 4image.png in Resources */,
 				77BFED051C4AC5E80091A336 /* LaunchScreen.storyboard in Resources */,
+				7721D6731C59566C00B7BF83 /* ic_cart.png in Resources */,
 				776BF2351C4B993C0006C502 /* 6image.jpg in Resources */,
 				776BF2311C4B993C0006C502 /* 1image.jpg in Resources */,
 				77BFED021C4AC5E80091A336 /* Assets.xcassets in Resources */,

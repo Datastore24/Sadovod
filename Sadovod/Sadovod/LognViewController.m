@@ -61,6 +61,7 @@
                          initWithFrame:CGRectMake(40, 200, 200, 30)
                          placeholder:@"Пароль"];
     [self.view addSubview:textFielsPassword];
+    textFielsPassword.secureTextEntry = YES;
     textFielsPassword.center = CGPointMake(self.view.center.x, self.view.center.y - 60);
     textFielsPassword.delegate = self;
     
