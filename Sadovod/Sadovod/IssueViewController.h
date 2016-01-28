@@ -1,5 +1,5 @@
 //
-//  BasketView.h
+//  IssueViewController.h
 //  Sadovod
 //
 //  Created by Viktor on 28.01.16.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BasketView : UIView
+@interface IssueViewController : UIViewController
 
 @end
