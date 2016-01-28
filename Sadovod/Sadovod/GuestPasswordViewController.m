@@ -12,37 +12,70 @@
 #import "APIGetClass.h"
 #import "SingleTone.h"
 #import "TitleClass.h"
+#import "UIColor+HexColor.h"
+
+@interface GuestPasswordViewController ()
+
+@end
 
 @implementation GuestPasswordViewController
+{
+    UIScrollView * mailScrollView;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    TitleClass * title = [[TitleClass alloc]initWithTitle:@"Гостевой пароль"];
-    self.navigationItem.titleView = title;
-    
-    [self getPassowrd:^{
-        ParserGuestPassword * parserGuestPassword = [self.arrayResponce objectAtIndex:0];
-        //Главный лейбл---------------------------
-        UILabel * mailLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.center.x, self.view.center.y, 240, 120)];
-        if([parserGuestPassword.status isEqualToString:@"1"]){
-            mailLabel.text = parserGuestPassword.password;
-        }else{
-            mailLabel.text = @"ОШИБКА(CODE: GP01]";
+    if ([[[SingleTone sharedManager] typeOfUsers] integerValue] == 1) {
+        
+        TitleClass * title = [[TitleClass alloc]initWithTitle:@"Гостевой пароль"];
+        self.navigationItem.titleView = title;
+        
+        [self getPassowrd:^{
+            ParserGuestPassword * parserGuestPassword = [self.arrayResponce objectAtIndex:0];
+            //Главный лейбл---------------------------
+            UILabel * mailLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.center.x, self.view.center.y, 240, 120)];
+            if([parserGuestPassword.status isEqualToString:@"1"]){
+                mailLabel.text = parserGuestPassword.password;
+            }else{
+                mailLabel.text = @"ОШИБКА(CODE: GP01]";
+            }
+            
+            mailLabel.textColor = [UIColor blackColor];
+            mailLabel.textAlignment = NSTextAlignmentCenter;
+            mailLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:60];
+            [mailLabel setCenter:CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height / 2)];
+            
+            //mailLabel.backgroundColor = [UIColor blackColor];
+            [self.view addSubview:mailLabel];
+        }];
+    } else {
+        
+        TitleClass * title = [[TitleClass alloc]initWithTitle:@"Поставщици"];
+        self.navigationItem.titleView = title;
+        
+        mailScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+        [self.view addSubview:mailScrollView];
+        
+        for (int i = 0; i < 7; i ++) {
+            
+            UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(10, 10 + 30 * i + 10 * i, self.view.frame.size.width - 20, 30)];
+            label.backgroundColor = [UIColor colorWithHexString:@"3038a0"];
+            label.text = [NSString stringWithFormat: @"Самый крутой поствщик № %d", i];
+            label.textColor = [UIColor whiteColor];
+            label.font = [UIFont fontWithName:@"Helvetica-Bold" size:13];
+            label.textAlignment = NSTextAlignmentCenter;
+            
+            [mailScrollView addSubview:label];
         }
         
-        mailLabel.textColor = [UIColor blackColor];
-        mailLabel.textAlignment = NSTextAlignmentCenter;
-        mailLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:60];
-        [mailLabel setCenter:CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height / 2)];
+        mailScrollView.contentSize = CGSizeMake(self.view.frame.size.width, 30 * 7 + 10);
         
-        //mailLabel.backgroundColor = [UIColor blackColor];
-        [self.view addSubview:mailLabel];
-    }];
-  
+
+        
+    }
     
-    
-    
+
     
 }
 
@@ -102,6 +135,5 @@
     
     
 }
-//
 
 @end
