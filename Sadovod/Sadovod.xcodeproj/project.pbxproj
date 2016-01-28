@@ -53,6 +53,7 @@
 		77D9D5031C4CEC30003C3610 /* LoginTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D9D5021C4CEC30003C3610 /* LoginTextField.m */; };
 		77E6DABA1C59FEB300FD1029 /* BasketViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E6DAB91C59FEB300FD1029 /* BasketViewController.m */; };
 		77E6DAC11C5A0FD400FD1029 /* IssueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E6DAC01C5A0FD400FD1029 /* IssueViewController.m */; };
+		77E6DAC41C5A1AF600FD1029 /* DecorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E6DAC31C5A1AF600FD1029 /* DecorView.m */; };
 		77E801A91C5261BD00091F9A /* OrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E801A81C5261BD00091F9A /* OrderViewController.m */; };
 		77E801AC1C5261D900091F9A /* OrderViewDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E801AB1C5261D900091F9A /* OrderViewDetails.m */; };
 		77FC43C91C4FFC0B00F750A1 /* GuestPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FC43C81C4FFC0B00F750A1 /* GuestPasswordViewController.m */; };
@@ -181,6 +182,8 @@
 		77E6DAB91C59FEB300FD1029 /* BasketViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasketViewController.m; sourceTree = "<group>"; };
 		77E6DABF1C5A0FD400FD1029 /* IssueViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IssueViewController.h; sourceTree = "<group>"; };
 		77E6DAC01C5A0FD400FD1029 /* IssueViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IssueViewController.m; sourceTree = "<group>"; };
+		77E6DAC21C5A1AF600FD1029 /* DecorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DecorView.h; sourceTree = "<group>"; };
+		77E6DAC31C5A1AF600FD1029 /* DecorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DecorView.m; sourceTree = "<group>"; };
 		77E801A71C5261BD00091F9A /* OrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderViewController.h; sourceTree = "<group>"; };
 		77E801A81C5261BD00091F9A /* OrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderViewController.m; sourceTree = "<group>"; };
 		77E801AA1C5261D900091F9A /* OrderViewDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderViewDetails.h; sourceTree = "<group>"; };
@@ -509,6 +512,8 @@
 			children = (
 				77E6DABE1C5A0F4F00FD1029 /* Issue */,
 				77E6DAB71C59FE8700FD1029 /* Basket */,
+				77E6DAC21C5A1AF600FD1029 /* DecorView.h */,
+				77E6DAC31C5A1AF600FD1029 /* DecorView.m */,
 			);
 			name = "Сlient";
 			sourceTree = "<group>";
@@ -874,6 +879,7 @@
 				AD6F10141C4D1C9F00FF70B3 /* Auth.m in Sources */,
 				AD69E5EC1C501CE000DF6151 /* ParserGuestPassword.m in Sources */,
 				7767156D1C4FC4A70008DC24 /* ViewProductDetails.m in Sources */,
+				77E6DAC41C5A1AF600FD1029 /* DecorView.m in Sources */,
 				ADFBF57F1C4C47FE007E080D /* APIGetClass.m in Sources */,
 				77BFED2B1C4AC9F10091A336 /* SWRevealViewController.m in Sources */,
 				AD379BBB1C556108005DDDAC /* ParserOrderClientInfoResponse.m in Sources */,

@@ -16,6 +16,8 @@
 #import "TitleClass.h"
 #import "OrdersViewController.h"
 #import "BasketViewController.h"
+#import "DecorView.h"
+#import "IssueViewController.h"
 
 #import "ParserCategory.h"
 #import "ParserCategoryResponse.h"
@@ -105,26 +107,11 @@ NSDictionary * tableDict; //Директория хранения данных
     
     if ([[[SingleTone sharedManager] typeOfUsers] integerValue] ==2)
     {
-        UIView * viewDecor = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - 104, self.view.frame.size.width, 40)];
-        viewDecor.backgroundColor = [UIColor colorWithHexString:@"5f5f5f"];
-        viewDecor.layer.borderColor = [UIColor blackColor].CGColor;
-        viewDecor.layer.borderWidth = 0.5;
-        [self.view addSubview:viewDecor];
+        DecorView * decor = [[DecorView alloc] initWithView:self.view andNumber:@"5" andPrice:@"2000"];
+        [self.view addSubview:decor];
         
-        UILabel * labelDecor = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 220, 40)];
-        labelDecor.text = @"Итого 5 товаров на 2000 руб";
-        labelDecor.textColor = [UIColor whiteColor];
-        labelDecor.font = [UIFont fontWithName:@"HelveticaNeue" size:13];
-        [viewDecor addSubview:labelDecor];
-        
-        UIButton * buttonDecor = [UIButton buttonWithType:UIButtonTypeSystem];
-        buttonDecor.frame = CGRectMake(self.view.frame.size.width - 100, 0, 100, 40);
-        buttonDecor.backgroundColor = nil;
-        [buttonDecor setTitle:@"Оформить" forState:UIControlStateNormal];
-        [buttonDecor setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        buttonDecor.layer.borderColor = [UIColor blackColor].CGColor;
-        buttonDecor.layer.borderWidth = 0.5;
-        [viewDecor addSubview:buttonDecor];
+        UIButton * buttonDecor = (UIButton *)[self.view viewWithTag:555];
+        [buttonDecor addTarget:self action:@selector(buttonDecorAction) forControlEvents:UIControlEventTouchUpInside];
     }
     
     
@@ -319,6 +306,12 @@ NSDictionary * tableDict; //Директория хранения данных
  
  
  }*/
+
+- (void) buttonDecorAction
+{
+    IssueViewController * detail = [self.storyboard instantiateViewControllerWithIdentifier:@"IssueViewController"];
+    [self.navigationController pushViewController:detail animated:YES];
+}
 
 - (void) buttonOrdersAction
 {
