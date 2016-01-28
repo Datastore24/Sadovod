@@ -52,7 +52,7 @@
 		77D9D4FF1C4CEBD1003C3610 /* LognViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D9D4FE1C4CEBD1003C3610 /* LognViewController.m */; };
 		77D9D5031C4CEC30003C3610 /* LoginTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D9D5021C4CEC30003C3610 /* LoginTextField.m */; };
 		77E6DABA1C59FEB300FD1029 /* BasketViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E6DAB91C59FEB300FD1029 /* BasketViewController.m */; };
-		77E6DABD1C59FED200FD1029 /* BasketView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E6DABC1C59FED200FD1029 /* BasketView.m */; };
+		77E6DAC11C5A0FD400FD1029 /* IssueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E6DAC01C5A0FD400FD1029 /* IssueViewController.m */; };
 		77E801A91C5261BD00091F9A /* OrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E801A81C5261BD00091F9A /* OrderViewController.m */; };
 		77E801AC1C5261D900091F9A /* OrderViewDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E801AB1C5261D900091F9A /* OrderViewDetails.m */; };
 		77FC43C91C4FFC0B00F750A1 /* GuestPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FC43C81C4FFC0B00F750A1 /* GuestPasswordViewController.m */; };
@@ -179,8 +179,8 @@
 		77D9D5021C4CEC30003C3610 /* LoginTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginTextField.m; sourceTree = "<group>"; };
 		77E6DAB81C59FEB300FD1029 /* BasketViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasketViewController.h; sourceTree = "<group>"; };
 		77E6DAB91C59FEB300FD1029 /* BasketViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasketViewController.m; sourceTree = "<group>"; };
-		77E6DABB1C59FED200FD1029 /* BasketView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasketView.h; sourceTree = "<group>"; };
-		77E6DABC1C59FED200FD1029 /* BasketView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasketView.m; sourceTree = "<group>"; };
+		77E6DABF1C5A0FD400FD1029 /* IssueViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IssueViewController.h; sourceTree = "<group>"; };
+		77E6DAC01C5A0FD400FD1029 /* IssueViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IssueViewController.m; sourceTree = "<group>"; };
 		77E801A71C5261BD00091F9A /* OrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderViewController.h; sourceTree = "<group>"; };
 		77E801A81C5261BD00091F9A /* OrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderViewController.m; sourceTree = "<group>"; };
 		77E801AA1C5261D900091F9A /* OrderViewDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderViewDetails.h; sourceTree = "<group>"; };
@@ -507,6 +507,7 @@
 		77E6DAB61C59FE6500FD1029 /* Сlient */ = {
 			isa = PBXGroup;
 			children = (
+				77E6DABE1C5A0F4F00FD1029 /* Issue */,
 				77E6DAB71C59FE8700FD1029 /* Basket */,
 			);
 			name = "Сlient";
@@ -517,10 +518,17 @@
 			children = (
 				77E6DAB81C59FEB300FD1029 /* BasketViewController.h */,
 				77E6DAB91C59FEB300FD1029 /* BasketViewController.m */,
-				77E6DABB1C59FED200FD1029 /* BasketView.h */,
-				77E6DABC1C59FED200FD1029 /* BasketView.m */,
 			);
 			name = Basket;
+			sourceTree = "<group>";
+		};
+		77E6DABE1C5A0F4F00FD1029 /* Issue */ = {
+			isa = PBXGroup;
+			children = (
+				77E6DABF1C5A0FD400FD1029 /* IssueViewController.h */,
+				77E6DAC01C5A0FD400FD1029 /* IssueViewController.m */,
+			);
+			name = Issue;
 			sourceTree = "<group>";
 		};
 		77E801A61C52619500091F9A /* ViewOrder */ = {
@@ -840,7 +848,6 @@
 				AD69E5E51C4EE6B800DF6151 /* UIImage+Resize.m in Sources */,
 				77729FF71C53C53900BC7791 /* ViewCustomer.m in Sources */,
 				77D9D4FC1C4CE9AB003C3610 /* UIColor+HexColor.m in Sources */,
-				77E6DABD1C59FED200FD1029 /* BasketView.m in Sources */,
 				AD69E5E21C4EE6B800DF6151 /* UIImage+Alpha.m in Sources */,
 				77BFED2E1C4ACF900091A336 /* UserMenuViewController.m in Sources */,
 				77BFECFA1C4AC5E80091A336 /* AppDelegate.m in Sources */,
@@ -848,6 +855,7 @@
 				776BF23E1C4BB2510006C502 /* ViewControllerProductDetails.m in Sources */,
 				AD379B941C50ECA4005DDDAC /* ParserProductResponse.m in Sources */,
 				77729FF41C53C52100BC7791 /* CustomerViewController.m in Sources */,
+				77E6DAC11C5A0FD400FD1029 /* IssueViewController.m in Sources */,
 				776BF21D1C4B8A4C0006C502 /* SectionTableViewController.m in Sources */,
 				AD379BB51C555B1C005DDDAC /* ParserOrderResponse.m in Sources */,
 				AD6F100E1C4D1C3A00FF70B3 /* UserModel.xcdatamodeld in Sources */,

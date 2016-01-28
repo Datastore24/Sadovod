@@ -102,6 +102,32 @@ NSDictionary * tableDict; //Директория хранения данных
     
     [self getApiOrders];
     // Do any additional setup after loading the view.
+    
+    if ([[[SingleTone sharedManager] typeOfUsers] integerValue] ==2)
+    {
+        UIView * viewDecor = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - 104, self.view.frame.size.width, 40)];
+        viewDecor.backgroundColor = [UIColor colorWithHexString:@"5f5f5f"];
+        viewDecor.layer.borderColor = [UIColor blackColor].CGColor;
+        viewDecor.layer.borderWidth = 0.5;
+        [self.view addSubview:viewDecor];
+        
+        UILabel * labelDecor = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 220, 40)];
+        labelDecor.text = @"Итого 5 товаров на 2000 руб";
+        labelDecor.textColor = [UIColor whiteColor];
+        labelDecor.font = [UIFont fontWithName:@"HelveticaNeue" size:13];
+        [viewDecor addSubview:labelDecor];
+        
+        UIButton * buttonDecor = [UIButton buttonWithType:UIButtonTypeSystem];
+        buttonDecor.frame = CGRectMake(self.view.frame.size.width - 100, 0, 100, 40);
+        buttonDecor.backgroundColor = nil;
+        [buttonDecor setTitle:@"Оформить" forState:UIControlStateNormal];
+        [buttonDecor setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        buttonDecor.layer.borderColor = [UIColor blackColor].CGColor;
+        buttonDecor.layer.borderWidth = 0.5;
+        [viewDecor addSubview:buttonDecor];
+    }
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {
