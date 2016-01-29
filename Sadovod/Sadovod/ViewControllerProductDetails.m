@@ -19,12 +19,15 @@
 #import "APIGetClass.h"
 #import "ParserProduct.h"
 #import "ParserProductResponse.h"
+#import "ParserBuyProductInfo.h"
+#import "ParserBuyProductInfoResponse.h"
 #import "SingleTone.h"
 #import "TextViewHeight.h"
 #import <SCLAlertView-Objective-C/SCLAlertView.h>
 
 @interface ViewControllerProductDetails ()
 @property (strong, nonatomic) NSMutableArray * arrayProduct; //Массив с Товарами
+@property (strong, nonatomic) NSMutableArray * arrayBuyProductInfo; //Массив с Товарами
 @property (strong, nonatomic) ViewProductDetails * viewProductDetails; //Экземпляр класса
 @property (strong, nonatomic) UIButton * buttonCloseView;
 @property (strong, nonatomic) UILabel * priceLabel;
@@ -44,6 +47,8 @@
     
     NSArray * productSizes;
     UILabel * titleSize;
+    
+
 }
 
 
@@ -496,6 +501,31 @@
     
 }
 
+//Данные для заполнения View "Купить"
+-(void) getApiBuyProductInfo: (void (^)(void))block{
+    //Передаваемые параметры
+    
+    NSDictionary * params = [[NSDictionary alloc] initWithObjectsAndKeys:
+                             [[SingleTone sharedManager] parsingToken],@"token",
+                             self.productID,@"product",
+                             nil];
+    
+    APIGetClass * api =[APIGetClass new]; //создаем API
+    [api getDataFromServerWithParams:params method:@"abpro/buy_product_info" complitionBlock:^(id response) {
+        
+        ParserBuyProductInfoResponse * parsingResponce =[[ParserBuyProductInfoResponse alloc] init];
+        [parsingResponce parsing:response andArray:self.arrayBuyProductInfo andBlock:^{
+            NSLog(@"RESP %@",response);
+            
+            block();
+            
+        }];
+        
+        
+    }];
+    
+}
+
 //Отправляем цену на сервер
 - (void)postApiPrice:(NSString *) price
 {
@@ -789,6 +819,48 @@
     
     [mainScrollView addSubview:self.addToCartView ];
     [mainScrollView addSubview:self.buttonCloseView];
+    
+    self.arrayBuyProductInfo = [NSMutableArray array];
+    [self getApiBuyProductInfo:^{
+        if(self.arrayBuyProductInfo && self.arrayBuyProductInfo.count>0){
+            
+            
+            ParserBuyProductInfo * parserBuyProductInfo = [self.arrayBuyProductInfo objectAtIndex:0];
+            NSDictionary * productBuyInfo = parserBuyProductInfo.product;
+            NSArray * productBuySizes = [productBuyInfo objectForKey:@"sizes"];
+            
+            UILabel * productTitle = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 150, 40)];
+            productTitle.text= [productBuyInfo objectForKey:@"name"];
+            productTitle.textColor = [UIColor blackColor];
+            productTitle.font = [UIFont systemFontOfSize:22];
+            productTitle.alpha = 1;
+            [self.addToCartView addSubview:productTitle];
+            
+            UILabel * productCoast = [[UILabel alloc] initWithFrame:CGRectMake(160, 10, 150, 40)];
+            productCoast.text= [productBuyInfo objectForKey:@"cost"];
+            productCoast.textColor = [UIColor blackColor];
+            productCoast.font = [UIFont systemFontOfSize:22];
+            productCoast.alpha = 1;
+            [self.addToCartView addSubview:productCoast];
+            
+            for (int i=0; i<productBuySizes.count; i++) {
+                NSDictionary * productBuySizesInfo = [productBuySizes objectAtIndex:i];
+                
+                UILabel * sizeTitle = [[UILabel alloc] initWithFrame:CGRectMake(10, 80+(i*40), 100, 40)];
+                sizeTitle.text= [productBuySizesInfo objectForKey:@"value"];
+                sizeTitle.textColor = [UIColor blackColor];
+                sizeTitle.font = [UIFont systemFontOfSize:14];
+                sizeTitle.alpha = 1;
+                [self.addToCartView addSubview:sizeTitle];
+                
+            }
+            
+        }
+    }];
+    
+    
+    
+    
     
     [UIView animateWithDuration:1.0 animations:^(void) {
         self.addToCartView.alpha = 1;
