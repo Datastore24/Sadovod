@@ -14,6 +14,7 @@
 #import "AlertClass.h"
 #import "DecorView.h"
 #import "IssueViewController.h"
+#import "Animation.h"
 
 #import "APIPostClass.h"
 #import "APIGetClass.h"
@@ -33,7 +34,7 @@
 @property (strong, nonatomic) UILabel * priceLabel;
 @property (strong, nonatomic) NSMutableArray * tempArraySizes;
 
-@property (strong,nonatomic) UIView * addToCartView; //Всплывашка
+@property (strong,nonatomic) UIScrollView * addToCartView; //Всплывашка
 
 
 @end
@@ -49,6 +50,8 @@
     UILabel * titleSize;
     
     NSArray * productBuySizes;
+    BOOL isBool;
+    UIView * viewMove;
 }
 
 
@@ -58,6 +61,8 @@
     [super viewDidLoad];
     TitleClass * title = [[TitleClass alloc]initWithTitle:self.productName];
     self.navigationItem.titleView = title;
+    
+    isBool = NO;
     
     //NOTIFICATION
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadView) name:@"ReloadView" object:nil];
@@ -787,9 +792,10 @@
     
     
     
-    self.addToCartView = [[UIView alloc]initWithFrame:CGRectMake(0, 0,
+    self.addToCartView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0,
                                                                     width,
-                                                                     height-64)];
+                                                                     height-40)];
+    self.addToCartView.showsVerticalScrollIndicator = NO;
     self.addToCartView .backgroundColor =[UIColor whiteColor];
     
     mainScrollView.scrollEnabled=NO;
@@ -818,7 +824,7 @@
     
     
     [mainScrollView addSubview:self.addToCartView ];
-    [mainScrollView addSubview:self.buttonCloseView];
+    [self.addToCartView addSubview:self.buttonCloseView];
     
     self.arrayBuyProductInfo = [NSMutableArray array];
     [self getApiBuyProductInfo:^{
@@ -840,26 +846,12 @@
             
             
             
-            UILabel * productCoast = [[UILabel alloc] initWithFrame:CGRectMake(270, 10, 150, 40)];
+            UILabel * productCoast = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width- 120, 10, 150, 40)];
             productCoast.text= [productBuyInfo objectForKey:@"cost"];
             productCoast.textColor = [UIColor blackColor];
             productCoast.font = [UIFont fontWithName:@"Helvetica-Bold" size:20];
             productCoast.alpha = 1;
             [self.addToCartView addSubview:productCoast];
-            
-            
-            UIButton * buttonMain = [UIButton buttonWithType:UIButtonTypeSystem];
-            buttonMain.frame = CGRectMake(self.view.frame.size.width - 50, self.view.frame.size.height - 90, 40, 40);
-            buttonMain.backgroundColor = [UIColor colorWithHexString:@"a59edd"];
-            buttonMain.layer.cornerRadius = 20;
-            [buttonMain addTarget:self action:@selector(buttonMainAction)
-                             forControlEvents:UIControlEventTouchUpInside];
-            [self.addToCartView addSubview:buttonMain];
-            
-            UIImageView * imageViewMain = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
-            imageViewMain.backgroundColor = nil;
-            imageViewMain.image = [UIImage imageNamed:@"ic_more.png"];
-            [buttonMain addSubview:imageViewMain];
             
             
             for (int i=0; i<productBuySizes.count; i++) {
@@ -905,16 +897,68 @@
           
             }
             
-            //Кнопка подтверждения----------------------------------
-            UIButton * buttonConfirm = [UIButton buttonWithType:UIButtonTypeSystem];
-            buttonConfirm.frame = CGRectMake(10, 90+(productBuySizes.count*40), self.view.frame.size.width - 20, 35);
-            buttonConfirm.backgroundColor = [UIColor colorWithHexString:@"3038a0"];
-            [buttonConfirm setTitle:@"Купить" forState:UIControlStateNormal];
-            [buttonConfirm setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-            [buttonConfirm addTarget:self action:@selector(buttonConfirmAction)
-                    forControlEvents:UIControlEventTouchUpInside];
+
             
-            [self.view addSubview:buttonConfirm];
+            //Кнопка дл выезжаещего вью-----------------------------
+            UIButton * buttonMain = [UIButton buttonWithType:UIButtonTypeSystem];
+            buttonMain.frame = CGRectMake(self.addToCartView.frame.size.width - 50, 250+(productBuySizes.count*40), 40, 40);
+            buttonMain.backgroundColor = [UIColor colorWithHexString:@"a59edd"];
+            buttonMain.layer.cornerRadius = 20;
+            [buttonMain addTarget:self action:@selector(buttonMainAction)
+                 forControlEvents:UIControlEventTouchUpInside];
+            [self.addToCartView addSubview:buttonMain];
+            
+            UIImageView * imageViewMain = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
+            imageViewMain.backgroundColor = nil;
+            imageViewMain.image = [UIImage imageNamed:@"ic_more.png"];
+            [buttonMain addSubview:imageViewMain];
+            
+//            //Кнопка подтверждения----------------------------------
+//            UIButton * buttonConfirm = [UIButton buttonWithType:UIButtonTypeSystem];
+//            buttonConfirm.frame = CGRectMake(10, buttonMain.frame.origin.y + 60, self.view.frame.size.width - 20, 35);
+//            buttonConfirm.backgroundColor = [UIColor colorWithHexString:@"3038a0"];
+//            [buttonConfirm setTitle:@"Купить" forState:UIControlStateNormal];
+//            [buttonConfirm setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//            [buttonConfirm addTarget:self action:@selector(buttonConfirmAction)
+//                    forControlEvents:UIControlEventTouchUpInside];
+//            
+//            [self.addToCartView addSubview:buttonConfirm];
+            
+            self.addToCartView.contentSize = CGSizeMake(self.view.frame.size.width, buttonMain.frame.origin.y + 150);
+            
+            //Выезжающее вью----------------------------------------
+            viewMove = [[UIView alloc] initWithFrame:CGRectMake(self.view.frame.size.width + 10, buttonMain.frame.origin.y - 170, 160, 160)];
+            viewMove.backgroundColor = nil;
+            viewMove.layer.borderColor = [UIColor colorWithHexString:@"3038a0"].CGColor;
+            viewMove.layer.borderWidth = 1.f;
+            [self.addToCartView addSubview:viewMove];
+            
+            UIButton * buttonDeleteAll = [UIButton buttonWithType:UIButtonTypeSystem];
+            buttonDeleteAll.frame = CGRectMake(10, 10, 140, 40);
+            buttonDeleteAll.backgroundColor = [UIColor colorWithHexString:@"3038a0"];
+            [buttonDeleteAll setTitle:@"Очистить" forState:UIControlStateNormal];
+            [buttonDeleteAll setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            [buttonDeleteAll addTarget:self action:@selector(buttonDeleteAllAction)
+                                  forControlEvents:UIControlEventTouchUpInside];
+            [viewMove addSubview:buttonDeleteAll];
+            
+            UIButton * buttonAddAllOnOnce = [UIButton buttonWithType:UIButtonTypeSystem];
+            buttonAddAllOnOnce.frame = CGRectMake(10, 60, 140, 40);
+            buttonAddAllOnOnce.backgroundColor = [UIColor colorWithHexString:@"3038a0"];
+            [buttonAddAllOnOnce setTitle:@"+ 1 Всего" forState:UIControlStateNormal];
+            [buttonAddAllOnOnce setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            [buttonAddAllOnOnce addTarget:self action:@selector(buttonAddAllOnOnceAction)
+                      forControlEvents:UIControlEventTouchUpInside];
+            [viewMove addSubview:buttonAddAllOnOnce];
+            
+            UIButton * buttonDelAllOnOnce = [UIButton buttonWithType:UIButtonTypeSystem];
+            buttonDelAllOnOnce.frame = CGRectMake(10, 110, 140, 40);
+            buttonDelAllOnOnce.backgroundColor = [UIColor colorWithHexString:@"3038a0"];
+            [buttonDelAllOnOnce setTitle:@"- 1 Всего" forState:UIControlStateNormal];
+            [buttonDelAllOnOnce setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            [buttonDelAllOnOnce addTarget:self action:@selector(buttonDelAllOnOnceAction)
+                         forControlEvents:UIControlEventTouchUpInside];
+            [viewMove addSubview:buttonDelAllOnOnce];
             
         }
     }];
@@ -935,6 +979,7 @@
     self.addToCartView=nil;
     self.buttonCloseView=nil;
     mainScrollView.scrollEnabled=YES;
+    isBool = NO;
     
     
 }
@@ -965,15 +1010,40 @@
     }
 }
 
+//Кнопка выдвигаеммого вью----------------------
 - (void) buttonMainAction
 {
-    NSLog(@"Hello");
+    if (!isBool) {
+        [Animation animateTransformView:viewMove withScale:1 move_X:- 180 move_Y:0 alpha:1 delay:0];
+        isBool = YES;
+    } else {
+        [Animation animateTransformView:viewMove withScale:1 move_X:+ 180 move_Y:0 alpha:1 delay:0];
+        isBool = NO;
+    }
 }
 
-
+//Кнопка купить----------------------------------
 - (void) buttonConfirmAction
 {
     NSLog(@"Купить");
+}
+
+//Кнопка Очистить все-----------------------------
+- (void) buttonDeleteAllAction
+{
+    NSLog(@"Удалить все нах");
+}
+
+//Кнопка увеличить все на еденицу-----------------
+- (void) buttonAddAllOnOnceAction
+{
+    NSLog(@"Увеличить все на еденицу");
+}
+
+//Кнопка уменьшить все на еденицу-----------------
+- (void) buttonDelAllOnOnceAction
+{
+    NSLog(@"Уменьшить все на еденицу");
 }
 
 
