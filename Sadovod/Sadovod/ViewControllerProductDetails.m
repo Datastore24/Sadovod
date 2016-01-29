@@ -48,7 +48,7 @@
     NSArray * productSizes;
     UILabel * titleSize;
     
-
+    NSArray * productBuySizes;
 }
 
 
@@ -806,7 +806,7 @@
     [self.buttonCloseView.titleLabel setFont:[UIFont systemFontOfSize:22]];
     [self.buttonCloseView setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     self.buttonCloseView.backgroundColor= [UIColor clearColor];
-    self.buttonCloseView.frame = CGRectMake(self.view.frame.size.width-45, 5, 40, 40);
+    self.buttonCloseView.frame = CGRectMake(self.view.frame.size.width-45, 10, 40, 40);
     self.buttonCloseView.alpha = 0;
     self.buttonCloseView.layer.borderColor = [[UIColor grayColor] CGColor];
     self.buttonCloseView.layer.borderWidth = 2.0;
@@ -827,41 +827,98 @@
             
             ParserBuyProductInfo * parserBuyProductInfo = [self.arrayBuyProductInfo objectAtIndex:0];
             NSDictionary * productBuyInfo = parserBuyProductInfo.product;
-            NSArray * productBuySizes = [productBuyInfo objectForKey:@"sizes"];
+            productBuySizes = [productBuyInfo objectForKey:@"sizes"];
             
-            UILabel * productTitle = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 150, 40)];
-            productTitle.text= [productBuyInfo objectForKey:@"name"];
-            productTitle.textColor = [UIColor blackColor];
-            productTitle.font = [UIFont systemFontOfSize:22];
+            UILabel * productTitle = [[UILabel alloc] initWithFrame:CGRectMake(30, 10, 150, 40)];
+//            productTitle.text= [productBuyInfo objectForKey:@"name"];
+            productTitle.text = @"Цена товара:";
+            productTitle.textColor = [UIColor colorWithHexString:@"3038a0"];
+            productTitle.font = [UIFont fontWithName:@"Helvetica-Bold" size:20];
             productTitle.alpha = 1;
             [self.addToCartView addSubview:productTitle];
             
-            UILabel * productCoast = [[UILabel alloc] initWithFrame:CGRectMake(160, 10, 150, 40)];
+            
+            
+            
+            UILabel * productCoast = [[UILabel alloc] initWithFrame:CGRectMake(270, 10, 150, 40)];
             productCoast.text= [productBuyInfo objectForKey:@"cost"];
             productCoast.textColor = [UIColor blackColor];
-            productCoast.font = [UIFont systemFontOfSize:22];
+            productCoast.font = [UIFont fontWithName:@"Helvetica-Bold" size:20];
             productCoast.alpha = 1;
             [self.addToCartView addSubview:productCoast];
+            
+            
+            UIButton * buttonMain = [UIButton buttonWithType:UIButtonTypeSystem];
+            buttonMain.frame = CGRectMake(self.view.frame.size.width - 50, self.view.frame.size.height - 90, 40, 40);
+            buttonMain.backgroundColor = [UIColor colorWithHexString:@"a59edd"];
+            buttonMain.layer.cornerRadius = 20;
+            [buttonMain addTarget:self action:@selector(buttonMainAction)
+                             forControlEvents:UIControlEventTouchUpInside];
+            [self.addToCartView addSubview:buttonMain];
+            
+            UIImageView * imageViewMain = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
+            imageViewMain.backgroundColor = nil;
+            imageViewMain.image = [UIImage imageNamed:@"ic_more.png"];
+            [buttonMain addSubview:imageViewMain];
+            
             
             for (int i=0; i<productBuySizes.count; i++) {
                 NSDictionary * productBuySizesInfo = [productBuySizes objectAtIndex:i];
                 
-                UILabel * sizeTitle = [[UILabel alloc] initWithFrame:CGRectMake(10, 80+(i*40), 100, 40)];
+                UILabel * sizeTitle = [[UILabel alloc] initWithFrame:CGRectMake(30, 80+(i*40), 100, 40)];
                 sizeTitle.text= [productBuySizesInfo objectForKey:@"value"];
-                sizeTitle.textColor = [UIColor blackColor];
+                sizeTitle.font = [UIFont fontWithName:@"HelveticaNeue" size:13];
+                sizeTitle.textColor = [UIColor colorWithHexString:@"757575"];
                 sizeTitle.font = [UIFont systemFontOfSize:14];
                 sizeTitle.alpha = 1;
                 [self.addToCartView addSubview:sizeTitle];
                 
+                UIButton * buttonAdd = [UIButton buttonWithType:UIButtonTypeSystem];
+                buttonAdd.frame = CGRectMake(self.view.frame.size.width - 50, 77+(i*40), 40, 40);
+                buttonAdd.backgroundColor = nil;
+                [buttonAdd setTitle:@"+" forState:UIControlStateNormal];
+                [buttonAdd setTitleColor:[UIColor colorWithHexString:@"a6a0dd"] forState:UIControlStateNormal];
+                buttonAdd.titleLabel.font = [UIFont systemFontOfSize:22];
+                buttonAdd.tag = 100 + i;
+                [buttonAdd addTarget:self action:@selector(buttonAddAction:)
+                                forControlEvents:UIControlEventTouchUpInside];
+                [self.addToCartView addSubview:buttonAdd];
+              
+                UIButton * buttonDel = [UIButton buttonWithType:UIButtonTypeSystem];
+                buttonDel.frame = CGRectMake(self.view.frame.size.width - 100, 77+(i*40), 40, 40);
+                buttonDel.backgroundColor = nil;
+                [buttonDel setTitle:@"-" forState:UIControlStateNormal];
+                [buttonDel setTitleColor:[UIColor colorWithHexString:@"a6a0dd"] forState:UIControlStateNormal];
+                buttonDel.titleLabel.font = [UIFont systemFontOfSize:22];
+                buttonDel.tag = 200 + i;
+                [buttonDel addTarget:self action:@selector(buttonDelAction:)
+                    forControlEvents:UIControlEventTouchUpInside];
+                [self.addToCartView addSubview:buttonDel];
+                
+                
+                UILabel * labelNumber = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 60, 77+(i*40), 40, 40)];
+                labelNumber.text = [NSString stringWithFormat:@"%d", i];
+                labelNumber.tag = 300 + i;
+                labelNumber.textColor = [UIColor colorWithHexString:@"acacac"];
+                labelNumber.font = [UIFont fontWithName:@"HelveticaNeue" size:13];
+                [self.addToCartView addSubview:labelNumber];
+          
             }
+            
+            //Кнопка подтверждения----------------------------------
+            UIButton * buttonConfirm = [UIButton buttonWithType:UIButtonTypeSystem];
+            buttonConfirm.frame = CGRectMake(10, 90+(productBuySizes.count*40), self.view.frame.size.width - 20, 35);
+            buttonConfirm.backgroundColor = [UIColor colorWithHexString:@"3038a0"];
+            [buttonConfirm setTitle:@"Купить" forState:UIControlStateNormal];
+            [buttonConfirm setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            [buttonConfirm addTarget:self action:@selector(buttonConfirmAction)
+                    forControlEvents:UIControlEventTouchUpInside];
+            
+            [self.view addSubview:buttonConfirm];
             
         }
     }];
-    
-    
-    
-    
-    
+   
     [UIView animateWithDuration:1.0 animations:^(void) {
         self.addToCartView.alpha = 1;
         self.buttonCloseView.alpha = 1;
@@ -886,6 +943,37 @@
 {
     IssueViewController * detail = [self.storyboard instantiateViewControllerWithIdentifier:@"IssueViewController"];
     [self.navigationController pushViewController:detail animated:YES];
+}
+
+//Кнопка увеличить-------------------------------
+- (void) buttonAddAction: (UIButton*) button
+{
+    for (int i = 0; i < productBuySizes.count; i++) {
+        if (button.tag == 100 + i) {
+            NSLog(@"buttonAddAction = %d", i);
+        }
+    }
+}
+
+//Кнопка уменьшить-------------------------------
+- (void) buttonDelAction: (UIButton*) button
+{
+    for (int i = 0; i < productBuySizes.count; i++) {
+        if (button.tag == 200 + i) {
+            NSLog(@"buttonDelAction = %d", i);
+        }
+    }
+}
+
+- (void) buttonMainAction
+{
+    NSLog(@"Hello");
+}
+
+
+- (void) buttonConfirmAction
+{
+    NSLog(@"Купить");
 }
 
 
