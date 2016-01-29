@@ -11,6 +11,7 @@
 #import "LognViewController.h"
 #import "AuthDbClass.h"
 #import "SingleTone.h"
+#import "IssueViewController.h"
 
 @interface UserMenuViewController ()
 
@@ -28,14 +29,15 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableViewWhenNewEvent) name:@"ReloadMenu" object:nil];
     //
     
-    self.view.backgroundColor = [UIColor lightGrayColor];
+    self.view.backgroundColor = [UIColor whiteColor];
     self.menuTableView.backgroundColor = nil;
     self.menuTableView.scrollEnabled = NO;
     
-    menu = [NSArray arrayWithObjects:@"first", @"second", @"third", @"fourth", nil];
+    menu = [NSArray arrayWithObjects:@"first", @"second", @"third", @"five", @"fourth", nil];
 
     
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -67,10 +69,10 @@
 //        [cell addSubview:view];
 ////    }
     
-    if ([cellIdentifier  isEqual: @"third"]) {
-        
-        cell.userInteractionEnabled = NO;
-    }
+//    if ([cellIdentifier  isEqual: @"third"]) {
+//        
+//        cell.userInteractionEnabled = NO;
+//    }
     
     cell.backgroundColor = nil;
     
@@ -110,6 +112,26 @@
         
     }
     }
+    
+    
+    if ([cellIdentifier isEqual:@"third"]) {
+        UIImageView * imageTableViewCell = [[UIImageView alloc] initWithFrame:CGRectMake(20, 10, 20, 20)];
+        imageTableViewCell.image = [UIImage imageNamed:@"ic_cart_grey.png"];
+        [cell addSubview:imageTableViewCell];
+        
+        UILabel * labelNumber = [[UILabel alloc] initWithFrame:CGRectMake(45, 3, 80, 20)];
+        labelNumber.text = @"2 товара";
+        labelNumber.textColor = [UIColor blackColor];
+        labelNumber.font = [UIFont fontWithName:@"HelveticaNeue" size:15];
+        [cell addSubview:labelNumber];
+        
+        UILabel * labelPrice = [[UILabel alloc] initWithFrame:CGRectMake(45, 20, 80, 20)];
+        labelPrice.text = @"1000 руб";
+        labelPrice.textColor = [UIColor lightGrayColor];
+        labelPrice.font = [UIFont fontWithName:@"HelveticaNeue" size:15];
+        [cell addSubview:labelPrice];
+    }
+    
     return cell;
 }
 
@@ -141,7 +163,7 @@
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    if (indexPath.row == 3) {
+    if (indexPath.row == 4) {
         NSLog(@"Сюда вставляем все что необходимо по нажатию на выход !!!");
         AuthDbClass * auth = [[AuthDbClass alloc] init];
         [auth DeleteUserWithOutKey];
@@ -159,13 +181,20 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    if (indexPath.row == 1)
-//    {
-//        return 150.f;
-//    } else {
-
-    return 44.f;
-//}
+    if (indexPath.row == 1)
+    {
+        return 25.f;
+    } else if (indexPath.row == 2){
+        if ([[[SingleTone sharedManager] typeOfUsers] integerValue] ==1) {
+            return 0;
+        } else {
+    
+    return 45.f;
+        }
+    } else {
+        
+        return 44.f;
+    }
 }
 
 //Обновление таблицы
@@ -181,8 +210,7 @@
     
     
     //После обновления
-    
-    
+   
 }
 
 @end
