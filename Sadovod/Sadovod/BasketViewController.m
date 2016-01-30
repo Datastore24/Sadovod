@@ -147,6 +147,11 @@
         NSDictionary * cartOrder = [[SingleTone sharedManager] orderCart];
         
         DecorView * decor = [[DecorView alloc] initWithView:self.view andNumber:[cartOrder objectForKey:@"count"] andPrice:[cartOrder objectForKey:@"cost"] andWithBlock:NO];
+        if([[[[SingleTone sharedManager] orderCart] objectForKey:@"cost"]integerValue]>0){
+            decor.alpha = 0.7;
+        }else{
+            decor.alpha = 0;
+        }
         [self.view addSubview:decor];
         
         UIButton * buttonDecor = (UIButton *)[self.view viewWithTag:555];
