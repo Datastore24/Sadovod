@@ -6,6 +6,8 @@ PODS:
     - AFNetworking/Security (= 2.6.3)
     - AFNetworking/Serialization (= 2.6.3)
     - AFNetworking/UIKit (= 2.6.3)
+  - AFNetworking+ImageActivityIndicator (1.0.2):
+    - AFNetworking (~> 2.0)
   - AFNetworking/NSURLConnection (2.6.3):
     - AFNetworking/Reachability
     - AFNetworking/Security
@@ -20,16 +22,19 @@ PODS:
   - AFNetworking/UIKit (2.6.3):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - MagicalRecord (2.3.0)
+  - MagicalRecord (2.3.2):
+    - MagicalRecord/Core (= 2.3.2)
+  - MagicalRecord/Core (2.3.2)
   - Motis (1.3.0)
-  - SCLAlertView-Objective-C (0.8.0)
-  - SDWebImage (3.7.4):
-    - SDWebImage/Core (= 3.7.4)
-  - SDWebImage/Core (3.7.4)
+  - SCLAlertView-Objective-C (0.8.2)
+  - SDWebImage (3.7.5):
+    - SDWebImage/Core (= 3.7.5)
+  - SDWebImage/Core (3.7.5)
   - SVPullToRefresh (0.4.1)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
+  - AFNetworking+ImageActivityIndicator (~> 1.0)
   - MagicalRecord
   - Motis (~> 1.3.0)
   - SCLAlertView-Objective-C
@@ -38,10 +43,11 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
-  MagicalRecord: 89eb7d7ead39fb37f01c3d010665ee94d17f8dba
+  AFNetworking+ImageActivityIndicator: 2d1a65e082909f6c5f0e8af0ae810e1118e5f21c
+  MagicalRecord: 53bed74b4323b930992a725be713e53b37d19755
   Motis: a5b1f6aa29ad14cd64e27c4fe15d9805c18c162f
-  SCLAlertView-Objective-C: bf3590d5c8cf0fcf49f63f82fb3e4a78b545f7bb
-  SDWebImage: 247edd7dd80dd6124197b0d6a17846fe9d1df968
+  SCLAlertView-Objective-C: de137408b04f3587551fa98b876b3cbc612cee79
+  SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
   SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
 
 COCOAPODS: 0.39.0
