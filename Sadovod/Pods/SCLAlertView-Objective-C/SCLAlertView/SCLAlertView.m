@@ -38,10 +38,10 @@
 @property (nonatomic, strong) NSString *titleFontFamily;
 @property (nonatomic, strong) NSString *bodyTextFontFamily;
 @property (nonatomic, strong) NSString *buttonsFontFamily;
-@property (nonatomic, strong) UIViewController *rootViewController;
 @property (nonatomic, strong) UIWindow *previousWindow;
 @property (nonatomic, strong) UIWindow *SCLAlertWindow;
 @property (nonatomic, copy) DismissBlock dismissBlock;
+@property (nonatomic, weak) UIViewController *rootViewController;
 @property (nonatomic, weak) id<UIGestureRecognizerDelegate> restoreInteractivePopGestureDelegate;
 @property (nonatomic) BOOL canAddObservers;
 @property (nonatomic) BOOL keyboardIsVisible;
@@ -660,10 +660,6 @@ SCLTimerDisplay *buttonTimer;
     if (btn.validationBlock && !btn.validationBlock()) {
         return;
     }
-    if([self isVisible])
-    {
-        [self hideView];
-    }
 
     if (btn.actionType == SCLBlock)
     {
@@ -678,6 +674,11 @@ SCLTimerDisplay *buttonTimer;
     else
     {
         NSLog(@"Unknown action type for button");
+    }
+    
+    if([self isVisible])
+    {
+        [self hideView];
     }
 }
 
@@ -1192,7 +1193,7 @@ SCLTimerDisplay *buttonTimer;
             break;
     }
     
-    if(_activityIndicatorView)
+    if (_activityIndicatorView)
     {
         [_activityIndicatorView stopAnimating];
     }
@@ -1202,11 +1203,18 @@ SCLTimerDisplay *buttonTimer;
         self.dismissBlock();
     }
     
-    if(_usingNewWindow)
+    if (_usingNewWindow)
     {
         // Restore previous window
         [self.previousWindow makeKeyAndVisible];
         self.previousWindow = nil;
+    }
+    
+    for (SCLButton *btn in _buttons)
+    {
+        btn.actionBlock = nil;
+        btn.target = nil;
+        btn.selector = nil;
     }
 }
 
@@ -1219,7 +1227,7 @@ SCLTimerDisplay *buttonTimer;
         self.view.alpha = 0.0f;
     } completion:^(BOOL completed) {
         [self.backgroundView removeFromSuperview];
-        if(_usingNewWindow)
+        if (_usingNewWindow)
         {
             // Remove current window            
             [self.SCLAlertWindow setHidden:YES];

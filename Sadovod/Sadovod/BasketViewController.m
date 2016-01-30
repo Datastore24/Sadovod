@@ -24,6 +24,7 @@
 #import <SCLAlertView-Objective-C/SCLAlertView.h>
 #import "Animation.h"
 
+
 @implementation BasketViewController
 {
     UIScrollView * mainScrollView;
@@ -174,14 +175,20 @@
                 
                 
                 UIView * testView = (UIView*)[self.view viewWithTag:700 + i];
-                [Animation animateTransformView:testView withScale:1.f move_X:-500 move_Y:0 alpha:1.f delay:0.5f];
+                [Animation animateTransformView:testView withScale:1.f move_X:-self.view.frame.size.width + 10 move_Y:0 alpha:1.f delay:0.5f];
+                
+                NSLog(@"Animation %ld", (long)testView.tag);
                 
                 
-                for (UIView * view in testArray) {
-                    if (view.tag > testView.tag) {
-                        NSLog(@"view tag %ld", (long)view.tag);
-                        NSLog(@"testView tag = %ld", (long)testView.tag);
-                        [Animation animateTransformView:view withScale:1.f move_X:0 move_Y:- (self.view.frame.size.width / 2) alpha:1.f delay:0.5f];
+                
+                
+                for (int i = 0; i < productArrayCartList.count; i++) {
+                    UIView * upsView = (UIView*)[self.view viewWithTag:700 + i];
+                    if (upsView.tag > testView.tag) {
+                        
+                        NSLog(@"Animation up %ld", (long)upsView.tag);
+
+                        [Animation animationTestView:upsView move_Y:- (self.view.frame.size.width / 2)];
                     }
                 }
 

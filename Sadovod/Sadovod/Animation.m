@@ -93,6 +93,16 @@
         }];
 }
 
++ (void) animationTestView:(UIView*)view move_Y: (CGFloat)moveY
+{
+    [UIView animateWithDuration:0.5 animations:^{
+        CGRect rect = view.frame;
+        rect.origin.y = rect.origin.y + moveY;
+        view.frame = rect;
+        
+    }];
+}
+
 
 //Интересная реализация анимации-------------------------------------------------------
 
