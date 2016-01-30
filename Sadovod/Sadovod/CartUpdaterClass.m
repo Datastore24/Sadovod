@@ -74,10 +74,14 @@
         NSLog(@"ИТОГО %@",parse.cost);
         if([parse.cost integerValue] ==0){
             NSLog(@"DECOR 0 ");
-            decor.alpha = 0;
+            [UIView animateWithDuration:0.5 animations:^{
+                decor.alpha = 0;
+            }];
         }else{
             NSLog(@"DECOR 0,7 ");
-            decor.alpha = 0.7;
+            [UIView animateWithDuration:0.5 animations:^{
+                decor.alpha = 0.7;
+            }];
         }
         
         labelDecor.text = [NSString stringWithFormat:@"Итого %@ на %@ руб", parse.count, parse.cost];
