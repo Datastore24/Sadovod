@@ -1124,13 +1124,11 @@
             
             NSLog(@"%d", button.tag);
             LabelProductDetail * labelCount= (LabelProductDetail *)testMArray[i];
-                NSLog(@"LABEL: %@",labelCount);
-            NSString * labeltag = [NSString stringWithFormat:@"321%@",[productBuySizesInfo objectForKey:@"id"]];
+                NSLog(@"LABEL: %@",productBuySizesInfo);
                 NSInteger count = [labelCount.text integerValue];
                 count +=1;
                 labelCount.text =[NSString stringWithFormat:@"%li",count];
-                NSString * productID = [NSString stringWithFormat:@"%li",button.tag];
-                [self postApiAddItemToCart:productID];
+                [self postApiAddItemToCart:[productBuySizesInfo objectForKey:@"id"]];
 
 
 
@@ -1155,8 +1153,7 @@
             }
             labelCount.text =[NSString stringWithFormat:@"%li",count];
             
-            NSString * productID = [NSString stringWithFormat:@"%li",button.tag];
-            [self postApiDelItemToCart:productID];
+            [self postApiDelItemToCart:[productBuySizesInfo objectForKey:@"id"]];
         }
     }
 }
@@ -1183,15 +1180,12 @@
 - (void) buttonDeleteAllAction
 {
     [self postApiDelAllItemToCart];
-    for (int i = 0; i < productBuySizes.count; i++) {
-        NSDictionary * productBuySizesInfo =[productBuySizes objectAtIndex:i];
-            NSString * labeltag = [NSString stringWithFormat:@"321%@",[productBuySizesInfo objectForKey:@"id"]];
-            UILabel * labelCount= (UILabel *)[self.view viewWithTag:[labeltag integerValue]];
-            NSInteger count = 0;
 
-            labelCount.text =[NSString stringWithFormat:@"%li",count];
-        
-    }
+        for (int i=0; i<testMArray.count; i++) {
+            LabelProductDetail * labelCount= (LabelProductDetail *)testMArray[i];
+            labelCount.text =@"0";
+            
+        }
     
 }
 
