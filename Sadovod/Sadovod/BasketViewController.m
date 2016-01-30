@@ -26,7 +26,7 @@
 @implementation BasketViewController
 {
     UIScrollView * mainScrollView;
-    NSMutableArray * buttonsArray;
+    NSArray * productArrayCartList;
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -43,8 +43,7 @@
     [super viewDidLoad];
     TitleClass * title = [[TitleClass alloc]initWithTitle:@"Корзина"];
     self.navigationItem.titleView = title;
-    
-    buttonsArray = [[NSMutableArray alloc] init];
+
     
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment: UIOffsetMake(10.f, -100.f) forBarMetrics:UIBarMetricsDefault];
     
@@ -61,7 +60,7 @@
         if(self.arrayCart && self.arrayCart>0){
             
             ParserFullCart * parserFullCart = [self.arrayCart objectAtIndex:0];
-            NSArray * productArrayCartList = parserFullCart.list;
+            productArrayCartList = parserFullCart.list;
     
     for (int i = 0; i < productArrayCartList.count; i++) {
         
@@ -109,7 +108,7 @@
         buttonDelete.tag = i;
         [buttonDelete addTarget:self action:@selector(buttonDeleteAction:)
                            forControlEvents:UIControlEventTouchUpInside];
-        [buttonsArray addObject:buttonDelete];
+        
         [mainScrollView addSubview:buttonDelete];
         
         
@@ -142,7 +141,10 @@
 
 - (void) buttonDeleteAction: (UIButton*) button
 {
-    for (int i = 0; i < 7; i ++) {
+    for (int i = 0; i < productArrayCartList.count; i++) {
+        
+        NSDictionary * productDictCart = [productArrayCartList objectAtIndex:i];
+        
         if (button.tag == i) {
             SCLAlertView *alert = [[SCLAlertView alloc] init];
             alert.customViewColor = [UIColor colorWithHexString:@"3038a0"];
@@ -150,11 +152,9 @@
             //Using Block
             
             //Достаем нужную кнопку---------------------------------------------
-            UIButton * myButton = (UIButton*)buttonsArray[i];
             
             [alert addButton:@"ОК" actionBlock:^(void) {
-                NSLog(@"Second button tapped");
-                [self postApiOneAddAllItemToCart:@"0"];
+                [self postApiOneAddAllItemToCart:[productDictCart objectForKey:@"id"]];
                 [CartUpdaterClass updateCartWithApi:self.view];
             }];
             
@@ -222,7 +222,6 @@
                             //[[NSNotificationCenter defaultCenter] postNotificationName:@"ReloadCart" object:self];
                             
                             [CartUpdaterClass updateCartWithApi:self.view];
-                            
                             
                         }else {
                             
