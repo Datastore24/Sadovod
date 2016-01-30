@@ -41,7 +41,7 @@
     UIButton * buttonLoggin;
     UIView * loadView;
     UILabel * label;
-    UIActivityIndicatorView *activityIndicator;
+    
 }
 
 - (void)viewDidLoad {
@@ -102,10 +102,11 @@
     label.center=CGPointMake(self.view.center.x, self.view.center.y-104);
     [loadView addSubview:label];
     
-    activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    activityIndicator.center=CGPointMake(self.view.center.x, self.view.center.y-64);
-    [activityIndicator startAnimating];
-    [loadView addSubview:activityIndicator];
+//    UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+//    activityIndicator.tag=666;
+//    activityIndicator.center=CGPointMake(self.view.center.x, self.view.center.y-64);
+//    [activityIndicator startAnimating];
+//    [loadView addSubview:activityIndicator];
 
     [self CheckAuth];
 
@@ -416,9 +417,14 @@
 -(void)hideView{
     
     [UIView animateWithDuration:0.3 animations:^{
-        loadView.alpha = 0;
+        UIActivityIndicatorView *  activityIndicator = (UIActivityIndicatorView *)[loadView viewWithTag:666];
         [activityIndicator setHidden:YES];
         [activityIndicator stopAnimating];
+        
+        loadView.alpha = 0;
+        loadView = nil;
+        
+        
     }];
     
 }
