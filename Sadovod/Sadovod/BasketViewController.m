@@ -26,6 +26,7 @@
 @implementation BasketViewController
 {
     UIScrollView * mainScrollView;
+    NSMutableArray * buttonsArray;
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -42,6 +43,8 @@
     [super viewDidLoad];
     TitleClass * title = [[TitleClass alloc]initWithTitle:@"Корзина"];
     self.navigationItem.titleView = title;
+    
+    buttonsArray = [[NSMutableArray alloc] init];
     
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment: UIOffsetMake(10.f, -100.f) forBarMetrics:UIBarMetricsDefault];
     
@@ -106,6 +109,7 @@
         buttonDelete.tag = i;
         [buttonDelete addTarget:self action:@selector(buttonDeleteAction:)
                            forControlEvents:UIControlEventTouchUpInside];
+        [buttonsArray addObject:buttonDelete];
         [mainScrollView addSubview:buttonDelete];
         
         
@@ -144,9 +148,13 @@
             alert.customViewColor = [UIColor colorWithHexString:@"3038a0"];
             //Using Selector
             //Using Block
+            
+            //Достаем нужную кнопку---------------------------------------------
+            UIButton * myButton = (UIButton*)buttonsArray[i];
+            
             [alert addButton:@"ОК" actionBlock:^(void) {
                 NSLog(@"Second button tapped");
-                [self postApiOneAddAllItemToCart:"0"];
+                [self postApiOneAddAllItemToCart:@"0"];
                 [CartUpdaterClass updateCartWithApi:self.view];
             }];
             
