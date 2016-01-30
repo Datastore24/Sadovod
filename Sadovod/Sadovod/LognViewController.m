@@ -41,6 +41,7 @@
     UIButton * buttonLoggin;
     UIView * loadView;
     UILabel * label;
+    UILabel * labelTwo;
     
 }
 
@@ -89,18 +90,37 @@
     buttonLoggin.layer.cornerRadius = 5.f;
     [self.view addSubview:buttonLoggin];
     
-    loadView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    loadView = [[UIView alloc] initWithFrame:CGRectMake(self.view.center.x, self.view.center.y-64, 260, 200)];
+    loadView.center = CGPointMake(self.view.center.x, self.view.center.y-64);
+    loadView.layer.cornerRadius = 10;
+    loadView.layer.masksToBounds = YES;
     loadView.backgroundColor = [UIColor lightGrayColor];
-    loadView.alpha = 0.9;
+    loadView.alpha = 1;
     [self.view addSubview:loadView];
     
     
-    label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 250, 40)];
-    label.center = loadView.center;
+    label = [[UILabel alloc] initWithFrame:CGRectMake(loadView.frame.size.width/2 - 110 ,loadView.frame.size.height/2 - 20, 250, 40)];
+    //label.center = CGPointMake(self.view.center.x, self.view.center.y-64);
     label.textColor = [UIColor whiteColor];
     label.text = @"Проверка логина и пароля";
-    label.center=CGPointMake(self.view.center.x, self.view.center.y-104);
+    
     [loadView addSubview:label];
+    
+    
+    labelTwo = [[UILabel alloc] initWithFrame:CGRectMake(loadView.frame.size.width/2 - 110 ,loadView.frame.size.height/2 + 20, 250, 40)];
+    //label.center = CGPointMake(self.view.center.x, self.view.center.y-64);
+    labelTwo.textColor = [UIColor whiteColor];
+    labelTwo.text = @"Проверка ключей доступа";
+    labelTwo.alpha = 0;
+    [loadView addSubview:labelTwo];
+    
+    
+    [UIView animateWithDuration:0.9 animations:^{
+        labelTwo.alpha = 1;
+    }];
+    
+    
+    
     
 //    UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
 //    activityIndicator.tag=666;
