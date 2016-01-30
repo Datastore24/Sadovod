@@ -211,7 +211,16 @@ NSDictionary * tableDict; //Директория хранения данных
                              nil];
     
     APIGetClass * api =[APIGetClass new]; //создаем API
+    
+    UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    activityIndicator.center=CGPointMake(self.view.center.x, self.view.center.y-64);
+    [activityIndicator startAnimating];
+    [self.view addSubview:activityIndicator];
+    
     [api getDataFromServerWithParams:params method:@"abpro/cats_list" complitionBlock:^(id response) {
+        
+        [activityIndicator setHidden:YES];
+        [activityIndicator stopAnimating];
         
         ParserCategoryResponse * parsingResponce =[[ParserCategoryResponse alloc] init];
         

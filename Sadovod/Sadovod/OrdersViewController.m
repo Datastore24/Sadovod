@@ -102,9 +102,17 @@
                              [[SingleTone sharedManager] parsingToken],@"token",
                              nil];
     
+    UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    activityIndicator.center=CGPointMake(self.view.center.x, self.view.center.y-64);
+    [activityIndicator startAnimating];
+    [self.view addSubview:activityIndicator];
+    
     APIGetClass * api =[APIGetClass new]; //создаем API
     [api getDataFromServerWithParams:params method:@"abpro/get_orders" complitionBlock:^(id response) {
         
+        
+        [activityIndicator setHidden:YES];
+        [activityIndicator stopAnimating];
         ParserCategoryResponse * parsingResponce =[[ParserCategoryResponse alloc] init];
         
         [parsingResponce parsing:response andArray:self.arrayOrders andBlock:^{

@@ -121,8 +121,16 @@
                              self.orderID,@"order",
                              nil];
     
+    UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    activityIndicator.center=CGPointMake(self.view.center.x, self.view.center.y-64);
+    [activityIndicator startAnimating];
+    [self.view addSubview:activityIndicator];
+    
     APIGetClass * api =[APIGetClass new]; //создаем API
     [api getDataFromServerWithParams:params method:@"abpro/detail_order" complitionBlock:^(id response) {
+        
+        [activityIndicator setHidden:YES];
+        [activityIndicator stopAnimating];
         
         ParserOrderResponse * parsingResponce =[[ParserOrderResponse alloc] init];
         [parsingResponce parsing:response andArray:self.arrayOrder andBlock:^{
