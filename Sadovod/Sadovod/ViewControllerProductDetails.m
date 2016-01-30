@@ -673,6 +673,70 @@
 }
 //
 
+//Добавить +1 ко всему
+- (void)postApiOneAddAllItemToCart
+{
+    //Передаваемые параметры
+    
+    
+    NSDictionary* params = [[NSDictionary alloc] initWithObjectsAndKeys:
+                            [[SingleTone sharedManager] parsingToken],@"token",
+                            self.productID,@"product",
+                            nil];
+    
+    
+    APIPostClass* api = [APIPostClass new]; //создаем API
+    [api postDataToServerWithParams:params
+                        andAddParam:nil
+                             method:@"abpro/buy_product_plus_one"
+                    complitionBlock:^(id response) {
+                        NSDictionary* dict = (NSDictionary*)response;
+                        if ([[dict objectForKey:@"status"] integerValue] == 1) {
+                            
+                            //[[NSNotificationCenter defaultCenter] postNotificationName:@"ReloadCart" object:self];
+                            
+                            [CartUpdaterClass updateCartWithApi:self.view];
+                            
+                            
+                        }else {
+                            
+                        }
+                    }];
+}
+//
+
+//Добавить -1 ко всему
+- (void)postApiOneDelAllItemToCart
+{
+    //Передаваемые параметры
+    
+    
+    NSDictionary* params = [[NSDictionary alloc] initWithObjectsAndKeys:
+                            [[SingleTone sharedManager] parsingToken],@"token",
+                            self.productID,@"product",
+                            nil];
+    
+    
+    APIPostClass* api = [APIPostClass new]; //создаем API
+    [api postDataToServerWithParams:params
+                        andAddParam:nil
+                             method:@"abpro/buy_product_minus_one"
+                    complitionBlock:^(id response) {
+                        NSDictionary* dict = (NSDictionary*)response;
+                        if ([[dict objectForKey:@"status"] integerValue] == 1) {
+                            
+                            //[[NSNotificationCenter defaultCenter] postNotificationName:@"ReloadCart" object:self];
+                            
+                            [CartUpdaterClass updateCartWithApi:self.view];
+                            
+                            
+                        }else {
+                            
+                        }
+                    }];
+}
+//
+
 #pragma mark -
 
 
@@ -1121,10 +1185,8 @@
         NSDictionary * productBuySizesInfo =[productBuySizes objectAtIndex:i];
         if (button.tag == 100 + i) {
             
-            
-            NSLog(@"%d", button.tag);
             LabelProductDetail * labelCount= (LabelProductDetail *)testMArray[i];
-                NSLog(@"LABEL: %@",productBuySizesInfo);
+            
                 NSInteger count = [labelCount.text integerValue];
                 count +=1;
                 labelCount.text =[NSString stringWithFormat:@"%li",count];
@@ -1192,13 +1254,36 @@
 //Кнопка увеличить все на еденицу-----------------
 - (void) buttonAddAllOnOnceAction
 {
-    NSLog(@"Увеличить все на еденицу");
+    [self postApiOneAddAllItemToCart];
+    for (int i=0; i<testMArray.count; i++) {
+        LabelProductDetail * labelCount= (LabelProductDetail *)testMArray[i];
+        
+        NSInteger count = [labelCount.text integerValue];
+        count +=1;
+        labelCount.text =[NSString stringWithFormat:@"%li",count];
+        
+    }
+    
 }
 
 //Кнопка уменьшить все на еденицу-----------------
 - (void) buttonDelAllOnOnceAction
 {
-    NSLog(@"Уменьшить все на еденицу");
+    [self postApiOneDelAllItemToCart];
+    for (int i=0; i<testMArray.count; i++) {
+        LabelProductDetail * labelCount= (LabelProductDetail *)testMArray[i];
+        
+        NSInteger count = [labelCount.text integerValue];
+        if(count>0){
+            count -=1;
+        }else{
+            count =0;
+        }
+        
+        labelCount.text =[NSString stringWithFormat:@"%li",count];
+        
+    }
+    
 }
 
 
