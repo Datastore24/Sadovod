@@ -47,7 +47,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    //NOTIFICATION
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hideView) name:@"CheckUser" object:nil];
     
+    //
 
     TitleClass * title = [[TitleClass alloc]initWithTitle:@"Логин"];
     self.navigationItem.titleView = title;
@@ -386,15 +389,13 @@
                         [self.navigationController pushViewController:mainView animated:YES];
                         
                     } else {
-                        [UIView animateWithDuration:0.3 animations:^{
-                            loadView.alpha = 0;
-                            [activityIndicator setHidden:YES];
-                            [activityIndicator stopAnimating];
-                        }];
+                       [[NSNotificationCenter defaultCenter] postNotificationName:@"CheckUser" object:self];
                     }
                     
                 }];
                 
+            }else{
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"CheckUser" object:self];
             }
 
                 
@@ -402,21 +403,23 @@
         
         
     }else{
-        [UIView animateWithDuration:0.3 animations:^{
-            loadView.alpha = 0;
-            [activityIndicator setHidden:YES];
-            [activityIndicator stopAnimating];
-        }];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"CheckUser" object:self];
     }
     
     }else{
+       [[NSNotificationCenter defaultCenter] postNotificationName:@"CheckUser" object:self];
         
-        [UIView animateWithDuration:0.3 animations:^{
-            loadView.alpha = 0;
-            [activityIndicator setHidden:YES];
-            [activityIndicator stopAnimating];
-        }];
     }
+    
+}
+
+-(void)hideView{
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        loadView.alpha = 0;
+        [activityIndicator setHidden:YES];
+        [activityIndicator stopAnimating];
+    }];
     
 }
 
