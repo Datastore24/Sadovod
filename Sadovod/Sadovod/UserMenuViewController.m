@@ -12,6 +12,10 @@
 #import "AuthDbClass.h"
 #import "SingleTone.h"
 #import "IssueViewController.h"
+#import "APIGetClass.h"
+#import "ParserSimpleCart.h"
+#import "ParserSimpleCartResponse.h"
+#import "CartUpdaterClass.h"
 
 @interface UserMenuViewController ()
 
@@ -20,6 +24,18 @@
 @implementation UserMenuViewController
 {
     NSArray * menu;
+    UILabel * labelNumber;
+    UILabel * labelPrice;
+    
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    
+    if ([[[SingleTone sharedManager] typeOfUsers] integerValue] == 2 && [[SingleTone sharedManager] orderCart])
+    {
+        [CartUpdaterClass updateCartWithApi:labelNumber andLabelPrice:labelPrice andView:self.view];
+    }
+    
 }
 
 - (void)viewDidLoad {
@@ -76,6 +92,7 @@
     
     cell.backgroundColor = nil;
     
+    
 //    //Изменение в таблице-----------------------------------------------------------------
     
     if([[[SingleTone sharedManager] typeOfUsers] integerValue] ==2){
@@ -118,15 +135,16 @@
         UIImageView * imageTableViewCell = [[UIImageView alloc] initWithFrame:CGRectMake(20, 10, 20, 20)];
         imageTableViewCell.image = [UIImage imageNamed:@"ic_cart_grey.png"];
         [cell addSubview:imageTableViewCell];
+        NSDictionary * cartInfo = [[SingleTone sharedManager] orderCart];
         
-        UILabel * labelNumber = [[UILabel alloc] initWithFrame:CGRectMake(45, 3, 80, 20)];
-        labelNumber.text = @"2 товара";
+        labelNumber = [[UILabel alloc] initWithFrame:CGRectMake(45, 3, 80, 20)];
+        labelNumber.text = [cartInfo objectForKey:@"count"];
         labelNumber.textColor = [UIColor blackColor];
         labelNumber.font = [UIFont fontWithName:@"HelveticaNeue" size:15];
         [cell addSubview:labelNumber];
         
-        UILabel * labelPrice = [[UILabel alloc] initWithFrame:CGRectMake(45, 20, 80, 20)];
-        labelPrice.text = @"1000 руб";
+        labelPrice = [[UILabel alloc] initWithFrame:CGRectMake(45, 20, 80, 20)];
+        labelPrice.text = [cartInfo objectForKey:@"cost"];
         labelPrice.textColor = [UIColor lightGrayColor];
         labelPrice.font = [UIFont fontWithName:@"HelveticaNeue" size:15];
         [cell addSubview:labelPrice];
@@ -134,6 +152,8 @@
     
     return cell;
 }
+
+
 
 - (void) customActionPressed: (UIButton *) button
 {

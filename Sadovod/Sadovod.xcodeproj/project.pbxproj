@@ -91,6 +91,9 @@
 		AD6F10261C4D701600FF70B3 /* ParserLoginPasswordResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = AD6F10251C4D701600FF70B3 /* ParserLoginPasswordResponse.m */; };
 		ADB6218D1C5A60B70041BE2F /* ParserBuyProductInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = ADB6218C1C5A60B70041BE2F /* ParserBuyProductInfo.m */; };
 		ADB621901C5A60DC0041BE2F /* ParserBuyProductInfoResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = ADB6218F1C5A60DC0041BE2F /* ParserBuyProductInfoResponse.m */; };
+		ADB621931C5BD8480041BE2F /* CartUpdaterClass.m in Sources */ = {isa = PBXBuildFile; fileRef = ADB621921C5BD8480041BE2F /* CartUpdaterClass.m */; };
+		ADB621961C5BDCFB0041BE2F /* ParserSimpleCart.m in Sources */ = {isa = PBXBuildFile; fileRef = ADB621951C5BDCFB0041BE2F /* ParserSimpleCart.m */; };
+		ADB621991C5BDD0B0041BE2F /* ParserSimpleCartResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = ADB621981C5BDD0B0041BE2F /* ParserSimpleCartResponse.m */; };
 		ADFBF57F1C4C47FE007E080D /* APIGetClass.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFBF57E1C4C47FE007E080D /* APIGetClass.m */; };
 		ADFBF5821C4C496B007E080D /* APIPostClass.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFBF5811C4C496B007E080D /* APIPostClass.m */; };
 		ADFBF5861C4C4B35007E080D /* AlertClass.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFBF5851C4C4B35007E080D /* AlertClass.m */; };
@@ -261,6 +264,12 @@
 		ADB6218C1C5A60B70041BE2F /* ParserBuyProductInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserBuyProductInfo.m; sourceTree = "<group>"; };
 		ADB6218E1C5A60DC0041BE2F /* ParserBuyProductInfoResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserBuyProductInfoResponse.h; sourceTree = "<group>"; };
 		ADB6218F1C5A60DC0041BE2F /* ParserBuyProductInfoResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserBuyProductInfoResponse.m; sourceTree = "<group>"; };
+		ADB621911C5BD8480041BE2F /* CartUpdaterClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartUpdaterClass.h; sourceTree = "<group>"; };
+		ADB621921C5BD8480041BE2F /* CartUpdaterClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartUpdaterClass.m; sourceTree = "<group>"; };
+		ADB621941C5BDCFB0041BE2F /* ParserSimpleCart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserSimpleCart.h; sourceTree = "<group>"; };
+		ADB621951C5BDCFB0041BE2F /* ParserSimpleCart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserSimpleCart.m; sourceTree = "<group>"; };
+		ADB621971C5BDD0B0041BE2F /* ParserSimpleCartResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserSimpleCartResponse.h; sourceTree = "<group>"; };
+		ADB621981C5BDD0B0041BE2F /* ParserSimpleCartResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserSimpleCartResponse.m; sourceTree = "<group>"; };
 		ADFBF57D1C4C47FD007E080D /* APIGetClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIGetClass.h; sourceTree = "<group>"; };
 		ADFBF57E1C4C47FE007E080D /* APIGetClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIGetClass.m; sourceTree = "<group>"; };
 		ADFBF5801C4C496B007E080D /* APIPostClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIPostClass.h; sourceTree = "<group>"; };
@@ -412,6 +421,8 @@
 				ADFBF5851C4C4B35007E080D /* AlertClass.m */,
 				AD6F101E1C4D266300FF70B3 /* SingleTone.h */,
 				AD6F101F1C4D266300FF70B3 /* SingleTone.m */,
+				ADB621911C5BD8480041BE2F /* CartUpdaterClass.h */,
+				ADB621921C5BD8480041BE2F /* CartUpdaterClass.m */,
 				77BFECFE1C4AC5E80091A336 /* Main.storyboard */,
 				77BFED011C4AC5E80091A336 /* Assets.xcassets */,
 				77BFED031C4AC5E80091A336 /* LaunchScreen.storyboard */,
@@ -624,6 +635,10 @@
 				ADB6218C1C5A60B70041BE2F /* ParserBuyProductInfo.m */,
 				ADB6218E1C5A60DC0041BE2F /* ParserBuyProductInfoResponse.h */,
 				ADB6218F1C5A60DC0041BE2F /* ParserBuyProductInfoResponse.m */,
+				ADB621941C5BDCFB0041BE2F /* ParserSimpleCart.h */,
+				ADB621951C5BDCFB0041BE2F /* ParserSimpleCart.m */,
+				ADB621971C5BDD0B0041BE2F /* ParserSimpleCartResponse.h */,
+				ADB621981C5BDD0B0041BE2F /* ParserSimpleCartResponse.m */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -878,6 +893,7 @@
 				775B79C81C50CFB60036ABCE /* OrdersViewController.m in Sources */,
 				77BFECFD1C4AC5E80091A336 /* ViewController.m in Sources */,
 				AD6F101D1C4D1FB900FF70B3 /* ParserAuthResponse.m in Sources */,
+				ADB621961C5BDCFB0041BE2F /* ParserSimpleCart.m in Sources */,
 				AD69E5D41C4E974300DF6151 /* MyShowcaseViewController.m in Sources */,
 				AD69E5CE1C4E7C4400DF6151 /* ParserCategory.m in Sources */,
 				AD69E5EF1C501CF600DF6151 /* ParserGuestPasswordResponse.m in Sources */,
@@ -902,9 +918,11 @@
 				AD6F100E1C4D1C3A00FF70B3 /* UserModel.xcdatamodeld in Sources */,
 				77729FF01C53B94400BC7791 /* EditSizeViewController.m in Sources */,
 				77E801AC1C5261D900091F9A /* OrderViewDetails.m in Sources */,
+				ADB621931C5BD8480041BE2F /* CartUpdaterClass.m in Sources */,
 				77BFECF71C4AC5E80091A336 /* main.m in Sources */,
 				77CE81941C4AF296003C7FFE /* ModelMyShowcase.m in Sources */,
 				776BF2231C4B95B80006C502 /* ModelSectionTableOwner.m in Sources */,
+				ADB621991C5BDD0B0041BE2F /* ParserSimpleCartResponse.m in Sources */,
 				AD6F101A1C4D1EF900FF70B3 /* ParserAuthKey.m in Sources */,
 				ADFBF5821C4C496B007E080D /* APIPostClass.m in Sources */,
 				AD379BBE1C561F16005DDDAC /* ParserProductSize.m in Sources */,

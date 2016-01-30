@@ -14,10 +14,20 @@
 #import "SingleTone.h"
 #import "DecorView.h"
 #import "IssueViewController.h"
+#import "CartUpdaterClass.h"
 
 @implementation BasketViewController
 {
     UIScrollView * mainScrollView;
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    
+    if ([[[SingleTone sharedManager] typeOfUsers] integerValue] == 2 && [[[[SingleTone sharedManager] orderCart] objectForKey:@"cost"] integerValue] >0)
+    {
+     [CartUpdaterClass updateCartWithApi:self.view];
+    }
+    
 }
 
 - (void) viewDidLoad
@@ -89,13 +99,13 @@
         [buttonDelete addSubview:imageView];
     }
     
-    
-    if ([[[SingleTone sharedManager] typeOfUsers] integerValue] == 2 && [[SingleTone sharedManager] orderCart])
+    [CartUpdaterClass updateCartWithApi:self.view];
+    if ([[[SingleTone sharedManager] typeOfUsers] integerValue] == 2 && [[[[SingleTone sharedManager] orderCart] objectForKey:@"cost"] integerValue] >0)
     {
         
         NSDictionary * cartOrder = [[SingleTone sharedManager] orderCart];
         
-        DecorView * decor = [[DecorView alloc] initWithView:self.view andNumber:[cartOrder objectForKey:@"count"] andPrice:[cartOrder objectForKey:@"cost"]];
+        DecorView * decor = [[DecorView alloc] initWithView:self.view andNumber:[cartOrder objectForKey:@"count"] andPrice:[cartOrder objectForKey:@"cost"] andWithBlock:NO];
         [self.view addSubview:decor];
         
         UIButton * buttonDecor = (UIButton *)[self.view viewWithTag:555];

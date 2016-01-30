@@ -12,6 +12,7 @@
 
 - (id)initWithView: (UIView *) view
          andNumber: (NSString*) number
-          andPrice: (NSString*) prise;
+          andPrice: (NSString*) prise
+      andWithBlock: (BOOL) block;
 
 @end

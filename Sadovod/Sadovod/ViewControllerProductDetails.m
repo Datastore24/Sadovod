@@ -26,6 +26,8 @@
 #import "TextViewHeight.h"
 #import <SCLAlertView-Objective-C/SCLAlertView.h>
 
+#import "CartUpdaterClass.h"
+
 @interface ViewControllerProductDetails ()
 @property (strong, nonatomic) NSMutableArray * arrayProduct; //Массив с Товарами
 @property (strong, nonatomic) NSMutableArray * arrayBuyProductInfo; //Массив с Товарами
@@ -52,6 +54,8 @@
     NSArray * productBuySizes;
     BOOL isBool;
     UIView * viewMove;
+    DecorView * decor;
+    
 }
 
 
@@ -66,6 +70,7 @@
     
     //NOTIFICATION
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadView) name:@"ReloadView" object:nil];
+    
     //
     
      self.arrayProduct = [NSMutableArray array];
@@ -405,16 +410,21 @@
             [AlertClass showAlertViewWithMessage:@"Ошибка загрузки товара" view:self];
         }
         
-        if ([[[SingleTone sharedManager] typeOfUsers] integerValue] ==2 && [[SingleTone sharedManager] orderCart])
+       if ([[[SingleTone sharedManager] typeOfUsers] integerValue] == 2 && [[SingleTone sharedManager] orderCart])
         {
             NSDictionary * cartOrder = [[SingleTone sharedManager] orderCart];
             
-            DecorView * decor = [[DecorView alloc] initWithView:self.view andNumber:[cartOrder objectForKey:@"count"] andPrice:[cartOrder objectForKey:@"cost"]];
+            decor = [[DecorView alloc] initWithView:self.view andNumber:[cartOrder objectForKey:@"count"] andPrice:[cartOrder objectForKey:@"cost"] andWithBlock:NO];
             
             CGRect rect = decor.frame;
             rect.origin.y = rect.origin.y + 64;
             decor.frame = rect;
-            decor.alpha = 0.7;
+            
+            if([[[[SingleTone sharedManager] orderCart] objectForKey:@"cost"]integerValue]>0){
+                decor.alpha = 0.7;
+            }else{
+                decor.alpha = 0;
+            }
             [self.view addSubview:decor];
             
             UIButton * buttonDecor = (UIButton *)[self.view viewWithTag:555];
@@ -557,6 +567,111 @@
                         }
                     }];
 }
+
+
+#pragma mark - CART
+//Работа с корзиной
+
+//Добавляем единицу товара в корзину
+- (void)postApiAddItemToCart:(NSString *) productID
+{
+    //Передаваемые параметры
+    
+    NSDictionary* params = [[NSDictionary alloc] initWithObjectsAndKeys:
+                            [[SingleTone sharedManager] parsingToken],@"token",
+                            productID,@"size",
+                            nil];
+
+    
+    APIPostClass* api = [APIPostClass new]; //создаем API
+    [api postDataToServerWithParams:params
+                        andAddParam:nil
+                             method:@"abpro/buy_product_add"
+                    complitionBlock:^(id response) {
+                        NSDictionary* dict = (NSDictionary*)response;
+                        if ([[dict objectForKey:@"status"] integerValue] == 1) {
+                            
+                            //[[NSNotificationCenter defaultCenter] postNotificationName:@"ReloadCart" object:self];
+                           
+                                    [CartUpdaterClass updateCartWithApi:self.view];
+               
+                            
+                        }else {
+                            
+                        }
+                    }];
+}
+//
+
+//Удаляем единцу товара из корзины
+- (void)postApiDelItemToCart:(NSString *) productID
+{
+    //Передаваемые параметры
+    
+    
+    NSDictionary* params = [[NSDictionary alloc] initWithObjectsAndKeys:
+                            [[SingleTone sharedManager] parsingToken],@"token",
+                            productID,@"size",
+                            nil];
+    
+    
+    APIPostClass* api = [APIPostClass new]; //создаем API
+    [api postDataToServerWithParams:params
+                        andAddParam:nil
+                             method:@"abpro/buy_product_del"
+                    complitionBlock:^(id response) {
+                        NSDictionary* dict = (NSDictionary*)response;
+                        if ([[dict objectForKey:@"status"] integerValue] == 1) {
+                            
+                            //[[NSNotificationCenter defaultCenter] postNotificationName:@"ReloadCart" object:self];
+                            
+                            [CartUpdaterClass updateCartWithApi:self.view];
+                            
+                            
+                        }else {
+                            
+                        }
+                    }];
+}
+//
+
+//Удалить все все товарные предложения по этому товару
+- (void)postApiDelAllItemToCart
+{
+    //Передаваемые параметры
+    
+    
+    NSDictionary* params = [[NSDictionary alloc] initWithObjectsAndKeys:
+                            [[SingleTone sharedManager] parsingToken],@"token",
+                            self.productID,@"product",
+                            nil];
+    
+    
+    APIPostClass* api = [APIPostClass new]; //создаем API
+    [api postDataToServerWithParams:params
+                        andAddParam:nil
+                             method:@"abpro/buy_product_clear_all"
+                    complitionBlock:^(id response) {
+                        NSDictionary* dict = (NSDictionary*)response;
+                        if ([[dict objectForKey:@"status"] integerValue] == 1) {
+                            
+                            //[[NSNotificationCenter defaultCenter] postNotificationName:@"ReloadCart" object:self];
+                            
+                            [CartUpdaterClass updateCartWithApi:self.view];
+                            
+                            
+                        }else {
+                            
+                        }
+                    }];
+}
+//
+
+#pragma mark -
+
+
+//
+
 
 //Отправляем цену на сервер
 - (void)postApiAviable:(NSString*) aviable andBlock:(void (^)(void))block
@@ -737,7 +852,7 @@
                     [self postApiAviableSize:@"1" andPriceID:[testDict objectForKey:@"id"] andBlock:^{
                         
                         button.backgroundColor = [UIColor colorWithHexString:@"e9eaf7"];
-                        [[NSNotificationCenter defaultCenter] postNotificationName:@"ReloadView" object:self];
+                        
                         
                         
                     }];
@@ -871,7 +986,7 @@
                 [buttonAdd setTitle:@"+" forState:UIControlStateNormal];
                 [buttonAdd setTitleColor:[UIColor colorWithHexString:@"a6a0dd"] forState:UIControlStateNormal];
                 buttonAdd.titleLabel.font = [UIFont systemFontOfSize:22];
-                buttonAdd.tag = 100 + i;
+                buttonAdd.tag = [[productBuySizesInfo objectForKey:@"id"] integerValue];
                 [buttonAdd addTarget:self action:@selector(buttonAddAction:)
                                 forControlEvents:UIControlEventTouchUpInside];
                 [self.addToCartView addSubview:buttonAdd];
@@ -882,15 +997,16 @@
                 [buttonDel setTitle:@"-" forState:UIControlStateNormal];
                 [buttonDel setTitleColor:[UIColor colorWithHexString:@"a6a0dd"] forState:UIControlStateNormal];
                 buttonDel.titleLabel.font = [UIFont systemFontOfSize:22];
-                buttonDel.tag = 200 + i;
+                buttonDel.tag = [[productBuySizesInfo objectForKey:@"id"] integerValue];
                 [buttonDel addTarget:self action:@selector(buttonDelAction:)
                     forControlEvents:UIControlEventTouchUpInside];
                 [self.addToCartView addSubview:buttonDel];
                 
                 
                 UILabel * labelNumber = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 60, 77+(i*40), 40, 40)];
-                labelNumber.text = [NSString stringWithFormat:@"%d", i];
-                labelNumber.tag = 300 + i;
+                labelNumber.text = [productBuySizesInfo objectForKey:@"count"];  
+                NSString * labelCount = [NSString stringWithFormat: @"321%@",[productBuySizesInfo objectForKey:@"id"]];
+                labelNumber.tag = [labelCount integerValue];
                 labelNumber.textColor = [UIColor colorWithHexString:@"acacac"];
                 labelNumber.font = [UIFont fontWithName:@"HelveticaNeue" size:13];
                 [self.addToCartView addSubview:labelNumber];
@@ -994,8 +1110,16 @@
 - (void) buttonAddAction: (UIButton*) button
 {
     for (int i = 0; i < productBuySizes.count; i++) {
-        if (button.tag == 100 + i) {
-            NSLog(@"buttonAddAction = %d", i);
+        NSDictionary * productBuySizesInfo =[productBuySizes objectAtIndex:i];
+        if (button.tag == [[productBuySizesInfo objectForKey:@"id"] integerValue]) {
+            NSString * labeltag = [NSString stringWithFormat:@"321%@",[productBuySizesInfo objectForKey:@"id"]];
+           UILabel * labelCount= (UILabel *)[self.view viewWithTag:[labeltag integerValue]];
+            NSLog(@"LABEL: %@",labelCount);
+            NSInteger count = [labelCount.text integerValue];
+            count +=1;
+            labelCount.text =[NSString stringWithFormat:@"%li",count];
+            NSString * productID = [NSString stringWithFormat:@"%li",button.tag];
+            [self postApiAddItemToCart:productID];
         }
     }
 }
@@ -1004,8 +1128,20 @@
 - (void) buttonDelAction: (UIButton*) button
 {
     for (int i = 0; i < productBuySizes.count; i++) {
-        if (button.tag == 200 + i) {
-            NSLog(@"buttonDelAction = %d", i);
+        NSDictionary * productBuySizesInfo =[productBuySizes objectAtIndex:i];
+        if (button.tag == [[productBuySizesInfo objectForKey:@"id"] integerValue]) {
+            NSString * labeltag = [NSString stringWithFormat:@"321%@",[productBuySizesInfo objectForKey:@"id"]];
+            UILabel * labelCount= (UILabel *)[self.view viewWithTag:[labeltag integerValue]];
+            NSInteger count = [labelCount.text integerValue];
+            if(count>0){
+                count -=1;
+            }else{
+                count = 0;
+            }
+            labelCount.text =[NSString stringWithFormat:@"%li",count];
+            
+            NSString * productID = [NSString stringWithFormat:@"%li",button.tag];
+            [self postApiDelItemToCart:productID];
         }
     }
 }
@@ -1031,7 +1167,17 @@
 //Кнопка Очистить все-----------------------------
 - (void) buttonDeleteAllAction
 {
-    NSLog(@"Удалить все нах");
+    [self postApiDelAllItemToCart];
+    for (int i = 0; i < productBuySizes.count; i++) {
+        NSDictionary * productBuySizesInfo =[productBuySizes objectAtIndex:i];
+            NSString * labeltag = [NSString stringWithFormat:@"321%@",[productBuySizesInfo objectForKey:@"id"]];
+            UILabel * labelCount= (UILabel *)[self.view viewWithTag:[labeltag integerValue]];
+            NSInteger count = 0;
+
+            labelCount.text =[NSString stringWithFormat:@"%li",count];
+        
+    }
+    
 }
 
 //Кнопка увеличить все на еденицу-----------------

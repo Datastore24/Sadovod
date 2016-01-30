@@ -28,6 +28,7 @@
 #import "APIGetClass.h"
 #import "ParserCategory.h"
 #import "ParserCategoryResponse.h"
+#import "CartUpdaterClass.h"
 
 
 @interface MyShowcaseViewController () <UITableViewDataSource, UITableViewDelegate>
@@ -40,6 +41,15 @@
 
 @implementation MyShowcaseViewController{
 NSDictionary * tableDict; //Директория хранения данных
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    
+    if ([[[SingleTone sharedManager] typeOfUsers] integerValue] == 2 && [[SingleTone sharedManager] orderCart])
+    {
+        [CartUpdaterClass updateCartWithApi:self.view];
+    }
+    
 }
 
 - (void)viewDidLoad {
@@ -107,24 +117,28 @@ NSDictionary * tableDict; //Директория хранения данных
     
     
     //ТЕСТОВАЯ КОРЗИНА
-    NSDictionary * orderCart = [[NSDictionary alloc] initWithObjectsAndKeys:
-                                @"5",@"count",
-                                @"2000",@"cost",
-                                nil];
-    [[SingleTone sharedManager] setOrderCart:orderCart];
+    
     //
+    
+    [CartUpdaterClass reloadCartWithApi:^{
+        
+    
     if ([[[SingleTone sharedManager] typeOfUsers] integerValue] == 2 && [[SingleTone sharedManager] orderCart])
     {
         
         NSDictionary * cartOrder = [[SingleTone sharedManager] orderCart];
         
-        DecorView * decor = [[DecorView alloc] initWithView:self.view andNumber:[cartOrder objectForKey:@"count"] andPrice:[cartOrder objectForKey:@"cost"]];
+        DecorView * decor = [[DecorView alloc] initWithView:self.view andNumber:[cartOrder objectForKey:@"count"] andPrice:[cartOrder objectForKey:@"cost"] andWithBlock:YES];
+        if([[cartOrder objectForKey:@"cost"] integerValue] ==0){
+            decor.alpha = 0;
+        }
+        
         [self.view addSubview:decor];
         
         UIButton * buttonDecor = (UIButton *)[self.view viewWithTag:555];
         [buttonDecor addTarget:self action:@selector(buttonDecorAction) forControlEvents:UIControlEventTouchUpInside];
     }
-    
+     }];
     
 }
 
