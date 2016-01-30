@@ -506,9 +506,16 @@
                              self.productID,@"product",
                              nil];
     
+    UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    activityIndicator.center=CGPointMake(self.view.center.x, self.view.center.y-64);
+    [activityIndicator startAnimating];
+    [self.view addSubview:activityIndicator];
+    
     APIGetClass * api =[APIGetClass new]; //создаем API
     [api getDataFromServerWithParams:params method:@"abpro/product" complitionBlock:^(id response) {
         
+        [activityIndicator setHidden:YES];
+        [activityIndicator stopAnimating];
         ParserProductResponse * parsingResponce =[[ParserProductResponse alloc] init];
         [parsingResponce parsing:response andArray:self.arrayProduct andBlock:^{
             
@@ -531,8 +538,15 @@
                              self.productID,@"product",
                              nil];
     
+    UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    activityIndicator.center=CGPointMake(self.view.center.x, self.view.center.y-64);
+    [activityIndicator startAnimating];
+    [self.view addSubview:activityIndicator];
+    
     APIGetClass * api =[APIGetClass new]; //создаем API
     [api getDataFromServerWithParams:params method:@"abpro/buy_product_info" complitionBlock:^(id response) {
+        [activityIndicator setHidden:YES];
+        [activityIndicator stopAnimating];
         
         ParserBuyProductInfoResponse * parsingResponce =[[ParserBuyProductInfoResponse alloc] init];
         [parsingResponce parsing:response andArray:self.arrayBuyProductInfo andBlock:^{
@@ -557,12 +571,18 @@
                             self.productID,@"product",
                             price,@"cost",
                             nil];
+    UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    activityIndicator.center=CGPointMake(self.view.center.x, self.view.center.y-64);
+    [activityIndicator startAnimating];
+    [self.view addSubview:activityIndicator];
     
     APIPostClass* api = [APIPostClass new]; //создаем API
     [api postDataToServerWithParams:params
                         andAddParam:nil
                              method:@"abpro/product_cost"
                     complitionBlock:^(id response) {
+                        [activityIndicator setHidden:YES];
+                        [activityIndicator stopAnimating];
                         NSDictionary* dict = (NSDictionary*)response;
                         if ([[dict objectForKey:@"status"] integerValue] == 1) {
                             
@@ -588,12 +608,18 @@
                             productID,@"size",
                             nil];
 
+    UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    activityIndicator.center=CGPointMake(self.view.center.x, self.view.center.y-64);
+    [activityIndicator startAnimating];
+    [self.view addSubview:activityIndicator];
     
     APIPostClass* api = [APIPostClass new]; //создаем API
     [api postDataToServerWithParams:params
                         andAddParam:nil
                              method:@"abpro/buy_product_add"
                     complitionBlock:^(id response) {
+                        [activityIndicator setHidden:YES];
+                        [activityIndicator stopAnimating];
                         NSDictionary* dict = (NSDictionary*)response;
                         if ([[dict objectForKey:@"status"] integerValue] == 1) {
                             
@@ -620,12 +646,20 @@
                             productID,@"size",
                             nil];
     
+    UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    activityIndicator.center=CGPointMake(self.view.center.x, self.view.center.y-64);
+    [activityIndicator startAnimating];
+    [self.view addSubview:activityIndicator];
     
     APIPostClass* api = [APIPostClass new]; //создаем API
     [api postDataToServerWithParams:params
                         andAddParam:nil
                              method:@"abpro/buy_product_del"
                     complitionBlock:^(id response) {
+                        
+                        [activityIndicator setHidden:YES];
+                        [activityIndicator stopAnimating];
+                        
                         NSDictionary* dict = (NSDictionary*)response;
                         if ([[dict objectForKey:@"status"] integerValue] == 1) {
                             
@@ -652,12 +686,20 @@
                             self.productID,@"product",
                             nil];
     
+    UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    activityIndicator.center=CGPointMake(self.view.center.x, self.view.center.y-64);
+    [activityIndicator startAnimating];
+    [self.view addSubview:activityIndicator];
     
     APIPostClass* api = [APIPostClass new]; //создаем API
     [api postDataToServerWithParams:params
                         andAddParam:nil
                              method:@"abpro/buy_product_clear_all"
                     complitionBlock:^(id response) {
+                        
+                        [activityIndicator setHidden:YES];
+                        [activityIndicator stopAnimating];
+                        
                         NSDictionary* dict = (NSDictionary*)response;
                         if ([[dict objectForKey:@"status"] integerValue] == 1) {
                             
@@ -684,12 +726,20 @@
                             self.productID,@"product",
                             nil];
     
+    UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    activityIndicator.center=CGPointMake(self.view.center.x, self.view.center.y-64);
+    [activityIndicator startAnimating];
+    [self.view addSubview:activityIndicator];
     
     APIPostClass* api = [APIPostClass new]; //создаем API
     [api postDataToServerWithParams:params
                         andAddParam:nil
                              method:@"abpro/buy_product_plus_one"
                     complitionBlock:^(id response) {
+                        
+                        [activityIndicator setHidden:YES];
+                        [activityIndicator stopAnimating];
+                        
                         NSDictionary* dict = (NSDictionary*)response;
                         if ([[dict objectForKey:@"status"] integerValue] == 1) {
                             
@@ -716,12 +766,19 @@
                             self.productID,@"product",
                             nil];
     
+    UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    activityIndicator.center=CGPointMake(self.view.center.x, self.view.center.y-64);
+    [activityIndicator startAnimating];
+    [self.view addSubview:activityIndicator];
     
     APIPostClass* api = [APIPostClass new]; //создаем API
     [api postDataToServerWithParams:params
                         andAddParam:nil
                              method:@"abpro/buy_product_minus_one"
                     complitionBlock:^(id response) {
+                        
+                        [activityIndicator setHidden:YES];
+                        [activityIndicator stopAnimating];
                         NSDictionary* dict = (NSDictionary*)response;
                         if ([[dict objectForKey:@"status"] integerValue] == 1) {
                             
@@ -753,10 +810,19 @@
                             aviable,@"status",
                             nil];
     
+    UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    activityIndicator.center=CGPointMake(self.view.center.x, self.view.center.y-64);
+    [activityIndicator startAnimating];
+    [self.view addSubview:activityIndicator];
+    
     APIPostClass* api = [APIPostClass new]; //создаем API
     [api postDataToServerWithParams:params andAddParam:nil
                              method:@"abpro/product_status"
                     complitionBlock:^(id response) {
+                        
+                        [activityIndicator setHidden:YES];
+                        [activityIndicator stopAnimating];
+                        
                         NSDictionary* dict = (NSDictionary*)response;
                         
                         if ([[dict objectForKey:@"status"] integerValue] == 1) {
@@ -779,10 +845,18 @@
                             nil];
     NSString * addParam = [NSString stringWithFormat:@"aviable=%@",aviable];
     
+    UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    activityIndicator.center=CGPointMake(self.view.center.x, self.view.center.y-64);
+    [activityIndicator startAnimating];
+    [self.view addSubview:activityIndicator];
+    
     APIPostClass* api = [APIPostClass new]; //создаем API
     [api postDataToServerWithParams:params andAddParam:addParam
                              method:@"abpro/price_aviable"
                     complitionBlock:^(id response) {
+                        
+                        [activityIndicator setHidden:YES];
+                        [activityIndicator stopAnimating];
                         NSDictionary* dict = (NSDictionary*)response;
                         
                         if ([[dict objectForKey:@"status"] integerValue] == 1) {

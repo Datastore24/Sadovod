@@ -8,6 +8,7 @@
 
 #import "APIGetClass.h"
 #import <AFNetworking/AFNetworking.h>
+#import <AFNetworking+ImageActivityIndicator/AFNetworking+ImageActivityIndicator.h>
 
 #define MAIN_URL @"http://adm.limelin.com/" //Адрес сервера
 
@@ -21,6 +22,8 @@
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
+    
+
     
     
     //Запрос

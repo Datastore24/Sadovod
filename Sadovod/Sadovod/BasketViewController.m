@@ -170,7 +170,7 @@
             //Достаем нужную кнопку---------------------------------------------
             
             [alert addButton:@"ОК" actionBlock:^(void) {
-                [self postApiOneAddAllItemToCart:[productDictCart objectForKey:@"id"]];
+                [self postApiDelItemToCart:[productDictCart objectForKey:@"id"]];
                 [CartUpdaterClass updateCartWithApi:self.view];
                 
                 
@@ -222,8 +222,16 @@
                              [[SingleTone sharedManager] parsingToken],@"token",
                              nil];
     
+    UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    activityIndicator.center=CGPointMake(self.view.center.x, self.view.center.y-64);
+    [activityIndicator startAnimating];
+    [self.view addSubview:activityIndicator];
+    
     APIGetClass * api =[APIGetClass new]; //создаем API
     [api getDataFromServerWithParams:params method:@"abpro/cart_info" complitionBlock:^(id response) {
+        
+        [activityIndicator setHidden:YES];
+        [activityIndicator stopAnimating];
         
         ParserFullCartResponse * parsingResponce =[[ParserFullCartResponse alloc] init];
         
@@ -240,8 +248,8 @@
     
 }
 
-//Добавить +1 ко всему
-- (void)postApiOneAddAllItemToCart:(NSString *) productID
+//Удаление одного товара
+- (void)postApiDelItemToCart:(NSString *) productID
 {
     //Передаваемые параметры
     
@@ -250,13 +258,20 @@
                             [[SingleTone sharedManager] parsingToken],@"token",
                             productID,@"product",
                             nil];
-    
+    UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    activityIndicator.center=CGPointMake(self.view.center.x, self.view.center.y-64);
+    [activityIndicator startAnimating];
+    [self.view addSubview:activityIndicator];
     
     APIPostClass* api = [APIPostClass new]; //создаем API
     [api postDataToServerWithParams:params
                         andAddParam:nil
                              method:@"abpro/buy_product_clear_all"
                     complitionBlock:^(id response) {
+                        
+                        [activityIndicator setHidden:YES];
+                        [activityIndicator stopAnimating];
+                        
                         NSDictionary* dict = (NSDictionary*)response;
                         if ([[dict objectForKey:@"status"] integerValue] == 1) {
                             

@@ -121,9 +121,16 @@
                              [[SingleTone sharedManager] parsingToken],@"token",
                              nil];
     
+    UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    activityIndicator.center=CGPointMake(self.view.center.x, self.view.center.y-64);
+    [activityIndicator startAnimating];
+    [self.view addSubview:activityIndicator];
+    
     APIGetClass * api =[APIGetClass new]; //создаем API
     [api getDataFromServerWithParams:params method:@"abpro/guest_password" complitionBlock:^(id response) {
         
+        [activityIndicator setHidden:YES];
+        [activityIndicator stopAnimating];
         ParserGuestPasswordResponse * parsingGuestPassword =[[ParserGuestPasswordResponse alloc] init];
         
         
