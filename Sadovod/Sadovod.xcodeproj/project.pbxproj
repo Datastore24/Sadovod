@@ -95,6 +95,8 @@
 		ADB621931C5BD8480041BE2F /* CartUpdaterClass.m in Sources */ = {isa = PBXBuildFile; fileRef = ADB621921C5BD8480041BE2F /* CartUpdaterClass.m */; };
 		ADB621961C5BDCFB0041BE2F /* ParserSimpleCart.m in Sources */ = {isa = PBXBuildFile; fileRef = ADB621951C5BDCFB0041BE2F /* ParserSimpleCart.m */; };
 		ADB621991C5BDD0B0041BE2F /* ParserSimpleCartResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = ADB621981C5BDD0B0041BE2F /* ParserSimpleCartResponse.m */; };
+		ADB6219C1C5CF2DD0041BE2F /* ParserFullCart.m in Sources */ = {isa = PBXBuildFile; fileRef = ADB6219B1C5CF2DD0041BE2F /* ParserFullCart.m */; };
+		ADB6219F1C5CF2EB0041BE2F /* ParserFullCartResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = ADB6219E1C5CF2EB0041BE2F /* ParserFullCartResponse.m */; };
 		ADFBF57F1C4C47FE007E080D /* APIGetClass.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFBF57E1C4C47FE007E080D /* APIGetClass.m */; };
 		ADFBF5821C4C496B007E080D /* APIPostClass.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFBF5811C4C496B007E080D /* APIPostClass.m */; };
 		ADFBF5861C4C4B35007E080D /* AlertClass.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFBF5851C4C4B35007E080D /* AlertClass.m */; };
@@ -273,6 +275,10 @@
 		ADB621951C5BDCFB0041BE2F /* ParserSimpleCart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserSimpleCart.m; sourceTree = "<group>"; };
 		ADB621971C5BDD0B0041BE2F /* ParserSimpleCartResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserSimpleCartResponse.h; sourceTree = "<group>"; };
 		ADB621981C5BDD0B0041BE2F /* ParserSimpleCartResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserSimpleCartResponse.m; sourceTree = "<group>"; };
+		ADB6219A1C5CF2DD0041BE2F /* ParserFullCart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserFullCart.h; sourceTree = "<group>"; };
+		ADB6219B1C5CF2DD0041BE2F /* ParserFullCart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserFullCart.m; sourceTree = "<group>"; };
+		ADB6219D1C5CF2EB0041BE2F /* ParserFullCartResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserFullCartResponse.h; sourceTree = "<group>"; };
+		ADB6219E1C5CF2EB0041BE2F /* ParserFullCartResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserFullCartResponse.m; sourceTree = "<group>"; };
 		ADFBF57D1C4C47FD007E080D /* APIGetClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIGetClass.h; sourceTree = "<group>"; };
 		ADFBF57E1C4C47FE007E080D /* APIGetClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIGetClass.m; sourceTree = "<group>"; };
 		ADFBF5801C4C496B007E080D /* APIPostClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIPostClass.h; sourceTree = "<group>"; };
@@ -644,6 +650,10 @@
 				ADB621951C5BDCFB0041BE2F /* ParserSimpleCart.m */,
 				ADB621971C5BDD0B0041BE2F /* ParserSimpleCartResponse.h */,
 				ADB621981C5BDD0B0041BE2F /* ParserSimpleCartResponse.m */,
+				ADB6219A1C5CF2DD0041BE2F /* ParserFullCart.h */,
+				ADB6219B1C5CF2DD0041BE2F /* ParserFullCart.m */,
+				ADB6219D1C5CF2EB0041BE2F /* ParserFullCartResponse.h */,
+				ADB6219E1C5CF2EB0041BE2F /* ParserFullCartResponse.m */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -917,6 +927,7 @@
 				776BF23E1C4BB2510006C502 /* ViewControllerProductDetails.m in Sources */,
 				AD379B941C50ECA4005DDDAC /* ParserProductResponse.m in Sources */,
 				77729FF41C53C52100BC7791 /* CustomerViewController.m in Sources */,
+				ADB6219C1C5CF2DD0041BE2F /* ParserFullCart.m in Sources */,
 				77E6DAC11C5A0FD400FD1029 /* IssueViewController.m in Sources */,
 				776BF21D1C4B8A4C0006C502 /* SectionTableViewController.m in Sources */,
 				AD379BB51C555B1C005DDDAC /* ParserOrderResponse.m in Sources */,
@@ -934,6 +945,7 @@
 				AD69E5E31C4EE6B800DF6151 /* UIImage+Blured_And_SnapShot_Image.m in Sources */,
 				AD6F10201C4D266300FF70B3 /* SingleTone.m in Sources */,
 				776BF2201C4B92780006C502 /* ViewSectionTable.m in Sources */,
+				ADB6219F1C5CF2EB0041BE2F /* ParserFullCartResponse.m in Sources */,
 				AD6F10131C4D1C9F00FF70B3 /* Auth+CoreDataProperties.m in Sources */,
 				ADB6218D1C5A60B70041BE2F /* ParserBuyProductInfo.m in Sources */,
 				AD6F10141C4D1C9F00FF70B3 /* Auth.m in Sources */,

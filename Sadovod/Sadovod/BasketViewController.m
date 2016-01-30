@@ -16,6 +16,12 @@
 #import "IssueViewController.h"
 #import "CartUpdaterClass.h"
 
+#import "APIGetClass.h"
+#import "APIPostClass.h"
+#import "SingleTone.h"
+#import "ParserFullCart.h"
+#import "ParserFullCartResponse.h"
+
 @implementation BasketViewController
 {
     UIScrollView * mainScrollView;
@@ -45,23 +51,32 @@
     mainScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     mainScrollView.showsVerticalScrollIndicator = NO;
     [self.view addSubview:mainScrollView];
+    self.arrayCart = [NSMutableArray array];
+    [self getApiFullCart:^{
+        
+        if(self.arrayCart && self.arrayCart>0){
+            
+            ParserFullCart * parserFullCart = [self.arrayCart objectAtIndex:0];
+            NSArray * productArrayCartList = parserFullCart.list;
     
-    for (int i = 0; i < 7; i++) {
+    for (int i = 0; i < productArrayCartList.count; i++) {
+        
+        NSDictionary * productDictCart = [productArrayCartList objectAtIndex:i];
         //Изобрадение предмета--------------------------------
-        ViewSectionTable * image = [[ViewSectionTable alloc] initWithFrame:CGRectMake(0, self.view.frame.size.width / 2 * i, self.view.frame.size.width / 4 + 20, (self.view.frame.size.width / 2)) andImageURL:@"1image.jpg" isInternetURL:NO andResized:NO];
+        ViewSectionTable * image = [[ViewSectionTable alloc] initWithFrame:CGRectMake(0, self.view.frame.size.width / 2 * i, self.view.frame.size.width / 4 + 20, (self.view.frame.size.width / 2)) andImageURL:[productDictCart objectForKey:@"img"] isInternetURL:YES andResized:YES];
         
         [mainScrollView addSubview:image];
         
         
         //Размер предмета-------------------------------------
         UILabel * sizeObjectLabel = [[UILabel alloc] initWithFrame:CGRectMake((self.view.frame.size.width / 4) + 25, 10 + self.view.frame.size.width / 2 * i, 250, 20)];
-        sizeObjectLabel.text = @"Предмет";
+        sizeObjectLabel.text = [productDictCart objectForKey:@"name"];
         sizeObjectLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:13];
         [mainScrollView addSubview:sizeObjectLabel];
         
         //Колличество заказанного товара----------------------
         UILabel * numberObjectLabel = [[UILabel alloc] initWithFrame:CGRectMake((self.view.frame.size.width / 4) + 25, 30 + self.view.frame.size.width / 2 * i, 150, 20)];
-        numberObjectLabel.text = [NSString stringWithFormat:@"%@ руб", @"400"];
+        numberObjectLabel.text = [NSString stringWithFormat:@"%@ руб", [productDictCart objectForKey:@"cost"]];
         numberObjectLabel.textColor = [UIColor colorWithHexString:@"3038a0"];
         numberObjectLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:12];
         [mainScrollView addSubview:numberObjectLabel];
@@ -76,7 +91,7 @@
         //Вью колличества-------------------------------------
         UILabel * labelNumberAction = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 100, 30 + self.view.frame.size.width / 2 * i, 30, 30)];
         labelNumberAction.backgroundColor = [UIColor colorWithHexString:@"f4f4f4"];
-        labelNumberAction.text = @"5";
+        labelNumberAction.text = [productDictCart objectForKey:@"count"];
         labelNumberAction.textColor = [UIColor colorWithHexString:@"b4b4b4"];
         labelNumberAction.textColor = [UIColor colorWithHexString:@"acacac"];
         labelNumberAction.textAlignment = NSTextAlignmentCenter;
@@ -98,11 +113,14 @@
         imageView.image = [UIImage imageNamed:@"ic_delete"];
         [buttonDelete addSubview:imageView];
     }
+        }
+        
+    }];
     
     mainScrollView.contentSize = CGSizeMake(self.view.frame.size.width, ((self.view.frame.size.width / 2)* 7)+ 70);
     
     [CartUpdaterClass updateCartWithApi:self.view];
-    if ([[[SingleTone sharedManager] typeOfUsers] integerValue] == 2 && [[[[SingleTone sharedManager] orderCart] objectForKey:@"cost"] integerValue] >0)
+    if ([[[SingleTone sharedManager] typeOfUsers] integerValue] == 2 && [[SingleTone sharedManager] orderCart])
     {
         
         NSDictionary * cartOrder = [[SingleTone sharedManager] orderCart];
@@ -131,6 +149,32 @@
 {
     IssueViewController * detail = [self.storyboard instantiateViewControllerWithIdentifier:@"IssueViewController"];
     [self.navigationController pushViewController:detail animated:YES];
+}
+
+//Тащим заказы
+-(void) getApiFullCart: (void (^)(void))block{
+    //Передаваемые параметры
+    
+    NSDictionary * params = [[NSDictionary alloc] initWithObjectsAndKeys:
+                             [[SingleTone sharedManager] parsingToken],@"token",
+                             nil];
+    
+    APIGetClass * api =[APIGetClass new]; //создаем API
+    [api getDataFromServerWithParams:params method:@"abpro/cart_info" complitionBlock:^(id response) {
+        
+        ParserFullCartResponse * parsingResponce =[[ParserFullCartResponse alloc] init];
+        
+        [parsingResponce parsing:response andArray:self.arrayCart andBlock:^{
+            
+            
+            NSLog(@"%@",response);
+            block();
+            
+        }];
+        
+        
+    }];
+    
 }
 
 @end
