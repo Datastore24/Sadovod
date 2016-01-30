@@ -21,6 +21,7 @@
 #import "Auth.h"
 #import "SingleTone.h"
 #import <MagicalRecord/MagicalRecord.h>
+#import "TitleClass.h"
 
 @interface LognViewController () <UITextFieldDelegate>
 
@@ -45,6 +46,9 @@
     
     
 
+    TitleClass * title = [[TitleClass alloc]initWithTitle:@"Логин"];
+    self.navigationItem.titleView = title;
+    
     self.navigationController.navigationBar.userInteractionEnabled = NO;
     self.navigationController.navigationBar.tintColor = [UIColor clearColor];
     
@@ -312,10 +316,15 @@
 //Проверяем входил ли пользователь, если входил перекидывай на меню
 -(void) CheckAuth{
     
-    UIView * mainView = [[UIView alloc] initWithFrame:CGRectMake(10, 10, 100, 100)];
-    mainView.backgroundColor = [UIColor blackColor];
-    mainView.alpha = 0;
-    [self.view addSubview:mainView];
+    UIView * loadView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    loadView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:loadView];
+    
+    
+    UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 40)];
+    label.center = loadView.center;
+    label.text = @"Проверка логина и пароля";
+    [loadView addSubview:label];
     
     
     AuthDbClass * authDbClass = [[AuthDbClass alloc] init];
@@ -339,7 +348,6 @@
             if(authCoreData.login != nil && authCoreData.password != nil && authCoreData.key != nil && authCoreData.catalogkey != nil){
                NSLog(@"COREDATA KEY %@, CatalogKEY: %@ TOKEN: %@",authCoreData.key,authCoreData.catalogkey,authCoreData.token);
                 [self getApiAuthCheck:authCoreData.login password:authCoreData.password key:authCoreData.key andBlock:^{
-                    mainView.alpha = 1;
 
                     
                     
@@ -350,6 +358,10 @@
                     //Перенаправление пользоваетеля в слуачае если данные из базы и данные с сервера соответствуют
                     
                     if([parse.status isEqual: @"1"]){
+                        [UIView animateWithDuration:0.3 animations:^{
+                            loadView.alpha = 0;
+                        }];
+                        
                         [[SingleTone sharedManager] setLoginUser:authCoreData.login];
                         [[SingleTone sharedManager] setParsingToken:authCoreData.token];
                        
@@ -357,8 +369,11 @@
                         [[NSNotificationCenter defaultCenter] postNotificationName:@"ReloadMenu" object:self];
                         ViewController * mainView = [self.storyboard instantiateViewControllerWithIdentifier:@"MyShowcase"];
                         [self.navigationController pushViewController:mainView animated:YES];
+                        
                     } else {
-                        mainView.alpha = 0;
+                        [UIView animateWithDuration:0.3 animations:^{
+                            loadView.alpha = 0;
+                        }];
                     }
                     
                 }];
