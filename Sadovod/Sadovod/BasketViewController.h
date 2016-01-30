@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface BasketViewController : UIViewController
-
+@property (strong,nonatomic) NSMutableArray * arrayCart;
 @end
