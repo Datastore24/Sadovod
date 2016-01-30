@@ -312,6 +312,11 @@
 //Проверяем входил ли пользователь, если входил перекидывай на меню
 -(void) CheckAuth{
     
+    UIView * mainView = [[UIView alloc] initWithFrame:CGRectMake(10, 10, 100, 100)];
+    mainView.backgroundColor = [UIColor blackColor];
+    mainView.alpha = 0;
+    [self.view addSubview:mainView];
+    
     
     AuthDbClass * authDbClass = [[AuthDbClass alloc] init];
     NSArray * arrayUser = [authDbClass showAllUsers]; //Массив данных CoreData
@@ -334,6 +339,10 @@
             if(authCoreData.login != nil && authCoreData.password != nil && authCoreData.key != nil && authCoreData.catalogkey != nil){
                NSLog(@"COREDATA KEY %@, CatalogKEY: %@ TOKEN: %@",authCoreData.key,authCoreData.catalogkey,authCoreData.token);
                 [self getApiAuthCheck:authCoreData.login password:authCoreData.password key:authCoreData.key andBlock:^{
+                    mainView.alpha = 1;
+
+                    
+                    
                     ParserAuthKey * parse = [self.arrayCheck objectAtIndex:0];
                    
           
@@ -348,6 +357,8 @@
                         [[NSNotificationCenter defaultCenter] postNotificationName:@"ReloadMenu" object:self];
                         ViewController * mainView = [self.storyboard instantiateViewControllerWithIdentifier:@"MyShowcase"];
                         [self.navigationController pushViewController:mainView animated:YES];
+                    } else {
+                        mainView.alpha = 0;
                     }
                     
                 }];
