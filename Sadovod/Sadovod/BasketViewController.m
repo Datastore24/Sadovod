@@ -146,6 +146,7 @@
             //Using Block
             [alert addButton:@"ОК" actionBlock:^(void) {
                 NSLog(@"Second button tapped");
+                [CartUpdaterClass updateCartWithApi:self.view];
             }];
             
             [alert showSuccess:self title:@"Удаление" subTitle:@"Вы действительно хотите удалить данный товар ??" closeButtonTitle:@"Отмена" duration:0.0f];
