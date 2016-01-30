@@ -106,7 +106,7 @@
 //    activityIndicator.tag=666;
 //    activityIndicator.center=CGPointMake(self.view.center.x, self.view.center.y-64);
 //    [activityIndicator startAnimating];
-//    [loadView addSubview:activityIndicator];
+//    [self.view addSubview:activityIndicator];
 
     [self CheckAuth];
 
@@ -417,13 +417,13 @@
 -(void)hideView{
     
     [UIView animateWithDuration:0.3 animations:^{
-        UIActivityIndicatorView *  activityIndicator = (UIActivityIndicatorView *)[loadView viewWithTag:666];
-        [activityIndicator setHidden:YES];
-        [activityIndicator stopAnimating];
+//        UIActivityIndicatorView *  activityIndicator = (UIActivityIndicatorView *)[loadView viewWithTag:666];
+//        [activityIndicator setHidden:YES];
+//        [activityIndicator stopAnimating];
         
         loadView.alpha = 0;
         loadView = nil;
-        
+    
         
     }];
     
