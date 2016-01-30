@@ -146,6 +146,7 @@
             //Using Block
             [alert addButton:@"ОК" actionBlock:^(void) {
                 NSLog(@"Second button tapped");
+                [self postApiOneAddAllItemToCart:"0"];
                 [CartUpdaterClass updateCartWithApi:self.view];
             }];
             
@@ -189,5 +190,37 @@
     }];
     
 }
+
+//Добавить +1 ко всему
+- (void)postApiOneAddAllItemToCart:(NSString *) productID
+{
+    //Передаваемые параметры
+    
+    
+    NSDictionary* params = [[NSDictionary alloc] initWithObjectsAndKeys:
+                            [[SingleTone sharedManager] parsingToken],@"token",
+                            productID,@"product",
+                            nil];
+    
+    
+    APIPostClass* api = [APIPostClass new]; //создаем API
+    [api postDataToServerWithParams:params
+                        andAddParam:nil
+                             method:@"abpro/buy_product_clear_all"
+                    complitionBlock:^(id response) {
+                        NSDictionary* dict = (NSDictionary*)response;
+                        if ([[dict objectForKey:@"status"] integerValue] == 1) {
+                            
+                            //[[NSNotificationCenter defaultCenter] postNotificationName:@"ReloadCart" object:self];
+                            
+                            [CartUpdaterClass updateCartWithApi:self.view];
+                            
+                            
+                        }else {
+                            
+                        }
+                    }];
+}
+//
 
 @end
