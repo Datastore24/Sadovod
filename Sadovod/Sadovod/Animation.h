@@ -21,4 +21,8 @@
 
 + (void) animationImageView: (UIImageView*) imageView image: (UIImage*) image;
 
+
+
++ (void) animationTestView:(UIView*)view move_Y: (CGFloat)moveY;
+
 @end
