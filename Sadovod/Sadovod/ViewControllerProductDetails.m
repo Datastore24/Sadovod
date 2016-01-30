@@ -27,6 +27,7 @@
 #import <SCLAlertView-Objective-C/SCLAlertView.h>
 
 #import "CartUpdaterClass.h"
+#import "LabelProductDetail.h"
 
 @interface ViewControllerProductDetails ()
 @property (strong, nonatomic) NSMutableArray * arrayProduct; //Массив с Товарами
@@ -56,6 +57,9 @@
     UIView * viewMove;
     DecorView * decor;
     
+    UIView * viewDetails;
+    NSMutableArray * testMArray;
+    
 }
 
 
@@ -67,6 +71,7 @@
     self.navigationItem.titleView = title;
     
     isBool = NO;
+    testMArray = [[NSMutableArray alloc] init];
     
     //NOTIFICATION
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadView) name:@"ReloadView" object:nil];
@@ -93,7 +98,6 @@
     mainScrollView = [[UIScrollView alloc] initWithFrame: CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     mainScrollView.backgroundColor = [UIColor colorWithHexString:@"f4f4f4"];
     [self.view addSubview:mainScrollView];
-    mainScrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height + 210);
     mainScrollView.showsVerticalScrollIndicator = NO;
     
     ViewProductDetails * scrollViewImge = [[ViewProductDetails alloc] initWithFrame:CGRectMake(0, 0,
@@ -259,7 +263,7 @@
                 }
             }
             
-            buttonSize.tag = [[productSizesInfo objectForKey:@"id"] integerValue];
+            buttonSize.tag = 300 + i;
             [buttonSize setTitle:[productSizesInfo objectForKey:@"value"] forState:UIControlStateNormal];
             [buttonSize setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
             
@@ -354,7 +358,7 @@
     for (int i = 0; i < productOptions.count; i++) {
         NSDictionary * productOptionsInfo = [productOptions objectAtIndex:i];
         
-        UIView * viewDetails = [[UIView alloc] initWithFrame:CGRectMake(0, (titleDetails.frame.origin.y + 40) + 40 * i, self.view.frame.size.width, 40)];
+        viewDetails = [[UIView alloc] initWithFrame:CGRectMake(0, (titleDetails.frame.origin.y + 40) + 40 * i, self.view.frame.size.width, 40)];
         viewDetails.backgroundColor = [UIColor whiteColor];
         viewDetails.layer.borderColor = [UIColor groupTableViewBackgroundColor].CGColor;
         viewDetails.layer.borderWidth = 0.5;
@@ -380,7 +384,7 @@
         
         if(i==productOptions.count-1){
             
-            UIView * viewDetails = [[UIView alloc] initWithFrame:CGRectMake(0, (titleDetails.frame.origin.y + 40) + 40 * i, self.view.frame.size.width, 40)];
+            viewDetails = [[UIView alloc] initWithFrame:CGRectMake(0, (titleDetails.frame.origin.y + 40) + 40 * i, self.view.frame.size.width, 40)];
             viewDetails.backgroundColor = [UIColor whiteColor];
             viewDetails.layer.borderColor = [UIColor groupTableViewBackgroundColor].CGColor;
             viewDetails.layer.borderWidth = 0.5;
@@ -405,6 +409,8 @@
             
         }
     }
+            
+             mainScrollView.contentSize = CGSizeMake(self.view.frame.size.width, viewDetails.frame.origin.y + viewDetails.frame.size.height);
             
         }else{
             [AlertClass showAlertViewWithMessage:@"Ошибка загрузки товара" view:self];
@@ -840,7 +846,8 @@
         NSDictionary * testDict = [productSizes objectAtIndex:i];
         self.tempArraySizes = [NSMutableArray array];
         
-        if (button.tag == [[testDict objectForKey:@"id"] integerValue]) {
+
+        if (button.tag == 300 + i) {
             
             
             if([[testDict objectForKey:@"aviable"] integerValue] == 0){
@@ -986,7 +993,7 @@
                 [buttonAdd setTitle:@"+" forState:UIControlStateNormal];
                 [buttonAdd setTitleColor:[UIColor colorWithHexString:@"a6a0dd"] forState:UIControlStateNormal];
                 buttonAdd.titleLabel.font = [UIFont systemFontOfSize:22];
-                buttonAdd.tag = [[productBuySizesInfo objectForKey:@"id"] integerValue];
+                buttonAdd.tag = 100 + i;
                 [buttonAdd addTarget:self action:@selector(buttonAddAction:)
                                 forControlEvents:UIControlEventTouchUpInside];
                 [self.addToCartView addSubview:buttonAdd];
@@ -997,18 +1004,19 @@
                 [buttonDel setTitle:@"-" forState:UIControlStateNormal];
                 [buttonDel setTitleColor:[UIColor colorWithHexString:@"a6a0dd"] forState:UIControlStateNormal];
                 buttonDel.titleLabel.font = [UIFont systemFontOfSize:22];
-                buttonDel.tag = [[productBuySizesInfo objectForKey:@"id"] integerValue];
+                buttonDel.tag = 200 + i;
                 [buttonDel addTarget:self action:@selector(buttonDelAction:)
                     forControlEvents:UIControlEventTouchUpInside];
                 [self.addToCartView addSubview:buttonDel];
                 
                 
-                UILabel * labelNumber = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 60, 77+(i*40), 40, 40)];
+                LabelProductDetail * labelNumber = [[LabelProductDetail alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 60, 77+(i*40), 40, 40)];
                 labelNumber.text = [productBuySizesInfo objectForKey:@"count"];  
                 NSString * labelCount = [NSString stringWithFormat: @"321%@",[productBuySizesInfo objectForKey:@"id"]];
-                labelNumber.tag = [labelCount integerValue];
+                labelNumber.customTag = labelCount;
                 labelNumber.textColor = [UIColor colorWithHexString:@"acacac"];
                 labelNumber.font = [UIFont fontWithName:@"HelveticaNeue" size:13];
+                [testMArray addObject:labelNumber];
                 [self.addToCartView addSubview:labelNumber];
           
             }
@@ -1111,15 +1119,22 @@
 {
     for (int i = 0; i < productBuySizes.count; i++) {
         NSDictionary * productBuySizesInfo =[productBuySizes objectAtIndex:i];
-        if (button.tag == [[productBuySizesInfo objectForKey:@"id"] integerValue]) {
+        if (button.tag == 100 + i) {
+            
+            
+            NSLog(@"%d", button.tag);
+            LabelProductDetail * labelCount= (LabelProductDetail *)testMArray[i];
+                NSLog(@"LABEL: %@",labelCount);
             NSString * labeltag = [NSString stringWithFormat:@"321%@",[productBuySizesInfo objectForKey:@"id"]];
-           UILabel * labelCount= (UILabel *)[self.view viewWithTag:[labeltag integerValue]];
-            NSLog(@"LABEL: %@",labelCount);
-            NSInteger count = [labelCount.text integerValue];
-            count +=1;
-            labelCount.text =[NSString stringWithFormat:@"%li",count];
-            NSString * productID = [NSString stringWithFormat:@"%li",button.tag];
-            [self postApiAddItemToCart:productID];
+                NSInteger count = [labelCount.text integerValue];
+                count +=1;
+                labelCount.text =[NSString stringWithFormat:@"%li",count];
+                NSString * productID = [NSString stringWithFormat:@"%li",button.tag];
+                [self postApiAddItemToCart:productID];
+
+
+
+
         }
     }
 }
@@ -1129,9 +1144,9 @@
 {
     for (int i = 0; i < productBuySizes.count; i++) {
         NSDictionary * productBuySizesInfo =[productBuySizes objectAtIndex:i];
-        if (button.tag == [[productBuySizesInfo objectForKey:@"id"] integerValue]) {
+        if (button.tag == 200 + i) {
             NSString * labeltag = [NSString stringWithFormat:@"321%@",[productBuySizesInfo objectForKey:@"id"]];
-            UILabel * labelCount= (UILabel *)[self.view viewWithTag:[labeltag integerValue]];
+            LabelProductDetail * labelCount= (LabelProductDetail *)testMArray[i];
             NSInteger count = [labelCount.text integerValue];
             if(count>0){
                 count -=1;

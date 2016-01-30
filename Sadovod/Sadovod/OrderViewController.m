@@ -20,6 +20,7 @@
 @implementation OrderViewController
 {
     UIScrollView * mainscrollView;
+    ViewSectionTable * image;
 }
 
 - (void) viewDidLoad
@@ -42,7 +43,7 @@
     
     //Инициализация скрол вью--------------------------------------------
     mainscrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-    mainscrollView.contentSize = CGSizeMake(self.view.frame.size.width, 2000);
+    mainscrollView.showsVerticalScrollIndicator = NO;
     [self.view addSubview:mainscrollView];
   
     
@@ -63,7 +64,7 @@
         NSDictionary * infoOrderItems = [listOrderItems objectAtIndex:i];
         
         //Изобрадение предмета--------------------------------
-        ViewSectionTable * image = [[ViewSectionTable alloc] initWithFrame:CGRectMake(0, self.view.frame.size.width / 2 * i, self.view.frame.size.width / 4 + 20, (self.view.frame.size.width / 2)) andImageURL:[infoOrderItems objectForKey:@"img"] isInternetURL:YES andLabelPrice:[infoOrderItems objectForKey:@"cost"] andResized:YES];
+        image = [[ViewSectionTable alloc] initWithFrame:CGRectMake(0, self.view.frame.size.width / 2 * i, self.view.frame.size.width / 4 + 20, (self.view.frame.size.width / 2)) andImageURL:[infoOrderItems objectForKey:@"img"] isInternetURL:YES andLabelPrice:[infoOrderItems objectForKey:@"cost"] andResized:YES];
         [mainscrollView addSubview:image];
         
         //Размер предмета-------------------------------------
@@ -88,6 +89,8 @@
 //        [mainscrollView addSubview:buttonEditOrder];
         
     }
+        
+            mainscrollView.contentSize = CGSizeMake(self.view.frame.size.width, (image.frame.size.height * listOrderItems.count) + 65);
         
          }
         }];
