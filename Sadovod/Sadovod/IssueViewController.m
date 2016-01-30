@@ -15,6 +15,9 @@
 @end
 
 @implementation IssueViewController
+{
+    UIScrollView * mainScrollView;
+}
 
 - (void) viewDidLoad
 {
@@ -23,16 +26,21 @@
     TitleClass * title = [[TitleClass alloc]initWithTitle:@"Оформление заказа"];
     self.navigationItem.titleView = title;
     
+    mainScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    mainScrollView.showsVerticalScrollIndicator = NO;
+    mainScrollView.backgroundColor = [UIColor colorWithHexString:@"f4f4f4"];
+    [self.view addSubview:mainScrollView];
+    
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment: UIOffsetMake(10.f, -100.f) forBarMetrics:UIBarMetricsDefault];
     
-    self.view.backgroundColor = [UIColor colorWithHexString:@"f4f4f4"];
+//    self.view.backgroundColor = [UIColor colorWithHexString:@"f4f4f4"];
     
     //Контактные данные------------------------------------
     UILabel * labelData = [[UILabel alloc] initWithFrame:CGRectMake(10, 15, 180, 20)];
     labelData.text = @"Контактные данные";
     labelData.textColor = [UIColor colorWithHexString:@"3038a0"];
     labelData.font = [UIFont fontWithName:@"Helvetica-Bold" size:13];
-    [self.view addSubview:labelData];
+    [mainScrollView addSubview:labelData];
     
     //Ввод имени-------------------------------------------
     UITextView * viewName = [[UITextView alloc] initWithFrame:
@@ -43,7 +51,7 @@
     viewName.layer.borderColor = [UIColor groupTableViewBackgroundColor].CGColor;
     viewName.layer.borderWidth = 0.5f;
     viewName.textColor = [UIColor lightGrayColor]; //optional
-    [self.view addSubview:viewName];
+    [mainScrollView addSubview:viewName];
     
     //Ввод телефона----------------------------------------
     UITextView * viewPhone = [[UITextView alloc] initWithFrame:
@@ -54,7 +62,7 @@
     viewPhone.layer.borderColor = [UIColor groupTableViewBackgroundColor].CGColor;
     viewPhone.layer.borderWidth = 0.5f;
     viewPhone.textColor = [UIColor lightGrayColor]; //optional
-    [self.view addSubview:viewPhone];
+    [mainScrollView addSubview:viewPhone];
     
     //Ввод адрема------------------------------------------
     UITextView * textView = [[UITextView alloc] initWithFrame:
@@ -65,7 +73,7 @@
     textView.layer.borderColor = [UIColor groupTableViewBackgroundColor].CGColor;
     textView.layer.borderWidth = 0.5f;
     textView.textColor = [UIColor lightGrayColor]; //optional
-    [self.view addSubview:textView];
+    [mainScrollView addSubview:textView];
     
     //Лейбл комментариев-----------------------------------
     
@@ -73,7 +81,7 @@
     labelComment.text = @"Комментарии к заказу";
     labelComment.textColor = [UIColor colorWithHexString:@"3038a0"];
     labelComment.font = [UIFont fontWithName:@"Helvetica-Bold" size:13];
-    [self.view addSubview:labelComment];
+    [mainScrollView addSubview:labelComment];
     
     //Ввод адрема------------------------------------------
     UITextView * commentView = [[UITextView alloc] initWithFrame:
@@ -84,7 +92,7 @@
     commentView.layer.borderColor = [UIColor groupTableViewBackgroundColor].CGColor;
     commentView.layer.borderWidth = 0.5f;
     commentView.textColor = [UIColor lightGrayColor]; //optional
-    [self.view addSubview:commentView];
+    [mainScrollView addSubview:commentView];
     
     //Кнопка подтверждения----------------------------------
     UIButton * buttonConfirm = [UIButton buttonWithType:UIButtonTypeSystem];
@@ -95,7 +103,7 @@
     [buttonConfirm addTarget:self action:@selector(buttonConfirmAction)
             forControlEvents:UIControlEventTouchUpInside];
     
-    [self.view addSubview:buttonConfirm];
+    [mainScrollView addSubview:buttonConfirm];
     
     
   
@@ -129,6 +137,12 @@
             }
         }
     [textView becomeFirstResponder];
+    
+    
+    mainScrollView.contentOffset = (CGPoint){
+        0, // ось x нас не интересует
+        CGRectGetMinY(textView.frame) // Скроллим скролл к верхней границе текстового поля - Вы можете настроить эту величину по своему усмотрению
+    };
 
 }
 
@@ -158,6 +172,8 @@
         }
     }
     [textView resignFirstResponder];
+    
+    mainScrollView.contentOffset = (CGPoint){0, 0}; // Возвращаем скролл в начало, так как редактирование текстового поля закончено
 }
 
 - (BOOL)textView:(UITextView *)textView
