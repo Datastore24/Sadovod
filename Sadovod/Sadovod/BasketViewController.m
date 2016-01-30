@@ -21,6 +21,7 @@
 #import "SingleTone.h"
 #import "ParserFullCart.h"
 #import "ParserFullCartResponse.h"
+#import <SCLAlertView-Objective-C/SCLAlertView.h>
 
 @implementation BasketViewController
 {
@@ -113,11 +114,12 @@
         imageView.image = [UIImage imageNamed:@"ic_delete"];
         [buttonDelete addSubview:imageView];
     }
+         mainScrollView.contentSize = CGSizeMake(self.view.frame.size.width, ((self.view.frame.size.width / 2)* productArrayCartList.count)+ 70);
         }
-        
+ 
     }];
     
-    mainScrollView.contentSize = CGSizeMake(self.view.frame.size.width, ((self.view.frame.size.width / 2)* 7)+ 70);
+
     
     [CartUpdaterClass updateCartWithApi:self.view];
     if ([[[SingleTone sharedManager] typeOfUsers] integerValue] == 2 && [[SingleTone sharedManager] orderCart])
@@ -138,7 +140,17 @@
 {
     for (int i = 0; i < 7; i ++) {
         if (button.tag == i) {
-            NSLog(@"button %d", i);
+            SCLAlertView *alert = [[SCLAlertView alloc] init];
+            alert.customViewColor = [UIColor colorWithHexString:@"3038a0"];
+            //Using Selector
+            //Using Block
+            [alert addButton:@"ОК" actionBlock:^(void) {
+                NSLog(@"Second button tapped");
+            }];
+            
+            [alert showSuccess:self title:@"Удаление" subTitle:@"Вы действительно хотите удалить данный товар ??" closeButtonTitle:@"Отмена" duration:0.0f];
+            
+
         }
     }
 
