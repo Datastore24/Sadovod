@@ -43,7 +43,7 @@
     
     
     mainScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-    mainScrollView.contentSize = CGSizeMake(self.view.frame.size.width, 1000);
+    mainScrollView.showsVerticalScrollIndicator = NO;
     [self.view addSubview:mainScrollView];
     
     for (int i = 0; i < 7; i++) {
@@ -98,6 +98,8 @@
         imageView.image = [UIImage imageNamed:@"ic_delete"];
         [buttonDelete addSubview:imageView];
     }
+    
+    mainScrollView.contentSize = CGSizeMake(self.view.frame.size.width, ((self.view.frame.size.width / 2)* 7)+ 70);
     
     [CartUpdaterClass updateCartWithApi:self.view];
     if ([[[SingleTone sharedManager] typeOfUsers] integerValue] == 2 && [[[[SingleTone sharedManager] orderCart] objectForKey:@"cost"] integerValue] >0)

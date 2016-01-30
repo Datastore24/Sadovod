@@ -172,11 +172,11 @@ NSDictionary * tableDict; //Директория хранения данных
     //Добаляет кастомный лейбл в ячейку-----------------------------
     LabelViewMyShowcase * viewLabel = [[LabelViewMyShowcase alloc]
                                        initWichValue:[NSString stringWithFormat:@"%ld", [[categoryInfo objectForKey:@"prod_cnt"] integerValue]]];
-    if (self.view.bounds.size.height < 586.0f) {
-        viewLabel.frame = CGRectMake(270, 10, 30, 30);
-    } else {
-        viewLabel.frame = CGRectMake(320, 10, 30, 30);
-    }
+//    if (self.view.bounds.size.height < 586.0f) {
+        viewLabel.frame = CGRectMake(self.view.frame.size.width - 60, 10, 30, 30);
+//    } else {
+//        viewLabel.frame = CGRectMake(320, 10, 30, 30);
+//    }
     [cell addSubview:viewLabel];
     
     return cell;

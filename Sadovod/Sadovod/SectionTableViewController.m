@@ -104,7 +104,7 @@
             
             
         }
-        mainScrollView.contentSize = CGSizeMake(self.view.frame.size.width, 320 * self.arrayCategoryItems.count + 50);
+        mainScrollView.contentSize = CGSizeMake(self.view.frame.size.width, 320 * self.arrayCategoryItems.count + 5);
         
     } else { //Если выше то--------------------------------------------
         
@@ -163,7 +163,7 @@
             }
     }
     
-        mainScrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.width /2 * numerator + 50);
+        mainScrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.width /2 * numerator + 5);
     }
         
         
