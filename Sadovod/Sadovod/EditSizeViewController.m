@@ -190,7 +190,7 @@
 }
 
 //Отправляем размеры
-- (BOOL)postApiOrder:(NSArray *) arraySizes
+- (BOOL)postApiSizes:(NSArray *) arraySizes
 {
     //Передаваемые параметры
     
@@ -198,11 +198,13 @@
     NSString * addParam = [NSString stringWithFormat:@"sizes=%@",result];
   
     
-    if([result isEqualToString:@""]){
+    if([result isEqualToString:@""] || arraySizes.count==0){
         return NO;
     
     }else{
+        
     NSLog(@"ARRAY %@ PRODUCT ID %@",result,self.productID);
+        
     NSDictionary* params = [[NSDictionary alloc] initWithObjectsAndKeys:
                             [[SingleTone sharedManager] parsingToken],@"token",
                             self.productID,@"product",
@@ -230,7 +232,7 @@
 
 - (void) aMethod:(id)sender
 {
-    if([self postApiOrder:self.postArraySorted]){
+    if([self postApiSizes:self.postArraySorted]){
        [self.navigationController popViewControllerAnimated:YES]; 
     }else{
          [AlertClass showAlertViewWithMessage:@"Выберите хотя бы один размер!" view:self];
