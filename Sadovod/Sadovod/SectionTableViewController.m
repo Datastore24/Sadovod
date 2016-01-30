@@ -20,6 +20,8 @@
 #import "ParserCategoryResponse.h"
 #import "SingleTone.h"
 
+#import "CartUpdaterClass.h"
+
 @interface SectionTableViewController ()
 
 @property (strong, nonatomic) NSMutableArray * arrayCategoryItems; //Массив с Товарами
@@ -35,6 +37,15 @@
     
     //Размер картинки-------------------------------------------------
     CGRect imageRact;
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    
+    if ([[[SingleTone sharedManager] typeOfUsers] integerValue] == 2 && [[SingleTone sharedManager] orderCart])
+    {
+        [CartUpdaterClass updateCartWithApi:self.view];
+    }
+    
 }
 
 - (void)viewDidLoad {
@@ -154,16 +165,25 @@
     
         mainScrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.width /2 * numerator + 50);
     }
-        if ([[[SingleTone sharedManager] typeOfUsers] integerValue] ==2 && [[SingleTone sharedManager] orderCart])
+        
+        
+        if ([[[SingleTone sharedManager] typeOfUsers] integerValue] == 2 && [[SingleTone sharedManager] orderCart])
         {
             NSDictionary * cartOrder = [[SingleTone sharedManager] orderCart];
             
-            DecorView * decor = [[DecorView alloc] initWithView:self.view andNumber:[cartOrder objectForKey:@"count"] andPrice:[cartOrder objectForKey:@"cost"]];
+            DecorView * decor = [[DecorView alloc] initWithView:self.view andNumber:[cartOrder objectForKey:@"count"] andPrice:[cartOrder objectForKey:@"cost"] andWithBlock:NO];
             [self.view addSubview:decor];
             CGRect rect = decor.frame;
             rect.origin.y = rect.origin.y + 64;
             decor.frame = rect;
-            decor.alpha = 0.7;
+            
+            if([[cartOrder objectForKey:@"cost"] integerValue] ==0){
+                decor.alpha = 0;
+            }else{
+               decor.alpha = 0.7;
+            }
+
+            
             [self.view addSubview:decor];
             
             UIButton * buttonDecor = (UIButton *)[self.view viewWithTag:555];
