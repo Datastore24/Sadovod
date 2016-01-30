@@ -99,7 +99,7 @@
     [self.view addSubview:loadView];
     
     
-    label = [[UILabel alloc] initWithFrame:CGRectMake(loadView.frame.size.width/2 - 110 ,loadView.frame.size.height/2 - 20, 250, 40)];
+    label = [[UILabel alloc] initWithFrame:CGRectMake(loadView.frame.size.width/2 - 110 ,40, 250, 40)];
     //label.center = CGPointMake(self.view.center.x, self.view.center.y-64);
     label.textColor = [UIColor whiteColor];
     label.text = @"Проверка логина и пароля";
@@ -107,7 +107,7 @@
     [loadView addSubview:label];
     
     
-    labelTwo = [[UILabel alloc] initWithFrame:CGRectMake(loadView.frame.size.width/2 - 110 ,loadView.frame.size.height/2 + 20, 250, 40)];
+    labelTwo = [[UILabel alloc] initWithFrame:CGRectMake(loadView.frame.size.width/2 - 110 ,80, 250, 40)];
     //label.center = CGPointMake(self.view.center.x, self.view.center.y-64);
     labelTwo.textColor = [UIColor whiteColor];
     labelTwo.text = @"Проверка ключей доступа";
@@ -122,11 +122,11 @@
     
     
     
-//    UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-//    activityIndicator.tag=666;
-//    activityIndicator.center=CGPointMake(self.view.center.x, self.view.center.y-64);
-//    [activityIndicator startAnimating];
-//    [self.view addSubview:activityIndicator];
+    UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    activityIndicator.tag=666;
+    activityIndicator.center=CGPointMake(loadView.frame.size.width/2,loadView.frame.size.width/2+20);
+    [activityIndicator startAnimating];
+    [loadView addSubview:activityIndicator];
 
     [self CheckAuth];
 
@@ -436,10 +436,12 @@
 
 -(void)hideView{
     
+            UIActivityIndicatorView *  activityIndicator = (UIActivityIndicatorView *)[loadView viewWithTag:666];
+            [activityIndicator setHidden:YES];
+            [activityIndicator stopAnimating];
+    
     [UIView animateWithDuration:0.3 animations:^{
-//        UIActivityIndicatorView *  activityIndicator = (UIActivityIndicatorView *)[loadView viewWithTag:666];
-//        [activityIndicator setHidden:YES];
-//        [activityIndicator stopAnimating];
+
         
         loadView.alpha = 0;
         loadView = nil;
