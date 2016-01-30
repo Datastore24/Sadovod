@@ -39,6 +39,9 @@
     LoginTextField * textFielsLoggin;
     LoginTextField * textFielsPassword;
     UIButton * buttonLoggin;
+    UIView * loadView;
+    UILabel * label;
+    UIActivityIndicatorView *activityIndicator;
 }
 
 - (void)viewDidLoad {
@@ -51,6 +54,8 @@
     
     self.navigationController.navigationBar.userInteractionEnabled = NO;
     self.navigationController.navigationBar.tintColor = [UIColor clearColor];
+    
+    
     
     //Инициализация ввода логина----------------------------------
     textFielsLoggin = [[LoginTextField alloc]
@@ -80,6 +85,24 @@
     buttonLoggin.center = CGPointMake(self.view.center.x, self.view.center.y);
     buttonLoggin.layer.cornerRadius = 5.f;
     [self.view addSubview:buttonLoggin];
+    
+    loadView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    loadView.backgroundColor = [UIColor lightGrayColor];
+    loadView.alpha = 0.9;
+    [self.view addSubview:loadView];
+    
+    
+    label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 250, 40)];
+    label.center = loadView.center;
+    label.textColor = [UIColor whiteColor];
+    label.text = @"Проверка логина и пароля";
+    label.center=CGPointMake(self.view.center.x, self.view.center.y-104);
+    [loadView addSubview:label];
+    
+    activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    activityIndicator.center=CGPointMake(self.view.center.x, self.view.center.y-64);
+    [activityIndicator startAnimating];
+    [loadView addSubview:activityIndicator];
 
     [self CheckAuth];
 
@@ -316,15 +339,7 @@
 //Проверяем входил ли пользователь, если входил перекидывай на меню
 -(void) CheckAuth{
     
-    UIView * loadView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-    loadView.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:loadView];
     
-    
-    UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 40)];
-    label.center = loadView.center;
-    label.text = @"Проверка логина и пароля";
-    [loadView addSubview:label];
     
     
     AuthDbClass * authDbClass = [[AuthDbClass alloc] init];
@@ -373,6 +388,8 @@
                     } else {
                         [UIView animateWithDuration:0.3 animations:^{
                             loadView.alpha = 0;
+                            [activityIndicator setHidden:YES];
+                            [activityIndicator stopAnimating];
                         }];
                     }
                     
@@ -384,8 +401,21 @@
             }
         
         
+    }else{
+        [UIView animateWithDuration:0.3 animations:^{
+            loadView.alpha = 0;
+            [activityIndicator setHidden:YES];
+            [activityIndicator stopAnimating];
+        }];
     }
     
+    }else{
+        
+        [UIView animateWithDuration:0.3 animations:^{
+            loadView.alpha = 0;
+            [activityIndicator setHidden:YES];
+            [activityIndicator stopAnimating];
+        }];
     }
     
 }
