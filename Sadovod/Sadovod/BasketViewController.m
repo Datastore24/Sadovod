@@ -35,8 +35,11 @@
 
 
 -(void)viewWillAppear:(BOOL)animated{
-    //    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style: UIBarButtonItemStylePlain target:self action:@selector(aMethod:)];
-    //    self.navigationItem.leftBarButtonItem = backButton;
+    
+    if (self.navigationItem.leftBarButtonItem) {
+        
+        
+    } else {
     
     UIButton *favBackButton = [UIButton buttonWithType:UIButtonTypeCustom];
     favBackButton.frame = CGRectMake(0, 0, 35, 35);
@@ -49,7 +52,9 @@
                                    initWithCustomView:favBackButton];
     
     self.navigationItem.leftBarButtonItem = backButton;
-    
+        
+    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment: UIOffsetMake(10.f, -100.f) forBarMetrics:UIBarMetricsDefault];
+    }
     
 }
 
@@ -61,9 +66,15 @@
 - (void) aMethod:(id)sender
 {
     
-    //Переход в меню
-    MyShowcaseViewController * mainView = [self.storyboard instantiateViewControllerWithIdentifier:@"MyShowcase"];
-    [self.navigationController pushViewController:mainView animated:YES];
+    CATransition *animation = [CATransition animation];
+    animation.duration = 0.3f;
+    animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionDefault];
+    animation.type = kCATransitionMoveIn;
+    animation.subtype = kCATransitionFromLeft;
+    [self.navigationController.view.layer addAnimation:animation forKey:nil];
+    MyShowcaseViewController * detail = [self.storyboard instantiateViewControllerWithIdentifier:@"MyShowcase"];
+    [self.navigationController pushViewController:detail animated:NO];
+    self.view.alpha = 0;
 }
 
 
