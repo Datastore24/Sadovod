@@ -378,7 +378,7 @@
             [authDbClass deleteAuth];
             
         }
-        for (int i; i<arrayUser.count; i++) {
+        for (int i=0; i<arrayUser.count; i++) {
             
             Auth * authCoreData = [arrayUser objectAtIndex:i];
             
