@@ -68,6 +68,7 @@
     viewPhone.layer.borderColor = [UIColor groupTableViewBackgroundColor].CGColor;
     viewPhone.layer.borderWidth = 0.5f;
     viewPhone.textColor = [UIColor lightGrayColor]; //optional
+    viewPhone.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
     [mainScrollView addSubview:viewPhone];
     
     //Ввод адреcа------------------------------------------
