@@ -67,6 +67,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
     TitleClass * title = [[TitleClass alloc]initWithTitle:self.productName];
     self.navigationItem.titleView = title;
     

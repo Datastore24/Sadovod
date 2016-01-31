@@ -20,7 +20,6 @@
 @implementation IssueViewController
 {
     UIScrollView * mainScrollView;
-    UITextView * viewName;
 }
 
 - (void) viewDidLoad
@@ -29,13 +28,16 @@
     
     TitleClass * title = [[TitleClass alloc]initWithTitle:@"Оформление заказа"];
     self.navigationItem.titleView = title;
+    self.navigationItem.titleView.center = self.navigationController.navigationBar.center;
+    
+//    self.title = title;
     
     mainScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     mainScrollView.showsVerticalScrollIndicator = NO;
     mainScrollView.backgroundColor = [UIColor colorWithHexString:@"f4f4f4"];
     [self.view addSubview:mainScrollView];
     
-    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment: UIOffsetMake(10.f, -100.f) forBarMetrics:UIBarMetricsDefault];
+
     
 //    self.view.backgroundColor = [UIColor colorWithHexString:@"f4f4f4"];
     
@@ -200,9 +202,20 @@ shouldChangeTextInRange:(NSRange)range
     UITextView * textView = (UITextView *)[self.view viewWithTag:3];
     UITextView * commentView = (UITextView *)[self.view viewWithTag:4];
     
-    [self postApiDelItemToCart:viewName.text andPhone:viewPhone.text andAddress:textView.text andComment:commentView.text];
+    if ([viewName.text  isEqual: @""] || [viewName.text  isEqual: @"Имя"]) {
+        [AlertClass showAlertViewWithMessage:@"Введите имя" view:self];
+    } else if ([viewPhone.text  isEqual: @""] || [viewPhone.text  isEqual: @"Телефон"]) {
+        [AlertClass showAlertViewWithMessage:@"Введите номер телефона" view:self];
+    } else if ([textView.text  isEqual: @""] || [textView.text  isEqual: @"Адрес"]) {
+        [AlertClass showAlertViewWithMessage:@"Введите адрес" view:self];
+    } else {
+            [self postApiDelItemToCart:viewName.text andPhone:viewPhone.text andAddress:textView.text andComment:commentView.text];
+        [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:1] animated:YES];
+    }
+
     
-    NSLog(@"buttonConfirmAction");
+
+    
 }
 
 //Удаление одного товара

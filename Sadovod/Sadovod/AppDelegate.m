@@ -20,6 +20,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
+    
+    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment: UIOffsetMake(0.f, -100.f) forBarMetrics:UIBarMetricsDefault];
+    
     [MagicalRecord setupCoreDataStackWithStoreNamed:@"Auth.sqlite"];
    
     
