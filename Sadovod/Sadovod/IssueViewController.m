@@ -9,6 +9,9 @@
 #import "IssueViewController.h"
 #import "TitleClass.h"
 #import "UIColor+HexColor.h"
+#import "APIPostClass.h"
+#import "SingleTone.h"
+#import "AlertClass.h"
 
 @interface IssueViewController () <UITextViewDelegate>
 
@@ -17,6 +20,7 @@
 @implementation IssueViewController
 {
     UIScrollView * mainScrollView;
+    UITextView * viewName;
 }
 
 - (void) viewDidLoad
@@ -64,7 +68,7 @@
     viewPhone.textColor = [UIColor lightGrayColor]; //optional
     [mainScrollView addSubview:viewPhone];
     
-    //Ввод адрема------------------------------------------
+    //Ввод адреcа------------------------------------------
     UITextView * textView = [[UITextView alloc] initWithFrame:
                              CGRectMake(10, 120, self.view.frame.size.width - 20, 80)];
     textView.delegate = self;
@@ -83,7 +87,7 @@
     labelComment.font = [UIFont fontWithName:@"Helvetica-Bold" size:13];
     [mainScrollView addSubview:labelComment];
     
-    //Ввод адрема------------------------------------------
+    //Ввод комментария------------------------------------------
     UITextView * commentView = [[UITextView alloc] initWithFrame:
                              CGRectMake(10, 240, self.view.frame.size.width - 20, 80)];
     commentView.delegate = self;
@@ -191,7 +195,53 @@ shouldChangeTextInRange:(NSRange)range
 
 - (void) buttonConfirmAction
 {
+    UITextView * viewName = (UITextView *)[self.view viewWithTag:1];
+    UITextView * viewPhone = (UITextView *)[self.view viewWithTag:2];
+    UITextView * textView = (UITextView *)[self.view viewWithTag:3];
+    UITextView * commentView = (UITextView *)[self.view viewWithTag:4];
+    
+    [self postApiDelItemToCart:viewName.text andPhone:viewPhone.text andAddress:textView.text andComment:commentView.text];
+    
     NSLog(@"buttonConfirmAction");
+}
+
+//Удаление одного товара
+- (void)postApiDelItemToCart:(NSString *) name andPhone: (NSString *) phone andAddress:(NSString *) address
+                  andComment:(NSString *) comment;
+{
+    //Передаваемые параметры
+    
+    
+    NSDictionary* params = [[NSDictionary alloc] initWithObjectsAndKeys:
+                            [[SingleTone sharedManager] parsingToken],@"token",
+                            name,@"name",
+                            phone,@"phone",
+                            address,@"address",
+                            comment,@"comment",
+                            nil];
+    UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    activityIndicator.center=CGPointMake(self.view.center.x, self.view.center.y-64);
+    [activityIndicator startAnimating];
+    [self.view addSubview:activityIndicator];
+    
+    APIPostClass* api = [APIPostClass new]; //создаем API
+    [api postDataToServerWithParams:params
+                        andAddParam:nil
+                             method:@"abpro/send_order"
+                    complitionBlock:^(id response) {
+                        
+                        [activityIndicator setHidden:YES];
+                        [activityIndicator stopAnimating];
+                        
+                        NSDictionary* dict = (NSDictionary*)response;
+                        if ([[dict objectForKey:@"status"] integerValue] == 1) {
+                            
+                            [AlertClass showAlertViewWithMessage:@"Ваш заказ успешно создан" view:self];
+                            
+                        }else {
+                            
+                        }
+                    }];
 }
 
 
