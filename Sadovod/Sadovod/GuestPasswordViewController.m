@@ -13,6 +13,7 @@
 #import "SingleTone.h"
 #import "TitleClass.h"
 #import "UIColor+HexColor.h"
+#import "MyShowcaseViewController.h"
 
 @interface GuestPasswordViewController ()
 
@@ -105,10 +106,14 @@
 
 - (void) aMethod:(id)sender
 {
-    
-    //Переход в меню
-    GuestPasswordViewController * mainView = [self.storyboard instantiateViewControllerWithIdentifier:@"MyShowcase"];
-    [self.navigationController pushViewController:mainView animated:YES];
+    CATransition *animation = [CATransition animation];
+    animation.duration = 0.3f;
+    animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionDefault];
+    animation.type = kCATransitionMoveIn;
+    animation.subtype = kCATransitionFromLeft;
+    [self.navigationController.view.layer addAnimation:animation forKey:nil];
+    MyShowcaseViewController * detail = [self.storyboard instantiateViewControllerWithIdentifier:@"MyShowcase"];
+    [self.navigationController pushViewController:detail animated:NO];
 }
 
 ////Авторизация пользователей
