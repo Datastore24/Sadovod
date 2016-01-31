@@ -42,6 +42,7 @@
     mainScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     mainScrollView.showsVerticalScrollIndicator = NO;
     mainScrollView.backgroundColor = [UIColor colorWithHexString:@"f4f4f4"];
+    mainScrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height + 5);
     [self.view addSubview:mainScrollView];
     
 
