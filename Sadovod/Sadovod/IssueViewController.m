@@ -26,6 +26,13 @@
 {
     [super viewDidLoad];
     
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
+                                   initWithTarget:self
+                                   action:@selector(dismissKeyboard)];
+    
+    [self.view addGestureRecognizer:tap];
+    
     TitleClass * title = [[TitleClass alloc]initWithTitle:@"Оформление заказа"];
     self.navigationItem.titleView = title;
     self.navigationItem.titleView.center = self.navigationController.navigationBar.center;
@@ -114,6 +121,21 @@
     
     
   
+}
+
+
+-(void)dismissKeyboard {
+    
+    UITextView * viewName = (UITextView *)[self.view viewWithTag:1];
+    UITextView * viewPhone = (UITextView *)[self.view viewWithTag:2];
+    UITextView * textView = (UITextView *)[self.view viewWithTag:3];
+    UITextView * commentView = (UITextView *)[self.view viewWithTag:4];
+    
+    
+    [viewName resignFirstResponder];
+    [viewPhone resignFirstResponder];
+    [textView resignFirstResponder];
+    [commentView resignFirstResponder];
 }
 
 
