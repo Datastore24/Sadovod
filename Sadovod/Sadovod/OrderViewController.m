@@ -16,11 +16,21 @@
 #import "APIGetClass.h"
 #import "APIPostClass.h"
 #import "SingleTone.h"
+#import "CartUpdaterClass.h"
 
 @implementation OrderViewController
 {
     UIScrollView * mainscrollView;
     ViewSectionTable * image;
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    
+    if ([[[SingleTone sharedManager] typeOfUsers] integerValue] == 2 && [[SingleTone sharedManager] orderCart])
+    {
+        [CartUpdaterClass updateCartWithApi:self.view];
+    }
+    
 }
 
 - (void) viewDidLoad
