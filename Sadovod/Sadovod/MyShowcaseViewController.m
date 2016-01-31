@@ -67,7 +67,7 @@ NSDictionary * tableDict; //Директория хранения данных
     UIBarButtonItem *barButtonOrders = [[UIBarButtonItem alloc] initWithCustomView:buttonOrders];
     self.navigationItem.rightBarButtonItem = barButtonOrders;
         
-    TitleClass * title = [[TitleClass alloc]initWithTitle:@"Моя Вит"];
+    TitleClass * title = [[TitleClass alloc]initWithTitle:@"Моя Витрина"];
         self.navigationItem.titleView = title;
     } else {
         
