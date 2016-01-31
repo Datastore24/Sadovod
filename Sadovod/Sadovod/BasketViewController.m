@@ -23,6 +23,7 @@
 #import "ParserFullCartResponse.h"
 #import <SCLAlertView-Objective-C/SCLAlertView.h>
 #import "Animation.h"
+#import "MyShowcaseViewController.h"
 
 
 @implementation BasketViewController
@@ -32,14 +33,50 @@
     NSMutableArray * testArray;
 }
 
+
 -(void)viewWillAppear:(BOOL)animated{
     
-    if ([[[SingleTone sharedManager] typeOfUsers] integerValue] == 2 && [[[[SingleTone sharedManager] orderCart] objectForKey:@"cost"] integerValue] >0)
-    {
-     [CartUpdaterClass updateCartWithApi:self.view];
+    if (self.navigationItem.leftBarButtonItem) {
+        
+        
+    } else {
+    
+    UIButton *favBackButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    favBackButton.frame = CGRectMake(0, 0, 35, 35);
+    
+    [favBackButton setImage:[UIImage imageNamed:@"backImage.png"] forState:UIControlStateNormal];
+    [favBackButton addTarget:self action:@selector(aMethod:)
+            forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc]
+                                   initWithCustomView:favBackButton];
+    
+    self.navigationItem.leftBarButtonItem = backButton;
+        
+    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment: UIOffsetMake(10.f, -100.f) forBarMetrics:UIBarMetricsDefault];
     }
     
 }
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+}
+
+
+- (void) aMethod:(id)sender
+{
+    
+    CATransition *animation = [CATransition animation];
+    animation.duration = 0.3f;
+    animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionDefault];
+    animation.type = kCATransitionMoveIn;
+    animation.subtype = kCATransitionFromLeft;
+    [self.navigationController.view.layer addAnimation:animation forKey:nil];
+    MyShowcaseViewController * detail = [self.storyboard instantiateViewControllerWithIdentifier:@"MyShowcase"];
+    [self.navigationController pushViewController:detail animated:NO];
+    self.view.alpha = 0;
+}
+
 
 - (void) viewDidLoad
 {
@@ -100,13 +137,17 @@
         numberObjectLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:12];
         [mainView addSubview:numberObjectLabel];
         
+        
+        if(self.view.bounds.size.height < 586.0f) //Если пишем под 5ку и ниже
+        {
+            
         //Лейбл колличество-----------------------------------
         UILabel * labelNumber = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 100, 10, 80, 20)];
         labelNumber.text = @"Кол-во:";
         labelNumber.textColor = [UIColor colorWithHexString:@"acacac"];
         labelNumber.font = [UIFont fontWithName:@"Helvetica-Bold" size:9];
         [mainView addSubview:labelNumber];
-        
+         
         //Вью колличества-------------------------------------
         UILabel * labelNumberAction = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 100, 30, 30, 30)];
         labelNumberAction.backgroundColor = [UIColor colorWithHexString:@"f4f4f4"];
@@ -132,6 +173,42 @@
 //        imageView.backgroundColor = [UIColor blueColor];
         imageView.image = [UIImage imageNamed:@"ic_delete"];
         [buttonDelete addSubview:imageView];
+        } else {
+            
+            //Лейбл колличество-----------------------------------
+            UILabel * labelNumber = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 130, 5, 120, 30)];
+            labelNumber.text = @"Кол-во:";
+            labelNumber.textColor = [UIColor colorWithHexString:@"acacac"];
+            labelNumber.font = [UIFont fontWithName:@"Helvetica-Bold" size:13];
+            [mainView addSubview:labelNumber];
+            
+            
+            //Вью колличества-------------------------------------
+            UILabel * labelNumberAction = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 130, 30, 50, 50)];
+            labelNumberAction.backgroundColor = [UIColor colorWithHexString:@"f4f4f4"];
+            labelNumberAction.text = [productDictCart objectForKey:@"count"];
+            labelNumberAction.textColor = [UIColor colorWithHexString:@"b4b4b4"];
+            labelNumberAction.textColor = [UIColor colorWithHexString:@"acacac"];
+            labelNumberAction.textAlignment = NSTextAlignmentCenter;
+            labelNumberAction.font = [UIFont fontWithName:@"Helvetica-Bold" size:18];
+            [mainView addSubview:labelNumberAction];
+            
+            //Кнопка удалить-------------------------------------
+            UIButton * buttonDelete = [UIButton buttonWithType:UIButtonTypeCustom];
+            buttonDelete.frame = CGRectMake(self.view.frame.size.width - 75, 30, 50, 50);
+            buttonDelete.backgroundColor = [UIColor colorWithHexString:@"f4f4f4"];
+            buttonDelete.tag = i;
+            [buttonDelete addTarget:self action:@selector(buttonDeleteAction:)
+                   forControlEvents:UIControlEventTouchUpInside];
+            
+            [mainView addSubview:buttonDelete];
+            
+            
+            UIImageView * imageView = [[UIImageView alloc] initWithFrame:CGRectMake(17, 15, 15, 20)];
+            //        imageView.backgroundColor = [UIColor blueColor];
+            imageView.image = [UIImage imageNamed:@"ic_delete"];
+            [buttonDelete addSubview:imageView];
+        }
     }
          mainScrollView.contentSize = CGSizeMake(self.view.frame.size.width, ((self.view.frame.size.width / 2)* productArrayCartList.count)+ 70);
         }

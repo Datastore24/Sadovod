@@ -100,6 +100,7 @@
 {
     adressChange = [[TextViewHeight alloc] initWithFrame:CGRectMake(10, 70, viewAdress.frame.size.width, 120) andText:string];
     adressChange.textColor = [UIColor colorWithHexString:@"a9a9a9"];
+    adressChange.editable = NO;
     return adressChange;
 }
 
@@ -108,6 +109,7 @@
     //Текст комментариев--------------------------
     commentChange = [[TextViewHeight alloc] initWithFrame:CGRectMake(20, 30, view.frame.size.width, 120) andText:text];
     commentChange.textColor = [UIColor colorWithHexString:@"a9a9a9"];
+    commentChange.editable = NO;
     
     UIView * commentView = [[UIView alloc] initWithFrame:CGRectMake(- 10, 70 + adressChange.frame.size.height, view.frame.size.width + 20, commentChange.frame.size.height + 50)];
     

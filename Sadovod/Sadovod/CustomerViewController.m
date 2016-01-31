@@ -16,6 +16,9 @@
 #import "SingleTone.h"
 
 @implementation CustomerViewController
+{
+    ParserOrderClientInfo * parserOrderClientInfo;
+}
 
 
 - (void) viewDidLoad {
@@ -32,7 +35,7 @@
         
     
     if(self.arrayOrderClientInfo.count>0){
-        ParserOrderClientInfo * parserOrderClientInfo = [self.arrayOrderClientInfo objectAtIndex:0];
+        parserOrderClientInfo = [self.arrayOrderClientInfo objectAtIndex:0];
     
 
 
@@ -46,16 +49,18 @@
                                                           andMainView:self.view];
     [self.view addSubview:viewCustomer];
         
+        //Создание селектора для кнопки с определенный тегом----------------
+        UIButton *buttonConfirm = (UIButton *)[self.view viewWithTag:1068];
+        [buttonConfirm addTarget:self action:@selector(buttonConfirmAction) forControlEvents:UIControlEventTouchUpInside];
+        
+        //Создание селектора для кнопки с определенный тегом----------------
+        UIButton *buttonCall = (UIButton *)[self.view viewWithTag:1070];
+        [buttonCall addTarget:self action:@selector(buttonCallAction) forControlEvents:UIControlEventTouchUpInside];
+        
         }
         }];
     
-    //Создание селектора для кнопки с определенный тегом----------------
-    UIButton *buttonConfirm = (UIButton *)[self.view viewWithTag:1068];
-    [buttonConfirm addTarget:self action:@selector(buttonConfirmAction) forControlEvents:UIControlEventTouchUpInside];
-    
-    //Создание селектора для кнопки с определенный тегом----------------
-    UIButton *buttonCall = (UIButton *)[self.view viewWithTag:1070];
-    [buttonCall addTarget:self action:@selector(buttonCallAction) forControlEvents:UIControlEventTouchUpInside];
+
 
     
 }
@@ -63,8 +68,7 @@
 
 - (void) buttonConfirmAction
 {
-    NSLog(@"Test");
-    [self.navigationController popToRootViewControllerAnimated:YES];
+        [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:2] animated:YES];
 }
 
 -(void) getApiOrderClientInfo: (void (^)(void))block{
@@ -94,7 +98,9 @@
 
 - (void) buttonCallAction
 {
-    NSLog(@"Дзынь дзынь");
+    
+    NSLog(@"Позвонить на %@", parserOrderClientInfo.phone);
+//    [[UIApplication sharedApplication]openURL:[NSURL URLWithString:parserOrderClientInfo.phone]];
 }
 
 @end
