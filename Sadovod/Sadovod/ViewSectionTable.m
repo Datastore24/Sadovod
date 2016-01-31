@@ -48,7 +48,10 @@
                               
                                 if(image){
                                     imageView.frame=CGRectMake(0, 0, frame.size.width - 2.5, frame.size.height - 5);
+                                    imageView.contentMode = UIViewContentModeScaleAspectFill; // Растягивает, но режет ноги
+                                    //_viewOne.contentMode = UIViewContentModeScaleAspectFit; // Пропорционально на весь экран
                                     
+                                    [imageView setClipsToBounds:YES];
                                     
                                     if(resized){
                                         imageView.contentMode = UIViewContentModeScaleAspectFill;
