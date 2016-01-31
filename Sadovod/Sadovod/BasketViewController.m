@@ -23,6 +23,7 @@
 #import "ParserFullCartResponse.h"
 #import <SCLAlertView-Objective-C/SCLAlertView.h>
 #import "Animation.h"
+#import "MyShowcaseViewController.h"
 
 
 @implementation BasketViewController
@@ -32,14 +33,39 @@
     NSMutableArray * testArray;
 }
 
+
 -(void)viewWillAppear:(BOOL)animated{
+    //    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style: UIBarButtonItemStylePlain target:self action:@selector(aMethod:)];
+    //    self.navigationItem.leftBarButtonItem = backButton;
     
-    if ([[[SingleTone sharedManager] typeOfUsers] integerValue] == 2 && [[[[SingleTone sharedManager] orderCart] objectForKey:@"cost"] integerValue] >0)
-    {
-     [CartUpdaterClass updateCartWithApi:self.view];
-    }
+    UIButton *favBackButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    favBackButton.frame = CGRectMake(0, 0, 35, 35);
+    
+    [favBackButton setImage:[UIImage imageNamed:@"backImage.png"] forState:UIControlStateNormal];
+    [favBackButton addTarget:self action:@selector(aMethod:)
+            forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc]
+                                   initWithCustomView:favBackButton];
+    
+    self.navigationItem.leftBarButtonItem = backButton;
+    
     
 }
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+}
+
+
+- (void) aMethod:(id)sender
+{
+    
+    //Переход в меню
+    MyShowcaseViewController * mainView = [self.storyboard instantiateViewControllerWithIdentifier:@"MyShowcase"];
+    [self.navigationController pushViewController:mainView animated:YES];
+}
+
 
 - (void) viewDidLoad
 {
