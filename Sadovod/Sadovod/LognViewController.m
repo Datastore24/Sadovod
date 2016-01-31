@@ -115,7 +115,7 @@
     [loadView addSubview:labelTwo];
     
     
-    [UIView animateWithDuration:0.9 animations:^{
+    [UIView animateWithDuration:1.2 animations:^{
         labelTwo.alpha = 1;
     }];
     
