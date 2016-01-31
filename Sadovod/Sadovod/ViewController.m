@@ -22,7 +22,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    self.title = @"Моя Витрина";
+//    self.title = @"Моя Витрина";
 //     [self CheckAuth];
     
 }
