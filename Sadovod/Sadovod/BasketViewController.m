@@ -65,7 +65,6 @@
 
 - (void) aMethod:(id)sender
 {
-    
     CATransition *animation = [CATransition animation];
     animation.duration = 0.3f;
     animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionDefault];
@@ -74,10 +73,9 @@
     [self.navigationController.view.layer addAnimation:animation forKey:nil];
     MyShowcaseViewController * detail = [self.storyboard instantiateViewControllerWithIdentifier:@"MyShowcase"];
     [self.navigationController pushViewController:detail animated:NO];
-    self.view.alpha = 0;
+
+
 }
-
-
 - (void) viewDidLoad
 {
     [super viewDidLoad];

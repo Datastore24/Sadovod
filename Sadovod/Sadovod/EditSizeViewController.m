@@ -235,7 +235,11 @@
 - (void) aMethod:(id)sender
 {
     if([self postApiSizes:self.postArraySorted]){
-       [self.navigationController popViewControllerAnimated:YES]; 
+        
+        
+       [self.navigationController popViewControllerAnimated:NO];
+        
+        
     }else{
          [AlertClass showAlertViewWithMessage:@"Выберите хотя бы один размер!" view:self];
         
