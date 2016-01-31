@@ -16,6 +16,9 @@
 #import "SingleTone.h"
 
 @implementation CustomerViewController
+{
+    ParserOrderClientInfo * parserOrderClientInfo;
+}
 
 
 - (void) viewDidLoad {
@@ -32,7 +35,7 @@
         
     
     if(self.arrayOrderClientInfo.count>0){
-        ParserOrderClientInfo * parserOrderClientInfo = [self.arrayOrderClientInfo objectAtIndex:0];
+        parserOrderClientInfo = [self.arrayOrderClientInfo objectAtIndex:0];
     
 
 
@@ -95,7 +98,9 @@
 
 - (void) buttonCallAction
 {
-    NSLog(@"Дзынь дзынь");
+    
+    NSLog(@"Позвонить на %@", parserOrderClientInfo.phone);
+//    [[UIApplication sharedApplication]openURL:[NSURL URLWithString:parserOrderClientInfo.phone]];
 }
 
 @end

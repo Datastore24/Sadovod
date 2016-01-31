@@ -8,6 +8,7 @@
 
 #import "AlertClass.h"
 #import <SCLAlertView-Objective-C/SCLAlertView.h>
+#import "UIColor+HexColor.h"
 
 
 @implementation AlertClass
@@ -16,7 +17,8 @@
 + (void)showAlertViewWithMessage:(NSString*)message view:(UIViewController *) view
 {
     SCLAlertView* alert = [[SCLAlertView alloc] init];
+    alert.customViewColor = [UIColor colorWithHexString:@"3038a0"];
     
-    [alert showNotice:view title:@"Внимание!!!" subTitle:message closeButtonTitle:@"Ок" duration:0.f];
+    [alert showSuccess:view title:@"Внимание!!!" subTitle:message closeButtonTitle:@"Ок" duration:0.f];
 }
 @end

@@ -238,6 +238,7 @@
        [self.navigationController popViewControllerAnimated:YES]; 
     }else{
          [AlertClass showAlertViewWithMessage:@"Выберите хотя бы один размер!" view:self];
+        
     }
    
     
