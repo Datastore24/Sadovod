@@ -74,17 +74,20 @@
         NSDictionary * infoOrderItems = [listOrderItems objectAtIndex:i];
         
         //Изобрадение предмета--------------------------------
-        image = [[ViewSectionTable alloc] initWithFrame:CGRectMake(0, self.view.frame.size.width / 2 * i, self.view.frame.size.width / 4 + 20, (self.view.frame.size.width / 2)) andImageURL:[infoOrderItems objectForKey:@"img"] isInternetURL:YES andLabelPrice:[infoOrderItems objectForKey:@"cost"] andResized:YES];
+        image = [[ViewSectionTable alloc] initWithFrame:CGRectMake
+                 (0, self.view.frame.size.width * i,
+                  self.view.frame.size.width / 2 + 20,
+                  (self.view.frame.size.width)) andImageURL:[infoOrderItems objectForKey:@"img"] isInternetURL:YES andLabelPrice:[infoOrderItems objectForKey:@"cost"] andResized:YES];
         [mainscrollView addSubview:image];
         
         //Размер предмета-------------------------------------
-        UILabel * sizeObjectLabel = [[UILabel alloc] initWithFrame:CGRectMake((self.view.frame.size.width / 4) + 25, 10 + self.view.frame.size.width / 2 * i, 250, 20)];
+        UILabel * sizeObjectLabel = [[UILabel alloc] initWithFrame:CGRectMake((self.view.frame.size.width / 2) + 25, 10 + self.view.frame.size.width * i, 250, 20)];
         sizeObjectLabel.text = [infoOrderItems objectForKey:@"name"];
         sizeObjectLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:13];
         [mainscrollView addSubview:sizeObjectLabel];
         
         //Колличество заказанного товара----------------------
-        UILabel * numberObjectLabel = [[UILabel alloc] initWithFrame:CGRectMake((self.view.frame.size.width / 4) + 25, 30 + self.view.frame.size.width / 2 * i, 150, 20)];
+        UILabel * numberObjectLabel = [[UILabel alloc] initWithFrame:CGRectMake((self.view.frame.size.width / 2) + 25, 30 + self.view.frame.size.width * i, 150, 20)];
         numberObjectLabel.text = [NSString stringWithFormat:@"Количество: %@", [infoOrderItems objectForKey:@"count"]];
         numberObjectLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:12];
         [mainscrollView addSubview:numberObjectLabel];

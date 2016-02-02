@@ -97,6 +97,7 @@
     
 }
 
+
 +(void) updateCartWithApi: (UILabel *) labelCount andLabelPrice: (UILabel *) labelPrice andView:(UIView *) view{
     //Передаваемые параметры
     

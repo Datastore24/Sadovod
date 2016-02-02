@@ -161,6 +161,10 @@ NSDictionary * tableDict; //Директория хранения данных
         
         [self.view addSubview:decor];
         
+        UIButton * buttonBasket = (UIButton*)[self.view viewWithTag:276];
+        [buttonBasket addTarget:self action:@selector(buttonBasketAction)
+                           forControlEvents:UIControlEventTouchUpInside];
+        
         UIButton * buttonDecor = (UIButton *)[self.view viewWithTag:555];
         [buttonDecor addTarget:self action:@selector(buttonDecorAction) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -384,6 +388,12 @@ NSDictionary * tableDict; //Директория хранения данных
        
     }
     
+}
+
+- (void) buttonBasketAction
+{
+    BasketViewController * detail = [self.storyboard instantiateViewControllerWithIdentifier:@"BasketViewController"];
+    [self.navigationController pushViewController:detail animated:YES];
 }
 
 @end

@@ -37,6 +37,12 @@
         labelDecor.tag=556;
         [self addSubview:labelDecor];
         
+        UIButton * buttonBasket = [UIButton buttonWithType:UIButtonTypeSystem];
+        buttonBasket.frame = CGRectMake(10, 0, 220, 40);
+        buttonBasket.backgroundColor = nil;
+        buttonBasket.tag = 276;
+        [self addSubview:buttonBasket];
+        
         UIButton * buttonDecor = [UIButton buttonWithType:UIButtonTypeSystem];
         buttonDecor.frame = CGRectMake(view.frame.size.width - 100, 0, 100, 40);
         buttonDecor.backgroundColor = nil;
