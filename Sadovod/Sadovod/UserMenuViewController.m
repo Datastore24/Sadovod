@@ -26,6 +26,7 @@
     NSArray * menu;
     UILabel * labelNumber;
     UILabel * labelPrice;
+    UIImageView * imageTableViewCell;
     
 }
 
@@ -141,22 +142,31 @@
     
     
     if ([cellIdentifier isEqual:@"third"]) {
-        UIImageView * imageTableViewCell = [[UIImageView alloc] initWithFrame:CGRectMake(20, 10, 20, 20)];
-        imageTableViewCell.image = [UIImage imageNamed:@"ic_cart_grey.png"];
-        [cell addSubview:imageTableViewCell];
+        
+        if (!imageTableViewCell) {
+            imageTableViewCell = [[UIImageView alloc] initWithFrame:CGRectMake(20, 10, 20, 20)];
+            imageTableViewCell.image = [UIImage imageNamed:@"ic_cart_grey.png"];
+            [cell addSubview:imageTableViewCell];
+        }
+
         NSDictionary * cartInfo = [[SingleTone sharedManager] orderCart];
         
-        labelNumber = [[UILabel alloc] initWithFrame:CGRectMake(45, 3, 80, 20)];
-        labelNumber.text = [cartInfo objectForKey:@"count"];
-        labelNumber.textColor = [UIColor blackColor];
-        labelNumber.font = [UIFont fontWithName:@"HelveticaNeue" size:15];
-        [cell addSubview:labelNumber];
+        if (!labelNumber) {
+            labelNumber = [[UILabel alloc] initWithFrame:CGRectMake(45, 3, 80, 20)];
+            labelNumber.text = [cartInfo objectForKey:@"count"];
+            labelNumber.textColor = [UIColor blackColor];
+            labelNumber.font = [UIFont fontWithName:@"HelveticaNeue" size:15];
+            [cell addSubview:labelNumber];
+        }
         
-        labelPrice = [[UILabel alloc] initWithFrame:CGRectMake(45, 20, 80, 20)];
-        labelPrice.text = [cartInfo objectForKey:@"cost"];
-        labelPrice.textColor = [UIColor lightGrayColor];
-        labelPrice.font = [UIFont fontWithName:@"HelveticaNeue" size:15];
-        [cell addSubview:labelPrice];
+        if (!labelPrice) {
+            labelPrice = [[UILabel alloc] initWithFrame:CGRectMake(45, 20, 80, 20)];
+            labelPrice.text = [cartInfo objectForKey:@"cost"];
+            labelPrice.textColor = [UIColor lightGrayColor];
+            labelPrice.font = [UIFont fontWithName:@"HelveticaNeue" size:15];
+            [cell addSubview:labelPrice];
+        }
+
         cell.tag = 135;
     }
     

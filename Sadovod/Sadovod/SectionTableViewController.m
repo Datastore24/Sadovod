@@ -19,6 +19,7 @@
 #import "ParserCategory.h"
 #import "ParserCategoryResponse.h"
 #import "SingleTone.h"
+#import "BasketViewController.h"
 
 #import "CartUpdaterClass.h"
 
@@ -189,6 +190,10 @@
             
             [self.view addSubview:decor];
             
+            UIButton * buttonBasket = (UIButton*)[self.view viewWithTag:276];
+            [buttonBasket addTarget:self action:@selector(buttonBasketAction)
+                   forControlEvents:UIControlEventTouchUpInside];
+            
             UIButton * buttonDecor = (UIButton *)[self.view viewWithTag:555];
             [buttonDecor addTarget:self action:@selector(buttonDecorAction) forControlEvents:UIControlEventTouchUpInside];
         }
@@ -255,6 +260,12 @@
 - (void) buttonDecorAction
 {
     IssueViewController * detail = [self.storyboard instantiateViewControllerWithIdentifier:@"IssueViewController"];
+    [self.navigationController pushViewController:detail animated:YES];
+}
+
+- (void) buttonBasketAction
+{
+    BasketViewController * detail = [self.storyboard instantiateViewControllerWithIdentifier:@"BasketViewController"];
     [self.navigationController pushViewController:detail animated:YES];
 }
 
