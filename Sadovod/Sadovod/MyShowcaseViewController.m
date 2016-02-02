@@ -41,15 +41,31 @@
 
 @implementation MyShowcaseViewController{
 NSDictionary * tableDict; //Директория хранения данных
+    UIButton * buttonOrders;
 }
 
 -(void)viewWillAppear:(BOOL)animated{
+    
+    NSDictionary * cartOrder = [[SingleTone sharedManager] orderCart];
+    
+    if ([[cartOrder objectForKey:@"cost"] integerValue] ==0) {
+        if (buttonOrders.tag == 975) {
+            buttonOrders.alpha = 0.4;
+            buttonOrders.userInteractionEnabled = NO;
+        }
+        
+    } else {
+        if (buttonOrders.tag == 975) {
+            buttonOrders.alpha = 1;
+            buttonOrders.userInteractionEnabled = YES;
+        }
+    }
     
     if ([[[SingleTone sharedManager] typeOfUsers] integerValue] == 2 && [[SingleTone sharedManager] orderCart])
     {
         [CartUpdaterClass updateCartWithApi:self.view];
     }
-    
+   
 }
 
 - (void)viewDidLoad {
@@ -59,7 +75,7 @@ NSDictionary * tableDict; //Директория хранения данных
     {
     
     //Кнопка бара--------------------------------------------
-    UIButton * buttonOrders =  [UIButton buttonWithType:UIButtonTypeCustom];
+    buttonOrders =  [UIButton buttonWithType:UIButtonTypeCustom];
     [buttonOrders setImage:[UIImage imageNamed:@"ic_orders.png"] forState:UIControlStateNormal];
     [buttonOrders addTarget:self action:@selector(buttonOrdersAction)forControlEvents:UIControlEventTouchUpInside];
     [buttonOrders setFrame:CGRectMake(0, 0, 30, 30)];
@@ -75,7 +91,8 @@ NSDictionary * tableDict; //Директория хранения данных
         self.navigationItem.titleView = title;
         
         //Кнопка бара--------------------------------------------
-        UIButton * buttonOrders =  [UIButton buttonWithType:UIButtonTypeCustom];
+        buttonOrders =  [UIButton buttonWithType:UIButtonTypeCustom];
+        buttonOrders.tag = 975;
         [buttonOrders setImage:[UIImage imageNamed:@"ic_cart.png"] forState:UIControlStateNormal];
         [buttonOrders addTarget:self action:@selector(buttonOrdersAction)forControlEvents:UIControlEventTouchUpInside];
         [buttonOrders setFrame:CGRectMake(0, 0, 30, 30)];
@@ -130,7 +147,16 @@ NSDictionary * tableDict; //Директория хранения данных
         
         DecorView * decor = [[DecorView alloc] initWithView:self.view andNumber:[cartOrder objectForKey:@"count"] andPrice:[cartOrder objectForKey:@"cost"] andWithBlock:YES];
         if([[cartOrder objectForKey:@"cost"] integerValue] ==0){
+            if (buttonOrders.tag == 975) {
+                buttonOrders.alpha = 0.4;
+                buttonOrders.userInteractionEnabled = NO;
+            }
             decor.alpha = 0;
+        } else {
+            if (buttonOrders.tag == 975) {
+                buttonOrders.alpha = 1;
+                buttonOrders.userInteractionEnabled = YES;
+            }
         }
         
         [self.view addSubview:decor];

@@ -71,21 +71,27 @@
         UILabel * labelDecor = (UILabel *)[view viewWithTag:556];
         
         UIView * decor = (UIView *)[view viewWithTag:554];
+        UIButton * buttonOrders = (UIButton *)[view viewWithTag:854];
         NSLog(@"ИТОГО %@",parse.cost);
         if([parse.cost integerValue] ==0){
             NSLog(@"DECOR 0 ");
             [UIView animateWithDuration:0.5 animations:^{
                 decor.alpha = 0;
+                buttonOrders.alpha = 0.4;
+
             }];
         }else{
             NSLog(@"DECOR 0,7 ");
             [UIView animateWithDuration:0.5 animations:^{
                 decor.alpha = 0.7;
+                buttonOrders.alpha = 1.f;
+
             }];
         }
         
         labelDecor.text = [NSString stringWithFormat:@"Итого %@ на %@ руб", parse.count, parse.cost];
 
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"CellFloat0" object:nil];
        
     }];
     

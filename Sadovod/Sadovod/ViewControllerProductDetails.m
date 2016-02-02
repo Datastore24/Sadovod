@@ -146,7 +146,7 @@
                               action:@selector(buyButtonAction)
                     forControlEvents:UIControlEventTouchUpInside];
         [buyButton setTitle:@"Купить" forState:UIControlStateNormal];
-        [buyButton.titleLabel setFont:[UIFont systemFontOfSize:12]];
+        [buyButton.titleLabel setFont:[UIFont systemFontOfSize:16]];
         buyButton.frame = CGRectMake(self.view.frame.size.width - 100, 0, 100, 40.0);
         [priceView addSubview:buyButton];
         
@@ -1051,6 +1051,12 @@
     CGFloat width = [UIScreen mainScreen].bounds.size.width;
     CGFloat height = [UIScreen mainScreen].bounds.size.height;
     
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
+                                   initWithTarget:self
+                                   action:@selector(buttonMainActionTuch)];
+    
+    [self.view addGestureRecognizer:tap];
+    
     
     
     self.addToCartView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0,
@@ -1267,9 +1273,6 @@
                 labelCount.text =[NSString stringWithFormat:@"%li",count];
                 [self postApiAddItemToCart:[productBuySizesInfo objectForKey:@"id"]];
 
-
-
-
         }
     }
 }
@@ -1292,6 +1295,17 @@
             
             [self postApiDelItemToCart:[productBuySizesInfo objectForKey:@"id"]];
         }
+    }
+}
+
+//Кнопка выдвигаеммого вью----------------------
+- (void) buttonMainActionTuch
+{
+    if (!isBool) {
+        
+    } else {
+        [Animation animateTransformView:viewMove withScale:1 move_X:+ 180 move_Y:0 alpha:1 delay:0];
+        isBool = NO;
     }
 }
 

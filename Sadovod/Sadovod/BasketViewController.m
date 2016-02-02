@@ -31,6 +31,7 @@
     UIScrollView * mainScrollView;
     NSArray * productArrayCartList;
     NSMutableArray * testArray;
+    NSMutableArray * counrMArray;
 }
 
 
@@ -83,6 +84,9 @@
     self.navigationItem.titleView = title;
     
     testArray = [[NSMutableArray alloc] init];
+    
+    
+
 
     
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment: UIOffsetMake(10.f, -100.f) forBarMetrics:UIBarMetricsDefault];
@@ -101,6 +105,7 @@
             
             ParserFullCart * parserFullCart = [self.arrayCart objectAtIndex:0];
             productArrayCartList = parserFullCart.list;
+            counrMArray = [[NSMutableArray alloc] initWithArray:productArrayCartList];
     
     for (int i = 0; i < productArrayCartList.count; i++) {
         
@@ -253,6 +258,8 @@
                 [self postApiDelItemToCart:[productDictCart objectForKey:@"id"]];
                 [CartUpdaterClass updateCartWithApi:self.view];
                 
+                [counrMArray removeLastObject];
+                
                 
                 UIView * testView = (UIView*)[self.view viewWithTag:700 + i];
                 [Animation animateTransformView:testView withScale:1.f move_X:-self.view.frame.size.width + 10 move_Y:0 alpha:1.f delay:0.5f];
@@ -271,11 +278,21 @@
                         [Animation animationTestView:upsView move_Y:- (self.view.frame.size.width / 2)];
                     }
                 }
-
+                
+                
+                if (counrMArray.count == 0) {
+                   CATransition *animation = [CATransition animation];
+                   animation.duration = 0.3f;
+                   animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionDefault];
+                   animation.type = kCATransitionMoveIn;
+                   animation.subtype = kCATransitionFromLeft;
+                   [self.navigationController.view.layer addAnimation:animation forKey:nil];
+                   MyShowcaseViewController * detail = [self.storyboard instantiateViewControllerWithIdentifier:@"MyShowcase"];
+                   [self.navigationController pushViewController:detail animated:NO];
+                }
 
                 [testArray insertObject:testView atIndex:i];
-                
-                
+
                 
             }];
             

@@ -35,6 +35,7 @@
     {
         [CartUpdaterClass updateCartWithApi:labelNumber andLabelPrice:labelPrice andView:self.view];
     }
+
     
 }
 
@@ -45,6 +46,9 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableViewWhenNewEvent) name:@"ReloadMenu" object:nil];
     //
     
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableViewWhenNewEvent) name:@"CellFloat0" object:nil];
+    
     self.view.backgroundColor = [UIColor whiteColor];
     self.menuTableView.backgroundColor = nil;
     self.menuTableView.scrollEnabled = NO;
@@ -53,6 +57,11 @@
 
     
 }
+
+//- (void) reladMyTableView
+//{
+//    [self.menuTableView reloadData];
+//}
 
 
 - (void)didReceiveMemoryWarning {
@@ -148,6 +157,7 @@
         labelPrice.textColor = [UIColor lightGrayColor];
         labelPrice.font = [UIFont fontWithName:@"HelveticaNeue" size:15];
         [cell addSubview:labelPrice];
+        cell.tag = 135;
     }
     
     return cell;
@@ -201,6 +211,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     if (indexPath.row == 1)
     {
         return 25.f;
@@ -208,13 +219,25 @@
         if ([[[SingleTone sharedManager] typeOfUsers] integerValue] ==1) {
             return 0;
         } else {
+            NSDictionary * cartOrder = [[SingleTone sharedManager] orderCart];
+            if([[cartOrder objectForKey:@"cost"] integerValue] ==0){
     
-    return 45.f;
+    return 0.f;
+            } else {
+                return 45;
+            }
         }
     } else {
         
         return 44.f;
     }
+    
+    
+}
+
+- (void) testMethos: (NSNotification*) notification
+{
+    
 }
 
 //Обновление таблицы

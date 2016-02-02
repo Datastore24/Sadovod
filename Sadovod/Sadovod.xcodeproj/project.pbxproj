@@ -55,6 +55,7 @@
 		77D9D4FC1C4CE9AB003C3610 /* UIColor+HexColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D9D4FB1C4CE9AB003C3610 /* UIColor+HexColor.m */; };
 		77D9D4FF1C4CEBD1003C3610 /* LognViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D9D4FE1C4CEBD1003C3610 /* LognViewController.m */; };
 		77D9D5031C4CEC30003C3610 /* LoginTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D9D5021C4CEC30003C3610 /* LoginTextField.m */; };
+		77E5772A1C60D100000F0C44 /* UIBarButtonItem+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E577291C60D100000F0C44 /* UIBarButtonItem+Alpha.m */; };
 		77E6DABA1C59FEB300FD1029 /* BasketViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E6DAB91C59FEB300FD1029 /* BasketViewController.m */; };
 		77E6DAC11C5A0FD400FD1029 /* IssueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E6DAC01C5A0FD400FD1029 /* IssueViewController.m */; };
 		77E6DAC41C5A1AF600FD1029 /* DecorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E6DAC31C5A1AF600FD1029 /* DecorView.m */; };
@@ -196,6 +197,8 @@
 		77D9D4FE1C4CEBD1003C3610 /* LognViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LognViewController.m; sourceTree = "<group>"; };
 		77D9D5011C4CEC30003C3610 /* LoginTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginTextField.h; sourceTree = "<group>"; };
 		77D9D5021C4CEC30003C3610 /* LoginTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginTextField.m; sourceTree = "<group>"; };
+		77E577281C60D100000F0C44 /* UIBarButtonItem+Alpha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+Alpha.h"; sourceTree = "<group>"; };
+		77E577291C60D100000F0C44 /* UIBarButtonItem+Alpha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+Alpha.m"; sourceTree = "<group>"; };
 		77E6DAB81C59FEB300FD1029 /* BasketViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasketViewController.h; sourceTree = "<group>"; };
 		77E6DAB91C59FEB300FD1029 /* BasketViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasketViewController.m; sourceTree = "<group>"; };
 		77E6DABF1C5A0FD400FD1029 /* IssueViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IssueViewController.h; sourceTree = "<group>"; };
@@ -525,6 +528,8 @@
 		77D9D4F91C4CE993003C3610 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				77E577281C60D100000F0C44 /* UIBarButtonItem+Alpha.h */,
+				77E577291C60D100000F0C44 /* UIBarButtonItem+Alpha.m */,
 				AD69E5E71C4EE75D00DF6151 /* TextAndImageHeight.h */,
 				AD69E5E81C4EE75D00DF6151 /* TextAndImageHeight.m */,
 				AD69E5D81C4EE6B800DF6151 /* UIImage+Alpha.h */,
@@ -929,6 +934,7 @@
 				77729FF41C53C52100BC7791 /* CustomerViewController.m in Sources */,
 				ADB6219C1C5CF2DD0041BE2F /* ParserFullCart.m in Sources */,
 				77E6DAC11C5A0FD400FD1029 /* IssueViewController.m in Sources */,
+				77E5772A1C60D100000F0C44 /* UIBarButtonItem+Alpha.m in Sources */,
 				776BF21D1C4B8A4C0006C502 /* SectionTableViewController.m in Sources */,
 				AD379BB51C555B1C005DDDAC /* ParserOrderResponse.m in Sources */,
 				AD6F100E1C4D1C3A00FF70B3 /* UserModel.xcdatamodeld in Sources */,
