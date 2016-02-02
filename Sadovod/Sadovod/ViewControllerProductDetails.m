@@ -119,7 +119,7 @@
     [mainScrollView addSubview:scrollViewImge];
     
     //Инициализация вью изменения цены---------------------------------------------------
-    UIView * priceView = [[UIView alloc] initWithFrame:CGRectMake(0, scrollViewImge.frame.size.height + 20,
+    UIView * priceView = [[UIView alloc] initWithFrame:CGRectMake(0, scrollViewImge.frame.size.height,
                                                                      self.view.frame.size.width, 40)];
     priceView.backgroundColor = [UIColor colorWithHexString:@"3038a0"];
     [mainScrollView addSubview:priceView];
@@ -463,6 +463,7 @@
     alert.iconTintColor = [UIColor whiteColor];
     
     UITextField *textField = [alert addTextField:@"Новая цена"];
+    textField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
     
     [alert addButton:@"Изменить" actionBlock:^(void) {
         [self postApiPrice:textField.text];
