@@ -72,12 +72,16 @@
     for (int i = 0; i < listOrderItems.count; i ++) {
         
         NSDictionary * infoOrderItems = [listOrderItems objectAtIndex:i];
+        NSLog(@"IMG %@",[infoOrderItems objectForKey:@"img"]);
+        NSString * oldURL = [infoOrderItems objectForKey:@"img"];
+        NSString * newURLImage = [oldURL stringByReplacingOccurrencesOfString:@"img_small"
+                                                                   withString:@"img_med"];
         
-        //Изобрадение предмета--------------------------------
+        //Изображение предмета--------------------------------
         image = [[ViewSectionTable alloc] initWithFrame:CGRectMake
                  (0, self.view.frame.size.width * i,
                   self.view.frame.size.width / 2 + 20,
-                  (self.view.frame.size.width)) andImageURL:[infoOrderItems objectForKey:@"img"] isInternetURL:YES andLabelPrice:[infoOrderItems objectForKey:@"cost"] andResized:YES];
+                  (self.view.frame.size.width)) andImageURL:newURLImage isInternetURL:YES andLabelPrice:[infoOrderItems objectForKey:@"cost"] andResized:YES];
         [mainscrollView addSubview:image];
         
         //Размер предмета-------------------------------------
