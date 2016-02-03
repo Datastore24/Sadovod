@@ -30,7 +30,11 @@
 #import "LabelProductDetail.h"
 #import "BasketViewController.h"
 
-@interface ViewControllerProductDetails ()
+
+#define NUMBERS_ONLY @"1234567890" //Необходимые символы
+#define CHARACTER_LIMIT 8 //Длинна ввода
+
+@interface ViewControllerProductDetails () <UITextFieldDelegate>
 @property (strong, nonatomic) NSMutableArray * arrayProduct; //Массив с Товарами
 @property (strong, nonatomic) NSMutableArray * arrayBuyProductInfo; //Массив с Товарами
 @property (strong, nonatomic) ViewProductDetails * viewProductDetails; //Экземпляр класса
@@ -81,19 +85,9 @@
     //
     
      self.arrayProduct = [NSMutableArray array];
-    
-    
     [self getApiProduct:^{
-        
-        
-        
       NSDictionary * productInfo=[self.arrayProduct objectAtIndex:0];
-        
-        
         if([productInfo objectForKey:@"id"] != [NSNull null]){
-            
-        
-        
     NSArray * array = [productInfo objectForKey:@"images"];
     
     //Инициализация scrollView-----------
@@ -247,19 +241,25 @@
                  forControlEvents:UIControlEventTouchUpInside];
             if(i!=0 && countSizePerline==3){
                
-                buttonSize.frame = CGRectMake (0, 55+heightLine, (self.view.frame.size.width / 3) - 2, 35);
+                buttonSize.frame = CGRectMake (15, 55+heightLine, (self.view.frame.size.width / 3) - 20, 40);
+                
+                NSLog(@"Ширина с отступом первая %f", (15 + (self.view.frame.size.width / 3) - 20));
                 heightLine += 45;
                 countSizePerline = 1;
                 countSizeLine += 1;
                 
             }else{
                 if (i==0) {
-                    buttonSize.frame = CGRectMake ((0 + (self.view.frame.size.width / 3) * countSizePerline), 10+heightLine, (self.view.frame.size.width / 3) - 2, 35);
+                    buttonSize.frame = CGRectMake ((15 + (self.view.frame.size.width / 3) * countSizePerline), 10+heightLine, (self.view.frame.size.width / 3) - 20, 40);
                     countSizePerline += 1;
                     
                 } else {
                     
-                    buttonSize.frame = CGRectMake ((0.5 + (self.view.frame.size.width / 3) * countSizePerline), 10+heightLine, (self.view.frame.size.width / 3) - 2, 35);
+                    buttonSize.frame = CGRectMake (((30 + (self.view.frame.size.width / 3 - 20)) * countSizePerline - 15 * (countSizePerline - 1)), 10+heightLine, (self.view.frame.size.width / 3) - 20, 40);
+                    
+                    NSLog(@"%f", ((30 + (self.view.frame.size.width / 3 - 20)) * countSizePerline) - 15 * (countSizePerline - 1));
+
+
                     countSizePerline += 1;
               
                 }
@@ -298,7 +298,7 @@
             }
         }
         //
-        mainViewSize.frame=CGRectMake(0, titleSize.frame.origin.y + 40, self.view.frame.size.width, 55+heightLine+addMainViewSizeHeight);
+        mainViewSize.frame=CGRectMake(0, titleSize.frame.origin.y + 40, self.view.frame.size.width, 60+heightLine+addMainViewSizeHeight);
 
         //Если владелец то добавляем нопку добавить размер----------------------------------
             if ([[[SingleTone sharedManager] typeOfUsers] integerValue] ==1) {
@@ -308,7 +308,7 @@
                                   action:@selector(buttonSizeAddAction)
                         forControlEvents:UIControlEventTouchUpInside];
                 
-                buttonSizeAdd.frame = CGRectMake ((0.5 + (self.view.frame.size.width / 3) * countSizePerline), 10+heightLine, (self.view.frame.size.width / 3) - 2, 35);
+                buttonSizeAdd.frame = CGRectMake (((30 + (self.view.frame.size.width / 3 - 20)) * countSizePerline - 15 * (countSizePerline - 1)), 10+heightLine, (self.view.frame.size.width / 3) - 20, 40);
                 [buttonSizeAdd setTitle:@"+" forState:UIControlStateNormal];
                 [buttonSizeAdd setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
                 buttonSizeAdd.backgroundColor = [UIColor colorWithHexString:@"e9eaf7"];
@@ -344,15 +344,6 @@
     titleDetails.textColor = [UIColor colorWithHexString:@"3038a0"];
     titleDetails.font = [UIFont fontWithName:@"Helvetica-Bold" size:12];
     [mainScrollView addSubview:titleDetails];
-    
-//    //Таблица деалей----------------------------------------------------------------------
-//    CGRect frame = CGRectMake(0.f, titleDetails.frame.origin.y + 40, self.view.frame.size.width, 350);
-//    tableDetails = [[UITableView alloc] initWithFrame:frame
-//                                             style:UITableViewStyleGrouped];
-//    tableDetails.delegate = self;
-//    tableDetails.dataSource = self;
-//    tableDetails.backgroundView = nil;
-//    [mainScrollView addSubview:tableDetails];
     
     //Реализация таблицы деталей через цикл создваеммых вью-------------------------------------
         NSArray * productOptions = [[NSArray alloc] initWithArray:[productInfo objectForKey:@"opts"]];
@@ -464,6 +455,8 @@
     
     UITextField *textField = [alert addTextField:@"Новая цена"];
     textField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
+    textField.autocorrectionType = UITextAutocorrectionTypeNo;
+    textField.delegate = self;
     
     [alert addButton:@"Изменить" actionBlock:^(void) {
         [self postApiPrice:textField.text];
@@ -1188,17 +1181,6 @@
             imageViewMain.image = [UIImage imageNamed:@"ic_more.png"];
             [buttonMain addSubview:imageViewMain];
             
-//            //Кнопка подтверждения----------------------------------
-//            UIButton * buttonConfirm = [UIButton buttonWithType:UIButtonTypeSystem];
-//            buttonConfirm.frame = CGRectMake(10, buttonMain.frame.origin.y + 60, self.view.frame.size.width - 20, 35);
-//            buttonConfirm.backgroundColor = [UIColor colorWithHexString:@"3038a0"];
-//            [buttonConfirm setTitle:@"Купить" forState:UIControlStateNormal];
-//            [buttonConfirm setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-//            [buttonConfirm addTarget:self action:@selector(buttonConfirmAction)
-//                    forControlEvents:UIControlEventTouchUpInside];
-//            
-//            [self.addToCartView addSubview:buttonConfirm];
-            
             self.addToCartView.contentSize = CGSizeMake(self.view.frame.size.width, buttonMain.frame.origin.y + 150);
             
             //Выезжающее вью----------------------------------------
@@ -1386,6 +1368,14 @@
 {
     BasketViewController * detail = [self.storyboard instantiateViewControllerWithIdentifier:@"BasketViewController"];
     [self.navigationController pushViewController:detail animated:YES];
+}
+
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    NSUInteger newLength = [textField.text length] + [string length] - range.length;
+    NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:NUMBERS_ONLY] invertedSet];
+    NSString *filtered = [[string componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
+    return (([string isEqualToString:filtered])&&(newLength <= CHARACTER_LIMIT));
 }
 
 
