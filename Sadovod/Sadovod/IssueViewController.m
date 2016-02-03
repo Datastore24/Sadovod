@@ -13,6 +13,9 @@
 #import "SingleTone.h"
 #import "AlertClass.h"
 
+#define NUMBERS_ONLY @"1234567890" //Необходимые символы
+#define CHARACTER_LIMIT 4 //Длинна ввода
+
 @interface IssueViewController () <UITextViewDelegate>
 
 @end
@@ -20,17 +23,20 @@
 @implementation IssueViewController
 {
     UIScrollView * mainScrollView;
+    UIButton * buttonConfirm;
+    UILabel * labelConfirm;
+    BOOL isCange;
 }
 
 - (void) viewDidLoad
 {
     [super viewDidLoad];
     
+    isCange = NO;
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
                                    initWithTarget:self
                                    action:@selector(dismissKeyboard)];
-    
     [self.view addGestureRecognizer:tap];
     
     TitleClass * title = [[TitleClass alloc]initWithTitle:@"Оформление заказа"];
@@ -65,6 +71,7 @@
     viewName.layer.borderColor = [UIColor groupTableViewBackgroundColor].CGColor;
     viewName.layer.borderWidth = 0.5f;
     viewName.textColor = [UIColor lightGrayColor]; //optional
+    viewName.autocorrectionType = UITextAutocorrectionTypeNo;
     [mainScrollView addSubview:viewName];
     
     //Ввод телефона----------------------------------------
@@ -77,6 +84,7 @@
     viewPhone.layer.borderWidth = 0.5f;
     viewPhone.textColor = [UIColor lightGrayColor]; //optional
     viewPhone.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
+    viewPhone.autocorrectionType = UITextAutocorrectionTypeNo;
     [mainScrollView addSubview:viewPhone];
     
     //Ввод адреcа------------------------------------------
@@ -88,6 +96,7 @@
     textView.layer.borderColor = [UIColor groupTableViewBackgroundColor].CGColor;
     textView.layer.borderWidth = 0.5f;
     textView.textColor = [UIColor lightGrayColor]; //optional
+    textView.autocorrectionType = UITextAutocorrectionTypeNo;
     [mainScrollView addSubview:textView];
     
     //Лейбл комментариев-----------------------------------
@@ -107,10 +116,11 @@
     commentView.layer.borderColor = [UIColor groupTableViewBackgroundColor].CGColor;
     commentView.layer.borderWidth = 0.5f;
     commentView.textColor = [UIColor lightGrayColor]; //optional
+    commentView.autocorrectionType = UITextAutocorrectionTypeNo;
     [mainScrollView addSubview:commentView];
     
     //Кнопка подтверждения----------------------------------
-    UIButton * buttonConfirm = [UIButton buttonWithType:UIButtonTypeSystem];
+    buttonConfirm = [UIButton buttonWithType:UIButtonTypeSystem];
     buttonConfirm.frame = CGRectMake(10, 330, self.view.frame.size.width - 20, 35);
     buttonConfirm.backgroundColor = [UIColor colorWithHexString:@"3038a0"];
     [buttonConfirm setTitle:@"Оформить заказ" forState:UIControlStateNormal];
@@ -119,6 +129,16 @@
             forControlEvents:UIControlEventTouchUpInside];
     
     [mainScrollView addSubview:buttonConfirm];
+    
+    
+    //Вью неверного символа----------------------------------
+    labelConfirm = [[UILabel alloc] initWithFrame:CGRectMake(10, 330, self.view.frame.size.width - 20, 35)];
+    labelConfirm.backgroundColor = [UIColor colorWithHexString:@"f4f4f4"];
+    labelConfirm.text = @"Телефон должен состоять из цифр";
+    labelConfirm.textAlignment = NSTextAlignmentCenter;
+    labelConfirm.textColor = [UIColor redColor];
+    labelConfirm.alpha = 0;
+    [mainScrollView addSubview:labelConfirm];
     
     
   
@@ -150,12 +170,14 @@
             textView.textColor = [UIColor blackColor]; //optional
         }
        
-    } else if (textView.tag == 2) {
+    }
+    else if (textView.tag == 2) {
         if ([textView.text isEqualToString:@"Телефон"]) {
-            textView.text = @"";
+            textView.text = @"8";
             textView.textColor = [UIColor blackColor]; //optional
         }
-        } else if (textView.tag == 3) {
+        }
+    else if (textView.tag == 3) {
             if ([textView.text isEqualToString:@"Адрес"]) {
                 textView.text = @"";
                 textView.textColor = [UIColor blackColor]; //optional
@@ -185,12 +207,14 @@
             textView.textColor = [UIColor lightGrayColor]; //optional
         }
         
-    } else if (textView.tag == 2) {
-        if ([textView.text isEqualToString:@""]) {
+    }
+    else if (textView.tag == 2) {
+        if ([textView.text isEqualToString:@""] || [textView.text isEqualToString:@"8"]) {
             textView.text = @"Телефон";
             textView.textColor = [UIColor lightGrayColor]; //optional
         }
-    } else if (textView.tag == 3) {
+    }
+    else if (textView.tag == 3) {
         if ([textView.text isEqualToString:@""]) {
             textView.text = @"Адрес";
             textView.textColor = [UIColor lightGrayColor]; //optional
@@ -212,9 +236,12 @@ shouldChangeTextInRange:(NSRange)range
 {
     if ([text isEqualToString:@"\n"])
     {
-        [textView resignFirstResponder];
+       [textView resignFirstResponder];
     }
-    return YES;
+    
+        return YES;
+    
+
 }
 
 
@@ -280,6 +307,26 @@ shouldChangeTextInRange:(NSRange)range
                         }
                     }];
 }
+
+- (void)textViewDidChange:(UITextView *)textView {
+    if (textView.tag == 2) {
+      
+        NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:NUMBERS_ONLY] invertedSet];
+        NSString * testString = [[textView.text componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
+        
+        if (![textView.text isEqual:testString]) {
+                [UIView animateWithDuration:0.3 animations:^{
+                    buttonConfirm.alpha = 0;
+                    labelConfirm.alpha = 1;
+                }];
+        } else {
+            [UIView animateWithDuration:0.3 animations:^{
+                buttonConfirm.alpha = 1;
+                labelConfirm.alpha = 0;
+            }];
+        }
+        }
+    }
 
 
 @end
